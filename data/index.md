@@ -19,5 +19,5 @@
 1. [Google面试准备](Leetcode:GooglePrep)
 
 ## 使用说明： ##
-[link](Sample:index)
-
+1. [原index link](Sample:index)
+2. [markdown cmd测试](Sample:cmdMarkdown)
