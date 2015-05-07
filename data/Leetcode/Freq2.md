@@ -5,14 +5,45 @@
 
 ---
 [TOC]
+
 ## 20141228
 ### Populating Next Right Pointers in Each Node II
 * 
+
+### Lowest Common Ancestors I/II: [1337文章link](http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html)
+* 先复习一下: **top-down/bottom-up approach**: [TD/BU的区别-米群讨论](http://www.meetqun.com/thread-2732-1-1.html). 其实[javayu的解释](http://wp.javayu.me/2014/02/lowest-common-ancestor-of-a-binary-tree/)最准确:
+> 树的bottom-up方式和top-down方式的主要差别就在于：先处理当前节点还是先处理子树
+
+### Minimum Adjustment Cost: Lintcode动态规划题目
+* 
+
 ### Binary Tree Maximum Path Sum
+* 这题是diameter/height的扩展题. 因为题目还包含了不经过root的情况. 其实都是dfs recursion. 只是要同时保存single path和sum. 即
+    * single path是经过当前node的一边的max: Math.max(l.path, r.path)+root.v -> 经过当前node的边的最大值. 0->即经过此node的边为负.
+    * sum则是左右sum的最大值, 或者左右边最大值加上当前node.
+
+### Diameter and Height of Binary Tree
+* 做Binary Tree Maximum Path Sum之前先做一下类似理解的题目: Diameter of Binary Tree: [N00t帖子](http://n00tc0d3r.blogspot.com/2013/07/diameter-of-binary-tree.html)
+> 树没有被看成有向图，而是被当成无向图来寻找路径 -- [Ganker](http://blog.csdn.net/linhuanmars/article/details/22969069)
+* 标准的DFS. 注意base case一定要return来终止.
+* 注意Height必须是进过root, 但是Diameter并不一定. 参见N00t的配图. 而N00t的公式则按照(SOF解释](http://stackoverflow.com/a/11897490). 很好理解了.
+
 ### Next Permutation
+
 ### First Missing Positive
+* 其实这就是bucket sorting. 是最快的排序法, 比qsort还快. 是O(n), 但是是用空间换时间. 可以generalize为更实用的radix sort.
+> A type of bucket sort called the counting sort --- [IBM link](https://www-927.ibm.com/ibm/cas/hspc/student/algorithms/BucketSort.html)
+* bucket sort, radix sort, bubble sort, counting sort --- [University of Washington CSE 373](https://courses.cs.washington.edu/courses/cse373/13wi/lectures.shtml#today)
+    * 注意这里的最后一步就是Concatenation bucket到原array的时候有3个var, 不要搞混了.
+* 注意ganker的内循环判定的条件是`A[i] != A[A[i]-1]`. 而且最后要`i--`. 为什么不能换成`A[i] != i+1`. 
+    * 因为若是换成直接判断A[i]!=i+1的话, 则会导致在重复字符的情况下出现死循环.
+    * 之所以i--. 是因为交换完之后不一定是正确的. 例如{3,1,2}一开始的3,2交换为2,3后, 2并不是正确位置. 所以再判断2,1并交换才对.
+    * 所以Ganker说这道题目很简单, 但其中包含的算法思想和编程基础很适合面试!
+
 ### Largest Rectangle in Histogram
+
 ### Scramble String
+
 ### Interleaving String
 
 ## 20141226
@@ -194,7 +225,6 @@
 | 84  | Largest Rectangle in Histogram                 | 2 | 
 | 87  | Scramble String                                | 2 | 
 | 97  | Interleaving String                            | 2 | 
-
 
 
 
