@@ -1,6 +1,5 @@
 # 纯黑老白的wiki
 
-
 [Github 项目页](https://github.com/dmscode/Wiki-in-box)
 
 ## TOC  ##
@@ -9,7 +8,7 @@
 + [Good courses](thinking:AwesomeCourses)
 
 ### OA
-1. [POJ分类 小媛](OA:POJ_summary)
+1. [POJ分类--小媛](OA:POJ_summary)
 2. [ACM题集以及各种总结大全](OA:ACM)
 
 ### 刷题
@@ -19,7 +18,8 @@
 3. [Leetcode Freq 3](Leetcode:Freq3)
 4. [Leetcode Freq 4-5](Leetcode:Freq45)
 5. [Leetcode System](Leetcode:System)
-6. [Lintcode DP题目](Leetcode:LintcodeDP)
+6. [Leetcode 优质题解博客](Leetcode:LeetcodeBlogs)
+7. [Lintcode DP题目](Leetcode:LintcodeDP)
 
 ### 面试准备
 1. [Google面试准备](Leetcode:GooglePrep)

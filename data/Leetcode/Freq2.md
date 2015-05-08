@@ -11,16 +11,30 @@
 * 
 
 ### Lowest Common Ancestors I/II: [1337文章link](http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html)
-* 先复习一下: **top-down/bottom-up approach**: [TD/BU的区别-米群讨论](http://www.meetqun.com/thread-2732-1-1.html). 其实[javayu的解释](http://wp.javayu.me/2014/02/lowest-common-ancestor-of-a-binary-tree/)最准确:
+* 先复习一下: top-down/bottom-up approach: [TD/BU的区别-米群讨论](http://www.meetqun.com/thread-2732-1-1.html). 其实[javayu的解释](http://wp.javayu.me/2014/02/lowest-common-ancestor-of-a-binary-tree/)最准确:
 > 树的bottom-up方式和top-down方式的主要差别就在于：先处理当前节点还是先处理子树
++ 而且这里很有意思的是Top down的LCA是recursion, 里面还调用countMatches这个小recursion.
+    + 这还是见得比较少的, 一般就是client调用helper recursion.
+    + 照[Tree总结](http://www.faceye.net/search/136311.html)所总结的万金油方法, 不过这个表述没看明白, 原来是在[cnblog symetric Tree](http://www.cnblogs.com/leetcode/p/4003795.html)里面的分析的思路: 
+> 1. top-down 还是 bottom-up.    选择top-down.        O(n^2)
+> 2. 用递归. 是否需要内嵌小递归.   需要. 其实就是判定root的是否一样的小递归.
+> 3. 逻辑运用小递归.  
+
+* 这道题的follow up是: 如果每个node有parent pointer的话呢? 可以怎么改进: [LCA II](http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-ii.html)
 
 ### Minimum Adjustment Cost: Lintcode动态规划题目
-* 
+* 参考的是[主页君的cnblog和github](http://www.cnblogs.com/yuzhangcmu/p/4153927.html)分析的很详细, 有4种解法:
+    > 其实就是NP问题的backtracking解法. 但还是老问题, 怎么找到解集合?
 
 ### Binary Tree Maximum Path Sum
 * 这题是diameter/height的扩展题. 因为题目还包含了不经过root的情况. 其实都是dfs recursion. 只是要同时保存single path和sum. 即
     * single path是经过当前node的一边的max: Math.max(l.path, r.path)+root.v -> 经过当前node的边的最大值. 0->即经过此node的边为负.
     * sum则是左右sum的最大值, 或者左右边最大值加上当前node.
+* 由[嘻唰唰blog](http://bangbingsyb.blogspot.com/2014/11/leetcode-binary-tree-maximum-path-sum.html)题解里面分析的: 对于每一个node的Maximum Path Sum分2类: 
+    > 1. single path是指由该node出发向leaf的第一类path中最大的path sum
+    > 2. 以x为LCA的第二类path中的最大path sum
+
+* 正是因为看到嘻唰唰提到的LCA, 所以去看了1337的LCA文章, 受益良多. 加深对top-down/bottom-up的理解.
 
 ### Diameter and Height of Binary Tree
 * 做Binary Tree Maximum Path Sum之前先做一下类似理解的题目: Diameter of Binary Tree: [N00t帖子](http://n00tc0d3r.blogspot.com/2013/07/diameter-of-binary-tree.html)
@@ -43,6 +57,14 @@
 ### Largest Rectangle in Histogram
 
 ### Scramble String
+* 这道题目可以用recursion, 更可以用DP. 是一道经典的3D DP. 但正如段公子所说: DP table可以用array也可以用HashMap. 
+* 参考的: 
+    * [fightforyourdream的recursion+DP](http://blog.csdn.net/fightforyourdream/article/details/17707187).
+    * [武大CSDN的Hashmap动态规划](http://blog.csdn.net/whuwangyi/article/details/14105063), 
+    * [Unieagele解题博客的3D动归](http://blog.unieagle.net/2012/10/23/leetcode%E9%A2%98%E7%9B%AE%EF%BC%9Ascramble-string%EF%BC%8C%E4%B8%89%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/)
+    * N00t的递归, 动归
+    * Ganker的3D动归
+    * 水中的鱼的recursion.
 
 ### Interleaving String
 
