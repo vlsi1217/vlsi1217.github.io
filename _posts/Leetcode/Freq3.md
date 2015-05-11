@@ -1,5 +1,5 @@
-title: "Freq 3"
-date: "2015-03-20 20:17:16"
+title: "Leetcode freq 3"
+date: "2015-02-20 20:17:16"
 tags: Leetcode
 categories: Interview
 description: "A collection of Hello World applications from helloworld.org."

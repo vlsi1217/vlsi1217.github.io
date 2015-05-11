@@ -1,5 +1,5 @@
-title: "Freq 2"
-date: "2015-03-16 20:17:16"
+title: "Leetcode freq 2"
+date: "2015-02-16 20:17:16"
 tags: Leetcode
 categories: Interview
 description: "A collection of Hello World applications from helloworld.org."
@@ -29,7 +29,7 @@ toc: true
 * 参考的是[主页君的cnblog和github](http://www.cnblogs.com/yuzhangcmu/p/4153927.html)分析的很详细, 有4种解法:
     > 其实就是NP问题的backtracking解法. 但还是老问题, 怎么找到解集合?
 
-![九章算法黄老师课上的课件](imgs/minimumAdjCost.png)
+![九章算法黄老师课上的课件](/images/Leetcode/9chap_minAdjCost.png)
 
 ### Binary Tree Maximum Path Sum
 * 这题是diameter/height的扩展题. 因为题目还包含了不经过root的情况. 其实都是dfs recursion. 只是要同时保存single path和sum. 即
