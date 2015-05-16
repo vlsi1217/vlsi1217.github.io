@@ -1,0 +1,1824 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="google-site-verification" content="en_dejusB3O2_8PtG6GlYdYmaTEHr2fTEiIoZidOypY" />
+  <meta name="baidu-site-verification" content="7tszoAHV0d" />
+  
+  <title>百变千幻衡山云雾十三式</title>
+  <meta name="author" content="玉娇龙">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="百变千幻衡山云雾十三式" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?null";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">百变千幻衡山云雾十三式</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Rss feed">
+			  <i class="fa fa-rss-square"></i>Rss
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 <div class="page-header">
+  <h1>Wikirize my knowledge</h1>
+</div>
+
+<div class="row page">
+
+	
+	<div class="col-md-9">
+	
+
+		<div class="slogan">
+      <i class="fa fa-heart"></i>
+      Yet another bootstrap theme.
+</div>    
+
+		<div class="mypage">
+		
+		<!-- title and entry -->
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-05-09 </div>
+			<div class="article-title"><a href="/2015/05/09/Leetcode/Unit3_9chap/" title="A collection of Hello World applications from helloworld.org.">Unit 3 九章算法课 : Binary Tree-Divide &amp; Conquer</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h2 id="Binary_Tree的2个重点:_DFS和BFS-">Binary Tree的2个重点: DFS和BFS.</h2><h3 id="Traverse">Traverse</h3><blockquote>
+<p>必须会iteration. 可以先背下来.</p>
+<ul>
+<li>Pre</li>
+<li>in -&gt; Iterator题目</li>
+<li>Post</li>
+</ul>
+</blockquote>
+<h2 id="Divide_and_Conquer">Divide and Conquer</h2><blockquote>
+<p>Binary Tree里面的DC和Traverse都是recursion, 本质的区别是D&amp;C的recursion有return, 而Traverse里面的recursion仅仅是用来走Tree, 并不需要return.</p>
+</blockquote>
+<h3 id="p1-_Binary_Tree_Maximum_Path_Sum">p1. Binary Tree Maximum Path Sum</h3><ul>
+<li>3721 先用D&amp;C.</li>
+</ul>
+<h3 id="p2-_LCA_I/II-_(区别是有没有parent_pointer)">p2. LCA I/II. (区别是有没有parent pointer)</h3>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/05/09/Leetcode/Unit3_9chap/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-05-06 </div>
+			<div class="article-title"><a href="/2015/05/06/Leetcode/Unit1_9chap/" title="A collection of Hello World applications from helloworld.org.">Unit 1 九章算法课: 学习/做题思路</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <blockquote>
+<ul>
+<li>这节课我miss了, 所以只是放上对PPT的理解.<ul>
+<li>参考的blog是Shuatiblog.com: <a href="http://www.shuatiblog.com/blog/2014/06/12/NineChap-Permutation/" target="_blank" rel="external">link</a></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="strStr说开去">strStr说开去</h2><ul>
+<li>先看到这种substring match的问题就想到是不是有现成的算法啊: 有啊:<ul>
+<li>KMP -&gt; O(n)</li>
+<li>RB hash</li>
+<li>BM 首尾搜索</li>
+</ul>
+</li>
+<li>不过这里是很简单的情况, 最好先写个简单的看出我基本功的可以用的code<ul>
+<li>为了不失一般性, 先判断base case. 即太短, sub过长, etc.</li>
+<li>然后就可以假定我们的needle是远小于haystack的长度. 然后就是Ganker在substring concatenation那种, 在Haystack里面traverse所有长度为needle.length()的substring, 然后另一个指针对比needle和substring.</li>
+</ul>
+</li>
+</ul>
+<h2 id="NP搜索模版:_从Permutation说开去">NP搜索模版: 从Permutation说开去</h2><blockquote>
+<ul>
+<li>code monkey说: “Permutation problem provides you a list of items, your task is to build, validate and return a somewhat combination of these items. The template is to sort the input first, and add <strong>qualified</strong> item 1 by 1”<ul>
+<li>一般这个helper method (或者叫dfs), 都有个控制进入下一步的控制方式, 例如Subset的helper用pos, Permutation用boolean[] used, 等等.</li>
+<li>先写一下这个模版:</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt; Search(<span class="built_in">int</span>[] A) &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (A==<span class="keyword">null</span> || A.length()==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Arrays.sort(A);</span><br><span class="line">    dfs(A, <span class="keyword">new</span> boolean[A.length()], <span class="keyword">new</span> <span class="built_in">List</span>&lt;Integer&gt;(), ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private <span class="literal">static</span> <span class="keyword">void</span> dfs(<span class="built_in">int</span>[] A, boolean[] used, <span class="built_in">List</span>&lt;Integer&gt; path, <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt;res) &#123;</span><br><span class="line">    <span class="keyword">if</span> (path.length() == A.length()) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; A.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; !used[i-<span class="number">1</span>] &amp;&amp; A[i]==A[i-<span class="number">1</span>])  <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (used[i])  <span class="keyword">continue</span>;</span><br><span class="line">        path.add(A[i]);</span><br><span class="line">        dfs(A, used, path, res);</span><br><span class="line">        path.remove(path.size()-<span class="number">1</span>);</span><br><span class="line">        used[i] = <span class="keyword">false</span>;  <span class="comment">// 记得recursion一定要恢复现场. 即call stack回退之后的状态要和进入之前一样. 可以看看Ganker的解释.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Subset">Subset</h3><h3 id="Permutation">Permutation</h3><ul>
+<li>这里通过boolean[] used, 来处理duplicate. </li>
+<li>例子：[1 2 3 4 4 4 5 6 7 8]. 这个例子via <a href="http://www.cnblogs.com/yuzhangcmu/p/4141085.html" target="_blank" rel="external">CMUyu</a><ul>
+<li>444这个的选法只能:4, 44, 444连续这三种选法. 即是说: 只对第一个4做递归调用. 然后对于后面2个4就不用递归了, 因为第一个4已经将这3种选法保存到result里面了.</li>
+</ul>
+</li>
+<li>当然, Permutation在工作中的代码时尽量要避免的, 所以follow up很有可能是要求用iteration来解. 见Code ganker. 或者下面这个Next Permutation.</li>
+</ul>
+<h3 id="Combination">Combination</h3><ul>
+<li>典型的模版套用</li>
+</ul>
+<h3 id="Combination_Sum">Combination Sum</h3><h3 id="Letter_Combination_of_a_Phone_number">Letter Combination of a Phone number</h3><h3 id="Palindrome_Partitioning">Palindrome Partitioning</h3><h3 id="Restore_IP_Address">Restore IP Address</h3><h3 id="8_queen">8 queen</h3><ul>
+<li>如何选取valid subproblem.</li>
+</ul>
+<h3 id="Coin">Coin</h3>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/05/06/Leetcode/Unit1_9chap/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-05-06 </div>
+			<div class="article-title"><a href="/2015/05/06/Leetcode/Unit2_9chap/" title="A collection of Hello World applications from helloworld.org.">Unit 2 九章算法课: Binary Search</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h2 id="2分法模版">2分法模版</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (start + <span class="number">1</span> &lt; <span class="keyword">end</span>) &#123;</span><br><span class="line">    mid = start + (<span class="keyword">end</span> - start) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (A[mid] == <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;  // key</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &lt; <span class="type">target</span>) &#123;</span><br><span class="line">        start = mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &gt; <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (A[start] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> start;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[<span class="keyword">end</span>] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>while退出条件: lo+1&lt;hi</li>
+<li>中间处理通用: 都是lo=mid, hi=mid. 不用mid+1/mid-1.</li>
+<li>while循环结束后, 只要处理2个数就可以了: start和end. 可以很容易分析.<ul>
+<li>这里的start/end的意义是什么呢? 并不一定是target的范围就已经确定了, 例如有dup的时候, 就要看你是求first, any, 还是last了.</li>
+<li>或者说target不再A[]里面的情况呢? 那么target &lt; A[lo] 或者 A[hi] &lt; target.</li>
+</ul>
+</li>
+</ul>
+<h3 id="从复杂度-&gt;算法">从复杂度-&gt;算法</h3><ul>
+<li>一般的复杂度有O(n), 比他好的就是O(lgn). 那就只有二分了. 所以看到这种复杂度要求的题目, 就是用二分模版.</li>
+</ul>
+<h3 id="p1-_search_insert_position">p1. search insert position</h3><ul>
+<li>其实根据题意了解到, 就是找first position i, that A[i] &gt;= target. 所以对于这种sorted array的search first/last position就是用二分法. </li>
+<li>模版是要灵活运用的, 只是说这样写不太容易出错. 但是也要在适当范围内根据问题来做. 譬如insert的target不再A[]内会怎么样呢? 实际还是只要根据lo/hi这2个数分析就好, 但是这里学到了有了range, 有了lo/hi, 并<strong>不一定</strong>就是分3段: 左中右. 这里的分法有意思. <code>&lt;= low, &lt;= hi, 和大于hi.</code></li>
+</ul>
+<h2 id="Sorted_Array_问题">Sorted Array 问题</h2><h3 id="重要的2题:_Search_in_rotated_sorted_array">重要的2题: Search in rotated sorted array</h3><ul>
+<li>binary search<ul>
+<li>重要做题概念: 做题先画图, 容易直观分析.</li>
+</ul>
+<ul>
+<li>如果有duplicate, 就没得2分. 因为lo=mid=hi = 1的话, 所以2分无意义.</li>
+</ul>
+</li>
+<li>不用二分做<ul>
+<li>find minimum in rotated sorted array. 也是2分.</li>
+<li>recover rotatted sorted array.</li>
+<li>然后用min来search, 或者recover在search.</li>
+</ul>
+</li>
+</ul>
+<h4 id="p1-_Find_minimum_in_Rotated_sorted_array_I/II">p1. Find minimum in Rotated sorted array I/II</h4><h3 id="重要的2题:_Median_of_two_sorted_arrays">重要的2题: Median of two sorted arrays</h3><ul>
+<li>这题的算法思想很重要. 能提升自己的能力.</li>
+<li>先做: find kth int of two sorted arrays<ul>
+<li>其实就等于做出来median这题了.</li>
+</ul>
+</li>
+<li>注意 k-k/2!=k/2. 因为有奇数偶数的情况. 所以统一用k-k/2.</li>
+</ul>
+<h4 id="kth_of_two_sorted_arrays">kth of two sorted arrays</h4><h2 id="其他简单">其他简单</h2><ul>
+<li>merge sorted array/list.<ul>
+<li>小技巧: 从末尾开始插入.</li>
+<li></li>
+</ul>
+</li>
+<li>三步反转法</li>
+</ul>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/05/06/Leetcode/Unit2_9chap/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-21 </div>
+			<div class="article-title"><a href="/2015/02/21/Leetcode/LeetcodeDP/" title="Leetcode总结题型.">leetcode中学习DP</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <blockquote>
+<ul>
+<li>这一篇想整理一下在LC中学到的DP. 一是学习如何推DP公式, 一是学如何优化.</li>
+<li>另外2篇是: <ul>
+<li>Leetcode中学习Recursion.</li>
+<li>Leetcode中学习贪心</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="学习">学习</h1><h2 id="CLRS">CLRS</h2><ul>
+<li>rod cut<h2 id="Stanford">Stanford</h2></li>
+<li>WIS</li>
+</ul>
+<h2 id="ACM_资料">ACM 资料</h2><ul>
+<li><a href="http://www.douban.com/note/213102442/" target="_blank" rel="external">DP的3个特性</a><ul>
+<li>这个豆瓣文章不错, 讲了基本上面试会用的所有基本数据结构和算法.</li>
+<li>其中是3个特性: <ol>
+<li>最优子结构</li>
+<li>无后效性</li>
+<li>空间需求度</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="最简单的DP:_Unique_Path">最简单的DP: Unique Path</h1><h1 id="2D_DP经典:_distinct_subsequences">2D DP经典: distinct subsequences</h1><h1 id="2D_DP优化为1D_DP的经典:_Distinct_Subsequences/Coin_changes">2D DP优化为1D DP的经典: Distinct Subsequences/Coin changes</h1><h2 id="分析来自CSDN">分析来自<a href="http://blog.csdn.net/kenden23/article/details/19332545" target="_blank" rel="external">CSDN</a></h2><ul>
+<li><h1 id="2D_DP经典:_LCS">2D DP经典: LCS</h1><h2 id="Naive_recursion">Naive recursion</h2><h2 id="2D_DP">2D DP</h2></li>
+<li>DP打表有个关键: 先构造好表, 理解并初始化边界, 然后找规律填几行. <h2 id="1D_DP_(真1层)">1D DP (真1层)</h2></li>
+<li>我昨天就是想当然的直接像coin change那样直接改成1D, 其实是不对的, 因为不是opt[i][j] ~ opt[i+1][j], 而是opt[i+1][j+1]. 因为我们的opt[i][j]的定义是x[i…M] vs y[j…N]. 所以必须从后往前/从下往上扫. 所以j+1在被j使用之前就改了. 因为这里打表是想使用修改前的值. 而且不能从反过来(前向后扫), 因为这里和<a href="">ganker distinct subsequence</a>不同???<h2 id="O(1)D的DP,_也就是1,2,3,_…_的常数层">O(1)D的DP, 也就是1,2,3, … 的常数层</h2></li>
+<li>其实我使用的[0..1/2/3][0..N]这样一个<a href="http://sxyckjzh.blog.163.com/blog/static/32629815201361010642951/" target="_blank" rel="external"><strong>滚动数组</strong></a></li>
+<li>如果是3层的滚动数组, 如POJ 1159 Palindrome的话, 可以用取mod来找到正确的行, 如<a href="http://www.cnblogs.com/PJQOOO/p/3900677.html" target="_blank" rel="external">ACM女神</a> 也就是常用的方法(见Valid sudoku). 如果是2层的滚动数组, 可以用我在LCS里面的双buffer. 或者可以直接使用2层的数组做(可以mod, 或者^1), 见<a href="http://www.ahathinking.com/archives/115.html#more-115" target="_blank" rel="external">dp[k][j] = dp[k^1][j-1] +  1</a></li>
+<li>参考资料: <a href="http://blog.csdn.net/u011262722/article/details/10037855" target="_blank" rel="external">这个分了DP类: 斜率, 压缩</a></li>
+<li><a href="http://blog.csdn.net/lp_opai/article/details/43408081" target="_blank" rel="external">ACM分类, KMP7题</a></li>
+</ul>
+<h2 id="LCS经典变形:_POJ_1159_Palindrome">LCS经典变形: POJ 1159 Palindrome</h2><ul>
+<li>实际上LCS这里的subsequence是不连续的顺序子串. 所以可以利用这一点来解决Palindrome问题.</li>
+<li>只要将给的String 反转, 比较LCS, 然后加入len-LCS即可.</li>
+<li>如果要返回得到的Palindrome怎么弄?</li>
+</ul>
+<h2 id="2D_vs_1D">2D vs 1D</h2><ul>
+<li>关键就在于可不可以recover. 例如</li>
+</ul>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/21/Leetcode/LeetcodeDP/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-20 </div>
+			<div class="article-title"><a href="/2015/02/20/Leetcode/Freq3/" title="A collection of Hello World applications from helloworld.org.">Leetcode freq 3</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h1 id="Leetcode_freq_3">Leetcode freq 3</h1><p>标签（空格分隔）： leetcode</p>
+<hr>
+<h1 id="Frequency_3题解">Frequency 3题解</h1><p>[TOC]</p>
+<h2 id="20141218">20141218</h2><h3 id="Combination_-_N00t">Combination - N00t</h3><ul>
+<li>标准的recursion DFS模版. 牢记于心.</li>
+<li>而且有topdown和buttomup2个写法. 其中BU更简练.</li>
+<li>还有iteration的写法.</li>
+</ul>
+<h3 id="Letter_Combinations_of_a_Phone_Number">Letter Combinations of a Phone Number</h3><ul>
+<li>然后再来看这道题, 可以用Simple&amp;Stupid的做法, 和N00t的Combination差不多. </li>
+<li>或者N00t的iteration解法. </li>
+</ul>
+<h3 id="Combination_Sum_I/II">Combination Sum I/II</h3><ul>
+<li>N00t和Ganker结合. 注意2个的区别: I是可以reuse自己. 即可以用2(0), 2(0). 这里的2(0)表示在位置0的2. eg: {2, 2, 3, 7} 求sum=7. 而II是不能reuse自己. 所以答案是2(0), 2(1).</li>
+</ul>
+<h3 id="Maximum_Subarray_I/II">Maximum Subarray I/II</h3><ul>
+<li>N00t的I是用的简单的一次过. 里面的sum初始化的条件是sum&lt;0. 但是看了Ganker的方法才知道原来这道题目是典型的DP. </li>
+<li>其实LC的要求是不用DP做来达到O(n). 而是用Divide and Conquer来做. 看水中的鱼(C++). 或者一天一学(Java): <a href="http://joycelearning.blogspot.com/2013/10/leetcode-maximum-subarray.html" target="_blank" rel="external">链接</a></li>
+<li>其实II并<strong>不能</strong>用N00t的做法. 因为有可能出现有多个subarray的值都一样! 可以看LintCode的解法: <a href="http://codeanytime.blogspot.com/2014/12/lintcode-maximum-subarray-ii.html" target="_blank" rel="external">链接</a></li>
+</ul>
+<h3 id="Jump_Game">Jump Game</h3><ul>
+<li>Ganker在Maximum Subarray里面提到了DP里面常用的一个方法: 称为”局部最优和全局最优解法”. 在Jump game里面也用到了. </li>
+</ul>
+<h2 id="20141217">20141217</h2><h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><ul>
+<li><a href="http://blog.csdn.net/linhuanmars/article/details/20888505" target="_blank" rel="external">Ganker CSDN大神的DP解法</a></li>
+<li>当然还是N00t的解法作为入口开始理解.</li>
+</ul>
+<h3 id="Largest_Rectangle_in_Histogram">Largest Rectangle in Histogram</h3><ul>
+<li>N00t: 双Stack, 一个stack</li>
+<li>CSDN/abcbc: <a href="http://blog.csdn.net/abcbc/article/details/8943485" target="_blank" rel="external">双Stack</a></li>
+<li>GeekForGeek: sliding window, segment tree. 这2个做法很重要!要认真理解.</li>
+</ul>
+<h3 id="Search_a_2D_Matrix">Search a 2D Matrix</h3><ul>
+<li>简单题: 用2次binary search. 或者当作1个sorted array只要一次binary search就行了.</li>
+</ul>
+<h3 id="Partition_List">Partition List</h3><ul>
+<li>参考的Ganker的答案, 但是有点混乱了. Java里面不是copy的handle吗? 那walk, runner一直改变, 不是也同时改变了helper吗? </li>
+<li>ANS: NONONONONO. 双指针大法: walker/runner只是copy了pointer. 而每次walker = walker.next. 就assign了walker到下一个pointer. 这和C/C++一样.</li>
+</ul>
+<h3 id="Number_of_Islands">Number of Islands</h3><ul>
+<li>简单题. ProgramCreek使用的recursion解法. </li>
+</ul>
+<h2 id="20141208">20141208</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node">Populating Next Right Pointers in Each Node</h3><h3 id="Divide_Two_Integers">Divide Two Integers</h3><h3 id="Search_in_Rotated_Sorted_Array_I/II">Search in Rotated Sorted Array I/II</h3><h3 id="Deep_Iterator_:_LinkedIn老题目">Deep Iterator : LinkedIn老题目</h3><ul>
+<li>C++的解法: <a href="http://www.fgdsb.com/2015/01/19/nested-iterator/" target="_blank" rel="external">fgdsd的解法</a> 以及<a href="http://www.oodesign.com/iterator-pattern.html" target="_blank" rel="external">Iterator pattern</a></li>
+<li><del>Rosetta算法大全里面也有解法</del> 这只是print Flatten, 不是iterator: <a href="http://rosettacode.org/wiki/Flatten_a_list#Java" target="_blank" rel="external">Java解法link</a></li>
+<li>还是包子铺好, 有Java的解法(是iteration, 使用Stack来替代recursion, 上面讲recursion简单些): <a href="http://blog.baozitraining.org/2014/08/linkedin-twitter-and-hulu-onsite-how-to.html" target="_blank" rel="external">iteration解法</a></li>
+<li>其实这是一个常见的模式: <strong>Iterator and Composite Pattern</strong>. 见Head First Design Pattern. 这是最好的解法. 设计+代码</li>
+</ul>
+<h2 id="20141206">20141206</h2><h3 id="Search_In_Sorted_Array">Search In Sorted Array</h3><ul>
+<li>同类题目: Search Insert Position</li>
+<li>同类题目: Search for a range</li>
+</ul>
+<h3 id="Multiply_Strings">Multiply Strings</h3><ul>
+<li>初看之下, 就是一道简单题目啊, str2num然后乘起来不就行了? 其实不行, 因为会太大(??)</li>
+<li>第一种解法初看之下也是平淡无奇, 但其实分析的时候发现居然把array和charAt的顺序搞混了. 45-&gt;num1 = [4,5]. 这里的num1[0] = 4! 所以45*123的res要做成5位, 并将第一位留为0. 因为最终可能进位.</li>
+</ul>
+<h3 id="N-Queens_I/II">N-Queens I/II</h3><ul>
+<li>Matrix67/N00t用的是位运算解决问题.</li>
+<li>Ganker用的是传统的<strong>循环递归</strong>解决这种NP问题. </li>
+<li>又听了段公子的DP+Recursion讲座. 讲了用遍历+backtracking这种都是NP, 即是NP问题. 里面也提到了像Word Break这种可以Top-Down(memorize)和Button-Up(DP)的区别. 以及求CSP的个数和所有解空间的区别. </li>
+<li>Quora上面讲了top-down跟button-up的DP都不一定需要用recursion. </li>
+</ul>
+<h2 id="20141205">20141205</h2><h3 id="Restore_IP_Addresses">Restore IP Addresses</h3><ul>
+<li>太好了, 又深入的理解了recursion. 这里虽然只有一次显式的recursion, 但他是位于loop里面, 后面还有个results.add(). 以及共用(?和谁)一个results. 所以这种是一个今天学到的recursion: loop内的recursion用于循环遍历一层. </li>
+<li>N00t果然是recursion很厉害. 佩服. 这里是DFS还是BFS? 是不是子解树? 之前看的那个CSDN 链接在哪?</li>
+</ul>
+<h3 id="Triangle_Path_Sum">Triangle Path Sum</h3><ul>
+<li>很好的DP问题. 简单, 也分为top-down, 和button-up的2种思维方式.</li>
+<li>初始化List<list<>&gt;费了些心思, 觉得还是anonymous inner class比较简洁. <a href="http://mangstacular.blogspot.com/2013/04/4-ways-to-initialize-list-in-java.html" target="_blank" rel="external">link</a>. 其中<a href="http://www.programmerinterview.com/index.php/java-questions/java-anonymous-class-example/" target="_blank" rel="external">programinterview的讲解很清晰</a></list<></li>
+<li>N00t的top-down又让我深入理解了recursion中的param是primitive/object的区别. 以及call stack的new和clr的过程(Eclipse). </li>
+<li>暂时还没看N00t的top-down的BFS解法………………………………….</li>
+</ul>
+<h3 id="Surrounded_Regions">Surrounded Regions</h3><ul>
+<li>极度经典的图形学算法题目: flood fill. 同时关于DFS/BFS的取舍. 以及Queue的API: offer/poll. (这和stack的push/pull对应) </li>
+<li>参考Ganker/N00t的解法. </li>
+<li>Palindrome Partitioning I/II    </li>
+<li><p>N00t大神的DP+DP/DP+, 还有美丽的<strong>partitionHelper()</strong></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private <span class="keyword">static</span> <span class="type">void</span> recur(<span class="type">String</span> s, <span class="type">int</span> left, <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; <span class="literal">result</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (left == s.length()) &#123;</span><br><span class="line">      <span class="literal">result</span>.add(new <span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt; s.length(); ++i) &#123;</span><br><span class="line">      <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; temp = new <span class="type">ArrayList</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt;();</span><br><span class="line">      recur(s, i + <span class="number">1</span>, temp);</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">List</span>&lt;<span class="type">String</span>&gt; partitions : temp) &#123;</span><br><span class="line">        partitions.add(<span class="number">0</span>, s.substring(left, i + <span class="number">1</span>));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="literal">result</span>.addAll(temp);  // add()和addAll()的区别.</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>想到了word segment, word spell out, Matrix Chain multiplication</p>
+<ul>
+<li>也是一道经典recursion题目. 而且还看到了在for each里面的recursion call. 怎么展开呢? 太美了的recursion!</li>
+<li><a href="http://www.geeksforgeeks.org/print-possible-strings-can-made-placing-spaces/" target="_blank" rel="external">word spell out 链接</a></li>
+<li><a href="http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/" target="_blank" rel="external">Matrix Chain Multiplication链接</a></li>
+<li><a href="http://stackoverflow.com/questions/5275002/recursively-spell-out-a-word" target="_blank" rel="external">Word Split: SOF链接</a></li>
+<li>20150423: subsequence+matching的题目首先想到的应该是DP: 见<a href="http://jane4532.blogspot.com/2013/11/palindrome-partitioning-iileetcode.html" target="_blank" rel="external">sophieJ的解法</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Word_Segment_I/II">Word Segment I/II</h3><ul>
+<li>Naive做法是N00t的好</li>
+<li>DP做法有2D和1D, 可以是aray或者arrayList, N00t的做法和ProgramCreek的不同. </li>
+<li>Word Break II的主要参照programCreek的做法. 很完美经典的DFS+DP解法. 漂亮!!! ProgramCreek还赔了图, 其中的words即dp[].显而可见index为什么是s.length()+1了. <img src="http://www.programcreek.com/wp-content/uploads/2014/03/word-break-II-java-298x400.png" alt="ProgramCreek的配图"></li>
+</ul>
+<h2 id="20141129">20141129</h2><h3 id="Find_the_k-th_Smallest_Element_in_the_Union_of_Two_Sorted_Arrays">Find the k-th Smallest Element in the Union of Two Sorted Arrays</h3><ul>
+<li>先理解这道题再做median of two array.</li>
+<li>这里关键的问题可以转化为: 找B[j-1] &lt;A[i] &lt; B[j] 或者 A[i-1] &lt; B[j] &lt; A[i]. 如果不成立就recursion. 注意这里因为Java不能用指针, 所以要稍微站换一下1337的写法.</li>
+</ul>
+<h3 id="Median_of_Two_Sorted_Arrays">Median of Two Sorted Arrays</h3><ul>
+<li>这题有很多思考, 值得说道说道. 这题是源自于CLRS. 而且里面还简化了: m=n. 而LC这道题是generic的. </li>
+<li>要做这题先要理解这道题: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 见上.</li>
+<li></li>
+</ul>
+<h3 id="Regular_Expression_Matching">Regular Expression Matching</h3><ul>
+<li>如何保证考虑详细?</li>
+<li>N00t的解法很好<ul>
+<li>不知道怎样才能像他那样那么有逻辑. 不会有错漏. 这个if/else设计的太美了</li>
+<li>redundant分析我觉得不对. 因为到了2nd iteration中. “b” vs “a<em>a</em>b”是不会有3个substructure的. 因为不match.</li>
+<li>backtracking做法中, 一个用substring, 一个就是用2个指针i,j. 避免了substring()来copy浪费空间. 不过之所以这里可以用”char array”是因为这里只是比对. 而不需要修改. 所以直接reference即可. 但是像之前的partitionHelper里面可以用吗??? 或者是更之前的: </li>
+</ul>
+</li>
+</ul>
+<h3 id="Wildcard_Matching">Wildcard Matching</h3><pre><code><span class="bullet">+    </span>
+</code></pre><h2 id="20141118">20141118</h2><h3 id="Construct_Binary_Tree_from_Inorder_and_Postorder_traversal">Construct Binary Tree from Inorder and Postorder traversal</h3><ul>
+<li>首先通过pre, post, in加深了对recursion的理解. </li>
+<li>还是老话, 思考问题的方式. 先是找规律. 发现pre order的头的root, 然后可以在In order里面找到左右子树的大小, 再回到pre order里面找到左右子树的root. 如此recursion.</li>
+</ul>
+<h3 id="construct_binary_tree_from_preorder_and_inorder_traversal">construct binary tree from preorder and inorder traversal</h3><ul>
+<li>举一反三. 找规律看到了post-order反着读的话就正好是pre order的mirror. 所以这次从post order的尾巴开始读. 发现尾巴就是root, 然后回到inorder里面找左右子树的大小. 从而回到post-order里面找左右子树的root. 要注意的是不能点到mid &lt; end和mid &gt; start! 一开始就这样, 发现有错误, 进行到一半就停了.</li>
+<li>Flatten Binary Tree to Linked List  </li>
+<li><a href="http://n00tc0d3r.blogspot.com/2013/03/flatten-binary-tree-to-linked-list-in.html" target="_blank" rel="external">太好了, 终于完全理解复杂recursion了</a></li>
+</ul>
+<h3 id="Path_Sum">Path Sum</h3><ul>
+<li>root-to-leaf Path sum: <a href="http://www.programcreek.com/2013/01/leetcode-path-sum/" target="_blank" rel="external">ProgramCreek的解法</a>   </li>
+<li>Binary Tree Maximum Path Sum</li>
+<li>Find ALL Path Sum</li>
+</ul>
+<h3 id="Reverse_Integer">Reverse Integer</h3><ul>
+<li>要注意overflow, 跟负号</li>
+</ul>
+<h3 id="Unique_Paths_I/II">Unique Paths I/II</h3><ul>
+<li>经典的DP问题    </li>
+<li>也是path问题, 可以找规律, 变成排列组合题.</li>
+<li>如果有obstacle呢? </li>
+<li>觉得还是N00t的解法比较好. 相对于1337的2D opt, 这个只要1D. 而且可以解出来.</li>
+</ul>
+<h3 id="Longest_Consecutive_Sequence">Longest Consecutive Sequence</h3><ul>
+<li>还是觉得N00t的方法. 还是一样, 学会抽象, 不要以为tree型就一定要用tree实现, 或者range就必须要知道左右和长度. 要有了整体把握才设计API. HashMap的关键在于key/value的设计. </li>
+<li>还是N00t的”simple”(不觉得simple, 然而很多技巧在里面). 好聪明的做法. 果然是精通API和recursion的N00t.</li>
+</ul>
+<h2 id="20141115">20141115</h2><h3 id="Edit_Distance">Edit Distance</h3><ul>
+<li>这个是个经典的DP问题.  是Stanford Algs 2 DP问题DNA Sequence Alignment的扩展, 因为不只是ACGT, 也不只是Gap, 而是有3种操作. 注意n00tc0d3r的DP的优化! (用的空间是O(min(l1, l2) 而不是通常的O(l1*l2)) 我觉得这个是一个通用的optimize方法. 是不是four Russian(不是)?</li>
+</ul>
+<h3 id="One_Edit_Distance">One Edit Distance</h3><ul>
+<li>这个看起来就是直接用Edit Distance就行了. 其实会超时间! 注意是one distance. 所以直接1 pass. </li>
+</ul>
+<h3 id="Binary_Tree_Inorder_Traversal">Binary Tree Inorder Traversal</h3><ul>
+<li>很喜欢N00tc03的post-order=pre-order的mirror.</li>
+</ul>
+<h3 id="Binary_Tree_ZigZag_level_order_Traversal">Binary Tree ZigZag level order Traversal</h3><ul>
+<li>这个属于BFS. 注意看题意: 输出是要按照parent来加上括号. 而不是只要按照顺序就行的. 所以有2中方法:</li>
+<li>法1: 用flag</li>
+<li>法2: SRAM的双buffer. 这里使我真正的理解了<strong>github_addtion.bellmanFord()</strong>! 原来reachableNode, 和nextreachableNodes就和queue, queueBuffer的关系一样. 都是用来<strong>update到下一个layer</strong>的.</li>
+<li>注意要用2个loop, out-loop创建reslist来保存currLevel的值, 创建childLevel来保存下一层. in-loop用来填充res和childLevel</li>
+</ul>
+<h2 id="20141112">20141112</h2><h3 id="Convert_Sorted_list_to_BST_(in-order,_Button-up)">Convert Sorted list to BST (in-order, Button-up)</h3><ul>
+<li>这个和array的区别是array可以O(1) search, LinkedList要O(n). 所以不行. 但是想到BST是in-order. 可以直接从leaf开始. 也就是<strong>Buttom-up recursive</strong>. 但是要注意的是recursion的写法. 真正理解: 位于recursive call之前和之后的code的意义是什么. 这在Algs4的BST讲过. 在Stanford的SCC的DFS_loop讲过.</li>
+</ul>
+<h3 id="Convert_Sorted_Array_to_BST">Convert Sorted Array to BST</h3><ul>
+<li>简单. 因为BST是按顺序的, 所以recursive拿middle并左右路.</li>
+</ul>
+<h3 id="Remove_duplicates_from_sorted_Array">Remove duplicates from sorted Array</h3><ul>
+<li>这个可以看N00tc0d3r的解法. 先学会remove element from array</li>
+<li>而且用Nth-to-end里面的双指针, 距离n+1个node! </li>
+</ul>
+<h3 id="Median_of_Two_Sorted_Arrays-1">Median of Two Sorted Arrays</h3><ul>
+<li>比较难. 而且大部分答案都不对. 还是得看1337c0d3r的答案分析. 正统. 他让先看: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 他说这个是这道题的基础.</li>
+</ul>
+<h3 id="Remove_duplicates_from_sorted_List">Remove duplicates from sorted List</h3><ul>
+<li>关键在于list的删除要给出这个node的前一个node, 然后用pre.next = pre.next.next.</li>
+</ul>
+<hr>
+<h2 id="题目">题目</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Leetcode problem</th>
+<th>freq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26</td>
+<td><del>Remove Duplicates from Sorted Array</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>83</td>
+<td><del>Remove Duplicates from Sorted List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>112</td>
+<td><del>Path Sum</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>7</td>
+<td><del>Reverse Integer</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>19</td>
+<td><del>Remove Nth Node From End of List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>62</td>
+<td><del>Unique Paths</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>108</td>
+<td><del>Convert Sorted Array to Binary Search Tree</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>17</td>
+<td><del>Letter Combinations of a Phone Number</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>39</td>
+<td><del>Combination Sum</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>53</td>
+<td><del>Maximum Subarray</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>63</td>
+<td><del>Unique Paths II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>64</td>
+<td><del>Minimum Path Sum</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>74</td>
+<td><del>Search a 2D Matrix</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>82</td>
+<td><del>Remove Duplicates from Sorted List II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>86</td>
+<td><del>Partition List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>93</td>
+<td><del>Restore IP Addresses</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>105</td>
+<td><del>Construct Binary Tree from Preorder and Inorder</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>106</td>
+<td><del>Construct Binary Tree from Inorder and Postorder</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>114</td>
+<td><del>Flatten Binary Tree to Linked List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>116</td>
+<td>~~Populating Next Right Pointers in Each Node</td>
+<td>3</td>
+</tr>
+<tr>
+<td>29</td>
+<td>~~Divide Two Integers</td>
+<td>3</td>
+</tr>
+<tr>
+<td>33</td>
+<td>~~Search in Rotated Sorted Array</td>
+<td>3</td>
+</tr>
+<tr>
+<td>34</td>
+<td><del>Search for a Range</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>43</td>
+<td><del>Multiply Strings</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>51</td>
+<td><del>N-Queens</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>52</td>
+<td><del>N-Queens II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>72</td>
+<td><del>Edit Distance</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>94</td>
+<td><del>Binary Tree Inorder Traversal</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>103</td>
+<td><del>Binary Tree Zigzag Level Order Traversal</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>109</td>
+<td><del>Convert Sorted List to Binary Search Tree</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>128</td>
+<td><del>Longest Consecutive Sequence</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>130</td>
+<td><del>Surrounded Regions</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>132</td>
+<td><del>Palindrome Partitioning II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td><del>Median of Two Sorted Arrays</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>10</td>
+<td><del>Regular Expression Matching</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>44</td>
+<td><del>Wildcard Matching</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>81</td>
+<td><del>Search in Rotated Sorted Array II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>end</td>
+<td>念念不忘必有回响</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/20/Leetcode/Freq3/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-16 </div>
+			<div class="article-title"><a href="/2015/02/16/OA/POJ_summary/" title="A collection of Hello World applications from helloworld.org.">poj题目分类</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h1 id="poj题目分类_小媛在努力原创">poj题目分类 小媛在努力原创</h1><p>标签（空格分隔）： oa</p>
+<hr>
+<p>[TOC]</p>
+<h1 id="初期:">初期:</h1><h2 id="一-基本算法:">一.基本算法:</h2><h3 id="(1)枚举-_(poj1753,poj2965)">(1)枚举. (poj1753,poj2965)</h3><h3 id="(2)贪心(poj1328,poj2109,poj2586)">(2)贪心(poj1328,poj2109,poj2586)</h3><h3 id="(3)递归和分治法-">(3)递归和分治法.</h3><h3 id="(4)递推-">(4)递推.</h3><h3 id="(5)构造法-(poj3295)">(5)构造法.(poj3295)</h3><h3 id="(6)模拟法-(poj1068,poj2632,poj1573,poj2993,poj2996)">(6)模拟法.(poj1068,poj2632,poj1573,poj2993,poj2996)</h3><h2 id="二-图算法:">二.图算法:</h2><h3 id="(1)图的深度优先遍历和广度优先遍历-">(1)图的深度优先遍历和广度优先遍历.</h3><h3 id="(2)最短路径算法(dijkstra,bellman-ford,floyd,heap+dijkstra)">(2)最短路径算法(dijkstra,bellman-ford,floyd,heap+dijkstra)</h3><p> (poj1860,poj3259,poj1062,poj2253,poj1125,poj2240)</p>
+<h3 id="(3)最小生成树算法(prim,kruskal)">(3)最小生成树算法(prim,kruskal)</h3><p> (poj1789,poj2485,poj1258,poj3026)</p>
+<h3 id="(4)拓扑排序_(poj1094)">(4)拓扑排序 (poj1094)</h3><h3 id="(5)二分图的最大匹配_(匈牙利算法)_(poj3041,poj3020)">(5)二分图的最大匹配 (匈牙利算法) (poj3041,poj3020)</h3><h3 id="(6)最大流的增广路算法(KM算法)-_(poj1459,poj3436)">(6)最大流的增广路算法(KM算法). (poj1459,poj3436)</h3><h2 id="三-数据结构-">三.数据结构.</h2><h3 id="(1)串_(poj1035,poj3080,poj1936)">(1)串 (poj1035,poj3080,poj1936)</h3><h3 id="(2)排序(快排、归并排(与逆序数有关)、堆排)_(poj2388,poj2299)">(2)排序(快排、归并排(与逆序数有关)、堆排) (poj2388,poj2299)</h3><h3 id="(3)简单并查集的应用-">(3)简单并查集的应用.</h3><h3 id="(4)哈希表和二分查找等高效查找法(数的Hash,串的Hash)">(4)哈希表和二分查找等高效查找法(数的Hash,串的Hash)</h3><p> (poj3349,poj3274,POJ2151,poj1840,poj2002,poj2503)</p>
+<h3 id="(5)哈夫曼树(poj3253)">(5)哈夫曼树(poj3253)</h3><h3 id="(6)堆">(6)堆</h3><h3 id="(7)trie树(静态建树、动态建树)_(poj2513)">(7)trie树(静态建树、动态建树) (poj2513)</h3><h2 id="四-简单搜索">四.简单搜索</h2><h3 id="(1)深度优先搜索_(poj2488,poj3083,poj3009,poj1321,poj2251)">(1)深度优先搜索 (poj2488,poj3083,poj3009,poj1321,poj2251)</h3><h3 id="(2)广度优先搜索(poj3278,poj1426,poj3126,poj3087-poj3414)">(2)广度优先搜索(poj3278,poj1426,poj3126,poj3087.poj3414)</h3><h3 id="(3)简单搜索技巧和剪枝(poj2531,poj1416,poj2676,1129)">(3)简单搜索技巧和剪枝(poj2531,poj1416,poj2676,1129)</h3><h2 id="五-动态规划">五.动态规划</h2><h3 id="(1)背包问题-_(poj1837,poj1276)">(1)背包问题. (poj1837,poj1276)</h3><h3 id="(2)型如下表的简单DP(可参考lrj的书_page149):">(2)型如下表的简单DP(可参考lrj的书 page149):</h3><p><em>1. E[j]=opt{D+w(i,j)} (poj3267,poj1836,poj1260,poj2533)
+ </em>2. E[i,j]=opt{D[i-1,j]+xi,D[i,j-1]+yj,D[i-1][j-1]+zij} (最长公共子序列)<br> (poj3176,poj1080,poj1159)<br>  *3. C[i,j]=w[i,j]+opt{C[i,k-1]+C[k,j]}.(最优二分检索树问题)</p>
+<h2 id="六-数学">六.数学</h2><h3 id="(1)组合数学:">(1)组合数学:</h3><h4 id="1-加法原理和乘法原理-">1.加法原理和乘法原理.</h4><h4 id="2-排列组合-">2.排列组合.</h4><h4 id="3-递推关系-">3.递推关系.</h4><pre><code><span class="list">(<span class="keyword">POJ3252</span>,poj1850,poj1019,poj1942)</span>
+</code></pre><h3 id="(2)数论-">(2)数论.</h3><h4 id="1-素数与整除问题">1.素数与整除问题</h4><h4 id="2-进制位-">2.进制位.</h4><h4 id="3-同余模运算-">3.同余模运算.</h4><pre><code><span class="list">(<span class="keyword">poj2635</span>, poj3292,poj1845,poj2115)</span>
+</code></pre><h3 id="(3)计算方法-">(3)计算方法.</h3><pre><code><span class="number">1.</span>二分法求解单调函数相关知识.<span class="comment">(poj3273,poj3258,poj1905,poj3122)</span>
+</code></pre><h2 id="七-计算几何学-">七.计算几何学.</h2><h3 id="(1)几何公式-">(1)几何公式.</h3><h3 id="(2)叉积和点积的运用(如线段相交的判定,点到线段的距离等)-_(poj2031,poj1039)">(2)叉积和点积的运用(如线段相交的判定,点到线段的距离等). (poj2031,poj1039)</h3><h3 id="(3)多边型的简单算法(求面积)和相关判定(点在多边型内,多边型是否相交)">(3)多边型的简单算法(求面积)和相关判定(点在多边型内,多边型是否相交)</h3><pre><code><span class="list">(<span class="keyword">poj1408</span>,poj1584)</span>
+</code></pre><h3 id="(4)凸包-_(poj2187,poj1113)">(4)凸包. (poj2187,poj1113)</h3><h1 id="中级:">中级:</h1><h2 id="一-基本算法:-1">一.基本算法:</h2><h3 id="(1)C++的标准模版库的应用-_(poj3096,poj3007)">(1)C++的标准模版库的应用. (poj3096,poj3007)</h3><h3 id="(2)较为复杂的模拟题的训练(poj3393,poj1472,poj3371,poj1027,poj2706)">(2)较为复杂的模拟题的训练(poj3393,poj1472,poj3371,poj1027,poj2706)</h3><h2 id="二-图算法:-1">二.图算法:</h2><h3 id="(1)差分约束系统的建立和求解-_(poj1201,poj2983)">(1)差分约束系统的建立和求解. (poj1201,poj2983)</h3><h3 id="(2)最小费用最大流(poj2516,poj2516,poj2195)">(2)最小费用最大流(poj2516,poj2516,poj2195)</h3><h3 id="(3)双连通分量(poj2942)">(3)双连通分量(poj2942)</h3><h3 id="(4)强连通分支及其缩点-(poj2186)">(4)强连通分支及其缩点.(poj2186)</h3><h3 id="(5)图的割边和割点(poj3352)">(5)图的割边和割点(poj3352)</h3><h3 id="(6)最小割模型、网络流规约(poj3308,_)">(6)最小割模型、网络流规约(poj3308, )</h3><h2 id="三-数据结构--1">三.数据结构.</h2><h3 id="(1)线段树-_(poj2528,poj2828,poj2777,poj2886,poj2750)">(1)线段树. (poj2528,poj2828,poj2777,poj2886,poj2750)</h3><h3 id="(2)静态二叉检索树-_(poj2482,poj2352)">(2)静态二叉检索树. (poj2482,poj2352)</h3><h3 id="(3)树状树组(poj1195,poj3321)">(3)树状树组(poj1195,poj3321)</h3><h3 id="(4)RMQ-_(poj3264,poj3368)">(4)RMQ. (poj3264,poj3368)</h3><h3 id="(5)并查集的高级应用-_(poj1703,2492)">(5)并查集的高级应用. (poj1703,2492)</h3><h3 id="(6)KMP算法-_(poj1961,poj2406)">(6)KMP算法. (poj1961,poj2406)</h3><h2 id="四-搜索">四.搜索</h2><h3 id="(1)最优化剪枝和可行性剪枝">(1)最优化剪枝和可行性剪枝</h3><h3 id="(2)搜索的技巧和优化_(poj3411,poj1724)">(2)搜索的技巧和优化 (poj3411,poj1724)</h3><h3 id="(3)记忆化搜索(poj3373,poj1691)">(3)记忆化搜索(poj3373,poj1691)</h3><h2 id="五-动态规划-1">五.动态规划</h2><h3 id="(1)较为复杂的动态规划(如动态规划解特别的施行商问题等)">(1)较为复杂的动态规划(如动态规划解特别的施行商问题等)</h3><pre><code><span class="list">(<span class="keyword">poj1191</span>,poj1054,poj3280,poj2029,poj2948,poj1925,poj3034)</span>
+</code></pre><h3 id="(2)记录状态的动态规划-_(POJ3254,poj2411,poj1185)">(2)记录状态的动态规划. (POJ3254,poj2411,poj1185)</h3><h3 id="(3)树型动态规划(poj2057,poj1947,poj2486,poj3140)">(3)树型动态规划(poj2057,poj1947,poj2486,poj3140)</h3><h2 id="六-数学-1">六.数学</h2><h3 id="(1)组合数学:-1">(1)组合数学:</h3><h4 id="1-容斥原理-">1.容斥原理.</h4><h4 id="2-抽屉原理-">2.抽屉原理.</h4><h4 id="3-置换群与Polya定理(poj1286,poj2409,poj3270,poj1026)-">3.置换群与Polya定理(poj1286,poj2409,poj3270,poj1026).</h4><h4 id="4-递推关系和母函数-">4.递推关系和母函数.</h4><h3 id="(2)数学-">(2)数学.</h3><h4 id="1-高斯消元法(poj2947,poj1487,_poj2065,poj1166,poj1222)">1.高斯消元法(poj2947,poj1487, poj2065,poj1166,poj1222)</h4><h4 id="2-概率问题-_(poj3071,poj3440)">2.概率问题. (poj3071,poj3440)</h4><h4 id="3-GCD、扩展的欧几里德(中国剩余定理)_(poj3101)">3.GCD、扩展的欧几里德(中国剩余定理) (poj3101)</h4><h3 id="(3)计算方法--1">(3)计算方法.</h3><h4 id="1-0/1分数规划-_(poj2976)">1.0/1分数规划. (poj2976)</h4><h4 id="2-三分法求解单峰(单谷)的极值-">2.三分法求解单峰(单谷)的极值.</h4><h4 id="3-矩阵法(poj3150,poj3422,poj3070)">3.矩阵法(poj3150,poj3422,poj3070)</h4><h4 id="4-迭代逼近(poj3301)">4.迭代逼近(poj3301)</h4><h3 id="(4)随机化算法(poj3318,poj2454)">(4)随机化算法(poj3318,poj2454)</h3><h3 id="(5)杂题-">(5)杂题.</h3><pre><code><span class="list">(<span class="keyword">poj1870</span>,poj3296,poj3286,poj1095)</span>
+</code></pre><h2 id="七-计算几何学--1">七.计算几何学.</h2><h3 id="(1)坐标离散化-">(1)坐标离散化.</h3><h3 id="(2)扫描线算法(例如求矩形的面积和周长并,常和线段树或堆一起使用)-">(2)扫描线算法(例如求矩形的面积和周长并,常和线段树或堆一起使用).</h3><pre><code><span class="list">(<span class="keyword">poj1765</span>,poj1177,poj1151,poj3277,poj2280,poj3004)</span>
+</code></pre><h3 id="(3)多边形的内核(半平面交)(poj3130,poj3335)">(3)多边形的内核(半平面交)(poj3130,poj3335)</h3><h3 id="(4)几何工具的综合应用-(poj1819,poj1066,poj2043,poj3227,poj2165,poj3429)">(4)几何工具的综合应用.(poj1819,poj1066,poj2043,poj3227,poj2165,poj3429)</h3><h1 id="高级:">高级:</h1><h2 id="一-基本算法要求:">一.基本算法要求:</h2><h3 id="(1)代码快速写成,精简但不失风格">(1)代码快速写成,精简但不失风格</h3><p>   (poj2525,poj1684,poj1421,poj1048,poj2050,poj3306)</p>
+<h3 id="(2)保证正确性和高效性-_poj3434">(2)保证正确性和高效性. poj3434</h3><h2 id="二-图算法:-2">二.图算法:</h2><h3 id="(1)度限制最小生成树和第K最短路-_(poj1639)">(1)度限制最小生成树和第K最短路. (poj1639)</h3><h3 id="(2)最短路,最小生成树,二分图,最大流问题的相关理论(主要是模型建立和求解)">(2)最短路,最小生成树,二分图,最大流问题的相关理论(主要是模型建立和求解)</h3><p>  (poj3155, poj2112,poj1966,poj3281,poj1087,poj2289,poj3216,poj2446</p>
+<h3 id="(3)最优比率生成树-_(poj2728)">(3)最优比率生成树. (poj2728)</h3><h3 id="(4)最小树形图(poj3164)">(4)最小树形图(poj3164)</h3><h3 id="(5)次小生成树-">(5)次小生成树.</h3><h3 id="(6)无向图、有向图的最小环">(6)无向图、有向图的最小环</h3><h2 id="三-数据结构--2">三.数据结构.</h2><h3 id="(1)trie图的建立和应用-_(poj2778)">(1)trie图的建立和应用. (poj2778)</h3><h3 id="(2)LCA和RMQ问题(LCA(最近公共祖先问题)_有离线算法(并查集+dfs)_和_在线算法">(2)LCA和RMQ问题(LCA(最近公共祖先问题) 有离线算法(并查集+dfs) 和 在线算法</h3><p>(RMQ+dfs)).(poj1330)</p>
+<h3 id="(3)双端队列和它的应用(维护一个单调的队列,常常在动态规划中起到优化状态转移的">(3)双端队列和它的应用(维护一个单调的队列,常常在动态规划中起到优化状态转移的</h3><pre><code>目的). <span class="comment">(poj2823)</span>
+</code></pre><h3 id="(4)左偏树(可合并堆)-">(4)左偏树(可合并堆).</h3><h3 id="(5)后缀树(非常有用的数据结构,也是赛区考题的热点)-">(5)后缀树(非常有用的数据结构,也是赛区考题的热点).</h3><pre><code><span class="list">(<span class="keyword">poj3415</span>,poj3294)</span>
+</code></pre><h2 id="四-搜索-1">四.搜索</h2><h3 id="(1)较麻烦的搜索题目训练(poj1069,poj3322,poj1475,poj1924,poj2049,poj3426)">(1)较麻烦的搜索题目训练(poj1069,poj3322,poj1475,poj1924,poj2049,poj3426)</h3><h3 id="(2)广搜的状态优化:利用M进制数存储状态、转化为串用hash表判重、按位压缩存储状态、双向广搜、A*算法-_(poj1768,poj1184,poj1872,poj1324,poj2046,poj1482)">(2)广搜的状态优化:利用M进制数存储状态、转化为串用hash表判重、按位压缩存储状态、双向广搜、A*算法. (poj1768,poj1184,poj1872,poj1324,poj2046,poj1482)</h3><h3 id="(3)深搜的优化:尽量用位运算、一定要加剪枝、函数参数尽可能少、层数不易过大、可以考虑双向搜索或者是轮换搜索、IDA*算法-_(poj3131,poj2870,poj2286)">(3)深搜的优化:尽量用位运算、一定要加剪枝、函数参数尽可能少、层数不易过大、可以考虑双向搜索或者是轮换搜索、IDA*算法. (poj3131,poj2870,poj2286)</h3><h2 id="五-动态规划-2">五.动态规划</h2><h3 id="(1)需要用数据结构优化的动态规划-">(1)需要用数据结构优化的动态规划.</h3><pre><code><span class="list">(<span class="keyword">poj2754</span>,poj3378,poj3017)</span>
+</code></pre><h3 id="(2)四边形不等式理论-">(2)四边形不等式理论.</h3><h3 id="(3)较难的状态DP(poj3133)">(3)较难的状态DP(poj3133)</h3><h2 id="六-数学-2">六.数学</h2><h3 id="(1)组合数学-">(1)组合数学.</h3><pre><code><span class="number">1</span>.<span class="variable">MoBius</span>反演(poj2888,poj2154)
+<span class="number">2</span>.偏序关系理论.
+</code></pre><h3 id="(2)博奕论-">(2)博奕论.</h3><pre><code><span class="number">1</span>.极大极小过程(poj3317,poj1085)
+<span class="number">2</span>.<span class="variable">Nim</span>问题.
+</code></pre><h2 id="七-计算几何学--2">七.计算几何学.</h2><h3 id="(1)半平面求交(poj3384,poj2540)">(1)半平面求交(poj3384,poj2540)</h3><h3 id="(2)可视图的建立(poj2966)">(2)可视图的建立(poj2966)</h3><h3 id="(3)点集最小圆覆盖-">(3)点集最小圆覆盖.</h3><h3 id="(4)对踵点(poj2079)">(4)对踵点(poj2079)</h3><pre><code>八.综合题.
+(poj3109,poj1478,poj1462,poj2729,poj2048,poj3336,poj3315,poj2148,poj1263)
+</code></pre>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/16/OA/POJ_summary/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-16 </div>
+			<div class="article-title"><a href="/2015/02/16/Leetcode/System/" title="A collection of Hello World applications from helloworld.org.">Leetcode 系统设计题目</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h2 id="20150306">20150306</h2><h3 id="Short_URL">Short URL</h3><ul>
+<li>参考N00t的设计</li>
+</ul>
+<h3 id="Battlefield">Battlefield</h3><h3 id="Game_of_Life">Game of Life</h3><ul>
+<li>参考Holub书中的介绍以及UML</li>
+</ul>
+<h3 id="Chess">Chess</h3><ul>
+<li>参考Github的UML</li>
+</ul>
+<h3 id="Collaberative_Editor_(Google_doc)">Collaberative Editor (Google doc)</h3><ul>
+<li>参考isnowfy的设计<a href="http://www.isnowfy.com/collaborative-editor/" target="_blank" rel="external">Blog链接</a><br><img src="/images/Leetcode/google_doc.png" alt="google_doc"></li>
+</ul>
+<h3 id="Google_自动补全搜索">Google 自动补全搜索</h3><p>* </p>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/16/Leetcode/System/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-16 </div>
+			<div class="article-title"><a href="/2015/02/16/OA/ACM/" title="A collection of Hello World applications from helloworld.org.">ACM题集以及各种总结大全(转载)</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <blockquote>
+<p>虽然退役了，但是整理一下，供小弟小妹们以后切题方便一些，但由于近来考试太多，顾退役总结延迟一段时间再写！先写一下各种分类和题集，欢迎各位大牛路过指正。</p>
+<ul>
+<li>转载于<a href="http://blog.csdn.net/liuqiyao_01/article/details/9079611" target="_blank" rel="external">671coder的专栏</a></li>
+</ul>
+</blockquote>
+<h2 id="ACM入门">ACM入门</h2><ul>
+<li><a href="http://acm.hdu.edu.cn/" target="_blank" rel="external">杭州电子科技大学(hdu)ACM题目</a></li>
+<li><a href="http://acm.hdu.edu.cn/" target="_blank" rel="external">关于acm的帮助</a></li>
+<li><a href="http://poj.org/" target="_blank" rel="external">北京大学(poj)题目</a></li>
+<li><a href="http://acm.zju.edu.cn/" target="_blank" rel="external">浙江大学(zoj)题目</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php" target="_blank" rel="external">uva题目</a></li>
+<li><a href="http://download.csdn.net/detail/liuqiyao_01/5568001" target="_blank" rel="external">青理工大学acm宣传ppt(据说就是耀哥的魅力害了好多人来搞ACM)</a></li>
+</ul>
+<h2 id="水题">水题</h2><ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8477645" target="_blank" rel="external">hdu水题分类之耀哥版</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8477801" target="_blank" rel="external">poj题目分类  小媛在努力原创</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=95" target="_blank" rel="external">算法竞赛入门经典》刘汝佳白皮书 第五章题目</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=102" target="_blank" rel="external">算法竞赛入门经典》刘汝佳白皮书 第六章题目</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=106" target="_blank" rel="external">算法竞赛入门经典》刘汝佳白皮书 第七章题目</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=113" target="_blank" rel="external">算法竞赛入门经典》刘汝佳白皮书 第八章题目</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=113" target="_blank" rel="external">算法竞赛入门经典》刘汝佳白皮书 第九章题目</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=115" target="_blank" rel="external">算法竞赛入门经典》刘汝佳白皮书 第十章题目</a></li>
+<li><a href="http://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=116" target="_blank" rel="external">算法竞赛入门经典》刘汝佳白皮书 第十一章题目</a></li>
+</ul>
+<h2 id="搜索">搜索</h2><ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8478714" target="_blank" rel="external">图的搜索分类 夏天的风原创</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8478719" target="_blank" rel="external">范围搜索简介</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8786998" target="_blank" rel="external">高级搜索题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8797318" target="_blank" rel="external">极大极小搜索题集</a></li>
+</ul>
+<h2 id="图论">图论</h2><ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8477827" target="_blank" rel="external">poj图论综合题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8797356" target="_blank" rel="external">并查集&amp;最小生成树题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8797353" target="_blank" rel="external">最短路&amp;差分约束题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8479339" target="_blank" rel="external">欧拉回路&amp;特殊图下的哈密顿回路题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/26964205" target="_blank" rel="external">欧拉路&amp;欧拉回路</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8478726" target="_blank" rel="external">拓扑排序题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8797349" target="_blank" rel="external">二分匹配题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8478730" target="_blank" rel="external">连通&amp;LCA题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8478729" target="_blank" rel="external">网络流题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8797336" target="_blank" rel="external">2-SAT题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8797346" target="_blank" rel="external">KM匹配题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8478711" target="_blank" rel="external">Dancing Links 题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/26963579" target="_blank" rel="external">一般图的匹配题集</a></li>
+</ul>
+<h2 id="数据结构">数据结构</h2><ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/9712191" target="_blank" rel="external">线段树题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8798241" target="_blank" rel="external">AC自动机题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/26963913" target="_blank" rel="external">树状数组题集</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/26964103" target="_blank" rel="external">树状数组小结</a></li>
+</ul>
+<h2 id="动态规划">动态规划</h2><ul>
+<li>经典讲解：<ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8521776" target="_blank" rel="external">背包九讲</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8752034" target="_blank" rel="external">状态压缩DP 属性DP</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8765812" target="_blank" rel="external">100个动规方程</a></li>
+</ul>
+</li>
+<li>题集：<ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8477725" target="_blank" rel="external">背包DP专辑</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8477730" target="_blank" rel="external">树形DP专辑</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8477740" target="_blank" rel="external">概率DP专辑</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8797438" target="_blank" rel="external">区间DP专辑</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/9109419" target="_blank" rel="external">数位DP专辑</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="数论">数论</h2><ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8478723" target="_blank" rel="external">博弈题集</a></li>
+</ul>
+<h2 id="计算几何">计算几何</h2><ul>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/8750742" target="_blank" rel="external">poj计算几何入门推荐</a></li>
+<li><a href="http://blog.csdn.net/liuqiyao_01/article/details/26964261" target="_blank" rel="external">另一个题集</a><h2 id="模拟">模拟</h2></li>
+</ul>
+<h2 id="各种大牛退役帖合集">各种大牛退役帖合集</h2><h2 id="各种YY合集">各种YY合集</h2>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/16/OA/ACM/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-16 </div>
+			<div class="article-title"><a href="/2015/02/16/Leetcode/Freq2/" title="A collection of Hello World applications from helloworld.org.">Leetcode freq 2</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><ul>
+<li><h3 id="Lowest_Common_Ancestors_I/II:">Lowest Common Ancestors I/II:</h3><h4 id="I:_即没有parent的pointer怎么做?">I: 即没有parent的pointer怎么做?</h4></li>
+<li>这题不仅在九章算法课第二课里面讲了, 而且在<a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html" target="_blank" rel="external">1337文章link</a>也详细的解释了Bottom-up的意义. 我认为那个是设计思路. </li>
+<li><p>先复习一下: top-down/bottom-up approach: <a href="http://www.meetqun.com/thread-2732-1-1.html" target="_blank" rel="external">TD/BU的区别-米群讨论</a>, 但是里面大牛的回答也不准确, DP的top-down/bottom-up和recursion没什么关系. 例如这里的LCA的Bottom-up就是recursion. 但是Scramble String的3D Bottom-up DP就是iteration. 那么在Bottom-up有什么好处呢? 在Binary Tree的BU解法中, 相对于Top-Down是</p>
+<blockquote>
+<p>avoiding traversing the same nodes over and over again.      —- 1337</p>
+</blockquote>
+<ul>
+<li>就<strong>树</strong>来说: 最准确的解释就是: <a href="https://xiangcaohello.wordpress.com/2014/06/22/%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E9%81%8D%E5%8E%86%E6%A0%91%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E8%AE%A1%E7%AE%97/" target="_blank" rel="external">自底向上=post order traversal</a>, 以及这篇<a href="http://www.cnblogs.com/airwindow/p/4285203.html" target="_blank" rel="external">Bottom-up解题报告</a></li>
+<li>其次<a href="http://wp.javayu.me/2014/02/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="external">javayu的解释</a>: 树的bottom-up方式和top-down方式的主要差别就在于：先处理当前节点还是先处理子树</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>而且这里很有意思的是Top down的LCA是recursion, 里面还调用countMatches这个小recursion.<ul>
+<li>这还是见得比较少的, 一般就是client调用helper recursion.</li>
+<li>照<a href="http://www.faceye.net/search/136311.html" target="_blank" rel="external">Tree总结</a>所总结的万金油方法, 不过这个表述没看明白, 原来是在<a href="http://www.cnblogs.com/leetcode/p/4003795.html" target="_blank" rel="external">cnblog symetric Tree</a>里面的分析的思路: <blockquote>
+<ol>
+<li>top-down 还是 bottom-up.    选择top-down.        O(n^2)</li>
+<li>用递归. 是否需要内嵌小递归.   需要. 其实就是判定root的是否一样的小递归.</li>
+<li>逻辑运用小递归.  </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="这道题的follow_up:_parent_pointer">这道题的follow up: parent pointer</h4><ul>
+<li>如果每个node有parent pointer的话呢? 可以怎么改进: <a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-ii.html" target="_blank" rel="external">LCA II</a></li>
+<li>在九章算法的第二课就讲了, 90% Tree的题目可以用Divide &amp; Conquer做. 注意D&amp;C和Traverse的recursion区别在于前者有return value. 因为在<strong>治</strong>的阶段需要对<strong>分</strong>的结果进行合并处理.</li>
+</ul>
+<h3 id="Minimum_Adjustment_Cost:_Lintcode动态规划题目">Minimum Adjustment Cost: Lintcode动态规划题目</h3><ul>
+<li>参考的是<a href="http://www.cnblogs.com/yuzhangcmu/p/4153927.html" target="_blank" rel="external">主页君的cnblog和github</a>分析的很详细, 有4种解法:<blockquote>
+<p>其实就是NP问题的backtracking解法. 但还是老问题, 怎么找到解集合?</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://7xj2zx.com1.z0.glb.clouddn.com/9chap_minAdjCost.png" alt="九章算法黄老师课上的课件"></p>
+<h3 id="Binary_Tree_Maximum_Path_Sum">Binary Tree Maximum Path Sum</h3><ul>
+<li>这题是diameter/height的扩展题. 因为题目还包含了不经过root的情况. 其实都是dfs recursion. 只是要同时保存single path和sum. 即<ul>
+<li>single path是经过当前node的一边的max: Math.max(l.path, r.path)+root.v -&gt; 经过当前node的边的最大值. 0-&gt;即经过此node的边为负.</li>
+<li>sum则是左右sum的最大值, 或者左右边最大值加上当前node.</li>
+</ul>
+</li>
+<li><p>由<a href="http://bangbingsyb.blogspot.com/2014/11/leetcode-binary-tree-maximum-path-sum.html" target="_blank" rel="external">嘻唰唰blog</a>题解里面分析的: 对于每一个node的Maximum Path Sum分2类: </p>
+<blockquote>
+<ol>
+<li>single path是指由该node出发向leaf的第一类path中最大的path sum</li>
+<li>以x为LCA的第二类path中的最大path sum</li>
+</ol>
+</blockquote>
+</li>
+<li><p>正是因为看到嘻唰唰提到的LCA, 所以去看了1337的LCA文章, 受益良多. 加深对top-down/bottom-up的理解.</p>
+</li>
+</ul>
+<h3 id="Diameter_and_Height_of_Binary_Tree">Diameter and Height of Binary Tree</h3><ul>
+<li>做Binary Tree Maximum Path Sum之前先做一下类似理解的题目: Diameter of Binary Tree: <a href="http://n00tc0d3r.blogspot.com/2013/07/diameter-of-binary-tree.html" target="_blank" rel="external">N00t帖子</a><blockquote>
+<p>树没有被看成有向图，而是被当成无向图来寻找路径 — <a href="http://blog.csdn.net/linhuanmars/article/details/22969069" target="_blank" rel="external">Ganker</a></p>
+</blockquote>
+</li>
+<li>标准的DFS. 注意base case一定要return来终止.</li>
+<li>注意Height必须是进过root, 但是Diameter并不一定. 参见N00t的配图. 而N00t的公式则按照(SOF解释](<a href="http://stackoverflow.com/a/11897490" target="_blank" rel="external">http://stackoverflow.com/a/11897490</a>). 很好理解了.</li>
+</ul>
+<h3 id="Next_Permutation">Next Permutation</h3><ul>
+<li>先理解什么意思: 见<a href="http://www.nayuki.io/page/next-lexicographical-permutation-algorithm" target="_blank" rel="external">Nayuyi.io的解释</a>. 正如水中鱼所说: 这道题目就是一个观察题, 以及基本的array操作. 比如交换, index, loop的break. 复杂度只能是O(3*n)</li>
+<li>我还是参考的水中的鱼的思路. 找到partitionNum, partitionIdx, changeNum. 然后交换partionNum, changeNum. 接着再reverse num.substring(partitionIdx+1).</li>
+<li>Ganker和水中的鱼对于changeNum的找法有一点微小区别.</li>
+</ul>
+<h3 id="First_Missing_Positive">First Missing Positive</h3><ol>
+<li><p>其实这就是bucket sorting. 是最快的排序法, 比qsort还快. 是O(n), 但是是用空间换时间.</p>
+<p>可以generalize为更实用的radix sort.</p>
+<blockquote>
+<p>A type of bucket sort called the counting sort —- <a href="https://www-927.ibm.com/ibm/cas/hspc/student/algorithms/BucketSort.html" target="_blank" rel="external">IBM link</a></p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>bucket sort, radix sort, bubble sort, counting sort —- <a href="https://courses.cs.washington.edu/courses/cse373/13wi/lectures.shtml#today" target="_blank" rel="external">University of Washington CSE 373</a><ul>
+<li>注意这里的最后一步就是Concatenation bucket到原array的时候有3个var, 不要搞混了.</li>
+</ul>
+</li>
+<li>注意ganker的内循环判定的条件是<code>A[i] != A[A[i]-1]</code>. 而且最后要<code>i--</code>. 为什么不能换成<code>A[i] != i+1</code>. <ul>
+<li>因为若是换成直接判断A[i]!=i+1的话, 则会导致在重复字符的情况下出现死循环.</li>
+<li>之所以i—. 是因为交换完之后不一定是正确的. 例如{3,1,2}一开始的3,2交换为2,3后, 2并不是正确位置. 所以再判断2,1并交换才对.</li>
+<li>所以Ganker说这道题目很简单, 但其中包含的算法思想和编程基础很适合面试!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Largest_Rectangle_in_Histogram">Largest Rectangle in Histogram</h3><h3 id="Scramble_String:_3D_动态规划经典">Scramble String: 3D 动态规划经典</h3><ul>
+<li>Google考过, 见<a href="http://www.mitbbs.com/article_t/JobHunting/32107851.html" target="_blank" rel="external">MITBBS 2012年帖子</a></li>
+<li>先理解这个Scramble是什么意思: <code>s1 = &quot;great&quot;, s2 = &quot;rtgae&quot;;</code>就不是有效的. 注意要求是</li>
+<li>这道题目可以用recursion, 更可以用DP. 是一道经典的3D DP. 但正如段公子所说: DP table可以用array也可以用HashMap, 可见武大csdn的hashmap解法. 但是觉得这个和N00t的backtracking差不多? 看看九章算法主页君的就搞懂了, 其实不一样.</li>
+<li><p>参考的: </p>
+<ul>
+<li><a href="http://blog.csdn.net/fightforyourdream/article/details/17707187" target="_blank" rel="external">fightforyourdream的recursion+DP</a>.</li>
+<li><a href="http://blog.csdn.net/whuwangyi/article/details/14105063" target="_blank" rel="external">武大CSDN的Hashmap动态规划</a>, </li>
+<li><a href="http://blog.unieagle.net/2012/10/23/leetcode%E9%A2%98%E7%9B%AE%EF%BC%9Ascramble-string%EF%BC%8C%E4%B8%89%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_blank" rel="external">Unieagele解题博客的3D动归</a></li>
+<li><p><a href="http://www.cnblogs.com/yuzhangcmu/p/4189152.html" target="_blank" rel="external">九章算法主页君—CMUyu</a></p>
+<ul>
+<li>分析的答案很适合面试的顺序: recursion-&gt;剪枝-&gt;Top-down DP(memorize)-&gt;Bottom-up DP(iteration).</li>
+<li>而且时间空间复杂度分析的很详细.</li>
+</ul>
+</li>
+<li><p>Ganker的3D动归, 和N00t的意思差不多. 不过Ganker的分析不错.</p>
+<ul>
+<li><p>难点在于for loop的顺序. 最外层应该是len. 因为是bottom-up. 从小问题推大问题. 或者说大问题的解可以使用小问题的解得到, 而不用反复求解同一个小问题.</p>
+<blockquote>
+<p>对于判断这些左右部分是不是scramble我们是有历史信息的，因为长度小于n的所有情况我们都在前面求解过了（也就是长度是最外层循环）。</p>
+</blockquote>
+</li>
+<li><p>有点没搞明白: 为什么Ganker说:</p>
+<blockquote>
+<p>如果以上两种情况有一种成立，说明s1[i…i+len-1]和s2[j…j+len-1]是scramble的。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>水中的鱼的recursion, 他的剪枝很好, 可以AC. 而N00t的原始的recursion(即brute-force的剪枝仅仅比较s1,s2的长度, 是很低效率的, 所以过不了).</li>
+<li>N00t的递归, DP (bottom-up) 就是iteration, 而LCA的DP (bottom-up)则是recursion. 那么这个是怎么想出来的呢: <blockquote>
+<ul>
+<li>先理解递归是怎么做的: 从大到小substr判断. 即切割成substructure/subproblem.</li>
+<li>For each pair of (n-1)-char-long substrings of the two strings, are they scramble to each other?</li>
+<li>For each pair of (n-2)-char-long substrings, are they scramble?</li>
+<li>… …</li>
+<li>For each pair of 2-char-long substrings, are they scramble?</li>
+<li>For each pair of char in the two strings, are they scramble (i.e. do they equal)?</li>
+<li>That is saying, we can build up a table and solve the problem in a bottom-up fashion.</li>
+<li>然后还有就是这里的递推式一开始没有理解. 看了<code>fight for your dream</code>懂了: 还是recursion的想法,2种情况: 前前&amp;&amp;后后||前后&amp;&amp;后前. **注意: 这种var(i,j,k,p)变多了之后不要搞混了. 最好的方法就是写一个例子出来.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Interleaving_String:_2D/1D_动态规划">Interleaving String: 2D/1D 动态规划</h3><blockquote>
+<p>凡是substring的题目, 都是自动脑补动态规划, 正如Tree的题目自动脑补分治法.</p>
+</blockquote>
+<h4 id="方法1:_recursion">方法1: recursion</h4><ul>
+<li>当然, 最好先从简单的做法入手, 先有个做对的方法: recursion是DP的前提. 或者说有了递归的思路就好想出来DP了.<ul>
+<li>对于在recursion call里面处理下一个substring的话, 即修改index, 有2种方法. <ol>
+<li>例如remove duplicate from string, 因为简单的赋值. 所以res[j++] = s[i++];</li>
+<li>在N00t的recursive call里面, 因为一句话里面有2个地方用到i,k. eg: <code>s1[i] == s3[k] &amp;&amp; isInterleave(s1, s2, s3, i+1, j, k+1)</code>. 我一开始是用++i, j++. 这样很容易弄混. 直接干脆用<code>i+1</code>. </li>
+<li>总结一下: 如果是简单的method call, 可以使用<code>++i; j++</code>. 不过长一点的statement还是不要弄晕自己, 代码最好不要依赖于statement的顺序, 所以还是原始的<code>i+1</code>.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://7xj2zx.com1.z0.glb.clouddn.com/freq2_interleave.jpg" alt="2D打表图示"></p>
+<h4 id="方法2:_2D_递归">方法2: 2D 递归</h4><ul>
+<li>既然recursion已经想出来了, 也就弄明白了? (not yet! 想法出来还要写代码实现, 里面很多门道和细节的设计)</li>
+<li>首先是边界条件, 或者说base case的设计: 有个trick, 每次遇到string的DP, 都要增加一个空位. 表示s1, s2都不取的情况. 所以Opt[0][0] = true. 这里参考的<a href="http://blog.csdn.net/u011095253/article/details/9248073" target="_blank" rel="external">popfish的算法路blog画的2D 打表图示</a>. 我一开始做的时候, 在打1st row和1st col的时候直接就是比较substring了. 但是结果不对. 为什么呢: 因为substring没用对.<ul>
+<li>有2点关于substring要注意<ol>
+<li>substring上界是开区间. 所以<code>substring(0,0)</code>是<code>&quot;&quot;</code>, (0,1)才相当于<code>charAt(0)</code>.</li>
+<li>刚发现: <code>&quot;n&quot;==&quot;n&quot;</code>是true, 但是<code>&quot;ni&quot;.substring(0,1)==&quot;no&quot;.substring(0,1)</code>居然是<strong>false</strong>! 刚查了<a href="http://stackoverflow.com/a/513839" target="_blank" rel="external">SOF: how to compare string</a>, 以及<a href="http://stackoverflow.com/questions/3297867/difference-between-string-object-and-string-literal" target="_blank" rel="external">SOF: string object vs string literal</a>, 才知道: <blockquote>
+<p><del><strong>Java的<code>==</code>比较<em>string</em>的时候比较的是reference, 而不是value!</strong>.</del> 应该说: Java 的 “==”比较object的时候, 是看是否为同一个reference.<br>所以2个substring的reference不同, 当然就是false!</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="方法3:_1D_递归-_参考Ganker的解法-">方法3: 1D 递归. 参考Ganker的解法.</h4><ul>
+<li>注意到2D的递推式只和上一层和左边的有关: <code>opt[i][j] ~ {opt[i-1][j], opt[i][j-1]}</code>. 所以可以只用一个1D 的 dp表就可以了. 当然这个时候就要小心了. 有几点:<ol>
+<li>长度多少? 意义已经改变了.<ul>
+<li>对于处理2个string的问题, 有个trick: 一般都最好选择短的那个处理, 可以节省空间或者时间.当然<code>opt[minWord.length()+1]</code>, 而且因为是需要update 短的opt长度. 所以将opt update放在内层短循环可以更加优化. 因为opt[0]<del>的意义</del>, 有2个含义:<ul>
+<li>一个意义是到外层循环到i的时候, opt[0]表示第一列的第i个时候, 表示原本2d中的opt[0][j]. 即看s3[0…j]是否可以用MaxWord[0…j], 而没有MinWord. 来interleave.</li>
+<li>第二个意义是: 内层循环到j的时候, s3[0…i+j+1]是否可以由maxWord[0…i]minWord[0…j]来interleave.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>因为外层循环maxWord, 内层循环minWord. 所以1st row可以单独初始化. 而1st col, 即maxWord的interleave的base caseze’y则要在外层循环中初始化. 而将minWord放在内层循环upodate可以节省DP表空间.</li>
+<li>最关键的在于递推式现在怎么样勒?<ul>
+<li>我一开始就搞错了. 一定要注意: 1D其实就是2D压缩而来的. 所以就是2D的简化版. 所以要和2D的递推式紧密联合起来想. </li>
+<li>2D的递推式: <code>opt[i+1][j+1] = opt[i][j+1] &amp;&amp; s1[i] 或者 opt[i+1][j] &amp;&amp; s2[j]</code>. 所以<code>opt[j+1]</code>和上一层或者左边有关: <code>opt[j+1] = opt[j+1] &amp;&amp; maxWord[i] 或者 opt[j] &amp;&amp; minWord[j]</code>. 关键在于搞清楚现在上一层和左边需要的char是哪一个. 注意这里的j是横轴啊! <ul>
+<li>所以2d里面的左边, 即opt[i][j+1]则相当于1d里面的(opt[j])就是由2d里面的s1(横着的string). </li>
+<li>而j+1, 就是相当于2D里面的上一层, 即相当于opt[i+1][j]. 所以是和2d里面的s2(竖着的string), 所以是maxWord的char.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="20141226">20141226</h2><h3 id="Reverse_Nodes_in_k-Group">Reverse Nodes in k-Group</h3><ul>
+<li>先做Swap Nodes in Pairs. 注意Ganker提到的, list常用的技巧就是遇到需要修改root的题目一般都是接一个空的node到root, 这样就把root退化为一般的中间node.</li>
+<li>这题主要参考<a href="http://n00tc0d3r.blogspot.com/2013/05/reverse-linked-list.html" target="_blank" rel="external">N00t的解法</a>. 即Invariant是2个node, keep track这2个node. 头脑要清晰. 在写之前想好算法.</li>
+<li>N00t里面这个reverse list的时候的思路超级清晰. 想想为什么是这样写. <strong>关键</strong>在于<blockquote>
+<p>pre, cur是不变的[以N00t的例子为例, 到结束的时候, 实际上pre还是指向1, cur还是指向2], 只改变pre.next, cur.next. 以及这2个next之间的link.</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 定位好之后就可以开始交换了. 这里是这个<span class="function"><span class="keyword">method</span>的关键.</span></span><br><span class="line"><span class="keyword">while</span> (pos &lt; <span class="keyword">end</span> &amp;&amp; cur != <span class="literal">null</span>) &#123;</span><br><span class="line">  ListNode tmp = cur.<span class="keyword">next</span>.<span class="keyword">next</span>; // N00t用的是nt: node temp.</span><br><span class="line">  cur.<span class="keyword">next</span>.<span class="keyword">next</span> = pre.<span class="keyword">next</span>; // cur;</span><br><span class="line">  pre.<span class="keyword">next</span> = cur.<span class="keyword">next</span>;</span><br><span class="line">  cur.<span class="keyword">next</span> = tmp; // pre.<span class="keyword">next</span>.<span class="keyword">next</span> = tmp;</span><br><span class="line">  pos++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><h3 id="Permutations_I/II">Permutations I/II</h3><ul>
+<li>NP问题的做法基本都是用Backtracking. 想象这里和Combination有什么区别呢? <ul>
+<li>Ans: 这里子问题的条件变化了. Combination里面是helper(,i+1,). 这里是每次在loop里面使能used[i] = true, helper(used[i]). 这样就能缩小到下一个子问题. </li>
+<li>这很重要. 因为recursion就是要一步步进入子问题, 解决, 跳出递归, 到保存到stack的以前的现场. 所以ganker也强调了这里要在helper()后面恢复现场, 即list.remove(list.size()-1), 以及初始化used[i]. 即used[i] = false.</li>
+</ul>
+</li>
+<li>II就是加入了一个条件: 如果是{1,2,1} 呢? 要避免112, 112出现2次的情况, 就要在dfs之前先判断是否和上一个num重复(**因为num已经sort过了). </li>
+<li><a href="http://blog.csdn.net/linhuanmars/article/details/21569031" target="_blank" rel="external">评论的一个follow up: link</a>. 其实很简单, 也是加入一个判断是否和上一个item里面最后一个数相等, 若是就continue.</li>
+</ul>
+<h3 id="Rotate_Image">Rotate Image</h3><h3 id="Text_Justification">Text Justification</h3><ul>
+<li>考察基本功的好题目, 注意题目的各个细节. 参考的ganker的解. <ol>
+<li>什么是last呢? 即本行的开头, 什么是i呢?下行的开头. 什么是i-last-1呢? 就是该行的间隔个数. 例如该行如果可以放5个单词, 开头的last是4, 下一行开头是9. 那么9-1就是该行的结尾, 9-1-4既是该行有4个间隔. </li>
+<li>为什么下一步循环的时候判断<code>if(j&lt;i-1)</code>呢? 这很好理解, 因为分配<code>\b</code>只跟间隔有关, end的词在一行只有一个词的时候才要pad空格. </li>
+<li>上面2这个if语句里面最后的extraNum—是什么意思呢? 注意题目要求是尽量平均分配. 所以多余的就从start开始的间隔每个+1. 注意这里的extraNum是%间隔数. 所以最多的情况是每一个间隔的空格都加1个. 否则就是靠左的间隔s分到一个extra的空格.<blockquote>
+<p>“Extra spaces between words should be distributed as evenly as possible.”</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Sort_Colors">Sort Colors</h3><ul>
+<li>其实就是counting sort. 拓展题就是如何压缩, 如何返回最长连续char及其个数.</li>
+<li>follow up: 如何使用O(1)的空间来做? 而且O(n)的time? N00t和Ganker都是用的双指针. 好聪明, 怎么想到的?<ul>
+<li>最主要还是和reverse Nodes k-group的思想一样, 想好invarient. 可以这样想. 如果sort的colors只有0,1. 那么就只要一个pointer0, 然后i一个一个往下走, 如果遇到了0, 就赋值, pionter0++. 相当于swap的操作. </li>
+<li>现在可以看看有3个colors: 0,1,2的话怎么用pointers呢? ans: 就用2个pointers: p0, p1. 遇到0就赋值, p0++, p1++. 遇到1就赋值, p1++. 为什么这个时候p0不改变呢? 因为??????</li>
+</ul>
+</li>
+</ul>
+<h3 id="Minimum_Window_Substring">Minimum Window Substring</h3><ul>
+<li>先去复习longest non-repeated substring和Concatenation (freq1), 因为方法都一样: <blockquote>
+<p>建立一个字典，然后维护一个窗口</p>
+</blockquote>
+</li>
+<li>都是substring match 字典. 这一点类似的还有Word break(Ganker的DP解)</li>
+<li>看了N00t的Concatenation里面讲了原来双指针窗口法<del>原来就是KMP</del>(并不是KMP).不过KMP, BM, KR都很重要.</li>
+<li></li>
+</ul>
+<h3 id="Gray_Code">Gray Code</h3><ul>
+<li>使用的方法就是ASIC里面介绍的方法. 有意思. 感觉KMP也是FSM.</li>
+<li>原来Gray code就是汉诺塔的解… N00t的一行解法太cool, 没看明白啥意思.</li>
+</ul>
+<h3 id="Subsets_I/II">Subsets I/II</h3><ul>
+<li>还是Permutation/Combination这种NP问题的解法: backtracking. 只是有一点点区别: 在处理加入的元素时要去掉一些不符合条件的.</li>
+<li>很好的题目, 再次加深理解Recursion, 不仅仅是像我在<a href="https://www.zybuluo.com/mdeditor#80599" target="_blank" rel="external">LC中学习Recursion</a>那样还停留在Recursion代码之前, 之后的代码的意义. 而是要深入理解Recursion思维的想法和设计. <ul>
+<li>recursion里面, subset加入的顺序是怎么样的? 如何保证 non-descending order? Ans: 其实就是对自己设计的recursion要理解, 只到recursion的顺序就ok了. 因为Ganker的rec是从3,2,1,0,-1 递减的call. 而N00t则是0,1,2,4递增的call. 所以顺序不同. 具体的trace可以参考P533-Algs4-DFS.</li>
+<li>还有就是为什么N00t的输出是从[3], [2]开始, 而Ganker的则是从[1], [1,2]开始. 这是因为base case 的判断的区别, 以及recur进入下一层子问题的顺序是递增还是递减. 这很有意思. 要thinking in recursion. </li>
+</ul>
+</li>
+</ul>
+<h2 id="20141225">20141225</h2><h3 id="Path_Sum_I/II">Path Sum I/II</h3><ul>
+<li>树的题目很常见, 但是方法都类似: recursion.</li>
+<li>问题也很常见: I一般就是问是否存在解. II一般是求所有解的集合.</li>
+<li>正是这道题目, N00t讲了Java的call by value对于object来说是copy他的handler, 即reference, 所以将来的改变会对之前add的reference改变, 也就改变了最终的结果: <blockquote>
+<ul>
+<li>Notice that we make a copy of the path before we added it to our result set. The reason is that when we add an Object (here, an ArrayList), Java add a copy of the pointer (i.e. a reference) of the Object, rather than a deep copy. So, <strong>any changes to content</strong> of the original Object will reflect into our final result set.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>同样的Ganker也是<code>res.add(new ArrayList&lt;Integer&gt;(item));</code>. 否则必然是错误的.</li>
+<li>为什么N00t的if (root.value==sum)里面放path到res之后不能return, 否则会出现错误的path? 因为这个里面加上return是完全错误的! 这里并不是base case, 不应该return. 但是Ganker的为什么又应该加上return呢? 因为这个是base case. 注意Ganker的顺序.</li>
+</ul>
+<h3 id="Longest_Substring_Without_Repeating_Characters">Longest Substring Without Repeating Characters</h3><ul>
+<li>N00t的方法是hashmap+start/end2个pointer的移动, 注意N00t只要判断当前的char是不是在当前substring中, 才update. 考虑到返回所有这种substring的问题. 我的思路是记录longest的start, 这样因为maxlength是返回值. 所以substring就可以解决. 但是有点小问题.</li>
+<li>Ganker则是使用的walker/runner 双指针法. 或者说: 窗口法来处理这一类的string问题. 还归了类. 一开始没理解为什么是while(charAt(w)!=charAt(r)). 想到了一个好例子: “xyb12b02”. 走了一遍理解了. 本来给的例子: “abcabcbb”并不好. 因为W=R都是连续的, 没看到while不等的情况. 所以有时候要多举几个case. 但不是随便举. 而是想上面那个case那样第一个重复的’b’并不是第一个字母. <ul>
+<li>扩展的题目有Substring with Concatenation of All Words，Minimum Window Substring，思路是非常接近的，只是操作上会更加繁琐一些。</li>
+</ul>
+</li>
+<li>case很重要, 一是在开始做题之前用来理解, 考虑算法之用. 二来是作为test case. 但是case也要设计得好才行, 不然还是会错. 所以要建立在完全理解题意, 想好算法之后写<strong>有用</strong>的case, 来改正算法. 有点鸡生蛋, 但实际上是要懂了再下笔. 面试不是调代码.</li>
+</ul>
+<h3 id="Longest_Consecutive_int_string">Longest Consecutive int string</h3><ul>
+<li>这道题在GoPro onsite面到. 其实很简单的recursion. 题目意思是给一个排好序的string: “abccdeeeeef”, 则’e’是重复次数最多, 有5次. 所以返回: e和5. 其实这个和compression很相同, 之前见过: 将这个string输出为”a1b1c2d1e5f1”</li>
+<li>思路参考的<a href="">SOF上面的recursion</a>.</li>
+</ul>
+<h3 id="Container_With_Most_Water">Container With Most Water</h3><h3 id="Jump_Game">Jump Game</h3><ul>
+<li>经典的DP和Greedy问题. 段公子在DP/recursion里面讲了. </li>
+<li>第二题的想法在N00t和Ganker之间有区别. 可以加深理解. 也确实想了好久才明白他们的code.</li>
+<li>Ganker的评论里面又一个记录path的方法, 这样可以返回最少jump的path. 总而言之, 也是一个DP的方法. DP还是Greedy? 傻傻分不清. 还要回头<strong>复习一下贪新算法</strong>: MST.</li>
+</ul>
+<h3 id="3Sum/4Sum">3Sum/4Sum</h3><ul>
+<li>主要参考N00t和Ganker的解法. 但其实可以结合HashSet来做4Sum. 更简单.</li>
+<li>注意这里面的设计, 如何避免重复. 所以要sort. 通常的解法是夹逼法则. for loop循环3-2或者4-2个头, 然后剩下2个index可以用left/right来夹逼.</li>
+<li>注意这里正确的使用了do…while. </li>
+<li>Binary search的合理使用. 一般不会直接写一个binary search. 但是这里夹逼自然是binary search好用. O(n)-&gt;O(lgn)</li>
+</ul>
+<h3 id="Spiral_Matrix_I/II">Spiral Matrix I/II</h3><ul>
+<li>N00t的这张图真是经典, 也确实是复杂题目想好psuedo code才写!</li>
+<li>Hello WOrld</li>
+</ul>
+<h3 id="Recover_Binary_Search_Tree">Recover Binary Search Tree</h3><ul>
+<li><p>再次加深了对Recursion的理解. 2个不连续的recursion. 而且param还不对称, N00t的recursion写的真好. N00t的方法也很好. </p>
+<h3 id="Distinct_Subsequences">Distinct Subsequences</h3><blockquote>
+<p>+When you see string problem that is about subsequence or matching, dynamic programming method should come to your mind naturally. —-by <a href="http://www.cnblogs.com/springfor/p/3896152.html" target="_blank" rel="external">link</a></p>
+</blockquote>
+<ul>
+<li>DP的经典题目. N00t的做法也是可以的. 但我倾向于Ganker/SophieJ. 但是要理解DP公式的含义. 不然连边界条件或者初始条件都搞不出来. Ganker的2D分析, 然后code则是优化为1D dp的解法一开始没看懂, 然后Ganker在回复里面解释了为什么j是从T的<strong>从后向前扫</strong>. 这是因为这里的<strong>DP是想使用update之前的值</strong>, 所以这样. 如果以后有个DP问题是要使用更新后的1D dp, 则是从头往后扫.</li>
+<li>还是的加深理解为什么1D的逆向填的DP是对的? 会不会导致比较出来的subsequence没按顺序? 或者反过来了? 见<a href="http://blog.csdn.net/kenden23/article/details/19332545" target="_blank" rel="external">csdn link</a> 有点乱: 下标, 如何保证是in-order? 看Coin Change—-段公子.</li>
+</ul>
+</li>
+</ul>
+<h2 id="20141223">20141223</h2><h3 id="Plus_One">Plus One</h3><ul>
+<li>这是一道简单题. N00t给出了他的扩展题: plus int. </li>
+<li>Ganker说他在Google店面的时候就问了这题. 因为适合扩展和OOD的设计.<h3 id="Symmetric_Tree">Symmetric Tree</h3></li>
+<li>Ganker是简单的recursion和iteration. 注意这里判断是否对称的条件: 空的情况, 有值的情况. 注意不用判断值相等. 为什么? 因为helper是recursion, 要找到结束得点. 而值相等可以继续走下去. 而都为空就可以直接返回true. 因为走不下去了. 这里也明显的看出iteration为什么会繁琐. </li>
+<li>N00t使用的一种stl数据结构: ArrayDeque. 其他思路和Ganker是一样的.</li>
+</ul>
+<h3 id="Balanced_Binary_Tree">Balanced Binary Tree</h3><h3 id="Palindrome_Number">Palindrome Number</h3><ul>
+<li>和Freq3的PalindromeDPDP类似. </li>
+<li>这里的比较2end不能用pointer了. 因为不是string. 这里有2个方法. 用一个div(不断变化). 本质还是loop里面update为指向对称的end points.</li>
+<li>或者是1337里面的第三个方法: 用一个stack.</li>
+</ul>
+<h3 id="Search_Insert_Position">Search Insert Position</h3><ul>
+<li>在freq3里面已经做过 </li>
+</ul>
+<h3 id="Valid_Sudoku">Valid Sudoku</h3><ul>
+<li>巧妙使用<code>i/3*3</code>和<code>i%3*3</code>. 以及API的设计</li>
+</ul>
+<h3 id="SOlve_Sudoku">SOlve Sudoku</h3><ul>
+<li>加深理解循环递归. 觉得比NP的N-Queens更重要. 这里的设计是很重要的模版. </li>
+</ul>
+<h3 id="Count_and_Say">Count and Say</h3><ul>
+<li>String的小题目. 一定要bug free. </li>
+<li>题目居然没看懂. 还是看了<a href="http://blog.csdn.net/fightforyourdream/article/details/12901505" target="_blank" rel="external">CSDN上面FightForDream的帖子</a>才搞明白什么意思.<h3 id="Remove_Duplicates_from_Sorted_Array_I/II">Remove Duplicates from Sorted Array I/II</h3></li>
+<li>好在我回顾了这道题目. 发现N00t的思路太不好了, 很容易错, 而且扩展不了. 实际上有string, 有比较的时候就用pointer就好了. 而且这里还是in-place. 就算是II, 也只要多加一个变量cnt来看当前有几次重复元素.</li>
+<li>所以Ganker的方法远胜于N00t. 也保证了这种简单题目的清晰思路和bug-free. 就是通过</li>
+</ul>
+<hr>
+<h2 id="题目">题目</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Leetcode problem</th>
+<th>freq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>66</td>
+<td>~Plus One</td>
+<td>2</td>
+</tr>
+<tr>
+<td>101</td>
+<td>~Symmetric Tree</td>
+<td>2</td>
+</tr>
+<tr>
+<td>110</td>
+<td>~Balanced Binary Tree</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>~Palindrome Number</td>
+<td>2</td>
+</tr>
+<tr>
+<td>35</td>
+<td>~Search Insert Position</td>
+<td>2</td>
+</tr>
+<tr>
+<td>36</td>
+<td>~Valid Sudoku</td>
+<td>2</td>
+</tr>
+<tr>
+<td>38</td>
+<td>~Count and Say</td>
+<td>2</td>
+</tr>
+<tr>
+<td>80</td>
+<td>~Remove Duplicates from Sorted Array II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>113</td>
+<td>~Path Sum II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>~Longest Substring Without Repeating Characters</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>~Container With Most Water</td>
+<td>2</td>
+</tr>
+<tr>
+<td>18</td>
+<td>~4Sum</td>
+<td>2</td>
+</tr>
+<tr>
+<td>55</td>
+<td>~Jump Game</td>
+<td>2</td>
+</tr>
+<tr>
+<td>59</td>
+<td>~Spiral Matrix II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>61</td>
+<td>~Rotate List</td>
+<td>2</td>
+</tr>
+<tr>
+<td>92</td>
+<td>~Reverse Linked List II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>~Longest Palindromic Substring</td>
+<td>2</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Reverse Nodes in k-Group</td>
+<td>2</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Sudoku Solver</td>
+<td>2</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Combination Sum II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Trapping Rain Water</td>
+<td>2</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Jump Game II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Permutations II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Rotate Image</td>
+<td>2</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Spiral Matrix</td>
+<td>2</td>
+</tr>
+<tr>
+<td>68</td>
+<td>Text Justification</td>
+<td>2</td>
+</tr>
+<tr>
+<td>75</td>
+<td>Sort Colors</td>
+<td>2</td>
+</tr>
+<tr>
+<td>76</td>
+<td>Minimum Window Substring</td>
+<td>2</td>
+</tr>
+<tr>
+<td>89</td>
+<td>Gray Code</td>
+<td>2</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Subsets II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Recover Binary Search Tree</td>
+<td>2</td>
+</tr>
+<tr>
+<td>115</td>
+<td>Distinct Subsequences</td>
+<td>2</td>
+</tr>
+<tr>
+<td>117</td>
+<td>Populating Next Right Pointers in Each Node II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>124</td>
+<td>Binary Tree Maximum Path Sum</td>
+<td>2</td>
+</tr>
+<tr>
+<td>31</td>
+<td>Next Permutation</td>
+<td>2</td>
+</tr>
+<tr>
+<td>41</td>
+<td>First Missing Positive</td>
+<td>2</td>
+</tr>
+<tr>
+<td>84</td>
+<td>Largest Rectangle in Histogram</td>
+<td>2</td>
+</tr>
+<tr>
+<td>87</td>
+<td>Scramble String</td>
+<td>2</td>
+</tr>
+<tr>
+<td>97</td>
+<td>Interleaving String</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/16/Leetcode/Freq2/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-02-16 </div>
+			<div class="article-title"><a href="/2015/02/16/Leetcode/LeetcodeRecursion/" title="Leetcode总结题型.">leetcode中学习recursion</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <blockquote>
+<ul>
+<li>N00t大神的recursion出神入化</li>
+<li>LC中大量的recursion解法</li>
+<li>recursion的关键在于代码结构, 以及param/return.</li>
+</ul>
+</blockquote>
+<h2 id="recursion的种类">recursion的种类</h2><h3 id="1-_简单的按照结构分的有">1. 简单的按照结构分的有</h3><h4 id="1个rec-_以及简单三明治关系-">1个rec. 以及简单三明治关系.</h4><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void <span class="keyword">rec</span><span class="literal">()</span>&#123;</span><br><span class="line">    codeTD;</span><br><span class="line">    <span class="keyword">rec</span><span class="literal">()</span>;</span><br><span class="line">    codeBU;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里面的codeTD可以看作是walk DOWN the tree, codeBU理解为walk UP the tree.</li>
+</ul>
+<h4 id="1个rec-_但是在for_loop里面的话,_会更有意思-">1个rec. 但是在for loop里面的话, 会更有意思.</h4><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void rec<span class="comment">()</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="comment">(lastRow)</span></span><br><span class="line">        res.add<span class="comment">(path + s)</span>;</span><br><span class="line">    for<span class="comment">(i = 1; i &lt; path.size()</span>; i++)&#123;</span><br><span class="line">        rec<span class="comment">(path.append, res)</span>;</span><br><span class="line">        path.delete;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这在restore IP的N00t的第一个解法中遇到.</li>
+</ul>
+<h4 id="1个recursion,_这次是在for_each()_括号里面-_更有意思啦">1个recursion, 这次是在for each() 括号里面. 更有意思啦</h4><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>&lt;<span class="type">List</span>&lt;?&gt; segmentRec(<span class="type">String</span> s) &#123;</span><br><span class="line">    // <span class="keyword">do</span> something</span><br><span class="line">    <span class="keyword">for</span> ( i ) &#123;</span><br><span class="line">        rest = s.substring(i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">List</span>&lt;?&gt; seg : segmentRec(rest)) &#123;</span><br><span class="line">            // <span class="keyword">do</span> something</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这个是在word segment里面用到.</li>
+</ul>
+<h4 id="2个连续rec_call-_有param,_有return">2个连续rec call. 有param, 有return</h4><h5 id="在triangle_Path_Sum中的N00t的第一个解法-">在triangle Path Sum中的N00t的第一个解法.</h5><ul>
+<li>注意这里的minSum既是recursion method的param, 又是param的返回值. 这在recursion中很常用. 可以记录在<strong>触底反弹</strong>的时候不断update这个值. </li>
+<li>因为rec有返回值, 而且复制给同一个var(minSum). 因为2个recursion的话, 第二个rec中的param会在第一个rec算完后update. 所以这一套组合拳就能在Traversal tree中不断update. 也就相当于brute force的找所有组合的极值. </li>
+</ul>
+<ul>
+<li>这就体现出recursion的意义: 有目的, 有结构的遍历符合规则的结构的所有path. 例如triangle Path Sum就是想要找DFS path的最小路径. 而不是随便一个乱序的路径. <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> DFS(a, <span class="keyword">sum</span>, minSum) &#123;</span><br><span class="line">  <span class="keyword">sum</span> += a;  <span class="comment">// walking down the tree.</span></span><br><span class="line">  <span class="keyword">if</span> (lastRow &amp;&amp; <span class="keyword">sum</span> &lt; minSum)  <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    minSum = DFS(a, <span class="keyword">sum</span>, minSum);  <span class="comment">// 注意这里的赋值是minSum, 而不是其他var name. 所以跟着的第二条recursion中的minSum才会update.</span></span><br><span class="line">    minSum = DFS(a, <span class="keyword">sum</span>, minSum);  <span class="comment">// 这里的minSum用于DFS的return.</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> minSum; <span class="comment">// walking up the tree.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="还有个很好的例子就是flatten_Binary_Tree的九章算法模版-">还有个很好的例子就是flatten Binary Tree的九章算法模版.</h5><ul>
+<li>recursion中有param不一定必须return. 主要修改就OK了. </li>
+<li>关键在于2个recursion的时候, 第二个recursion计算的root</li>
+</ul>
+<h5 id="还有很经典的是Maximum_Subarray的divid_and_conquer解法-">还有很经典的是Maximum Subarray的divid and conquer解法.</h5><ul>
+<li>2个连续的rec. 一个左子树, 一个右子树. 然后下面的code是向上走. 即合并的时候做的. 干什么呢? 自然是用来合并左右子树计算得到的结果. <a href="http://joycelearning.blogspot.com/2013/10/leetcode-maximum-subarray.html" target="_blank" rel="external">一天一学的Java</a>分析很到位.</li>
+</ul>
+<h4 id="2个不连续的rec_call-_中间有code-_注意N00t和programCreek的一点区别">2个不连续的rec call. 中间有code. 注意N00t和programCreek的一点区别</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node <span class="title">rec</span><span class="params">(l, h)</span> </span>&#123;</span><br><span class="line">  mid = lo + (hi-lo)/<span class="number">2</span>;</span><br><span class="line">  leftNode = rec(lo, mid-<span class="number">1</span>);</span><br><span class="line">  middleCode;</span><br><span class="line">  rightNode = rec(mid+<span class="number">1</span>, hi);</span><br><span class="line">  <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这在Sorted list to Binary Tree里面用到了.<h4 id="2个不连续的recur_call-_中间有code,_而且使用的return-">2个不连续的recur call. 中间有code, 而且使用的return.</h4></li>
+<li>经典案例: Recover Binary Search Tree —- N00t的方法. 这才是真正的使用in-order. 注意每一次的rec call里面的param都变化. 而不是像dummy in-order那样对称.<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> TreeNode inorder(TreeNode root, TreeNode[] nodes, TreeNode pre) &#123;  </span><br><span class="line">   <span class="keyword">if</span> (root == <span class="constant">null</span>) <span class="constant">return</span> pre;  </span><br><span class="line">  <span class="comment"> // left subtree  </span></span><br><span class="line">   TreeNode <span class="keyword">last</span> = inorder(root.left, nodes, pre);  </span><br><span class="line">  <span class="comment"> // visit  </span></span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">last</span> != <span class="constant">null</span> &amp;&amp; root.val &lt; <span class="keyword">last</span>.val) &#123;  </span><br><span class="line">    <span class="comment"> // some code</span></span><br><span class="line">   &#125;  </span><br><span class="line">  <span class="comment"> // right subtree  </span></span><br><span class="line">   <span class="constant">return</span> inorder(root.<span class="constant">right</span>, nodes, root);  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3个rec_call,_中间有code,_有param,_有返回-">3个rec call, 中间有code, 有param, 有返回.</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DFS(tri, row, col, HashMap)&#123;</span><br><span class="line">    <span class="comment">// base condition</span></span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">    <span class="keyword">if</span>(Map.contains())</span><br><span class="line">        min+= Math.min(DFS(Hashmap), DFS(Hashmap));</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        min+= Math.min(map.get(), DFS(HashMap));</span><br><span class="line">    map.put(row, min);</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在Triangle Path Sum的DFS recursion解法里面用到. 注意这里的Math.min()里面的第二个DFS的map已经在在第一个DFS中改变了.</li>
+<li>记住: java永远是call by value. <ul>
+<li>所以primitive 的话不会改变. 于是必须return. 所以在Triangle Path Sum中的第一个解法必须return, 然后第二个recursion的minSum才是改动过的.</li>
+<li>如果是object, call-by-value的是地址. 所以可以改动. 于是不需要return. 就如Triangle Path Sum里面的DFS解法的map. 这里的map是重复使用(update)的.</li>
+<li>其实这里就是段公子说的用HashMap来代替array保存DP结果更有通用性. array其实是最简单的HashMap, 即key是index, value则是a[i].</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-_按照DFS中使用的分">2. 按照DFS中使用的分</h3><blockquote>
+<ul>
+<li>根据<a href="http://leetcodesummary.blogspot.com/2013/10/leetcode-treerecursion.html" target="_blank" rel="external">leetcode summary的博客</a></li>
+<li>还有就是CS的关键: <strong>抽象抽象再抽象</strong>. 并不一定要真的是一个Tree放在那里让你traverse. 而是题目可以按照tree的结构分析分解和理解. 比如说word segment, word ladder, Graph, 乃至2-SAT-&gt;SCC. 等等.</li>
+</ul>
+</blockquote>
+<h4 id="例如NP问题:_Subsets_I/II">例如NP问题: Subsets I/II</h4><h4 id="NP问题:_Permutation_I/II">NP问题: Permutation I/II</h4>
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/02/16/Leetcode/LeetcodeRecursion/#more" class="btn btn-default more">Read More</a>
+</div>
+
+		
+
+		</div>
+
+		<!-- pagination -->
+		<div>
+  		<center>
+		<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+        
+
+        <li><a href="/"><i class="fa fa-home"></i>Home</a></li>
+
+		
+		   <li class="next"> <a href="/page/2/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a> </li>          
+        
+	
+</ul>
+</div>
+
+  		</center>
+		</div>
+
+		
+		
+	</div> <!-- col-md-9 -->
+
+	
+		<div class="col-md-3">
+	<div id="sidebar">
+	
+			<div class="form-group has-success has-feedback">
+  <form action="//google.com/search" method="get" accept-charset="utf-8" >
+    <input type="search" name="q" results="0" placeholder="Search" class="form-control">
+    <input type="hidden" name="q" value="site:vlsi1217.github.io">	
+  </form>
+</div>
+
+		
+			
+	<div class="widget">
+		<h4>Categories</h4>
+		<ul class="tag_box inline list-unstyled">
+		
+			<li><a href="/categories/Demo/">Demo<span>1</span></a></li>
+		
+			<li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+		
+			<li><a href="/categories/OA/">OA<span>2</span></a></li>
+		
+			<li><a href="/categories/Thinking/">Thinking<span>2</span></a></li>
+		
+			<li><a href="/categories/Web/">Web<span>1</span></a></li>
+		
+		</ul>
+	</div>
+
+		
+			
+	<div class="widget">
+		<h4>Tag Cloud</h4>
+		<ul class="tag_box inline list-unstyled">		
+		
+			<li><a href="/tags/ACM/">ACM<span>1</span></a></li>
+		
+			<li><a href="/tags/POJ/">POJ<span>1</span></a></li>
+		
+			<li><a href="/tags/webApp/">webApp<span>1</span></a></li>
+		
+			<li><a href="/tags/misc/">misc<span>1</span></a></li>
+		
+			<li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li>
+		
+			<li><a href="/tags/demo/">demo<span>1</span></a></li>
+		
+			<li><a href="/tags/OA/">OA<span>1</span></a></li>
+		
+			<li><a href="/tags/mooc/">mooc<span>1</span></a></li>
+		
+			<li><a href="/tags/九章/">九章<span>3</span></a></li>
+		
+		 
+		</ul>
+	</div>
+
+
+		
+			
+<div class="widget">
+  <h4>Recent Posts</h4>
+  <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/05/09/Leetcode/Unit3_9chap/"  title="A collection of Hello World applications from helloworld.org." ><i class="fa fa-file-o"></i>Unit 3 九章算法课 : Binary Tree-...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/05/06/Leetcode/Unit1_9chap/"  title="A collection of Hello World applications from helloworld.org." ><i class="fa fa-file-o"></i>Unit 1 九章算法课: 学习/做题思路...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/05/06/Leetcode/Unit2_9chap/"  title="A collection of Hello World applications from helloworld.org." ><i class="fa fa-file-o"></i>Unit 2 九章算法课: Binary Search...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/02/21/Leetcode/LeetcodeDP/"  title="Leetcode总结题型." ><i class="fa fa-file-o"></i>leetcode中学习DP...</a>
+      </li>
+    
+      <li>
+        <a href="/2015/02/20/Leetcode/Freq3/"  title="A collection of Hello World applications from helloworld.org." ><i class="fa fa-file-o"></i>Leetcode freq 3...</a>
+      </li>
+    
+  </ul>
+</div>
+
+		
+			
+<div class="widget">
+	<h4>Links</h4>
+	<ul class="blogroll list-unstyled">
+	
+		<li><i class="fa fa-github"></i><a href="https://github.com/wzpan/freemind/" title="Freemind's Github repository." target="_blank"]);">Freemind</a></li>
+	
+		<li><i class="fa fa-github"></i><a href="http://www.github.com/wzpan" title="My Github account." target="_blank"]);">My Github</a></li>
+	
+		<li><i class="fa fa-linkedin"></i><a href="https://www.linkedin.com/in/c0d3rtony" title="My Linkin account." target="_blank"]);">My LinkedIn</a></li>
+	
+		<li><i class="fa fa-code"></i><a href="n00tc0d3r.blogspot.com" title="N00t." target="_blank"]);">N00t题解</a></li>
+	
+		<li><i class="fa fa-code"></i><a href="http://www.shuatiblog.com/" title="9chap." target="_blank"]);">Coding monkey</a></li>
+	
+		<li><i class="fa fa-code"></i><a href="http://www.cnblogs.com/lautsie/" title="" target="_blank"]);">阿牧遥</a></li>
+	
+		<li><i class="fa fa-code"></i><a href="http://www.fgdsb.com/" title="a" target="_blank"]);">fgdsb</a></li>
+	
+		<li><i class="fa fa-coffee"></i><a href="http://freemind.pluskid.org/misc/knowledge-accumulate/" title="" target="_blank"]);">pluskid</a></li>
+	
+		<li><i class="fa fa-coffee"></i><a href="http://www.joelonsoftware.com/" title="" target="_blank"]);">joel大神</a></li>
+	
+		<li><i class="fa fa-coffee"></i><a href="http://mindhacks.cn/" title="" target="_blank"]);">暗时间</a></li>
+	
+		<li><i class="fa fa-coffee"></i><a href="http://coolshell.cn/articles/4990.html" title="" target="_blank"]);">左耳朵耗子</a></li>
+	
+	</ul>
+</div>
+
+
+		
+	</div> <!-- sidebar -->
+</div> <!-- col-md-3 -->
+
+	
+	
+</div> <!-- row-fluid -->
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 玉娇龙
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'vlsi1217';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+   </html>

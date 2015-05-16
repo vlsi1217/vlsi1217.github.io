@@ -1,0 +1,816 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="google-site-verification" content="en_dejusB3O2_8PtG6GlYdYmaTEHr2fTEiIoZidOypY" />
+  <meta name="baidu-site-verification" content="7tszoAHV0d" />
+  <meta charset="utf-8">
+  
+  <title>Leetcode freq 2 | 百变千幻衡山云雾十三式</title>
+  <meta name="author" content="玉娇龙">
+  
+  <meta name="description" content="A collection of Hello World applications from helloworld.org.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Leetcode freq 2"/>
+  <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="百变千幻衡山云雾十三式" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?null";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">百变千幻衡山云雾十三式</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Rss feed">
+			  <i class="fa fa-rss-square"></i>Rss
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Leetcode freq 2</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+	
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>A collection of Hello World applications from helloworld.org.</p>
+			
+		</div> <!-- alert -->
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><ul>
+<li><h3 id="Lowest_Common_Ancestors_I/II:">Lowest Common Ancestors I/II:</h3><h4 id="I:_即没有parent的pointer怎么做?">I: 即没有parent的pointer怎么做?</h4></li>
+<li>这题不仅在九章算法课第二课里面讲了, 而且在<a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html" target="_blank" rel="external">1337文章link</a>也详细的解释了Bottom-up的意义. 我认为那个是设计思路. </li>
+<li><p>先复习一下: top-down/bottom-up approach: <a href="http://www.meetqun.com/thread-2732-1-1.html" target="_blank" rel="external">TD/BU的区别-米群讨论</a>, 但是里面大牛的回答也不准确, DP的top-down/bottom-up和recursion没什么关系. 例如这里的LCA的Bottom-up就是recursion. 但是Scramble String的3D Bottom-up DP就是iteration. 那么在Bottom-up有什么好处呢? 在Binary Tree的BU解法中, 相对于Top-Down是</p>
+<blockquote>
+<p>avoiding traversing the same nodes over and over again.      —- 1337</p>
+</blockquote>
+<ul>
+<li>就<strong>树</strong>来说: 最准确的解释就是: <a href="https://xiangcaohello.wordpress.com/2014/06/22/%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E9%81%8D%E5%8E%86%E6%A0%91%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E8%AE%A1%E7%AE%97/" target="_blank" rel="external">自底向上=post order traversal</a>, 以及这篇<a href="http://www.cnblogs.com/airwindow/p/4285203.html" target="_blank" rel="external">Bottom-up解题报告</a></li>
+<li>其次<a href="http://wp.javayu.me/2014/02/lowest-common-ancestor-of-a-binary-tree/" target="_blank" rel="external">javayu的解释</a>: 树的bottom-up方式和top-down方式的主要差别就在于：先处理当前节点还是先处理子树</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>而且这里很有意思的是Top down的LCA是recursion, 里面还调用countMatches这个小recursion.<ul>
+<li>这还是见得比较少的, 一般就是client调用helper recursion.</li>
+<li>照<a href="http://www.faceye.net/search/136311.html" target="_blank" rel="external">Tree总结</a>所总结的万金油方法, 不过这个表述没看明白, 原来是在<a href="http://www.cnblogs.com/leetcode/p/4003795.html" target="_blank" rel="external">cnblog symetric Tree</a>里面的分析的思路: <blockquote>
+<ol>
+<li>top-down 还是 bottom-up.    选择top-down.        O(n^2)</li>
+<li>用递归. 是否需要内嵌小递归.   需要. 其实就是判定root的是否一样的小递归.</li>
+<li>逻辑运用小递归.  </li>
+</ol>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="这道题的follow_up:_parent_pointer">这道题的follow up: parent pointer</h4><ul>
+<li>如果每个node有parent pointer的话呢? 可以怎么改进: <a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-ii.html" target="_blank" rel="external">LCA II</a></li>
+<li>在九章算法的第二课就讲了, 90% Tree的题目可以用Divide &amp; Conquer做. 注意D&amp;C和Traverse的recursion区别在于前者有return value. 因为在<strong>治</strong>的阶段需要对<strong>分</strong>的结果进行合并处理.</li>
+</ul>
+<h3 id="Minimum_Adjustment_Cost:_Lintcode动态规划题目">Minimum Adjustment Cost: Lintcode动态规划题目</h3><ul>
+<li>参考的是<a href="http://www.cnblogs.com/yuzhangcmu/p/4153927.html" target="_blank" rel="external">主页君的cnblog和github</a>分析的很详细, 有4种解法:<blockquote>
+<p>其实就是NP问题的backtracking解法. 但还是老问题, 怎么找到解集合?</p>
+</blockquote>
+</li>
+</ul>
+<p><img src="http://7xj2zx.com1.z0.glb.clouddn.com/9chap_minAdjCost.png" alt="九章算法黄老师课上的课件"></p>
+<h3 id="Binary_Tree_Maximum_Path_Sum">Binary Tree Maximum Path Sum</h3><ul>
+<li>这题是diameter/height的扩展题. 因为题目还包含了不经过root的情况. 其实都是dfs recursion. 只是要同时保存single path和sum. 即<ul>
+<li>single path是经过当前node的一边的max: Math.max(l.path, r.path)+root.v -&gt; 经过当前node的边的最大值. 0-&gt;即经过此node的边为负.</li>
+<li>sum则是左右sum的最大值, 或者左右边最大值加上当前node.</li>
+</ul>
+</li>
+<li><p>由<a href="http://bangbingsyb.blogspot.com/2014/11/leetcode-binary-tree-maximum-path-sum.html" target="_blank" rel="external">嘻唰唰blog</a>题解里面分析的: 对于每一个node的Maximum Path Sum分2类: </p>
+<blockquote>
+<ol>
+<li>single path是指由该node出发向leaf的第一类path中最大的path sum</li>
+<li>以x为LCA的第二类path中的最大path sum</li>
+</ol>
+</blockquote>
+</li>
+<li><p>正是因为看到嘻唰唰提到的LCA, 所以去看了1337的LCA文章, 受益良多. 加深对top-down/bottom-up的理解.</p>
+</li>
+</ul>
+<h3 id="Diameter_and_Height_of_Binary_Tree">Diameter and Height of Binary Tree</h3><ul>
+<li>做Binary Tree Maximum Path Sum之前先做一下类似理解的题目: Diameter of Binary Tree: <a href="http://n00tc0d3r.blogspot.com/2013/07/diameter-of-binary-tree.html" target="_blank" rel="external">N00t帖子</a><blockquote>
+<p>树没有被看成有向图，而是被当成无向图来寻找路径 — <a href="http://blog.csdn.net/linhuanmars/article/details/22969069" target="_blank" rel="external">Ganker</a></p>
+</blockquote>
+</li>
+<li>标准的DFS. 注意base case一定要return来终止.</li>
+<li>注意Height必须是进过root, 但是Diameter并不一定. 参见N00t的配图. 而N00t的公式则按照(SOF解释](<a href="http://stackoverflow.com/a/11897490" target="_blank" rel="external">http://stackoverflow.com/a/11897490</a>). 很好理解了.</li>
+</ul>
+<h3 id="Next_Permutation">Next Permutation</h3><ul>
+<li>先理解什么意思: 见<a href="http://www.nayuki.io/page/next-lexicographical-permutation-algorithm" target="_blank" rel="external">Nayuyi.io的解释</a>. 正如水中鱼所说: 这道题目就是一个观察题, 以及基本的array操作. 比如交换, index, loop的break. 复杂度只能是O(3*n)</li>
+<li>我还是参考的水中的鱼的思路. 找到partitionNum, partitionIdx, changeNum. 然后交换partionNum, changeNum. 接着再reverse num.substring(partitionIdx+1).</li>
+<li>Ganker和水中的鱼对于changeNum的找法有一点微小区别.</li>
+</ul>
+<h3 id="First_Missing_Positive">First Missing Positive</h3><ol>
+<li><p>其实这就是bucket sorting. 是最快的排序法, 比qsort还快. 是O(n), 但是是用空间换时间.</p>
+<p>可以generalize为更实用的radix sort.</p>
+<blockquote>
+<p>A type of bucket sort called the counting sort —- <a href="https://www-927.ibm.com/ibm/cas/hspc/student/algorithms/BucketSort.html" target="_blank" rel="external">IBM link</a></p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>bucket sort, radix sort, bubble sort, counting sort —- <a href="https://courses.cs.washington.edu/courses/cse373/13wi/lectures.shtml#today" target="_blank" rel="external">University of Washington CSE 373</a><ul>
+<li>注意这里的最后一步就是Concatenation bucket到原array的时候有3个var, 不要搞混了.</li>
+</ul>
+</li>
+<li>注意ganker的内循环判定的条件是<code>A[i] != A[A[i]-1]</code>. 而且最后要<code>i--</code>. 为什么不能换成<code>A[i] != i+1</code>. <ul>
+<li>因为若是换成直接判断A[i]!=i+1的话, 则会导致在重复字符的情况下出现死循环.</li>
+<li>之所以i—. 是因为交换完之后不一定是正确的. 例如{3,1,2}一开始的3,2交换为2,3后, 2并不是正确位置. 所以再判断2,1并交换才对.</li>
+<li>所以Ganker说这道题目很简单, 但其中包含的算法思想和编程基础很适合面试!</li>
+</ul>
+</li>
+</ul>
+<h3 id="Largest_Rectangle_in_Histogram">Largest Rectangle in Histogram</h3><h3 id="Scramble_String:_3D_动态规划经典">Scramble String: 3D 动态规划经典</h3><ul>
+<li>Google考过, 见<a href="http://www.mitbbs.com/article_t/JobHunting/32107851.html" target="_blank" rel="external">MITBBS 2012年帖子</a></li>
+<li>先理解这个Scramble是什么意思: <code>s1 = &quot;great&quot;, s2 = &quot;rtgae&quot;;</code>就不是有效的. 注意要求是</li>
+<li>这道题目可以用recursion, 更可以用DP. 是一道经典的3D DP. 但正如段公子所说: DP table可以用array也可以用HashMap, 可见武大csdn的hashmap解法. 但是觉得这个和N00t的backtracking差不多? 看看九章算法主页君的就搞懂了, 其实不一样.</li>
+<li><p>参考的: </p>
+<ul>
+<li><a href="http://blog.csdn.net/fightforyourdream/article/details/17707187" target="_blank" rel="external">fightforyourdream的recursion+DP</a>.</li>
+<li><a href="http://blog.csdn.net/whuwangyi/article/details/14105063" target="_blank" rel="external">武大CSDN的Hashmap动态规划</a>, </li>
+<li><a href="http://blog.unieagle.net/2012/10/23/leetcode%E9%A2%98%E7%9B%AE%EF%BC%9Ascramble-string%EF%BC%8C%E4%B8%89%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_blank" rel="external">Unieagele解题博客的3D动归</a></li>
+<li><p><a href="http://www.cnblogs.com/yuzhangcmu/p/4189152.html" target="_blank" rel="external">九章算法主页君—CMUyu</a></p>
+<ul>
+<li>分析的答案很适合面试的顺序: recursion-&gt;剪枝-&gt;Top-down DP(memorize)-&gt;Bottom-up DP(iteration).</li>
+<li>而且时间空间复杂度分析的很详细.</li>
+</ul>
+</li>
+<li><p>Ganker的3D动归, 和N00t的意思差不多. 不过Ganker的分析不错.</p>
+<ul>
+<li><p>难点在于for loop的顺序. 最外层应该是len. 因为是bottom-up. 从小问题推大问题. 或者说大问题的解可以使用小问题的解得到, 而不用反复求解同一个小问题.</p>
+<blockquote>
+<p>对于判断这些左右部分是不是scramble我们是有历史信息的，因为长度小于n的所有情况我们都在前面求解过了（也就是长度是最外层循环）。</p>
+</blockquote>
+</li>
+<li><p>有点没搞明白: 为什么Ganker说:</p>
+<blockquote>
+<p>如果以上两种情况有一种成立，说明s1[i…i+len-1]和s2[j…j+len-1]是scramble的。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>水中的鱼的recursion, 他的剪枝很好, 可以AC. 而N00t的原始的recursion(即brute-force的剪枝仅仅比较s1,s2的长度, 是很低效率的, 所以过不了).</li>
+<li>N00t的递归, DP (bottom-up) 就是iteration, 而LCA的DP (bottom-up)则是recursion. 那么这个是怎么想出来的呢: <blockquote>
+<ul>
+<li>先理解递归是怎么做的: 从大到小substr判断. 即切割成substructure/subproblem.</li>
+<li>For each pair of (n-1)-char-long substrings of the two strings, are they scramble to each other?</li>
+<li>For each pair of (n-2)-char-long substrings, are they scramble?</li>
+<li>… …</li>
+<li>For each pair of 2-char-long substrings, are they scramble?</li>
+<li>For each pair of char in the two strings, are they scramble (i.e. do they equal)?</li>
+<li>That is saying, we can build up a table and solve the problem in a bottom-up fashion.</li>
+<li>然后还有就是这里的递推式一开始没有理解. 看了<code>fight for your dream</code>懂了: 还是recursion的想法,2种情况: 前前&amp;&amp;后后||前后&amp;&amp;后前. **注意: 这种var(i,j,k,p)变多了之后不要搞混了. 最好的方法就是写一个例子出来.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Interleaving_String:_2D/1D_动态规划">Interleaving String: 2D/1D 动态规划</h3><blockquote>
+<p>凡是substring的题目, 都是自动脑补动态规划, 正如Tree的题目自动脑补分治法.</p>
+</blockquote>
+<h4 id="方法1:_recursion">方法1: recursion</h4><ul>
+<li>当然, 最好先从简单的做法入手, 先有个做对的方法: recursion是DP的前提. 或者说有了递归的思路就好想出来DP了.<ul>
+<li>对于在recursion call里面处理下一个substring的话, 即修改index, 有2种方法. <ol>
+<li>例如remove duplicate from string, 因为简单的赋值. 所以res[j++] = s[i++];</li>
+<li>在N00t的recursive call里面, 因为一句话里面有2个地方用到i,k. eg: <code>s1[i] == s3[k] &amp;&amp; isInterleave(s1, s2, s3, i+1, j, k+1)</code>. 我一开始是用++i, j++. 这样很容易弄混. 直接干脆用<code>i+1</code>. </li>
+<li>总结一下: 如果是简单的method call, 可以使用<code>++i; j++</code>. 不过长一点的statement还是不要弄晕自己, 代码最好不要依赖于statement的顺序, 所以还是原始的<code>i+1</code>.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://7xj2zx.com1.z0.glb.clouddn.com/freq2_interleave.jpg" alt="2D打表图示"></p>
+<h4 id="方法2:_2D_递归">方法2: 2D 递归</h4><ul>
+<li>既然recursion已经想出来了, 也就弄明白了? (not yet! 想法出来还要写代码实现, 里面很多门道和细节的设计)</li>
+<li>首先是边界条件, 或者说base case的设计: 有个trick, 每次遇到string的DP, 都要增加一个空位. 表示s1, s2都不取的情况. 所以Opt[0][0] = true. 这里参考的<a href="http://blog.csdn.net/u011095253/article/details/9248073" target="_blank" rel="external">popfish的算法路blog画的2D 打表图示</a>. 我一开始做的时候, 在打1st row和1st col的时候直接就是比较substring了. 但是结果不对. 为什么呢: 因为substring没用对.<ul>
+<li>有2点关于substring要注意<ol>
+<li>substring上界是开区间. 所以<code>substring(0,0)</code>是<code>&quot;&quot;</code>, (0,1)才相当于<code>charAt(0)</code>.</li>
+<li>刚发现: <code>&quot;n&quot;==&quot;n&quot;</code>是true, 但是<code>&quot;ni&quot;.substring(0,1)==&quot;no&quot;.substring(0,1)</code>居然是<strong>false</strong>! 刚查了<a href="http://stackoverflow.com/a/513839" target="_blank" rel="external">SOF: how to compare string</a>, 以及<a href="http://stackoverflow.com/questions/3297867/difference-between-string-object-and-string-literal" target="_blank" rel="external">SOF: string object vs string literal</a>, 才知道: <blockquote>
+<p><del><strong>Java的<code>==</code>比较<em>string</em>的时候比较的是reference, 而不是value!</strong>.</del> 应该说: Java 的 “==”比较object的时候, 是看是否为同一个reference.<br>所以2个substring的reference不同, 当然就是false!</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="方法3:_1D_递归-_参考Ganker的解法-">方法3: 1D 递归. 参考Ganker的解法.</h4><ul>
+<li>注意到2D的递推式只和上一层和左边的有关: <code>opt[i][j] ~ {opt[i-1][j], opt[i][j-1]}</code>. 所以可以只用一个1D 的 dp表就可以了. 当然这个时候就要小心了. 有几点:<ol>
+<li>长度多少? 意义已经改变了.<ul>
+<li>对于处理2个string的问题, 有个trick: 一般都最好选择短的那个处理, 可以节省空间或者时间.当然<code>opt[minWord.length()+1]</code>, 而且因为是需要update 短的opt长度. 所以将opt update放在内层短循环可以更加优化. 因为opt[0]<del>的意义</del>, 有2个含义:<ul>
+<li>一个意义是到外层循环到i的时候, opt[0]表示第一列的第i个时候, 表示原本2d中的opt[0][j]. 即看s3[0…j]是否可以用MaxWord[0…j], 而没有MinWord. 来interleave.</li>
+<li>第二个意义是: 内层循环到j的时候, s3[0…i+j+1]是否可以由maxWord[0…i]minWord[0…j]来interleave.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>因为外层循环maxWord, 内层循环minWord. 所以1st row可以单独初始化. 而1st col, 即maxWord的interleave的base caseze’y则要在外层循环中初始化. 而将minWord放在内层循环upodate可以节省DP表空间.</li>
+<li>最关键的在于递推式现在怎么样勒?<ul>
+<li>我一开始就搞错了. 一定要注意: 1D其实就是2D压缩而来的. 所以就是2D的简化版. 所以要和2D的递推式紧密联合起来想. </li>
+<li>2D的递推式: <code>opt[i+1][j+1] = opt[i][j+1] &amp;&amp; s1[i] 或者 opt[i+1][j] &amp;&amp; s2[j]</code>. 所以<code>opt[j+1]</code>和上一层或者左边有关: <code>opt[j+1] = opt[j+1] &amp;&amp; maxWord[i] 或者 opt[j] &amp;&amp; minWord[j]</code>. 关键在于搞清楚现在上一层和左边需要的char是哪一个. 注意这里的j是横轴啊! <ul>
+<li>所以2d里面的左边, 即opt[i][j+1]则相当于1d里面的(opt[j])就是由2d里面的s1(横着的string). </li>
+<li>而j+1, 就是相当于2D里面的上一层, 即相当于opt[i+1][j]. 所以是和2d里面的s2(竖着的string), 所以是maxWord的char.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="20141226">20141226</h2><h3 id="Reverse_Nodes_in_k-Group">Reverse Nodes in k-Group</h3><ul>
+<li>先做Swap Nodes in Pairs. 注意Ganker提到的, list常用的技巧就是遇到需要修改root的题目一般都是接一个空的node到root, 这样就把root退化为一般的中间node.</li>
+<li>这题主要参考<a href="http://n00tc0d3r.blogspot.com/2013/05/reverse-linked-list.html" target="_blank" rel="external">N00t的解法</a>. 即Invariant是2个node, keep track这2个node. 头脑要清晰. 在写之前想好算法.</li>
+<li>N00t里面这个reverse list的时候的思路超级清晰. 想想为什么是这样写. <strong>关键</strong>在于<blockquote>
+<p>pre, cur是不变的[以N00t的例子为例, 到结束的时候, 实际上pre还是指向1, cur还是指向2], 只改变pre.next, cur.next. 以及这2个next之间的link.</p>
+<figure class="highlight monkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 定位好之后就可以开始交换了. 这里是这个<span class="function"><span class="keyword">method</span>的关键.</span></span><br><span class="line"><span class="keyword">while</span> (pos &lt; <span class="keyword">end</span> &amp;&amp; cur != <span class="literal">null</span>) &#123;</span><br><span class="line">  ListNode tmp = cur.<span class="keyword">next</span>.<span class="keyword">next</span>; // N00t用的是nt: node temp.</span><br><span class="line">  cur.<span class="keyword">next</span>.<span class="keyword">next</span> = pre.<span class="keyword">next</span>; // cur;</span><br><span class="line">  pre.<span class="keyword">next</span> = cur.<span class="keyword">next</span>;</span><br><span class="line">  cur.<span class="keyword">next</span> = tmp; // pre.<span class="keyword">next</span>.<span class="keyword">next</span> = tmp;</span><br><span class="line">  pos++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><h3 id="Permutations_I/II">Permutations I/II</h3><ul>
+<li>NP问题的做法基本都是用Backtracking. 想象这里和Combination有什么区别呢? <ul>
+<li>Ans: 这里子问题的条件变化了. Combination里面是helper(,i+1,). 这里是每次在loop里面使能used[i] = true, helper(used[i]). 这样就能缩小到下一个子问题. </li>
+<li>这很重要. 因为recursion就是要一步步进入子问题, 解决, 跳出递归, 到保存到stack的以前的现场. 所以ganker也强调了这里要在helper()后面恢复现场, 即list.remove(list.size()-1), 以及初始化used[i]. 即used[i] = false.</li>
+</ul>
+</li>
+<li>II就是加入了一个条件: 如果是{1,2,1} 呢? 要避免112, 112出现2次的情况, 就要在dfs之前先判断是否和上一个num重复(**因为num已经sort过了). </li>
+<li><a href="http://blog.csdn.net/linhuanmars/article/details/21569031" target="_blank" rel="external">评论的一个follow up: link</a>. 其实很简单, 也是加入一个判断是否和上一个item里面最后一个数相等, 若是就continue.</li>
+</ul>
+<h3 id="Rotate_Image">Rotate Image</h3><h3 id="Text_Justification">Text Justification</h3><ul>
+<li>考察基本功的好题目, 注意题目的各个细节. 参考的ganker的解. <ol>
+<li>什么是last呢? 即本行的开头, 什么是i呢?下行的开头. 什么是i-last-1呢? 就是该行的间隔个数. 例如该行如果可以放5个单词, 开头的last是4, 下一行开头是9. 那么9-1就是该行的结尾, 9-1-4既是该行有4个间隔. </li>
+<li>为什么下一步循环的时候判断<code>if(j&lt;i-1)</code>呢? 这很好理解, 因为分配<code>\b</code>只跟间隔有关, end的词在一行只有一个词的时候才要pad空格. </li>
+<li>上面2这个if语句里面最后的extraNum—是什么意思呢? 注意题目要求是尽量平均分配. 所以多余的就从start开始的间隔每个+1. 注意这里的extraNum是%间隔数. 所以最多的情况是每一个间隔的空格都加1个. 否则就是靠左的间隔s分到一个extra的空格.<blockquote>
+<p>“Extra spaces between words should be distributed as evenly as possible.”</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="Sort_Colors">Sort Colors</h3><ul>
+<li>其实就是counting sort. 拓展题就是如何压缩, 如何返回最长连续char及其个数.</li>
+<li>follow up: 如何使用O(1)的空间来做? 而且O(n)的time? N00t和Ganker都是用的双指针. 好聪明, 怎么想到的?<ul>
+<li>最主要还是和reverse Nodes k-group的思想一样, 想好invarient. 可以这样想. 如果sort的colors只有0,1. 那么就只要一个pointer0, 然后i一个一个往下走, 如果遇到了0, 就赋值, pionter0++. 相当于swap的操作. </li>
+<li>现在可以看看有3个colors: 0,1,2的话怎么用pointers呢? ans: 就用2个pointers: p0, p1. 遇到0就赋值, p0++, p1++. 遇到1就赋值, p1++. 为什么这个时候p0不改变呢? 因为??????</li>
+</ul>
+</li>
+</ul>
+<h3 id="Minimum_Window_Substring">Minimum Window Substring</h3><ul>
+<li>先去复习longest non-repeated substring和Concatenation (freq1), 因为方法都一样: <blockquote>
+<p>建立一个字典，然后维护一个窗口</p>
+</blockquote>
+</li>
+<li>都是substring match 字典. 这一点类似的还有Word break(Ganker的DP解)</li>
+<li>看了N00t的Concatenation里面讲了原来双指针窗口法<del>原来就是KMP</del>(并不是KMP).不过KMP, BM, KR都很重要.</li>
+<li></li>
+</ul>
+<h3 id="Gray_Code">Gray Code</h3><ul>
+<li>使用的方法就是ASIC里面介绍的方法. 有意思. 感觉KMP也是FSM.</li>
+<li>原来Gray code就是汉诺塔的解… N00t的一行解法太cool, 没看明白啥意思.</li>
+</ul>
+<h3 id="Subsets_I/II">Subsets I/II</h3><ul>
+<li>还是Permutation/Combination这种NP问题的解法: backtracking. 只是有一点点区别: 在处理加入的元素时要去掉一些不符合条件的.</li>
+<li>很好的题目, 再次加深理解Recursion, 不仅仅是像我在<a href="https://www.zybuluo.com/mdeditor#80599" target="_blank" rel="external">LC中学习Recursion</a>那样还停留在Recursion代码之前, 之后的代码的意义. 而是要深入理解Recursion思维的想法和设计. <ul>
+<li>recursion里面, subset加入的顺序是怎么样的? 如何保证 non-descending order? Ans: 其实就是对自己设计的recursion要理解, 只到recursion的顺序就ok了. 因为Ganker的rec是从3,2,1,0,-1 递减的call. 而N00t则是0,1,2,4递增的call. 所以顺序不同. 具体的trace可以参考P533-Algs4-DFS.</li>
+<li>还有就是为什么N00t的输出是从[3], [2]开始, 而Ganker的则是从[1], [1,2]开始. 这是因为base case 的判断的区别, 以及recur进入下一层子问题的顺序是递增还是递减. 这很有意思. 要thinking in recursion. </li>
+</ul>
+</li>
+</ul>
+<h2 id="20141225">20141225</h2><h3 id="Path_Sum_I/II">Path Sum I/II</h3><ul>
+<li>树的题目很常见, 但是方法都类似: recursion.</li>
+<li>问题也很常见: I一般就是问是否存在解. II一般是求所有解的集合.</li>
+<li>正是这道题目, N00t讲了Java的call by value对于object来说是copy他的handler, 即reference, 所以将来的改变会对之前add的reference改变, 也就改变了最终的结果: <blockquote>
+<ul>
+<li>Notice that we make a copy of the path before we added it to our result set. The reason is that when we add an Object (here, an ArrayList), Java add a copy of the pointer (i.e. a reference) of the Object, rather than a deep copy. So, <strong>any changes to content</strong> of the original Object will reflect into our final result set.</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li>同样的Ganker也是<code>res.add(new ArrayList&lt;Integer&gt;(item));</code>. 否则必然是错误的.</li>
+<li>为什么N00t的if (root.value==sum)里面放path到res之后不能return, 否则会出现错误的path? 因为这个里面加上return是完全错误的! 这里并不是base case, 不应该return. 但是Ganker的为什么又应该加上return呢? 因为这个是base case. 注意Ganker的顺序.</li>
+</ul>
+<h3 id="Longest_Substring_Without_Repeating_Characters">Longest Substring Without Repeating Characters</h3><ul>
+<li>N00t的方法是hashmap+start/end2个pointer的移动, 注意N00t只要判断当前的char是不是在当前substring中, 才update. 考虑到返回所有这种substring的问题. 我的思路是记录longest的start, 这样因为maxlength是返回值. 所以substring就可以解决. 但是有点小问题.</li>
+<li>Ganker则是使用的walker/runner 双指针法. 或者说: 窗口法来处理这一类的string问题. 还归了类. 一开始没理解为什么是while(charAt(w)!=charAt(r)). 想到了一个好例子: “xyb12b02”. 走了一遍理解了. 本来给的例子: “abcabcbb”并不好. 因为W=R都是连续的, 没看到while不等的情况. 所以有时候要多举几个case. 但不是随便举. 而是想上面那个case那样第一个重复的’b’并不是第一个字母. <ul>
+<li>扩展的题目有Substring with Concatenation of All Words，Minimum Window Substring，思路是非常接近的，只是操作上会更加繁琐一些。</li>
+</ul>
+</li>
+<li>case很重要, 一是在开始做题之前用来理解, 考虑算法之用. 二来是作为test case. 但是case也要设计得好才行, 不然还是会错. 所以要建立在完全理解题意, 想好算法之后写<strong>有用</strong>的case, 来改正算法. 有点鸡生蛋, 但实际上是要懂了再下笔. 面试不是调代码.</li>
+</ul>
+<h3 id="Longest_Consecutive_int_string">Longest Consecutive int string</h3><ul>
+<li>这道题在GoPro onsite面到. 其实很简单的recursion. 题目意思是给一个排好序的string: “abccdeeeeef”, 则’e’是重复次数最多, 有5次. 所以返回: e和5. 其实这个和compression很相同, 之前见过: 将这个string输出为”a1b1c2d1e5f1”</li>
+<li>思路参考的<a href="">SOF上面的recursion</a>.</li>
+</ul>
+<h3 id="Container_With_Most_Water">Container With Most Water</h3><h3 id="Jump_Game">Jump Game</h3><ul>
+<li>经典的DP和Greedy问题. 段公子在DP/recursion里面讲了. </li>
+<li>第二题的想法在N00t和Ganker之间有区别. 可以加深理解. 也确实想了好久才明白他们的code.</li>
+<li>Ganker的评论里面又一个记录path的方法, 这样可以返回最少jump的path. 总而言之, 也是一个DP的方法. DP还是Greedy? 傻傻分不清. 还要回头<strong>复习一下贪新算法</strong>: MST.</li>
+</ul>
+<h3 id="3Sum/4Sum">3Sum/4Sum</h3><ul>
+<li>主要参考N00t和Ganker的解法. 但其实可以结合HashSet来做4Sum. 更简单.</li>
+<li>注意这里面的设计, 如何避免重复. 所以要sort. 通常的解法是夹逼法则. for loop循环3-2或者4-2个头, 然后剩下2个index可以用left/right来夹逼.</li>
+<li>注意这里正确的使用了do…while. </li>
+<li>Binary search的合理使用. 一般不会直接写一个binary search. 但是这里夹逼自然是binary search好用. O(n)-&gt;O(lgn)</li>
+</ul>
+<h3 id="Spiral_Matrix_I/II">Spiral Matrix I/II</h3><ul>
+<li>N00t的这张图真是经典, 也确实是复杂题目想好psuedo code才写!</li>
+<li>Hello WOrld</li>
+</ul>
+<h3 id="Recover_Binary_Search_Tree">Recover Binary Search Tree</h3><ul>
+<li><p>再次加深了对Recursion的理解. 2个不连续的recursion. 而且param还不对称, N00t的recursion写的真好. N00t的方法也很好. </p>
+<h3 id="Distinct_Subsequences">Distinct Subsequences</h3><blockquote>
+<p>+When you see string problem that is about subsequence or matching, dynamic programming method should come to your mind naturally. —-by <a href="http://www.cnblogs.com/springfor/p/3896152.html" target="_blank" rel="external">link</a></p>
+</blockquote>
+<ul>
+<li>DP的经典题目. N00t的做法也是可以的. 但我倾向于Ganker/SophieJ. 但是要理解DP公式的含义. 不然连边界条件或者初始条件都搞不出来. Ganker的2D分析, 然后code则是优化为1D dp的解法一开始没看懂, 然后Ganker在回复里面解释了为什么j是从T的<strong>从后向前扫</strong>. 这是因为这里的<strong>DP是想使用update之前的值</strong>, 所以这样. 如果以后有个DP问题是要使用更新后的1D dp, 则是从头往后扫.</li>
+<li>还是的加深理解为什么1D的逆向填的DP是对的? 会不会导致比较出来的subsequence没按顺序? 或者反过来了? 见<a href="http://blog.csdn.net/kenden23/article/details/19332545" target="_blank" rel="external">csdn link</a> 有点乱: 下标, 如何保证是in-order? 看Coin Change—-段公子.</li>
+</ul>
+</li>
+</ul>
+<h2 id="20141223">20141223</h2><h3 id="Plus_One">Plus One</h3><ul>
+<li>这是一道简单题. N00t给出了他的扩展题: plus int. </li>
+<li>Ganker说他在Google店面的时候就问了这题. 因为适合扩展和OOD的设计.<h3 id="Symmetric_Tree">Symmetric Tree</h3></li>
+<li>Ganker是简单的recursion和iteration. 注意这里判断是否对称的条件: 空的情况, 有值的情况. 注意不用判断值相等. 为什么? 因为helper是recursion, 要找到结束得点. 而值相等可以继续走下去. 而都为空就可以直接返回true. 因为走不下去了. 这里也明显的看出iteration为什么会繁琐. </li>
+<li>N00t使用的一种stl数据结构: ArrayDeque. 其他思路和Ganker是一样的.</li>
+</ul>
+<h3 id="Balanced_Binary_Tree">Balanced Binary Tree</h3><h3 id="Palindrome_Number">Palindrome Number</h3><ul>
+<li>和Freq3的PalindromeDPDP类似. </li>
+<li>这里的比较2end不能用pointer了. 因为不是string. 这里有2个方法. 用一个div(不断变化). 本质还是loop里面update为指向对称的end points.</li>
+<li>或者是1337里面的第三个方法: 用一个stack.</li>
+</ul>
+<h3 id="Search_Insert_Position">Search Insert Position</h3><ul>
+<li>在freq3里面已经做过 </li>
+</ul>
+<h3 id="Valid_Sudoku">Valid Sudoku</h3><ul>
+<li>巧妙使用<code>i/3*3</code>和<code>i%3*3</code>. 以及API的设计</li>
+</ul>
+<h3 id="SOlve_Sudoku">SOlve Sudoku</h3><ul>
+<li>加深理解循环递归. 觉得比NP的N-Queens更重要. 这里的设计是很重要的模版. </li>
+</ul>
+<h3 id="Count_and_Say">Count and Say</h3><ul>
+<li>String的小题目. 一定要bug free. </li>
+<li>题目居然没看懂. 还是看了<a href="http://blog.csdn.net/fightforyourdream/article/details/12901505" target="_blank" rel="external">CSDN上面FightForDream的帖子</a>才搞明白什么意思.<h3 id="Remove_Duplicates_from_Sorted_Array_I/II">Remove Duplicates from Sorted Array I/II</h3></li>
+<li>好在我回顾了这道题目. 发现N00t的思路太不好了, 很容易错, 而且扩展不了. 实际上有string, 有比较的时候就用pointer就好了. 而且这里还是in-place. 就算是II, 也只要多加一个变量cnt来看当前有几次重复元素.</li>
+<li>所以Ganker的方法远胜于N00t. 也保证了这种简单题目的清晰思路和bug-free. 就是通过</li>
+</ul>
+<hr>
+<h2 id="题目">题目</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Leetcode problem</th>
+<th>freq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>66</td>
+<td>~Plus One</td>
+<td>2</td>
+</tr>
+<tr>
+<td>101</td>
+<td>~Symmetric Tree</td>
+<td>2</td>
+</tr>
+<tr>
+<td>110</td>
+<td>~Balanced Binary Tree</td>
+<td>2</td>
+</tr>
+<tr>
+<td>9</td>
+<td>~Palindrome Number</td>
+<td>2</td>
+</tr>
+<tr>
+<td>35</td>
+<td>~Search Insert Position</td>
+<td>2</td>
+</tr>
+<tr>
+<td>36</td>
+<td>~Valid Sudoku</td>
+<td>2</td>
+</tr>
+<tr>
+<td>38</td>
+<td>~Count and Say</td>
+<td>2</td>
+</tr>
+<tr>
+<td>80</td>
+<td>~Remove Duplicates from Sorted Array II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>113</td>
+<td>~Path Sum II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>~Longest Substring Without Repeating Characters</td>
+<td>2</td>
+</tr>
+<tr>
+<td>11</td>
+<td>~Container With Most Water</td>
+<td>2</td>
+</tr>
+<tr>
+<td>18</td>
+<td>~4Sum</td>
+<td>2</td>
+</tr>
+<tr>
+<td>55</td>
+<td>~Jump Game</td>
+<td>2</td>
+</tr>
+<tr>
+<td>59</td>
+<td>~Spiral Matrix II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>61</td>
+<td>~Rotate List</td>
+<td>2</td>
+</tr>
+<tr>
+<td>92</td>
+<td>~Reverse Linked List II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>~Longest Palindromic Substring</td>
+<td>2</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Reverse Nodes in k-Group</td>
+<td>2</td>
+</tr>
+<tr>
+<td>37</td>
+<td>Sudoku Solver</td>
+<td>2</td>
+</tr>
+<tr>
+<td>40</td>
+<td>Combination Sum II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>42</td>
+<td>Trapping Rain Water</td>
+<td>2</td>
+</tr>
+<tr>
+<td>45</td>
+<td>Jump Game II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>47</td>
+<td>Permutations II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>48</td>
+<td>Rotate Image</td>
+<td>2</td>
+</tr>
+<tr>
+<td>54</td>
+<td>Spiral Matrix</td>
+<td>2</td>
+</tr>
+<tr>
+<td>68</td>
+<td>Text Justification</td>
+<td>2</td>
+</tr>
+<tr>
+<td>75</td>
+<td>Sort Colors</td>
+<td>2</td>
+</tr>
+<tr>
+<td>76</td>
+<td>Minimum Window Substring</td>
+<td>2</td>
+</tr>
+<tr>
+<td>89</td>
+<td>Gray Code</td>
+<td>2</td>
+</tr>
+<tr>
+<td>90</td>
+<td>Subsets II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>99</td>
+<td>Recover Binary Search Tree</td>
+<td>2</td>
+</tr>
+<tr>
+<td>115</td>
+<td>Distinct Subsequences</td>
+<td>2</td>
+</tr>
+<tr>
+<td>117</td>
+<td>Populating Next Right Pointers in Each Node II</td>
+<td>2</td>
+</tr>
+<tr>
+<td>124</td>
+<td>Binary Tree Maximum Path Sum</td>
+<td>2</td>
+</tr>
+<tr>
+<td>31</td>
+<td>Next Permutation</td>
+<td>2</td>
+</tr>
+<tr>
+<td>41</td>
+<td>First Missing Positive</td>
+<td>2</td>
+</tr>
+<tr>
+<td>84</td>
+<td>Largest Rectangle in Histogram</td>
+<td>2</td>
+</tr>
+<tr>
+<td>87</td>
+<td>Scramble String</td>
+<td>2</td>
+</tr>
+<tr>
+<td>97</td>
+<td>Interleaving String</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/02/16/OA/ACM/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/16/Leetcode/LeetcodeRecursion/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-02-16 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141228"><span class="toc-article-text">20141228</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Populating_Next_Right_Pointers_in_Each_Node_II"><span class="toc-article-text">Populating Next Right Pointers in Each Node II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Lowest_Common_Ancestors_I/II:"><span class="toc-article-text">Lowest Common Ancestors I/II:</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#I:_即没有parent的pointer怎么做?"><span class="toc-article-text">I: 即没有parent的pointer怎么做?</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#这道题的follow_up:_parent_pointer"><span class="toc-article-text">这道题的follow up: parent pointer</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Minimum_Adjustment_Cost:_Lintcode动态规划题目"><span class="toc-article-text">Minimum Adjustment Cost: Lintcode动态规划题目</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Binary_Tree_Maximum_Path_Sum"><span class="toc-article-text">Binary Tree Maximum Path Sum</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Diameter_and_Height_of_Binary_Tree"><span class="toc-article-text">Diameter and Height of Binary Tree</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Next_Permutation"><span class="toc-article-text">Next Permutation</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#First_Missing_Positive"><span class="toc-article-text">First Missing Positive</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Largest_Rectangle_in_Histogram"><span class="toc-article-text">Largest Rectangle in Histogram</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Scramble_String:_3D_动态规划经典"><span class="toc-article-text">Scramble String: 3D 动态规划经典</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Interleaving_String:_2D/1D_动态规划"><span class="toc-article-text">Interleaving String: 2D/1D 动态规划</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#方法1:_recursion"><span class="toc-article-text">方法1: recursion</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#方法2:_2D_递归"><span class="toc-article-text">方法2: 2D 递归</span></a></li><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#方法3:_1D_递归-_参考Ganker的解法-"><span class="toc-article-text">方法3: 1D 递归. 参考Ganker的解法.</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141226"><span class="toc-article-text">20141226</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Reverse_Nodes_in_k-Group"><span class="toc-article-text">Reverse Nodes in k-Group</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Trapping_Rain_Water"><span class="toc-article-text">Trapping Rain Water</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Permutations_I/II"><span class="toc-article-text">Permutations I/II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Rotate_Image"><span class="toc-article-text">Rotate Image</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Text_Justification"><span class="toc-article-text">Text Justification</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Sort_Colors"><span class="toc-article-text">Sort Colors</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Minimum_Window_Substring"><span class="toc-article-text">Minimum Window Substring</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Gray_Code"><span class="toc-article-text">Gray Code</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Subsets_I/II"><span class="toc-article-text">Subsets I/II</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141225"><span class="toc-article-text">20141225</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Path_Sum_I/II"><span class="toc-article-text">Path Sum I/II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Longest_Substring_Without_Repeating_Characters"><span class="toc-article-text">Longest Substring Without Repeating Characters</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Longest_Consecutive_int_string"><span class="toc-article-text">Longest Consecutive int string</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Container_With_Most_Water"><span class="toc-article-text">Container With Most Water</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Jump_Game"><span class="toc-article-text">Jump Game</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#3Sum/4Sum"><span class="toc-article-text">3Sum/4Sum</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Spiral_Matrix_I/II"><span class="toc-article-text">Spiral Matrix I/II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Recover_Binary_Search_Tree"><span class="toc-article-text">Recover Binary Search Tree</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Distinct_Subsequences"><span class="toc-article-text">Distinct Subsequences</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141223"><span class="toc-article-text">20141223</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Plus_One"><span class="toc-article-text">Plus One</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Symmetric_Tree"><span class="toc-article-text">Symmetric Tree</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Balanced_Binary_Tree"><span class="toc-article-text">Balanced Binary Tree</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Palindrome_Number"><span class="toc-article-text">Palindrome Number</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Search_Insert_Position"><span class="toc-article-text">Search Insert Position</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Valid_Sudoku"><span class="toc-article-text">Valid Sudoku</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#SOlve_Sudoku"><span class="toc-article-text">SOlve Sudoku</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Count_and_Say"><span class="toc-article-text">Count and Say</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Remove_Duplicates_from_Sorted_Array_I/II"><span class="toc-article-text">Remove Duplicates from Sorted Array I/II</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#题目"><span class="toc-article-text">题目</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 玉娇龙
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'vlsi1217';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+   </html>

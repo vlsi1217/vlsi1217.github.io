@@ -1,0 +1,335 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="google-site-verification" content="en_dejusB3O2_8PtG6GlYdYmaTEHr2fTEiIoZidOypY" />
+  <meta name="baidu-site-verification" content="7tszoAHV0d" />
+  <meta charset="utf-8">
+  
+  <title>Unit 2 九章算法课: Binary Search | 百变千幻衡山云雾十三式</title>
+  <meta name="author" content="玉娇龙">
+  
+  <meta name="description" content="A collection of Hello World applications from helloworld.org.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Unit 2 九章算法课: Binary Search"/>
+  <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="百变千幻衡山云雾十三式" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?null";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">百变千幻衡山云雾十三式</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Rss feed">
+			  <i class="fa fa-rss-square"></i>Rss
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Unit 2 九章算法课: Binary Search</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+	
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>A collection of Hello World applications from helloworld.org.</p>
+			
+		</div> <!-- alert -->
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h2 id="2分法模版">2分法模版</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (start + <span class="number">1</span> &lt; <span class="keyword">end</span>) &#123;</span><br><span class="line">    mid = start + (<span class="keyword">end</span> - start) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (A[mid] == <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;  // key</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &lt; <span class="type">target</span>) &#123;</span><br><span class="line">        start = mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &gt; <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (A[start] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> start;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[<span class="keyword">end</span>] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>while退出条件: lo+1&lt;hi</li>
+<li>中间处理通用: 都是lo=mid, hi=mid. 不用mid+1/mid-1.</li>
+<li>while循环结束后, 只要处理2个数就可以了: start和end. 可以很容易分析.<ul>
+<li>这里的start/end的意义是什么呢? 并不一定是target的范围就已经确定了, 例如有dup的时候, 就要看你是求first, any, 还是last了.</li>
+<li>或者说target不再A[]里面的情况呢? 那么target &lt; A[lo] 或者 A[hi] &lt; target.</li>
+</ul>
+</li>
+</ul>
+<h3 id="从复杂度-&gt;算法">从复杂度-&gt;算法</h3><ul>
+<li>一般的复杂度有O(n), 比他好的就是O(lgn). 那就只有二分了. 所以看到这种复杂度要求的题目, 就是用二分模版.</li>
+</ul>
+<h3 id="p1-_search_insert_position">p1. search insert position</h3><ul>
+<li>其实根据题意了解到, 就是找first position i, that A[i] &gt;= target. 所以对于这种sorted array的search first/last position就是用二分法. </li>
+<li>模版是要灵活运用的, 只是说这样写不太容易出错. 但是也要在适当范围内根据问题来做. 譬如insert的target不再A[]内会怎么样呢? 实际还是只要根据lo/hi这2个数分析就好, 但是这里学到了有了range, 有了lo/hi, 并<strong>不一定</strong>就是分3段: 左中右. 这里的分法有意思. <code>&lt;= low, &lt;= hi, 和大于hi.</code></li>
+</ul>
+<h2 id="Sorted_Array_问题">Sorted Array 问题</h2><h3 id="重要的2题:_Search_in_rotated_sorted_array">重要的2题: Search in rotated sorted array</h3><ul>
+<li>binary search<ul>
+<li>重要做题概念: 做题先画图, 容易直观分析.</li>
+</ul>
+<ul>
+<li>如果有duplicate, 就没得2分. 因为lo=mid=hi = 1的话, 所以2分无意义.</li>
+</ul>
+</li>
+<li>不用二分做<ul>
+<li>find minimum in rotated sorted array. 也是2分.</li>
+<li>recover rotatted sorted array.</li>
+<li>然后用min来search, 或者recover在search.</li>
+</ul>
+</li>
+</ul>
+<h4 id="p1-_Find_minimum_in_Rotated_sorted_array_I/II">p1. Find minimum in Rotated sorted array I/II</h4><h3 id="重要的2题:_Median_of_two_sorted_arrays">重要的2题: Median of two sorted arrays</h3><ul>
+<li>这题的算法思想很重要. 能提升自己的能力.</li>
+<li>先做: find kth int of two sorted arrays<ul>
+<li>其实就等于做出来median这题了.</li>
+</ul>
+</li>
+<li>注意 k-k/2!=k/2. 因为有奇数偶数的情况. 所以统一用k-k/2.</li>
+</ul>
+<h4 id="kth_of_two_sorted_arrays">kth of two sorted arrays</h4><h2 id="其他简单">其他简单</h2><ul>
+<li>merge sorted array/list.<ul>
+<li>小技巧: 从末尾开始插入.</li>
+<li></li>
+</ul>
+</li>
+<li>三步反转法</li>
+</ul>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/05/06/Leetcode/Unit1_9chap/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/21/Leetcode/LeetcodeDP/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-05-06 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li> <li><a href="/tags/九章/">九章<span>3</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2分法模版"><span class="toc-article-text">2分法模版</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#从复杂度->算法"><span class="toc-article-text">从复杂度->算法</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#p1-_search_insert_position"><span class="toc-article-text">p1. search insert position</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Sorted_Array_问题"><span class="toc-article-text">Sorted Array 问题</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#重要的2题:_Search_in_rotated_sorted_array"><span class="toc-article-text">重要的2题: Search in rotated sorted array</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#p1-_Find_minimum_in_Rotated_sorted_array_I/II"><span class="toc-article-text">p1. Find minimum in Rotated sorted array I/II</span></a></li></ol></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#重要的2题:_Median_of_two_sorted_arrays"><span class="toc-article-text">重要的2题: Median of two sorted arrays</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-4"><a class="toc-article-link" href="#kth_of_two_sorted_arrays"><span class="toc-article-text">kth of two sorted arrays</span></a></li></ol></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#其他简单"><span class="toc-article-text">其他简单</span></a></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 玉娇龙
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'vlsi1217';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+   </html>

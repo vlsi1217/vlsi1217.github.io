@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="google-site-verification" content="en_dejusB3O2_8PtG6GlYdYmaTEHr2fTEiIoZidOypY" />
+  <meta name="baidu-site-verification" content="7tszoAHV0d" />
+  <meta charset="utf-8">
+  
+  <title>leetcode中学习DP | 百变千幻衡山云雾十三式</title>
+  <meta name="author" content="玉娇龙">
+  
+  <meta name="description" content="Leetcode总结题型.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="leetcode中学习DP"/>
+  <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="百变千幻衡山云雾十三式" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?null";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">百变千幻衡山云雾十三式</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Rss feed">
+			  <i class="fa fa-rss-square"></i>Rss
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> leetcode中学习DP</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+	
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>Leetcode总结题型.</p>
+			
+		</div> <!-- alert -->
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <blockquote>
+<ul>
+<li>这一篇想整理一下在LC中学到的DP. 一是学习如何推DP公式, 一是学如何优化.</li>
+<li>另外2篇是: <ul>
+<li>Leetcode中学习Recursion.</li>
+<li>Leetcode中学习贪心</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="学习">学习</h1><h2 id="CLRS">CLRS</h2><ul>
+<li>rod cut<h2 id="Stanford">Stanford</h2></li>
+<li>WIS</li>
+</ul>
+<h2 id="ACM_资料">ACM 资料</h2><ul>
+<li><a href="http://www.douban.com/note/213102442/" target="_blank" rel="external">DP的3个特性</a><ul>
+<li>这个豆瓣文章不错, 讲了基本上面试会用的所有基本数据结构和算法.</li>
+<li>其中是3个特性: <ol>
+<li>最优子结构</li>
+<li>无后效性</li>
+<li>空间需求度</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="最简单的DP:_Unique_Path">最简单的DP: Unique Path</h1><h1 id="2D_DP经典:_distinct_subsequences">2D DP经典: distinct subsequences</h1><h1 id="2D_DP优化为1D_DP的经典:_Distinct_Subsequences/Coin_changes">2D DP优化为1D DP的经典: Distinct Subsequences/Coin changes</h1><h2 id="分析来自CSDN">分析来自<a href="http://blog.csdn.net/kenden23/article/details/19332545" target="_blank" rel="external">CSDN</a></h2><ul>
+<li><h1 id="2D_DP经典:_LCS">2D DP经典: LCS</h1><h2 id="Naive_recursion">Naive recursion</h2><h2 id="2D_DP">2D DP</h2></li>
+<li>DP打表有个关键: 先构造好表, 理解并初始化边界, 然后找规律填几行. <h2 id="1D_DP_(真1层)">1D DP (真1层)</h2></li>
+<li>我昨天就是想当然的直接像coin change那样直接改成1D, 其实是不对的, 因为不是opt[i][j] ~ opt[i+1][j], 而是opt[i+1][j+1]. 因为我们的opt[i][j]的定义是x[i…M] vs y[j…N]. 所以必须从后往前/从下往上扫. 所以j+1在被j使用之前就改了. 因为这里打表是想使用修改前的值. 而且不能从反过来(前向后扫), 因为这里和<a href="">ganker distinct subsequence</a>不同???<h2 id="O(1)D的DP,_也就是1,2,3,_…_的常数层">O(1)D的DP, 也就是1,2,3, … 的常数层</h2></li>
+<li>其实我使用的[0..1/2/3][0..N]这样一个<a href="http://sxyckjzh.blog.163.com/blog/static/32629815201361010642951/" target="_blank" rel="external"><strong>滚动数组</strong></a></li>
+<li>如果是3层的滚动数组, 如POJ 1159 Palindrome的话, 可以用取mod来找到正确的行, 如<a href="http://www.cnblogs.com/PJQOOO/p/3900677.html" target="_blank" rel="external">ACM女神</a> 也就是常用的方法(见Valid sudoku). 如果是2层的滚动数组, 可以用我在LCS里面的双buffer. 或者可以直接使用2层的数组做(可以mod, 或者^1), 见<a href="http://www.ahathinking.com/archives/115.html#more-115" target="_blank" rel="external">dp[k][j] = dp[k^1][j-1] +  1</a></li>
+<li>参考资料: <a href="http://blog.csdn.net/u011262722/article/details/10037855" target="_blank" rel="external">这个分了DP类: 斜率, 压缩</a></li>
+<li><a href="http://blog.csdn.net/lp_opai/article/details/43408081" target="_blank" rel="external">ACM分类, KMP7题</a></li>
+</ul>
+<h2 id="LCS经典变形:_POJ_1159_Palindrome">LCS经典变形: POJ 1159 Palindrome</h2><ul>
+<li>实际上LCS这里的subsequence是不连续的顺序子串. 所以可以利用这一点来解决Palindrome问题.</li>
+<li>只要将给的String 反转, 比较LCS, 然后加入len-LCS即可.</li>
+<li>如果要返回得到的Palindrome怎么弄?</li>
+</ul>
+<h2 id="2D_vs_1D">2D vs 1D</h2><ul>
+<li>关键就在于可不可以recover. 例如</li>
+</ul>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/05/06/Leetcode/Unit2_9chap/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/20/Leetcode/Freq3/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-02-21 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#学习"><span class="toc-article-text">学习</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#CLRS"><span class="toc-article-text">CLRS</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Stanford"><span class="toc-article-text">Stanford</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#ACM_资料"><span class="toc-article-text">ACM 资料</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#最简单的DP:_Unique_Path"><span class="toc-article-text">最简单的DP: Unique Path</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#2D_DP经典:_distinct_subsequences"><span class="toc-article-text">2D DP经典: distinct subsequences</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#2D_DP优化为1D_DP的经典:_Distinct_Subsequences/Coin_changes"><span class="toc-article-text">2D DP优化为1D DP的经典: Distinct Subsequences/Coin changes</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#分析来自CSDN"><span class="toc-article-text">分析来自CSDN</span></a></li></ol></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#2D_DP经典:_LCS"><span class="toc-article-text">2D DP经典: LCS</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Naive_recursion"><span class="toc-article-text">Naive recursion</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2D_DP"><span class="toc-article-text">2D DP</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#1D_DP_(真1层)"><span class="toc-article-text">1D DP (真1层)</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#O(1)D的DP,_也就是1,2,3,_…_的常数层"><span class="toc-article-text">O(1)D的DP, 也就是1,2,3, … 的常数层</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#LCS经典变形:_POJ_1159_Palindrome"><span class="toc-article-text">LCS经典变形: POJ 1159 Palindrome</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#2D_vs_1D"><span class="toc-article-text">2D vs 1D</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 玉娇龙
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'vlsi1217';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+   </html>
