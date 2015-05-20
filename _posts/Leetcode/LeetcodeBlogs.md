@@ -6,8 +6,9 @@ description: "A collection of Hello World applications from helloworld.org."
 toc: true
 ---
 
-#这里记录Leetcode的题解与好的分析
----
+## 20150512
+* 这个博客一直有更新Leetcode新题的题解报告不错: [一丝凉意](http://pisxw.com/tag/)
+
 ## 20150508
 > 今天做Scramble string的时候看到了很多很好的分析.
 

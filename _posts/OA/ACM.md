@@ -1,15 +1,9 @@
-title: "ACM题集以及各种总结大全"
+title: "ACM题集以及各种总结大全(转载)"
 date: "2015-02-16 20:17:16"
 tags: ACM
 categories: OA
 description: "A collection of Hello World applications from helloworld.org."
 toc: true
----
-
-# ACM题集以及各种总结大全
-
-标签（空格分隔）： Algorithm, oa
-
 ---
 
 > 虽然退役了，但是整理一下，供小弟小妹们以后切题方便一些，但由于近来考试太多，顾退役总结延迟一段时间再写！先写一下各种分类和题集，欢迎各位大牛路过指正。

@@ -6,16 +6,18 @@ description: "A collection of Hello World applications from helloworld.org."
 toc: true
 ---
 
-# Leetcode Freq 2
-
 ## 20141228
 ### Populating Next Right Pointers in Each Node II
 * 
 
-### Lowest Common Ancestors I/II: [1337文章link](http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html)
-* 先复习一下: top-down/bottom-up approach: [TD/BU的区别-米群讨论](http://www.meetqun.com/thread-2732-1-1.html), 但是里面大牛的回答也不准确, DP的top-down/bottom-up和recursion没什么关系. 例如这里的LCA的Bottom-up就是recursion. 但是Scramble String的3D Bottom-up DP就是iteration.  
-    * 感觉, 就**树**来说: [javayu的解释](http://wp.javayu.me/2014/02/lowest-common-ancestor-of-a-binary-tree/)最准确:
-> 树的bottom-up方式和top-down方式的主要差别就在于：先处理当前节点还是先处理子树
+### Lowest Common Ancestors I/II:
+#### I: 即没有parent的pointer怎么做?
+* 这题不仅在九章算法课第二课里面讲了, 而且在[1337文章link](http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html)也详细的解释了Bottom-up的意义. 我认为那个是设计思路. 
+* 先复习一下: top-down/bottom-up approach: [TD/BU的区别-米群讨论](http://www.meetqun.com/thread-2732-1-1.html), 但是里面大牛的回答也不准确, DP的top-down/bottom-up和recursion没什么关系. 例如这里的LCA的Bottom-up就是recursion. 但是Scramble String的3D Bottom-up DP就是iteration. 那么在Bottom-up有什么好处呢? 在Binary Tree的BU解法中, 相对于Top-Down是
+> avoiding traversing the same nodes over and over again.      --- 1337
+
+    * 就**树**来说: 最准确的解释就是: [自底向上=post order traversal](https://xiangcaohello.wordpress.com/2014/06/22/%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E9%81%8D%E5%8E%86%E6%A0%91%E9%81%BF%E5%85%8D%E9%87%8D%E5%A4%8D%E8%AE%A1%E7%AE%97/), 以及这篇[Bottom-up解题报告](http://www.cnblogs.com/airwindow/p/4285203.html)
+    * 其次[javayu的解释](http://wp.javayu.me/2014/02/lowest-common-ancestor-of-a-binary-tree/): 树的bottom-up方式和top-down方式的主要差别就在于：先处理当前节点还是先处理子树
 + 而且这里很有意思的是Top down的LCA是recursion, 里面还调用countMatches这个小recursion.
     + 这还是见得比较少的, 一般就是client调用helper recursion.
     + 照[Tree总结](http://www.faceye.net/search/136311.html)所总结的万金油方法, 不过这个表述没看明白, 原来是在[cnblog symetric Tree](http://www.cnblogs.com/leetcode/p/4003795.html)里面的分析的思路: 
@@ -23,13 +25,15 @@ toc: true
 > 2. 用递归. 是否需要内嵌小递归.   需要. 其实就是判定root的是否一样的小递归.
 > 3. 逻辑运用小递归.  
 
-* 这道题的follow up是: 如果每个node有parent pointer的话呢? 可以怎么改进: [LCA II](http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-ii.html)
+#### 这道题的follow up: parent pointer
+* 如果每个node有parent pointer的话呢? 可以怎么改进: [LCA II](http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-ii.html)
+* 在九章算法的第二课就讲了, 90% Tree的题目可以用Divide & Conquer做. 注意D&C和Traverse的recursion区别在于前者有return value. 因为在**治**的阶段需要对**分**的结果进行合并处理.
 
 ### Minimum Adjustment Cost: Lintcode动态规划题目
 * 参考的是[主页君的cnblog和github](http://www.cnblogs.com/yuzhangcmu/p/4153927.html)分析的很详细, 有4种解法:
     > 其实就是NP问题的backtracking解法. 但还是老问题, 怎么找到解集合?
 
-![九章算法黄老师课上的课件](/images/Leetcode/9chap_minAdjCost.png)
+![九章算法黄老师课上的课件](http://7xj2zx.com1.z0.glb.clouddn.com/9chap_minAdjCost.png)
 
 ### Binary Tree Maximum Path Sum
 * 这题是diameter/height的扩展题. 因为题目还包含了不经过root的情况. 其实都是dfs recursion. 只是要同时保存single path和sum. 即
@@ -48,9 +52,14 @@ toc: true
 * 注意Height必须是进过root, 但是Diameter并不一定. 参见N00t的配图. 而N00t的公式则按照(SOF解释](http://stackoverflow.com/a/11897490). 很好理解了.
 
 ### Next Permutation
+* 先理解什么意思: 见[Nayuyi.io的解释](http://www.nayuki.io/page/next-lexicographical-permutation-algorithm). 正如水中鱼所说: 这道题目就是一个观察题, 以及基本的array操作. 比如交换, index, loop的break. 复杂度只能是O(3*n)
+* 我还是参考的水中的鱼的思路. 找到partitionNum, partitionIdx, changeNum. 然后交换partionNum, changeNum. 接着再reverse num.substring(partitionIdx+1).
+* Ganker和水中的鱼对于changeNum的找法有一点微小区别.
 
 ### First Missing Positive
-* 其实这就是bucket sorting. 是最快的排序法, 比qsort还快. 是O(n), 但是是用空间换时间. 可以generalize为更实用的radix sort.
+1. 其实这就是bucket sorting. 是最快的排序法, 比qsort还快. 是O(n), 但是是用空间换时间.
+
+ 可以generalize为更实用的radix sort.
 > A type of bucket sort called the counting sort --- [IBM link](https://www-927.ibm.com/ibm/cas/hspc/student/algorithms/BucketSort.html)
 * bucket sort, radix sort, bubble sort, counting sort --- [University of Washington CSE 373](https://courses.cs.washington.edu/courses/cse373/13wi/lectures.shtml#today)
     * 注意这里的最后一步就是Concatenation bucket到原array的时候有3个var, 不要搞混了.
@@ -90,7 +99,38 @@ toc: true
   + That is saying, we can build up a table and solve the problem in a bottom-up fashion.
   + 然后还有就是这里的递推式一开始没有理解. 看了`fight for your dream`懂了: 还是recursion的想法,2种情况: 前前&&后后||前后&&后前. **注意: 这种var(i,j,k,p)变多了之后不要搞混了. 最好的方法就是写一个例子出来.
 
-### Interleaving String: 2D 动态规划
+### Interleaving String: 2D/1D 动态规划
+> 凡是substring的题目, 都是自动脑补动态规划, 正如Tree的题目自动脑补分治法.
+
+#### 方法1: recursion
+* 当然, 最好先从简单的做法入手, 先有个做对的方法: recursion是DP的前提. 或者说有了递归的思路就好想出来DP了.
+    * 对于在recursion call里面处理下一个substring的话, 即修改index, 有2种方法. 
+        1. 例如remove duplicate from string, 因为简单的赋值. 所以res[j++] = s[i++];
+        2. 在N00t的recursive call里面, 因为一句话里面有2个地方用到i,k. eg: `s1[i] == s3[k] && isInterleave(s1, s2, s3, i+1, j, k+1)`. 我一开始是用++i, j++. 这样很容易弄混. 直接干脆用`i+1`. 
+        3. 总结一下: 如果是简单的method call, 可以使用`++i; j++`. 不过长一点的statement还是不要弄晕自己, 代码最好不要依赖于statement的顺序, 所以还是原始的`i+1`.
+        
+![2D打表图示](http://7xj2zx.com1.z0.glb.clouddn.com/freq2_interleave.jpg)
+#### 方法2: 2D 递归
+* 既然recursion已经想出来了, 也就弄明白了? (not yet! 想法出来还要写代码实现, 里面很多门道和细节的设计)
+* 首先是边界条件, 或者说base case的设计: 有个trick, 每次遇到string的DP, 都要增加一个空位. 表示s1, s2都不取的情况. 所以Opt[0][0] = true. 这里参考的[popfish的算法路blog画的2D 打表图示](http://blog.csdn.net/u011095253/article/details/9248073). 我一开始做的时候, 在打1st row和1st col的时候直接就是比较substring了. 但是结果不对. 为什么呢: 因为substring没用对.
+    * 有2点关于substring要注意
+        1. substring上界是开区间. 所以`substring(0,0)`是`""`, (0,1)才相当于`charAt(0)`.
+        2. 刚发现: `"n"=="n"`是true, 但是`"ni".substring(0,1)=="no".substring(0,1)`居然是**false**! 刚查了[SOF: how to compare string](http://stackoverflow.com/a/513839), 以及[SOF: string object vs string literal](http://stackoverflow.com/questions/3297867/difference-between-string-object-and-string-literal), 才知道: 
+        > ~~**Java的`==`比较*string*的时候比较的是reference, 而不是value!**.~~ 应该说: Java 的 "=="比较object的时候, 是看是否为同一个reference.  
+        所以2个substring的reference不同, 当然就是false!
+
+#### 方法3: 1D 递归. 参考Ganker的解法.
+* 注意到2D的递推式只和上一层和左边的有关: `opt[i][j] ~ {opt[i-1][j], opt[i][j-1]}`. 所以可以只用一个1D 的 dp表就可以了. 当然这个时候就要小心了. 有几点:
+    1. 长度多少? 意义已经改变了.
+        * 对于处理2个string的问题, 有个trick: 一般都最好选择短的那个处理, 可以节省空间或者时间.当然`opt[minWord.length()+1]`, 而且因为是需要update 短的opt长度. 所以将opt update放在内层短循环可以更加优化. 因为opt[0]~~的意义~~, 有2个含义:
+            * 一个意义是到外层循环到i的时候, opt[0]表示第一列的第i个时候, 表示原本2d中的opt[0][j]. 即看s3[0...j]是否可以用MaxWord[0...j], 而没有MinWord. 来interleave.
+            * 第二个意义是: 内层循环到j的时候, s3[0...i+j+1]是否可以由maxWord[0...i]minWord[0...j]来interleave.
+    2. 因为外层循环maxWord, 内层循环minWord. 所以1st row可以单独初始化. 而1st col, 即maxWord的interleave的base caseze'y则要在外层循环中初始化. 而将minWord放在内层循环upodate可以节省DP表空间.
+    3. 最关键的在于递推式现在怎么样勒?
+        * 我一开始就搞错了. 一定要注意: 1D其实就是2D压缩而来的. 所以就是2D的简化版. 所以要和2D的递推式紧密联合起来想. 
+        * 2D的递推式: `opt[i+1][j+1] = opt[i][j+1] && s1[i] 或者 opt[i+1][j] && s2[j]`. 所以`opt[j+1]`和上一层或者左边有关: `opt[j+1] = opt[j+1] && maxWord[i] 或者 opt[j] && minWord[j]`. 关键在于搞清楚现在上一层和左边需要的char是哪一个. 注意这里的j是横轴啊! 
+            * 所以2d里面的左边, 即opt[i][j+1]则相当于1d里面的(opt[j])就是由2d里面的s1(横着的string). 
+            * 而j+1, 就是相当于2D里面的上一层, 即相当于opt[i+1][j]. 所以是和2d里面的s2(竖着的string), 所以是maxWord的char.
 
 ## 20141226
 ### Reverse Nodes in k-Group
@@ -100,20 +140,20 @@ toc: true
 > pre, cur是不变的[以N00t的例子为例, 到结束的时候, 实际上pre还是指向1, cur还是指向2], 只改变pre.next, cur.next. 以及这2个next之间的link.
 ```
 // 定位好之后就可以开始交换了. 这里是这个method的关键.
-    while (pos < end && cur != null) {
-      ListNode tmp = cur.next.next; // N00t用的是nt: node temp.
-      cur.next.next = pre.next; // cur;
-      pre.next = cur.next;
-      cur.next = tmp; // pre.next.next = tmp;
-      pos++;
-    }
+while (pos < end && cur != null) {
+  ListNode tmp = cur.next.next; // N00t用的是nt: node temp.
+  cur.next.next = pre.next; // cur;
+  pre.next = cur.next;
+  cur.next = tmp; // pre.next.next = tmp;
+  pos++;
+}
 ```
 
 ### Trapping Rain Water
 ### Permutations I/II
 * NP问题的做法基本都是用Backtracking. 想象这里和Combination有什么区别呢? 
     * Ans: 这里子问题的条件变化了. Combination里面是helper(,i+1,). 这里是每次在loop里面使能used[i] = true, helper(used[i]). 这样就能缩小到下一个子问题. 
-    * 这很重要. 因为recursion就是要一步步进入子问题, 解决, 跳出递归, 到保存到stack的以前的现场. 所以ganker也强调了这里要在helper()后面ehui'fu恢复现场, 即list.remove(list.size()-1), 以及初始化used[i]. 即used[i] = false.
+    * 这很重要. 因为recursion就是要一步步进入子问题, 解决, 跳出递归, 到保存到stack的以前的现场. 所以ganker也强调了这里要在helper()后面恢复现场, 即list.remove(list.size()-1), 以及初始化used[i]. 即used[i] = false.
 * II就是加入了一个条件: 如果是{1,2,1} 呢? 要避免112, 112出现2次的情况, 就要在dfs之前先判断是否和上一个num重复(**因为num已经sort过了). 
 * [评论的一个follow up: link](http://blog.csdn.net/linhuanmars/article/details/21569031). 其实很简单, 也是加入一个判断是否和上一个item里面最后一个数相等, 若是就continue.
 
@@ -185,14 +225,14 @@ toc: true
 
 ### Spiral Matrix I/II
 * N00t的这张图真是经典, 也确实是复杂题目想好psuedo code才写!
-* 
+* Hello WOrld
 
 ### Recover Binary Search Tree
 * 再次加深了对Recursion的理解. 2个不连续的recursion. 而且param还不对称, N00t的recursion写的真好. N00t的方法也很好. 
 ### Distinct Subsequences
  > +When you see string problem that is about subsequence or matching, dynamic programming method should come to your mind naturally. ---by [link](http://www.cnblogs.com/springfor/p/3896152.html)
 
- *  DP的经典题目. N00t的做法也是可以的. 但我倾向于Ganker/SophieJ. 但是要理解DP公式的含义. 不然连边界条件或者初始条件都搞不出来. Ganker的2D分析, 然后code则是优化为1D dp的解法一开始没看懂, 然后Ganker在回复里面解释了为什么j是从T的后面往前扫. 这是因为这里的**DP是想使用update之前的值**, 所以这样. 如果以后有个DP问题是要使用更新后的1D dp, 则是从头往后扫.
+ *  DP的经典题目. N00t的做法也是可以的. 但我倾向于Ganker/SophieJ. 但是要理解DP公式的含义. 不然连边界条件或者初始条件都搞不出来. Ganker的2D分析, 然后code则是优化为1D dp的解法一开始没看懂, 然后Ganker在回复里面解释了为什么j是从T的**从后向前扫**. 这是因为这里的**DP是想使用update之前的值**, 所以这样. 如果以后有个DP问题是要使用更新后的1D dp, 则是从头往后扫.
  * 还是的加深理解为什么1D的逆向填的DP是对的? 会不会导致比较出来的subsequence没按顺序? 或者反过来了? 见[csdn link](http://blog.csdn.net/kenden23/article/details/19332545) 有点乱: 下标, 如何保证是in-order? 看Coin Change---段公子.
 
 
@@ -249,28 +289,28 @@ toc: true
 | 61  | ~Rotate List                                    | 2 | 
 | 92  | ~Reverse Linked List II                         | 2 | 
 | 5   | ~Longest Palindromic Substring                  | 2 | 
-| 25  | ~Reverse Nodes in k-Group                       | 2 | 
-| 37  | ~Sudoku Solver                                  | 2 | 
-| 40  | ~Combination Sum II                             | 2 | 
-| 42  | ~Trapping Rain Water                            | 2 | 
-| 45  | ~Jump Game II                                   | 2 | 
-| 47  | ~Permutations II                                | 2 | 
-| 48  | ~Rotate Image                                   | 2 | 
-| 54  | ~Spiral Matrix                                  | 2 | 
-| 68  | ~Text Justification                             | 2 | 
-| 75  | ~Sort Colors                                    | 2 | 
-| 76  | ~Minimum Window Substring                       | 2 | 
-| 89  | ~Gray Code                                      | 2 | 
-| 90  | ~Subsets II                                     | 2 | 
-| 99  | ~Recover Binary Search Tree                     | 2 | 
-| 115 | ~Distinct Subsequences                          | 2 | 
-| 117 | ~Populating Next Right Pointers in Each Node II | 2 | 
-| 124 | ~Binary Tree Maximum Path Sum                   | 2 | 
-| 31  | ~Next Permutation                               | 2 | 
-| 41  | ~First Missing Positive                         | 2 | 
-| 84  | ~Largest Rectangle in Histogram                 | 2 | 
-| 87  | ~Scramble String                                | 2 | 
-| 97  | ~Interleaving String                            | 2 | 
+| 25  | Reverse Nodes in k-Group                       | 2 | 
+| 37  | Sudoku Solver                                  | 2 | 
+| 40  | Combination Sum II                             | 2 | 
+| 42  | Trapping Rain Water                            | 2 | 
+| 45  | Jump Game II                                   | 2 | 
+| 47  | Permutations II                                | 2 | 
+| 48  | Rotate Image                                   | 2 | 
+| 54  | Spiral Matrix                                  | 2 | 
+| 68  | Text Justification                             | 2 | 
+| 75  | Sort Colors                                    | 2 | 
+| 76  | Minimum Window Substring                       | 2 | 
+| 89  | Gray Code                                      | 2 | 
+| 90  | Subsets II                                     | 2 | 
+| 99  | Recover Binary Search Tree                     | 2 | 
+| 115 | Distinct Subsequences                          | 2 | 
+| 117 | Populating Next Right Pointers in Each Node II | 2 | 
+| 124 | Binary Tree Maximum Path Sum                   | 2 | 
+| 31  | Next Permutation                               | 2 | 
+| 41  | First Missing Positive                         | 2 | 
+| 84  | Largest Rectangle in Histogram                 | 2 | 
+| 87  | Scramble String                                | 2 | 
+| 97  | Interleaving String                            | 2 | 
 
 
 
