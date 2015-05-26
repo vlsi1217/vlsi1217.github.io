@@ -161,7 +161,7 @@ var _hmt = _hmt || [];
 <h3 id="Simplify_Path">Simplify Path</h3><ul>
 <li><p>先读懂Unix中的path的op意义. 发现<a href="http://huntfor.iteye.com/blog/2066875" target="_blank" rel="external">阿猫阿狗blog</a>的解释最清晰易懂. 我也测试了一下: 确实就是很简单的规则: <code>/.表示当前目录，/..表示上级目录，/表示根目录</code>. 如下图所示:<br><img src="http://7xj2zx.com1.z0.glb.clouddn.com/freq1_simpPath1.PNG" alt="freq1SimPath">. <code>cd /MOOC/./../MOOC</code>. 以<code>/</code>为分界来认识就是: cd /(回到根目录); MOOC(去根目录下的MOOC文件夹); /..(返回上一级, 即回到c:); /.(表示当前目录, 所以还是在c:); /MOOC. 又去到MOOC文件夹. 所以执行完后表示还是去到了MOOC文件夹中. 而在command里的第二行则直接cd MOOC是找不到的, 因为pwd是c:\MOOC\NodeJS_Intro. 题目已经说了给的是<strong>absolute path</strong>, 即从根目录开始的path. 所以打头是<code>/</code>.</p>
 </li>
-<li><p>这里再复习一下Stack/Queue: </p>
+<li><p>这里再复习一下Stack/Queue:</p>
 <ol>
 <li>虽然Stack在Java.util已经实现了stack class, 但最好不要用, 因为很多问题. 参考<a href="http://cs.lmu.edu/~ray/notes/stacks/" target="_blank" rel="external">lmu课件</a>. 所以Ganker也是使用的LinkedList来instantiate, 而且要注意, 这时候是: <code>LinkedList&lt;Integer&gt; stack = LinkedList&lt;Integer&gt;()</code>, 只是这个list叫做stack而已. 其实看了<a href="http://stackoverflow.com/a/12524949" target="_blank" rel="external">SOF stack/deque</a>, 讲了Stack在JavaDoc里面也是推荐用Deque来当作stack用: <code>Deque&lt;Integer&gt; stack = new ArrayDeque&lt;Integer&gt;();</code></li>
 <li>Queue更彻底, 是interface. 根本不能instantiate. 所以也可以使用LinkedList来实现: <code>Queue&lt;Integer&gt; queue = new LinkedList&lt;Integer&gt;()</code>.</li>
@@ -182,7 +182,7 @@ var _hmt = _hmt || [];
 <li>目前只看到N00t是用了recursion和DP来解决.<h4 id="recursion解法">recursion解法</h4></li>
 <li>和分析的一样, 遍历l-&gt;r, 让每一个都有机会做root, 然后Divide递归左右子树的所有可能性(所以返回值是<code>List&lt;TreeNode&gt;</code>, 即以TreeNode的有效的BST). 然后Conquer遍历所有有效左右子树, 并接上Node(i).</li>
 <li>有几点要注意:<ol>
-<li>正如Effective java item 43所说: return empty list rather than null. <ul>
+<li>正如Effective java item 43所说: return empty list rather than null.<ul>
 <li>这是一般情况下的trick. 而且这里还有她的实际意义: 即空树的root. 这样在接上Node(i)的时候, 是接上空树. 因为for each的时候一定要能see到空树. 而如果在l&gt;r的时候返回null, 而不是res.add(null)的话, 就直接忽略了空树的情况. 更重要的是: 根源上避免了判断Null pointer. 如果我return null的话, 会出现<code>Exception in thread &quot;main&quot; java.lang.NullPointerException</code></li>
 </ul>
 </li>
@@ -195,7 +195,7 @@ var _hmt = _hmt || [];
 <li>注意到recursion的时候, 例如n=4的情况. [1,2]就给recursion了好几次: [1,2,3], [1,2]. 所以明显是可以保存计算过的结果来DP.</li>
 <li>但是具体怎么写呢? 先搞懂N00t的思路. 但实际写起来很多地方要注意:<ul>
 <li>虽然说是T[i,l]. 但实际上N00t是用的list<list<list<treenode>&gt;&gt;来写. 原因很简单. 就是前2个保存i和l. 最后一个保存T[i,l], 即满足这个range的BST的root和合集. 因为有了root, 就能得到tree(所以我在main里面最后call了writeBST()来serialize每个BST).</list<list<treenode></li>
-<li>边界条件很简单, 就是l=0. </li>
+<li>边界条件很简单, 就是l=0.</li>
 <li>那么打表是怎么个打法. 在interleaving string的DP的设计是T[i][j]. 分别是2个string的坐标, 所以无所谓哪个是外层,哪个是内层循环. 但是这里是T[i][l]. 这个l是长度. N00t的设计是<strong>外层是l, 内层是i</strong>. 所以是按照starting point分类的. 为什么这样loop呢?</li>
 </ul>
 </li>
@@ -203,8 +203,8 @@ var _hmt = _hmt || [];
 <h3 id="Serialize/De-serialize_Binary_Tree">Serialize/De-serialize Binary Tree</h3><ul>
 <li>先是什么是serialize/deserialize. 可以看水中的鱼的图解: <a href="http://7xj2zx.com1.z0.glb.clouddn.com/freq1_serilizeBinTreeYUBlog.PNG" target="_blank" rel="external">水中的鱼花树</a></li>
 <li>pre-order traverse的一个应用. 从而可以解决isValidBST. 而且这个在Leetcode的Binary Tree很常见.</li>
-<li>为什么Deserialize也是用pre-order呢? 这个顺序不会反吗? 感觉上觉得应该使用serialize的相反的traverse—&gt;post-order. 但这样其实是不对的. 见<a href="http://yuanhsh.iteye.com/blog/2171113" target="_blank" rel="external">ITeye的分析</a>. 这里我一开始做的方法也是使用的index来判断是读取list中的第几个字符. 但这里我就搞混了: 到底对于right subtree的index该用多少. <ul>
-<li>水中的鱼使用了一个int[1]. 然后java当作object, 可以传值. 而且也就避免了return. </li>
+<li>为什么Deserialize也是用pre-order呢? 这个顺序不会反吗? 感觉上觉得应该使用serialize的相反的traverse—&gt;post-order. 但这样其实是不对的. 见<a href="http://yuanhsh.iteye.com/blog/2171113" target="_blank" rel="external">ITeye的分析</a>. 这里我一开始做的方法也是使用的index来判断是读取list中的第几个字符. 但这里我就搞混了: 到底对于right subtree的index该用多少.<ul>
+<li>水中的鱼使用了一个int[1]. 然后java当作object, 可以传值. 而且也就避免了return.</li>
 <li>我则是用的int, 所以必须return. 所以在left算完之后return的cnt必须是对应left subtree的最后一个node. return之后, right recursion的时候这个index还要再加一. 并且右子树结束后还要return给他的parent(注意这就是recursion后的code的意义: 往上走)</li>
 <li>1337原帖后面又一个Java写的. 我改了一点. 使用了stringTokenizer. 也是对的, 而且他并没有使用index来定位这个char, 而是使用了boolean left. 然后每次就是nextToken(). 也是可以的.</li>
 </ul>
@@ -341,7 +341,7 @@ var _hmt = _hmt || [];
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/02/16/Leetcode/LeetcodeRecursion/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/16/OA/ACM/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
@@ -389,7 +389,7 @@ var _hmt = _hmt || [];
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>4</span></a></li>
   </li>
 
     </ul>
@@ -402,7 +402,7 @@ var _hmt = _hmt || [];
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li>
+  <li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
     </ul>
 	</div>
 		

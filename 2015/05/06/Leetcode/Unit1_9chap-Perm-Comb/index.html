@@ -5,7 +5,7 @@
   <meta name="baidu-site-verification" content="7tszoAHV0d" />
   <meta charset="utf-8">
   
-  <title>Unit 1 九章算法课: 学习/做题思路 | 百变千幻衡山云雾十三式</title>
+  <title>Unit 1 NineChap: 学习/做题思路 | 百变千幻衡山云雾十三式</title>
   <meta name="author" content="玉娇龙">
   
   <meta name="description" content="A collection of Hello World applications from helloworld.org.">
@@ -13,7 +13,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="Unit 1 九章算法课: 学习/做题思路"/>
+  <meta property="og:title" content="Unit 1 NineChap: 学习/做题思路"/>
   <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
 
   
@@ -118,7 +118,7 @@ var _hmt = _hmt || [];
 
 	
 		<div class="page-header">		
-			<h1> Unit 1 九章算法课: 学习/做题思路</h1>
+			<h1> Unit 1 NineChap: 学习/做题思路</h1>
 		</div>		
 	
 
@@ -171,7 +171,7 @@ var _hmt = _hmt || [];
 </blockquote>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt; Search(<span class="built_in">int</span>[] A) &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (A==<span class="keyword">null</span> || A.length()==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Arrays.sort(A);</span><br><span class="line">    dfs(A, <span class="keyword">new</span> boolean[A.length()], <span class="keyword">new</span> <span class="built_in">List</span>&lt;Integer&gt;(), ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private <span class="literal">static</span> <span class="keyword">void</span> dfs(<span class="built_in">int</span>[] A, boolean[] used, <span class="built_in">List</span>&lt;Integer&gt; path, <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt;res) &#123;</span><br><span class="line">    <span class="keyword">if</span> (path.length() == A.length()) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; A.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; !used[i-<span class="number">1</span>] &amp;&amp; A[i]==A[i-<span class="number">1</span>])  <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (used[i])  <span class="keyword">continue</span>;</span><br><span class="line">        path.add(A[i]);</span><br><span class="line">        dfs(A, used, path, res);</span><br><span class="line">        path.remove(path.size()-<span class="number">1</span>);</span><br><span class="line">        used[i] = <span class="keyword">false</span>;  <span class="comment">// 记得recursion一定要恢复现场. 即call stack回退之后的状态要和进入之前一样. 可以看看Ganker的解释.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Subset">Subset</h3><h3 id="Permutation">Permutation</h3><ul>
-<li>这里通过boolean[] used, 来处理duplicate. </li>
+<li>这里通过boolean[] used, 来处理duplicate.</li>
 <li>例子：[1 2 3 4 4 4 5 6 7 8]. 这个例子via <a href="http://www.cnblogs.com/yuzhangcmu/p/4141085.html" target="_blank" rel="external">CMUyu</a><ul>
 <li>444这个的选法只能:4, 44, 444连续这三种选法. 即是说: 只对第一个4做递归调用. 然后对于后面2个4就不用递归了, 因为第一个4已经将这3种选法保存到result里面了.</li>
 </ul>
@@ -193,13 +193,13 @@ var _hmt = _hmt || [];
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/05/06/Leetcode/Unit2_9chap/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/05/09/Leetcode/Unit3_9chap-BST-DC/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/21/Leetcode/LeetcodeDP/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/05/06/Leetcode/Unit2_9chap-BinSearch/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -241,7 +241,7 @@ var _hmt = _hmt || [];
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+    <li><a href="/categories/Interview/">Interview<span>18</span></a></li>
   </li>
 
     </ul>
@@ -254,7 +254,7 @@ var _hmt = _hmt || [];
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li> <li><a href="/tags/九章/">九章<span>3</span></a></li>
+  <li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li> <li><a href="/tags/NineChap/">NineChap<span>11</span></a></li>
     </ul>
 	</div>
 		

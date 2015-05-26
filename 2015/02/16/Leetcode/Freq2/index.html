@@ -139,9 +139,9 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><ul>
-<li><h3 id="Lowest_Common_Ancestors_I/II:">Lowest Common Ancestors I/II:</h3><h4 id="I:_即没有parent的pointer怎么做?">I: 即没有parent的pointer怎么做?</h4></li>
-<li>这题不仅在九章算法课第二课里面讲了, 而且在<a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html" target="_blank" rel="external">1337文章link</a>也详细的解释了Bottom-up的意义. 我认为那个是设计思路. </li>
+	    <h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><p>*</p>
+<h3 id="Lowest_Common_Ancestors_I/II:">Lowest Common Ancestors I/II:</h3><h4 id="I:_即没有parent的pointer怎么做?">I: 即没有parent的pointer怎么做?</h4><ul>
+<li>这题不仅在九章算法课第二课里面讲了, 而且在<a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html" target="_blank" rel="external">1337文章link</a>也详细的解释了Bottom-up的意义. 我认为那个是设计思路.</li>
 <li><p>先复习一下: top-down/bottom-up approach: <a href="http://www.meetqun.com/thread-2732-1-1.html" target="_blank" rel="external">TD/BU的区别-米群讨论</a>, 但是里面大牛的回答也不准确, DP的top-down/bottom-up和recursion没什么关系. 例如这里的LCA的Bottom-up就是recursion. 但是Scramble String的3D Bottom-up DP就是iteration. 那么在Bottom-up有什么好处呢? 在Binary Tree的BU解法中, 相对于Top-Down是</p>
 <blockquote>
 <p>avoiding traversing the same nodes over and over again.      —- 1337</p>
@@ -155,11 +155,11 @@ var _hmt = _hmt || [];
 <ul>
 <li>而且这里很有意思的是Top down的LCA是recursion, 里面还调用countMatches这个小recursion.<ul>
 <li>这还是见得比较少的, 一般就是client调用helper recursion.</li>
-<li>照<a href="http://www.faceye.net/search/136311.html" target="_blank" rel="external">Tree总结</a>所总结的万金油方法, 不过这个表述没看明白, 原来是在<a href="http://www.cnblogs.com/leetcode/p/4003795.html" target="_blank" rel="external">cnblog symetric Tree</a>里面的分析的思路: <blockquote>
+<li>照<a href="http://www.faceye.net/search/136311.html" target="_blank" rel="external">Tree总结</a>所总结的万金油方法, 不过这个表述没看明白, 原来是在<a href="http://www.cnblogs.com/leetcode/p/4003795.html" target="_blank" rel="external">cnblog symetric Tree</a>里面的分析的思路:<blockquote>
 <ol>
 <li>top-down 还是 bottom-up.    选择top-down.        O(n^2)</li>
 <li>用递归. 是否需要内嵌小递归.   需要. 其实就是判定root的是否一样的小递归.</li>
-<li>逻辑运用小递归.  </li>
+<li>逻辑运用小递归.</li>
 </ol>
 </blockquote>
 </li>
@@ -183,7 +183,7 @@ var _hmt = _hmt || [];
 <li>sum则是左右sum的最大值, 或者左右边最大值加上当前node.</li>
 </ul>
 </li>
-<li><p>由<a href="http://bangbingsyb.blogspot.com/2014/11/leetcode-binary-tree-maximum-path-sum.html" target="_blank" rel="external">嘻唰唰blog</a>题解里面分析的: 对于每一个node的Maximum Path Sum分2类: </p>
+<li><p>由<a href="http://bangbingsyb.blogspot.com/2014/11/leetcode-binary-tree-maximum-path-sum.html" target="_blank" rel="external">嘻唰唰blog</a>题解里面分析的: 对于每一个node的Maximum Path Sum分2类:</p>
 <blockquote>
 <ol>
 <li>single path是指由该node出发向leaf的第一类path中最大的path sum</li>
@@ -220,7 +220,7 @@ var _hmt = _hmt || [];
 <li>注意这里的最后一步就是Concatenation bucket到原array的时候有3个var, 不要搞混了.</li>
 </ul>
 </li>
-<li>注意ganker的内循环判定的条件是<code>A[i] != A[A[i]-1]</code>. 而且最后要<code>i--</code>. 为什么不能换成<code>A[i] != i+1</code>. <ul>
+<li>注意ganker的内循环判定的条件是<code>A[i] != A[A[i]-1]</code>. 而且最后要<code>i--</code>. 为什么不能换成<code>A[i] != i+1</code>.<ul>
 <li>因为若是换成直接判断A[i]!=i+1的话, 则会导致在重复字符的情况下出现死循环.</li>
 <li>之所以i—. 是因为交换完之后不一定是正确的. 例如{3,1,2}一开始的3,2交换为2,3后, 2并不是正确位置. 所以再判断2,1并交换才对.</li>
 <li>所以Ganker说这道题目很简单, 但其中包含的算法思想和编程基础很适合面试!</li>
@@ -231,10 +231,10 @@ var _hmt = _hmt || [];
 <li>Google考过, 见<a href="http://www.mitbbs.com/article_t/JobHunting/32107851.html" target="_blank" rel="external">MITBBS 2012年帖子</a></li>
 <li>先理解这个Scramble是什么意思: <code>s1 = &quot;great&quot;, s2 = &quot;rtgae&quot;;</code>就不是有效的. 注意要求是</li>
 <li>这道题目可以用recursion, 更可以用DP. 是一道经典的3D DP. 但正如段公子所说: DP table可以用array也可以用HashMap, 可见武大csdn的hashmap解法. 但是觉得这个和N00t的backtracking差不多? 看看九章算法主页君的就搞懂了, 其实不一样.</li>
-<li><p>参考的: </p>
+<li><p>参考的:</p>
 <ul>
 <li><a href="http://blog.csdn.net/fightforyourdream/article/details/17707187" target="_blank" rel="external">fightforyourdream的recursion+DP</a>.</li>
-<li><a href="http://blog.csdn.net/whuwangyi/article/details/14105063" target="_blank" rel="external">武大CSDN的Hashmap动态规划</a>, </li>
+<li><a href="http://blog.csdn.net/whuwangyi/article/details/14105063" target="_blank" rel="external">武大CSDN的Hashmap动态规划</a>,</li>
 <li><a href="http://blog.unieagle.net/2012/10/23/leetcode%E9%A2%98%E7%9B%AE%EF%BC%9Ascramble-string%EF%BC%8C%E4%B8%89%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_blank" rel="external">Unieagele解题博客的3D动归</a></li>
 <li><p><a href="http://www.cnblogs.com/yuzhangcmu/p/4189152.html" target="_blank" rel="external">九章算法主页君—CMUyu</a></p>
 <ul>
@@ -257,7 +257,7 @@ var _hmt = _hmt || [];
 </ul>
 </li>
 <li>水中的鱼的recursion, 他的剪枝很好, 可以AC. 而N00t的原始的recursion(即brute-force的剪枝仅仅比较s1,s2的长度, 是很低效率的, 所以过不了).</li>
-<li>N00t的递归, DP (bottom-up) 就是iteration, 而LCA的DP (bottom-up)则是recursion. 那么这个是怎么想出来的呢: <blockquote>
+<li>N00t的递归, DP (bottom-up) 就是iteration, 而LCA的DP (bottom-up)则是recursion. 那么这个是怎么想出来的呢:<blockquote>
 <ul>
 <li>先理解递归是怎么做的: 从大到小substr判断. 即切割成substructure/subproblem.</li>
 <li>For each pair of (n-1)-char-long substrings of the two strings, are they scramble to each other?</li>
@@ -278,9 +278,9 @@ var _hmt = _hmt || [];
 </blockquote>
 <h4 id="方法1:_recursion">方法1: recursion</h4><ul>
 <li>当然, 最好先从简单的做法入手, 先有个做对的方法: recursion是DP的前提. 或者说有了递归的思路就好想出来DP了.<ul>
-<li>对于在recursion call里面处理下一个substring的话, 即修改index, 有2种方法. <ol>
+<li>对于在recursion call里面处理下一个substring的话, 即修改index, 有2种方法.<ol>
 <li>例如remove duplicate from string, 因为简单的赋值. 所以res[j++] = s[i++];</li>
-<li>在N00t的recursive call里面, 因为一句话里面有2个地方用到i,k. eg: <code>s1[i] == s3[k] &amp;&amp; isInterleave(s1, s2, s3, i+1, j, k+1)</code>. 我一开始是用++i, j++. 这样很容易弄混. 直接干脆用<code>i+1</code>. </li>
+<li>在N00t的recursive call里面, 因为一句话里面有2个地方用到i,k. eg: <code>s1[i] == s3[k] &amp;&amp; isInterleave(s1, s2, s3, i+1, j, k+1)</code>. 我一开始是用++i, j++. 这样很容易弄混. 直接干脆用<code>i+1</code>.</li>
 <li>总结一下: 如果是简单的method call, 可以使用<code>++i; j++</code>. 不过长一点的statement还是不要弄晕自己, 代码最好不要依赖于statement的顺序, 所以还是原始的<code>i+1</code>.</li>
 </ol>
 </li>
@@ -293,7 +293,7 @@ var _hmt = _hmt || [];
 <li>首先是边界条件, 或者说base case的设计: 有个trick, 每次遇到string的DP, 都要增加一个空位. 表示s1, s2都不取的情况. 所以Opt[0][0] = true. 这里参考的<a href="http://blog.csdn.net/u011095253/article/details/9248073" target="_blank" rel="external">popfish的算法路blog画的2D 打表图示</a>. 我一开始做的时候, 在打1st row和1st col的时候直接就是比较substring了. 但是结果不对. 为什么呢: 因为substring没用对.<ul>
 <li>有2点关于substring要注意<ol>
 <li>substring上界是开区间. 所以<code>substring(0,0)</code>是<code>&quot;&quot;</code>, (0,1)才相当于<code>charAt(0)</code>.</li>
-<li>刚发现: <code>&quot;n&quot;==&quot;n&quot;</code>是true, 但是<code>&quot;ni&quot;.substring(0,1)==&quot;no&quot;.substring(0,1)</code>居然是<strong>false</strong>! 刚查了<a href="http://stackoverflow.com/a/513839" target="_blank" rel="external">SOF: how to compare string</a>, 以及<a href="http://stackoverflow.com/questions/3297867/difference-between-string-object-and-string-literal" target="_blank" rel="external">SOF: string object vs string literal</a>, 才知道: <blockquote>
+<li>刚发现: <code>&quot;n&quot;==&quot;n&quot;</code>是true, 但是<code>&quot;ni&quot;.substring(0,1)==&quot;no&quot;.substring(0,1)</code>居然是<strong>false</strong>! 刚查了<a href="http://stackoverflow.com/a/513839" target="_blank" rel="external">SOF: how to compare string</a>, 以及<a href="http://stackoverflow.com/questions/3297867/difference-between-string-object-and-string-literal" target="_blank" rel="external">SOF: string object vs string literal</a>, 才知道:<blockquote>
 <p><del><strong>Java的<code>==</code>比较<em>string</em>的时候比较的是reference, 而不是value!</strong>.</del> 应该说: Java 的 “==”比较object的时候, 是看是否为同一个reference.<br>所以2个substring的reference不同, 当然就是false!</p>
 </blockquote>
 </li>
@@ -314,9 +314,9 @@ var _hmt = _hmt || [];
 </li>
 <li>因为外层循环maxWord, 内层循环minWord. 所以1st row可以单独初始化. 而1st col, 即maxWord的interleave的base caseze’y则要在外层循环中初始化. 而将minWord放在内层循环upodate可以节省DP表空间.</li>
 <li>最关键的在于递推式现在怎么样勒?<ul>
-<li>我一开始就搞错了. 一定要注意: 1D其实就是2D压缩而来的. 所以就是2D的简化版. 所以要和2D的递推式紧密联合起来想. </li>
-<li>2D的递推式: <code>opt[i+1][j+1] = opt[i][j+1] &amp;&amp; s1[i] 或者 opt[i+1][j] &amp;&amp; s2[j]</code>. 所以<code>opt[j+1]</code>和上一层或者左边有关: <code>opt[j+1] = opt[j+1] &amp;&amp; maxWord[i] 或者 opt[j] &amp;&amp; minWord[j]</code>. 关键在于搞清楚现在上一层和左边需要的char是哪一个. 注意这里的j是横轴啊! <ul>
-<li>所以2d里面的左边, 即opt[i][j+1]则相当于1d里面的(opt[j])就是由2d里面的s1(横着的string). </li>
+<li>我一开始就搞错了. 一定要注意: 1D其实就是2D压缩而来的. 所以就是2D的简化版. 所以要和2D的递推式紧密联合起来想.</li>
+<li>2D的递推式: <code>opt[i+1][j+1] = opt[i][j+1] &amp;&amp; s1[i] 或者 opt[i+1][j] &amp;&amp; s2[j]</code>. 所以<code>opt[j+1]</code>和上一层或者左边有关: <code>opt[j+1] = opt[j+1] &amp;&amp; maxWord[i] 或者 opt[j] &amp;&amp; minWord[j]</code>. 关键在于搞清楚现在上一层和左边需要的char是哪一个. 注意这里的j是横轴啊!<ul>
+<li>所以2d里面的左边, 即opt[i][j+1]则相当于1d里面的(opt[j])就是由2d里面的s1(横着的string).</li>
 <li>而j+1, 就是相当于2D里面的上一层, 即相当于opt[i+1][j]. 所以是和2d里面的s2(竖着的string), 所以是maxWord的char.</li>
 </ul>
 </li>
@@ -335,18 +335,18 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 <h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><h3 id="Permutations_I/II">Permutations I/II</h3><ul>
-<li>NP问题的做法基本都是用Backtracking. 想象这里和Combination有什么区别呢? <ul>
-<li>Ans: 这里子问题的条件变化了. Combination里面是helper(,i+1,). 这里是每次在loop里面使能used[i] = true, helper(used[i]). 这样就能缩小到下一个子问题. </li>
+<li>NP问题的做法基本都是用Backtracking. 想象这里和Combination有什么区别呢?<ul>
+<li>Ans: 这里子问题的条件变化了. Combination里面是helper(,i+1,). 这里是每次在loop里面使能used[i] = true, helper(used[i]). 这样就能缩小到下一个子问题.</li>
 <li>这很重要. 因为recursion就是要一步步进入子问题, 解决, 跳出递归, 到保存到stack的以前的现场. 所以ganker也强调了这里要在helper()后面恢复现场, 即list.remove(list.size()-1), 以及初始化used[i]. 即used[i] = false.</li>
 </ul>
 </li>
-<li>II就是加入了一个条件: 如果是{1,2,1} 呢? 要避免112, 112出现2次的情况, 就要在dfs之前先判断是否和上一个num重复(**因为num已经sort过了). </li>
+<li>II就是加入了一个条件: 如果是{1,2,1} 呢? 要避免112, 112出现2次的情况, 就要在dfs之前先判断是否和上一个num重复(**因为num已经sort过了).</li>
 <li><a href="http://blog.csdn.net/linhuanmars/article/details/21569031" target="_blank" rel="external">评论的一个follow up: link</a>. 其实很简单, 也是加入一个判断是否和上一个item里面最后一个数相等, 若是就continue.</li>
 </ul>
 <h3 id="Rotate_Image">Rotate Image</h3><h3 id="Text_Justification">Text Justification</h3><ul>
-<li>考察基本功的好题目, 注意题目的各个细节. 参考的ganker的解. <ol>
-<li>什么是last呢? 即本行的开头, 什么是i呢?下行的开头. 什么是i-last-1呢? 就是该行的间隔个数. 例如该行如果可以放5个单词, 开头的last是4, 下一行开头是9. 那么9-1就是该行的结尾, 9-1-4既是该行有4个间隔. </li>
-<li>为什么下一步循环的时候判断<code>if(j&lt;i-1)</code>呢? 这很好理解, 因为分配<code>\b</code>只跟间隔有关, end的词在一行只有一个词的时候才要pad空格. </li>
+<li>考察基本功的好题目, 注意题目的各个细节. 参考的ganker的解.<ol>
+<li>什么是last呢? 即本行的开头, 什么是i呢?下行的开头. 什么是i-last-1呢? 就是该行的间隔个数. 例如该行如果可以放5个单词, 开头的last是4, 下一行开头是9. 那么9-1就是该行的结尾, 9-1-4既是该行有4个间隔.</li>
+<li>为什么下一步循环的时候判断<code>if(j&lt;i-1)</code>呢? 这很好理解, 因为分配<code>\b</code>只跟间隔有关, end的词在一行只有一个词的时候才要pad空格.</li>
 <li>上面2这个if语句里面最后的extraNum—是什么意思呢? 注意题目要求是尽量平均分配. 所以多余的就从start开始的间隔每个+1. 注意这里的extraNum是%间隔数. 所以最多的情况是每一个间隔的空格都加1个. 否则就是靠左的间隔s分到一个extra的空格.<blockquote>
 <p>“Extra spaces between words should be distributed as evenly as possible.”</p>
 </blockquote>
@@ -357,19 +357,18 @@ var _hmt = _hmt || [];
 <h3 id="Sort_Colors">Sort Colors</h3><ul>
 <li>其实就是counting sort. 拓展题就是如何压缩, 如何返回最长连续char及其个数.</li>
 <li>follow up: 如何使用O(1)的空间来做? 而且O(n)的time? N00t和Ganker都是用的双指针. 好聪明, 怎么想到的?<ul>
-<li>最主要还是和reverse Nodes k-group的思想一样, 想好invarient. 可以这样想. 如果sort的colors只有0,1. 那么就只要一个pointer0, 然后i一个一个往下走, 如果遇到了0, 就赋值, pionter0++. 相当于swap的操作. </li>
+<li>最主要还是和reverse Nodes k-group的思想一样, 想好invarient. 可以这样想. 如果sort的colors只有0,1. 那么就只要一个pointer0, 然后i一个一个往下走, 如果遇到了0, 就赋值, pionter0++. 相当于swap的操作.</li>
 <li>现在可以看看有3个colors: 0,1,2的话怎么用pointers呢? ans: 就用2个pointers: p0, p1. 遇到0就赋值, p0++, p1++. 遇到1就赋值, p1++. 为什么这个时候p0不改变呢? 因为??????</li>
 </ul>
 </li>
 </ul>
 <h3 id="Minimum_Window_Substring">Minimum Window Substring</h3><ul>
-<li>先去复习longest non-repeated substring和Concatenation (freq1), 因为方法都一样: <blockquote>
+<li>先去复习longest non-repeated substring和Concatenation (freq1), 因为方法都一样:<blockquote>
 <p>建立一个字典，然后维护一个窗口</p>
 </blockquote>
 </li>
 <li>都是substring match 字典. 这一点类似的还有Word break(Ganker的DP解)</li>
-<li>看了N00t的Concatenation里面讲了原来双指针窗口法<del>原来就是KMP</del>(并不是KMP).不过KMP, BM, KR都很重要.</li>
-<li></li>
+<li>看了N00t的Concatenation里面讲了原来双指针窗口法<del>原来就是KMP</del>(并不是KMP).不过KMP, BM, KR都很重要.<br>-</li>
 </ul>
 <h3 id="Gray_Code">Gray Code</h3><ul>
 <li>使用的方法就是ASIC里面介绍的方法. 有意思. 感觉KMP也是FSM.</li>
@@ -377,16 +376,16 @@ var _hmt = _hmt || [];
 </ul>
 <h3 id="Subsets_I/II">Subsets I/II</h3><ul>
 <li>还是Permutation/Combination这种NP问题的解法: backtracking. 只是有一点点区别: 在处理加入的元素时要去掉一些不符合条件的.</li>
-<li>很好的题目, 再次加深理解Recursion, 不仅仅是像我在<a href="https://www.zybuluo.com/mdeditor#80599" target="_blank" rel="external">LC中学习Recursion</a>那样还停留在Recursion代码之前, 之后的代码的意义. 而是要深入理解Recursion思维的想法和设计. <ul>
+<li>很好的题目, 再次加深理解Recursion, 不仅仅是像我在<a href="https://www.zybuluo.com/mdeditor#80599" target="_blank" rel="external">LC中学习Recursion</a>那样还停留在Recursion代码之前, 之后的代码的意义. 而是要深入理解Recursion思维的想法和设计.<ul>
 <li>recursion里面, subset加入的顺序是怎么样的? 如何保证 non-descending order? Ans: 其实就是对自己设计的recursion要理解, 只到recursion的顺序就ok了. 因为Ganker的rec是从3,2,1,0,-1 递减的call. 而N00t则是0,1,2,4递增的call. 所以顺序不同. 具体的trace可以参考P533-Algs4-DFS.</li>
-<li>还有就是为什么N00t的输出是从[3], [2]开始, 而Ganker的则是从[1], [1,2]开始. 这是因为base case 的判断的区别, 以及recur进入下一层子问题的顺序是递增还是递减. 这很有意思. 要thinking in recursion. </li>
+<li>还有就是为什么N00t的输出是从[3], [2]开始, 而Ganker的则是从[1], [1,2]开始. 这是因为base case 的判断的区别, 以及recur进入下一层子问题的顺序是递增还是递减. 这很有意思. 要thinking in recursion.</li>
 </ul>
 </li>
 </ul>
 <h2 id="20141225">20141225</h2><h3 id="Path_Sum_I/II">Path Sum I/II</h3><ul>
 <li>树的题目很常见, 但是方法都类似: recursion.</li>
 <li>问题也很常见: I一般就是问是否存在解. II一般是求所有解的集合.</li>
-<li>正是这道题目, N00t讲了Java的call by value对于object来说是copy他的handler, 即reference, 所以将来的改变会对之前add的reference改变, 也就改变了最终的结果: <blockquote>
+<li>正是这道题目, N00t讲了Java的call by value对于object来说是copy他的handler, 即reference, 所以将来的改变会对之前add的reference改变, 也就改变了最终的结果:<blockquote>
 <ul>
 <li>Notice that we make a copy of the path before we added it to our result set. The reason is that when we add an Object (here, an ArrayList), Java add a copy of the pointer (i.e. a reference) of the Object, rather than a deep copy. So, <strong>any changes to content</strong> of the original Object will reflect into our final result set.</li>
 </ul>
@@ -399,7 +398,7 @@ var _hmt = _hmt || [];
 </ul>
 <h3 id="Longest_Substring_Without_Repeating_Characters">Longest Substring Without Repeating Characters</h3><ul>
 <li>N00t的方法是hashmap+start/end2个pointer的移动, 注意N00t只要判断当前的char是不是在当前substring中, 才update. 考虑到返回所有这种substring的问题. 我的思路是记录longest的start, 这样因为maxlength是返回值. 所以substring就可以解决. 但是有点小问题.</li>
-<li>Ganker则是使用的walker/runner 双指针法. 或者说: 窗口法来处理这一类的string问题. 还归了类. 一开始没理解为什么是while(charAt(w)!=charAt(r)). 想到了一个好例子: “xyb12b02”. 走了一遍理解了. 本来给的例子: “abcabcbb”并不好. 因为W=R都是连续的, 没看到while不等的情况. 所以有时候要多举几个case. 但不是随便举. 而是想上面那个case那样第一个重复的’b’并不是第一个字母. <ul>
+<li>Ganker则是使用的walker/runner 双指针法. 或者说: 窗口法来处理这一类的string问题. 还归了类. 一开始没理解为什么是while(charAt(w)!=charAt(r)). 想到了一个好例子: “xyb12b02”. 走了一遍理解了. 本来给的例子: “abcabcbb”并不好. 因为W=R都是连续的, 没看到while不等的情况. 所以有时候要多举几个case. 但不是随便举. 而是想上面那个case那样第一个重复的’b’并不是第一个字母.<ul>
 <li>扩展的题目有Substring with Concatenation of All Words，Minimum Window Substring，思路是非常接近的，只是操作上会更加繁琐一些。</li>
 </ul>
 </li>
@@ -410,14 +409,14 @@ var _hmt = _hmt || [];
 <li>思路参考的<a href="">SOF上面的recursion</a>.</li>
 </ul>
 <h3 id="Container_With_Most_Water">Container With Most Water</h3><h3 id="Jump_Game">Jump Game</h3><ul>
-<li>经典的DP和Greedy问题. 段公子在DP/recursion里面讲了. </li>
+<li>经典的DP和Greedy问题. 段公子在DP/recursion里面讲了.</li>
 <li>第二题的想法在N00t和Ganker之间有区别. 可以加深理解. 也确实想了好久才明白他们的code.</li>
 <li>Ganker的评论里面又一个记录path的方法, 这样可以返回最少jump的path. 总而言之, 也是一个DP的方法. DP还是Greedy? 傻傻分不清. 还要回头<strong>复习一下贪新算法</strong>: MST.</li>
 </ul>
 <h3 id="3Sum/4Sum">3Sum/4Sum</h3><ul>
 <li>主要参考N00t和Ganker的解法. 但其实可以结合HashSet来做4Sum. 更简单.</li>
 <li>注意这里面的设计, 如何避免重复. 所以要sort. 通常的解法是夹逼法则. for loop循环3-2或者4-2个头, 然后剩下2个index可以用left/right来夹逼.</li>
-<li>注意这里正确的使用了do…while. </li>
+<li>注意这里正确的使用了do…while.</li>
 <li>Binary search的合理使用. 一般不会直接写一个binary search. 但是这里夹逼自然是binary search好用. O(n)-&gt;O(lgn)</li>
 </ul>
 <h3 id="Spiral_Matrix_I/II">Spiral Matrix I/II</h3><ul>
@@ -425,7 +424,7 @@ var _hmt = _hmt || [];
 <li>Hello WOrld</li>
 </ul>
 <h3 id="Recover_Binary_Search_Tree">Recover Binary Search Tree</h3><ul>
-<li><p>再次加深了对Recursion的理解. 2个不连续的recursion. 而且param还不对称, N00t的recursion写的真好. N00t的方法也很好. </p>
+<li><p>再次加深了对Recursion的理解. 2个不连续的recursion. 而且param还不对称, N00t的recursion写的真好. N00t的方法也很好.</p>
 <h3 id="Distinct_Subsequences">Distinct Subsequences</h3><blockquote>
 <p>+When you see string problem that is about subsequence or matching, dynamic programming method should come to your mind naturally. —-by <a href="http://www.cnblogs.com/springfor/p/3896152.html" target="_blank" rel="external">link</a></p>
 </blockquote>
@@ -436,27 +435,27 @@ var _hmt = _hmt || [];
 </li>
 </ul>
 <h2 id="20141223">20141223</h2><h3 id="Plus_One">Plus One</h3><ul>
-<li>这是一道简单题. N00t给出了他的扩展题: plus int. </li>
+<li>这是一道简单题. N00t给出了他的扩展题: plus int.</li>
 <li>Ganker说他在Google店面的时候就问了这题. 因为适合扩展和OOD的设计.<h3 id="Symmetric_Tree">Symmetric Tree</h3></li>
-<li>Ganker是简单的recursion和iteration. 注意这里判断是否对称的条件: 空的情况, 有值的情况. 注意不用判断值相等. 为什么? 因为helper是recursion, 要找到结束得点. 而值相等可以继续走下去. 而都为空就可以直接返回true. 因为走不下去了. 这里也明显的看出iteration为什么会繁琐. </li>
+<li>Ganker是简单的recursion和iteration. 注意这里判断是否对称的条件: 空的情况, 有值的情况. 注意不用判断值相等. 为什么? 因为helper是recursion, 要找到结束得点. 而值相等可以继续走下去. 而都为空就可以直接返回true. 因为走不下去了. 这里也明显的看出iteration为什么会繁琐.</li>
 <li>N00t使用的一种stl数据结构: ArrayDeque. 其他思路和Ganker是一样的.</li>
 </ul>
 <h3 id="Balanced_Binary_Tree">Balanced Binary Tree</h3><h3 id="Palindrome_Number">Palindrome Number</h3><ul>
-<li>和Freq3的PalindromeDPDP类似. </li>
+<li>和Freq3的PalindromeDPDP类似.</li>
 <li>这里的比较2end不能用pointer了. 因为不是string. 这里有2个方法. 用一个div(不断变化). 本质还是loop里面update为指向对称的end points.</li>
 <li>或者是1337里面的第三个方法: 用一个stack.</li>
 </ul>
 <h3 id="Search_Insert_Position">Search Insert Position</h3><ul>
-<li>在freq3里面已经做过 </li>
+<li>在freq3里面已经做过</li>
 </ul>
 <h3 id="Valid_Sudoku">Valid Sudoku</h3><ul>
 <li>巧妙使用<code>i/3*3</code>和<code>i%3*3</code>. 以及API的设计</li>
 </ul>
 <h3 id="SOlve_Sudoku">SOlve Sudoku</h3><ul>
-<li>加深理解循环递归. 觉得比NP的N-Queens更重要. 这里的设计是很重要的模版. </li>
+<li>加深理解循环递归. 觉得比NP的N-Queens更重要. 这里的设计是很重要的模版.</li>
 </ul>
 <h3 id="Count_and_Say">Count and Say</h3><ul>
-<li>String的小题目. 一定要bug free. </li>
+<li>String的小题目. 一定要bug free.</li>
 <li>题目居然没看懂. 还是看了<a href="http://blog.csdn.net/fightforyourdream/article/details/12901505" target="_blank" rel="external">CSDN上面FightForDream的帖子</a>才搞明白什么意思.<h3 id="Remove_Duplicates_from_Sorted_Array_I/II">Remove Duplicates from Sorted Array I/II</h3></li>
 <li>好在我回顾了这道题目. 发现N00t的思路太不好了, 很容易错, 而且扩展不了. 实际上有string, 有比较的时候就用pointer就好了. 而且这里还是in-place. 就算是II, 也只要多加一个变量cnt来看当前有几次重复元素.</li>
 <li>所以Ganker的方法远胜于N00t. 也保证了这种简单题目的清晰思路和bug-free. 就是通过</li>
@@ -677,7 +676,7 @@ var _hmt = _hmt || [];
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/02/16/Leetcode/System/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/02/16/Leetcode/LeetcodeRecursion/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
@@ -725,7 +724,7 @@ var _hmt = _hmt || [];
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>4</span></a></li>
   </li>
 
     </ul>
@@ -738,7 +737,7 @@ var _hmt = _hmt || [];
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li>
+  <li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
     </ul>
 	</div>
 		

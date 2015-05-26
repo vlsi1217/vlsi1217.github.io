@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Wikirize my knowledge]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://vlsi1217.github.io/"/>
-  <updated>2015-05-11T21:34:24.242Z</updated>
+  <updated>2015-05-26T00:37:39.905Z</updated>
   <id>http://vlsi1217.github.io/</id>
   
   <author>
@@ -15,11 +15,393 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Unit 3 九章算法课 : Binary Tree-Divide & Conquer]]></title>
-    <link href="http://vlsi1217.github.io/2015/05/09/Leetcode/Unit3_9chap/"/>
-    <id>http://vlsi1217.github.io/2015/05/09/Leetcode/Unit3_9chap/</id>
+    <title><![CDATA[Report: Word Break]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/25/Leetcode/Report-Word-Break/"/>
+    <id>http://vlsi1217.github.io/2015/05/25/Leetcode/Report-Word-Break/</id>
+    <published>2015-05-25T23:47:56.000Z</published>
+    <updated>2015-05-26T00:37:39.905Z</updated>
+    <content type="html"><![CDATA[<h1 id="题目">题目</h1><ul>
+<li><a href="http://www.lintcode.com/en/problem/word-break/" target="_blank" rel="external">题目链接</a></li>
+</ul>
+<h1 id="思考">思考</h1><h2 id="first_trial:_fail">first trial: fail</h2><ul>
+<li>这里我还是对DP的状态没搞清楚. 做DP之前, 乃至所有coding之前要想好再动手!</li>
+<li>对Substring不熟. 对string不熟. <code>s.substring(a,b+1)</code>表示的是string[a…b]. 所以<code>s.substring(0, s.length()+1)</code>才是返回整个string的.</li>
+<li>String的DP表的边界往往是DP[s.length()+1]. 因为<code>DP[0] = true</code>: 表示: 选择string的0个元素也是符合条件的. 然后结果就是返回DP[s.length()]表示选择s的所有元素.</li>
+<li>这里的optimally equation搞了很久. 其实公式是知道的, 但是一直不对. 其实就是: DP[i] = DP[j], j &lt; i &amp;&amp; s.substring(j,i+1)在dict内.</li>
+<li>代码如下: 第一次写的时候, i,k这样写的话感觉不是很通用. 是在for loop statement的地方写好range, 还是在loop里面+1?  这里因为我的i的范围是1~s.length()<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> wordBreak1st(<span class="keyword">String</span> s, Set&lt;<span class="keyword">String</span>&gt; dict) &#123;</span><br><span class="line">    <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">boolean</span>[] F = <span class="keyword">new</span> <span class="built_in">boolean</span>[s.length() + <span class="number">1</span>];</span><br><span class="line">    F[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">1</span>; i &lt; s.length(); ++i) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="built_in">int</span> k = <span class="number">0</span>; k &lt; i; ++k) &#123;</span><br><span class="line">        <span class="keyword">if</span> (k == <span class="number">0</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (F[k] == <span class="keyword">true</span> &amp;&amp; dict.contains(s.substring(k, i + <span class="number">1</span>))) &#123;</span><br><span class="line">            <span class="comment">// System.out.println(s.substring(k, i + 1) + "," + k + "+" + i);</span></span><br><span class="line">            F[i] = <span class="keyword">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (F[k] == <span class="keyword">true</span> &amp;&amp; dict.contains(s.substring(k + <span class="number">1</span>, i + <span class="number">1</span>))) &#123;</span><br><span class="line">          F[i] = <span class="keyword">true</span>;</span><br><span class="line">          <span class="comment">// System.out.println(s.substring(k + 1, i + 1) + "," + k + "+" + i);</span></span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// for (boolean b : F)</span></span><br><span class="line">    <span class="comment">// System.out.print(b + " ");</span></span><br><span class="line">    <span class="keyword">return</span> F[s.length() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2nd_trial:_TLE">2nd trial: TLE</h2><ul>
+<li>模仿Code Ganker的写法, 特别是边界的定义. 因为如果是像第一次那样定义的话, k还要分2种情况. 代码很麻烦, 特别是对于index处理越多越容易乱或者出错</li>
+<li>注意这里的i的范围是一般向的0…s.length()-1. 而j的范围是0…i. 注意这个i是包括的. 因为s.substring(k, i+1). 所以k最大应该取到i, 这样substring就是s[i].</li>
+<li>这时候的时间复杂度是O(n^2). 不过如同<a href="http://stackoverflow.com/a/4679775/3984911" target="_blank" rel="external">SOF link</a>: substring()是O(n)操作. 所以其实是: O(n^3)的时间复杂度.</li>
+<li>就算这样, 还是TLE!</li>
+<li>代码如下:<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> wordBreak2nd(<span class="keyword">String</span> s, Set&lt;<span class="keyword">String</span>&gt; dict) &#123;</span><br><span class="line">   <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">boolean</span>[] F = <span class="keyword">new</span> <span class="built_in">boolean</span>[s.length() + <span class="number">1</span>]; <span class="comment">// string DP always leave 0th as no select always</span></span><br><span class="line">                                              <span class="comment">// true, so the DP space is len+1.</span></span><br><span class="line">   F[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">   <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123; <span class="comment">// notice the init and end of i for states</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="built_in">int</span> k = <span class="number">0</span>; k &lt;= i; ++k) &#123;</span><br><span class="line">       <span class="keyword">if</span> (F[k] == <span class="keyword">true</span> &amp;&amp; dict.contains(s.substring(k, i+<span class="number">1</span>))) &#123;</span><br><span class="line">         F[i+<span class="number">1</span>] = <span class="keyword">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> F[s.length()];</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="4th_trial:_AC">4th trial: AC</h2><ul>
+<li>看了九章的参考答案. 发现这时候没有的变成O(n). 那只有prune了. 注意到, F[k]==true的时候, 其实并不用判断所有substring(k, i+1). 因为如果这个substring长于dict内单词的长度就可以不用考虑了. 而且通常来说: word的长度最多25左右. 即i-k+1&lt;=maxlen, 即<code>k&gt;=i-1-maxlen</code>.(注意这里的是i, 不是i+1) 所以可以缩小一点k的取值范围.</li>
+<li>代码如下:<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">boolean</span> wordBreak2nd(<span class="keyword">String</span> s, Set&lt;<span class="keyword">String</span>&gt; dict) &#123;</span><br><span class="line">   <span class="keyword">if</span> (s == <span class="keyword">null</span> || s.length() == <span class="number">0</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="built_in">boolean</span>[] F = <span class="keyword">new</span> <span class="built_in">boolean</span>[s.length() + <span class="number">1</span>]; <span class="comment">// string DP always leave 0th as no select always</span></span><br><span class="line">                                              <span class="comment">// true, so the DP space is len+1.</span></span><br><span class="line">   F[<span class="number">0</span>] = <span class="keyword">true</span>;</span><br><span class="line">   <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; s.length(); ++i) &#123; <span class="comment">// notice the init and end of i for states</span></span><br><span class="line">     <span class="keyword">for</span> (<span class="built_in">int</span> k = <span class="number">0</span>; k &lt;= i; ++k) &#123;</span><br><span class="line">       <span class="keyword">if</span> (F[k] == <span class="keyword">true</span> &amp;&amp; dict.contains(s.substring(k, i+<span class="number">1</span>))) &#123;</span><br><span class="line">         <span class="comment">// System.out.println(s.substring(k, i) + "," + k + "+" + i);</span></span><br><span class="line">         F[i+<span class="number">1</span>] = <span class="keyword">true</span>;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">// for (boolean b : F)</span></span><br><span class="line">   <span class="comment">// System.out.print(b + " ");</span></span><br><span class="line">   <span class="keyword">return</span> F[s.length()];</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="总结">总结</h1><ol>
+<li>DP问题一定要想清楚state和optimally equation在写代码.</li>
+<li>loop的范围, 以及得到state的方式一定要设计好. 例如这里的是F[i+1]还是F[i]就很大差别. 因为这里要表示的是: 取string前i个元素是成立的. 所以substring(k, i+1), 然后F[i+1]. 这样就是i个元素的state成立, 于是接下来就可以F[k] &amp;&amp; substring. 因为这样substring的下确界k正好是kth元素. eg: F[4] &amp;&amp; substring(4,7).<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">l i n t c o d e</span><br><span class="line"><span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span> <span class="number">6</span> <span class="number">7</span></span><br><span class="line"></span><br><span class="line"><span class="type">F</span>[<span class="number">4</span>] = <span class="literal">true</span>, <span class="built_in">substring</span>(<span class="number">4</span>, <span class="number">7</span>+<span class="number">1</span>) =&gt; <span class="type">F</span>[<span class="number">7</span>+<span class="number">1</span>] = <span class="literal">true</span>. 对于lintcode的例子.</span><br><span class="line"><span class="type">F</span>[<span class="number">7</span>] = <span class="literal">true</span>, <span class="built_in">substring</span>(<span class="number">7</span>, <span class="number">7</span>+<span class="number">1</span>) =&gt; <span class="type">F</span>[<span class="number">7</span>+<span class="number">1</span>] = <span class="literal">true</span>.  对于<span class="type">ProgramCreek</span>的例子.</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[O() != TLE. 同样的O(), 但是实际时间还是会导致TLE]]>
+    
+    </summary>
+    
+      <category term="DP" scheme="http://vlsi1217.github.io/tags/DP/"/>
+    
+      <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
+    
+      <category term="Lintcode" scheme="http://vlsi1217.github.io/tags/Lintcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Report: Triangle Min Path Sum]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/24/Leetcode/Report-Triangle/"/>
+    <id>http://vlsi1217.github.io/2015/05/24/Leetcode/Report-Triangle/</id>
+    <published>2015-05-24T23:39:08.000Z</published>
+    <updated>2015-05-24T23:44:35.329Z</updated>
+    <content type="html"><![CDATA[<h1 id="题目">题目</h1><h1 id="思路">思路</h1><h1 id="问题">问题</h1><h2 id="first_trial_:_TLE">first trial : TLE</h2><ul>
+<li><p>如果使用简单的recursion会出现TLE, 代码如下:</p>
+  <figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> class Solution &#123;</span><br><span class="line">    <span class="comment">/**</span><br><span class="line">     * @param triangle: a list of lists of integers.</span><br><span class="line">     * @return: An integer, minimum path sum.</span><br><span class="line">     */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> minimumTotal(ArrayList&lt;ArrayList&lt;Integer&gt;&gt; <span class="built_in">triangle</span>) &#123;</span><br><span class="line">        <span class="comment">// write your code here</span></span><br><span class="line">        <span class="built_in">int</span>[] <span class="built_in">min</span> = <span class="keyword">new</span> <span class="built_in">int</span>[]&#123;Integer.MAX_VALUE&#125;;</span><br><span class="line">        dfs(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="built_in">min</span>, <span class="built_in">triangle</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>[<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> dfs(<span class="built_in">int</span> x, <span class="built_in">int</span> y, <span class="built_in">int</span> sum, <span class="built_in">int</span>[] <span class="built_in">min</span>, ArrayList&lt;ArrayList&lt;Integer&gt;&gt; <span class="built_in">triangle</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (x == <span class="built_in">triangle</span>.<span class="built_in">size</span>()) &#123;</span><br><span class="line">            <span class="built_in">min</span>[<span class="number">0</span>] = Math.<span class="built_in">min</span>(<span class="built_in">min</span>[<span class="number">0</span>], sum);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(x+<span class="number">1</span>, y, sum+<span class="built_in">triangle</span>.<span class="built_in">get</span>(x).<span class="built_in">get</span>(y), <span class="built_in">min</span>, <span class="built_in">triangle</span>);</span><br><span class="line">        dfs(x+<span class="number">1</span>, y+<span class="number">1</span>, sum+<span class="built_in">triangle</span>.<span class="built_in">get</span>(x).<span class="built_in">get</span>(y), <span class="built_in">min</span>, <span class="built_in">triangle</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Lintcode里面TLE的页面如下: <img src="http://7xj2zx.com1.z0.glb.clouddn.com/Lintcode_TLE_Triangle.JPG" alt="TLE_lintcode"></li>
+<li>有几个要注意的地方:<ol>
+<li>因为Lintcode是给了class, 要求写method. 虽然可以有helper method, 例如这里的dfs. 但是因为triangle不是field, 只是一个param, 所以必须要传给helper当param. 不然用不了.</li>
+<li>Lintcode 的 test case是看不到全部的… 所以也不能copy放到eclipse里面算了. 但是有个基本常识就是一般不能有超过20层的recursion. 所以尽量不用recursion才行.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2nd_trial:_pass">2nd trial: pass</h2><ul>
+<li>看到这种Divide and Conquer的问题自然想到使用DP解决. 这样可以使用重复计算的部分, 而且避免递归. 注意到: 这是一个找min的值的问题. 自然是DP</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[九章算法的学习DP的经典例子]]>
+    
+    </summary>
+    
+      <category term="DC" scheme="http://vlsi1217.github.io/tags/DC/"/>
+    
+      <category term="DP" scheme="http://vlsi1217.github.io/tags/DP/"/>
+    
+      <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
+    
+      <category term="Lintcode" scheme="http://vlsi1217.github.io/tags/Lintcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Report: Jump Game I]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/24/Leetcode/Report-Jump-Game-I/"/>
+    <id>http://vlsi1217.github.io/2015/05/24/Leetcode/Report-Jump-Game-I/</id>
+    <published>2015-05-24T23:26:26.000Z</published>
+    <updated>2015-05-24T23:37:32.345Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>学习了经典的DP<ul>
+<li>还有<code>local, global最优解DP</code></li>
+<li>以及变动边界的loop</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h1 id="题目">题目</h1><ul>
+<li>题目链接](<a href="http://www.lintcode.com/en/problem/jump-game/" target="_blank" rel="external">http://www.lintcode.com/en/problem/jump-game/</a>)</li>
+<li>好的test case: <code>{0,8,2,0,9}</code>,<code>{5, 8, 3, 0, 6, 7, 9, 6, 3, 4, 5, 2, 0, 6, 2, 6, 7, 10, 8, 0}</code></li>
+</ul>
+<h1 id="思考">思考</h1><h2 id="first_trial:_fail">first trial: fail</h2><ul>
+<li>状态: boolean F[i] 表示能否从起点到达position i.</li>
+<li>一开始我的optimally equation想错了: 我想的是: F[i] = F[k] &amp;&amp; A[k]&gt;= abs(k-i). 这里的k是0…A.length. 在一开始的test case可以过, 但是<code>{5, 8, 3, 0, 6, 7, 9, 6, 3, 4, 5, 2, 0, 6, 2, 6, 7, 10, 8, 0}</code>就错了. 应该是true, 但我返回false.<ul>
+<li>这里有2个错误, 一开始我想的是会不会有先跳到远的, 然后跳回来近的, 再跳到终点. 实际上是不会的, 因为这里的A[i]表示的是从position i, 能跳的<strong>最远距离</strong>, 而不是能跳的距离(像<strong>大富翁</strong>). 所以k不应该loop全部node, 而是小于i的所有node.</li>
+<li>更严重的错误是: F[i]表示的是<strong>是否</strong>能从起点到达. 所以只要能到达, 就OK了. 也就是说: 只要true, 就停止loop. 这也是导致我的这个code fail的原因.</li>
+</ul>
+</li>
+</ul>
+<h2 id="second_trial:_OK">second trial: OK</h2><ul>
+<li>这一次, 我还是DP, 不过改好了optimally equation, 即只要发现F[i]==true就break loop.</li>
+<li>但是这时候的时间是O(n**2). 因为要loop每一个node, 每一个node的内循环最坏情况是loop完所有小于i的k. 所以<code>n+n-1+n-2+...+1 = O(n^2)</code>. 而且空间是O(n).</li>
+</ul>
+<h2 id="third_trial:_Failed">third trial: Failed</h2><ul>
+<li>这里还是使用Greedy最好, 因为只要最远距离超过position就行了, 那就看每一步能跳到的最远距离就行了. 实现的时候是使用经典的: <strong>local/global optimal</strong>. 再次复习一下这种使用2个DP表来解决问题的DP方法. 即local DP记录: 以目前node出发能得到的最优解. Global则是记录历史到目前node位置能得到的最优解.</li>
+<li>还要复习一下Greedy, 我之前的理解不对:<ul>
+<li>错误: 之前想的是, Greedy不就是从位置1跳最远距离, 例如跳到位置5, 然后再从位置5跳最远距离. 觉得这种Greedy太Greedy了. 很有可能, 位置5的A[5]=0. 那就没得跳了.</li>
+<li>实际上, Greedy是针对每一个node都考虑一遍Greedy. 即: 1-5, 2-4-7, 3-9-dest.</li>
+</ul>
+</li>
+<li>实现上面, Ganker只用了O(1)的空间. 我则是使用通用的DP表, 记录每一个node的state.</li>
+<li>代码<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">boolean</span> <span class="title">jumpLocalGlobalDP</span><span class="params">(<span class="keyword">int</span>[] A)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (A == <span class="keyword">null</span> || A.length == <span class="number">0</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">int</span>[] local = <span class="keyword">new</span> <span class="keyword">int</span>[A.length];</span><br><span class="line">    <span class="keyword">int</span>[] global = <span class="keyword">new</span> <span class="keyword">int</span>[A.length];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// init base condition</span></span><br><span class="line">    local[<span class="number">0</span>] = A[<span class="number">0</span>];</span><br><span class="line">    global[<span class="number">0</span>] = A[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// build the local/global DP table</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; A.length; ++i) &#123;</span><br><span class="line">      local[i] = A[i] + i;</span><br><span class="line">      global[i] = Math.max(global[i-<span class="number">1</span>], local[i]);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// ans</span></span><br><span class="line">    <span class="keyword">if</span> (global[A.length-<span class="number">1</span>] &gt;= A.length - <span class="number">1</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="Forth_trial:_AC">Forth trial: AC</h2><ul>
+<li>刚才的做法是错误的, 例如{0,8,2,0,9}.</li>
+<li>仔细研究一下Ganker的写法, 他并不是简单的loop, 而是会改变boundary的loop. 这个很有意思. 在使用一个queue实现的BFS模版里面, 有个很重要的点就是queue.size()不能作为boundary, 要int size = queue.size(). 因为queue会在loop里面改变大小. 而这里之所以要使用变动的boundary是因为, 如果当前node只考虑能打到的情况. 例如这个例子里面, node 1是达不到的.</li>
+<li>所以很重要的一点是loop的范围应该是:<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for <span class="comment">(int i = 1; i &lt;= global[i-1] &amp;&amp; i &lt; A.length; ++i)</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[经典的DP, Greedy问题]]>
+    
+    </summary>
+    
+      <category term="DP" scheme="http://vlsi1217.github.io/tags/DP/"/>
+    
+      <category term="Greedy" scheme="http://vlsi1217.github.io/tags/Greedy/"/>
+    
+      <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
+    
+      <category term="Lintcode" scheme="http://vlsi1217.github.io/tags/Lintcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Unit7-9chap-Graph]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/23/Leetcode/Unit7-9chap-Graph/"/>
+    <id>http://vlsi1217.github.io/2015/05/23/Leetcode/Unit7-9chap-Graph/</id>
+    <published>2015-05-23T20:17:54.000Z</published>
+    <updated>2015-05-23T20:24:15.731Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    <![CDATA[田老师第二课: 学习总结Graph相关的面试题目]]>
+    
+    </summary>
+    
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Unit6-9chap-List]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/23/Leetcode/Unit6-9chap-List/"/>
+    <id>http://vlsi1217.github.io/2015/05/23/Leetcode/Unit6-9chap-List/</id>
+    <published>2015-05-23T20:17:25.000Z</published>
+    <updated>2015-05-23T20:24:08.815Z</updated>
+    <content type="html"></content>
+    <summary type="html">
+    <![CDATA[田老师的第一课: list题目总结]]>
+    
+    </summary>
+    
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
+    
+      <category term="List" scheme="http://vlsi1217.github.io/tags/List/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Unit 5 NineChap : Dynamic programming - part I]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/22/Leetcode/Unit5-9chap-DP2/"/>
+    <id>http://vlsi1217.github.io/2015/05/22/Leetcode/Unit5-9chap-DP2/</id>
+    <published>2015-05-22T17:33:53.000Z</published>
+    <updated>2015-05-23T20:23:49.924Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>今天继续讲Dynamic Programming.<ul>
+<li>后2个常见的DP类型题: Two Sequence DP和Backpack.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[段誉最后一课: 总结DP问题的后2个常见题型]]>
+    
+    </summary>
+    
+      <category term="DP" scheme="http://vlsi1217.github.io/tags/DP/"/>
+    
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[CircularQueue]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/22/OS/CircularQueue/"/>
+    <id>http://vlsi1217.github.io/2015/05/22/OS/CircularQueue/</id>
+    <published>2015-05-22T17:28:57.000Z</published>
+    <updated>2015-05-24T23:42:36.849Z</updated>
+    <content type="html"><![CDATA[<h2 id="Circular_Queue的作用">Circular Queue的作用</h2><ul>
+<li>在SRAM里面相当于是无限大的buffer.</li>
+<li>在一般来说是作为asynch thread communication. 见<a href="http://www.cs.hmc.edu/~geoff/classes/hmc.cs105.201501/labs/lab05-ringbuf/ringbuf.pdf" target="_blank" rel="external">CS105: Harvey Mudd</a></li>
+</ul>
+<h2 id="Circular_Queue的区别">Circular Queue的区别</h2><ul>
+<li>wiki已经写了circular queue的几种实现方式, 区别在于判断empty/full的方式:<ol>
+<li>head/tail+1 empty slot<ul>
+<li>这个实现在: Ring Buffer_Anders Kaloer</li>
+</ul>
+</li>
+<li>head/tail+count<ul>
+<li>一般都是用这个写, 因为简单, 而且semaphore其实就使这个count. 表示的是: 当前queue里面保存的item数量.</li>
+<li>Scott的Firmware里面的也是这样做的.</li>
+<li>我参考的Harshkn的写法. 改了一点. 主要是count在满了之后就不动了. 然后在push/pop里面加入了判断error的代码, 来自于kqchen.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="实现代码">实现代码</h2><h3 id="1-_使用Count">1. 使用Count</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * https://gist.github.com/harshkn/909546</span><br><span class="line"> * C Implementation of simple circular buffer, Functionality provided are add to queue, read latest</span><br><span class="line"> *</span><br><span class="line"> * Implementation: head, tail, and count. The major different between AndersKaloer/Harshkn is the way to detect full/empty.</span><br><span class="line"> * The former trade with an empty slot, the latter use additional int-&gt;count. I review this because this is easier and Scott uses it too.</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line">typedef <span class="keyword">struct</span> circular_buffer &#123;</span><br><span class="line">	void *buffer;     <span class="comment">// data buffer</span></span><br><span class="line">	void *buffer_end; <span class="comment">// end of data buffer</span></span><br><span class="line">	size_t capacity;  <span class="comment">// maximum number of items in the buffer</span></span><br><span class="line">	size_t count;     <span class="comment">// number of items in the buffer</span></span><br><span class="line">	size_t sz;        <span class="comment">// size of each item in the buffer</span></span><br><span class="line">	void *head;       <span class="comment">// pointer to head</span></span><br><span class="line">	void *tail;       <span class="comment">// pointer to tail</span></span><br><span class="line">&#125; circular_buffer;</span><br><span class="line"></span><br><span class="line">void cb_init(circular_buffer *cb, size_t capacity, size_t sz) &#123;</span><br><span class="line">	cb-&gt;buffer = malloc(capacity * sz);</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;buffer == NULL) &#123;</span><br><span class="line">		<span class="comment">// handle error</span></span><br><span class="line">	&#125;</span><br><span class="line">	cb-&gt;buffer_end = (<span class="keyword">char</span> *) cb-&gt;buffer + capacity * sz;</span><br><span class="line">	cb-&gt;capacity = capacity;</span><br><span class="line">	cb-&gt;count = <span class="number">0</span>;</span><br><span class="line">	cb-&gt;sz = sz;</span><br><span class="line">	cb-&gt;head = cb-&gt;buffer;</span><br><span class="line">	cb-&gt;tail = cb-&gt;buffer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void cb_free(circular_buffer *cb) &#123;</span><br><span class="line">	free(cb-&gt;buffer);</span><br><span class="line">	<span class="comment">// clear out other fields too, just to be safe</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void cb_push_back(circular_buffer *cb, <span class="keyword">const</span> void *item) &#123;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;count == cb-&gt;capacity) &#123;</span><br><span class="line">		printf(<span class="string">"%s, %d: cb push back error. \n"</span>, __FILE__, __LINE__);</span><br><span class="line"><span class="comment">//		return;</span></span><br><span class="line">	&#125;</span><br><span class="line">	memcpy(cb-&gt;head, item, cb-&gt;sz);</span><br><span class="line">	printf(<span class="string">"push data = %d\n"</span>, *(<span class="keyword">char</span> *) cb-&gt;head);</span><br><span class="line">	cb-&gt;head = (<span class="keyword">char</span>*) cb-&gt;head + cb-&gt;sz;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;head == cb-&gt;buffer_end)</span><br><span class="line">		cb-&gt;head = cb-&gt;buffer;</span><br><span class="line">	cb-&gt;count = cb-&gt;count == cb-&gt;capacity ? cb-&gt;count : cb-&gt;count + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void cb_pop_front(circular_buffer *cb, void *item) &#123;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;count == <span class="number">0</span>) &#123;</span><br><span class="line">		printf(<span class="string">"%s, %d: cb_pop_front: empty cb.\n"</span>, __FILE__, __LINE__);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	memcpy(item, cb-&gt;tail, cb-&gt;sz);</span><br><span class="line">	printf(<span class="string">"pop data = %d\n"</span>, *(<span class="keyword">char</span> *) cb-&gt;tail);</span><br><span class="line">	cb-&gt;tail = (<span class="keyword">char</span>*) cb-&gt;tail + cb-&gt;sz;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;tail == cb-&gt;buffer_end)</span><br><span class="line">		cb-&gt;tail = cb-&gt;buffer;</span><br><span class="line">	cb-&gt;count--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cb_empty(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;count == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cb_full(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">return</span> cb-&gt;count == cb-&gt;capacity;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void printbuf(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; i &lt; cb-&gt;capacity; ++i)</span><br><span class="line">		printf(<span class="string">"%d "</span>, *(<span class="keyword">char</span> *) (cb-&gt;buffer + i));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * https://github.com/kqchen/workspace/blob/21ab1c18dbf6c674437b0c89bb313ddbfc2de85c/hello/circular.c</span><br><span class="line"> */</span></span><br><span class="line">void cb_print(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">int</span> cnt = cb-&gt;count;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (cb-&gt;count == <span class="number">0</span>) &#123;</span><br><span class="line">			printf(<span class="string">"%s, %d: cb is empty now.\n"</span>, __FILE__, __LINE__);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(<span class="string">"cb-&gt;tail=0x%x, cb-&gt;head=0x%x, cnt = %d\n"</span>, cb-&gt;tail, cb-&gt;head,</span><br><span class="line">				cnt);</span><br><span class="line">		cnt--;</span><br><span class="line">	&#125; <span class="keyword">while</span> (cnt &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * testing the ring buffer</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">int</span> main() &#123;</span><br><span class="line">	circular_buffer tony; <span class="comment">// a holder</span></span><br><span class="line">	cb_init(&amp;tony, <span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">for</span> (; i &lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">		cb_push_back(&amp;tony, &amp;i);</span><br><span class="line"><span class="comment">//		printf("%d with count: %d, data = %d\n", cb_full(&amp;tony), tony.count, i);</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	printf(<span class="string">"\nafter filling ---\n"</span>);</span><br><span class="line">	cb_print(&amp;tony);</span><br><span class="line"><span class="comment">//	printf("after filling ---\n");</span></span><br><span class="line"><span class="comment">//	printbuf(&amp;tony);</span></span><br><span class="line">	<span class="keyword">char</span> result;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; j &lt; <span class="number">6</span>; ++j) &#123;</span><br><span class="line">		cb_pop_front(&amp;tony, &amp;result);</span><br><span class="line"><span class="comment">//		printf("%d with count: %d, result = %d\n", cb_empty(&amp;tony), tony.count, result);</span></span><br><span class="line">	&#125;</span><br><span class="line">	printf(<span class="string">"\nafter pop ---\n"</span>);</span><br><span class="line">	cb_print(&amp;tony);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+    <summary type="html">
+    <![CDATA[整理一下Scott的Circular Queue的设计]]>
+    
+    </summary>
+    
+      <category term="OS" scheme="http://vlsi1217.github.io/categories/OS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Binary Tree Serialization 解题报告]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/20/Leetcode/Report-BinaryTreeSerialization/"/>
+    <id>http://vlsi1217.github.io/2015/05/20/Leetcode/Report-BinaryTreeSerialization/</id>
+    <published>2015-05-20T18:17:07.000Z</published>
+    <updated>2015-05-24T23:38:02.918Z</updated>
+    <content type="html"><![CDATA[<p>标签（空格分隔）： lintcode BFS BinaryTree</p>
+<hr>
+<h2 id="题目">题目</h2><ul>
+<li><a href="http://www.lintcode.com/en/problem/binary-tree-serialization/" target="_blank" rel="external">link点我</a></li>
+<li>Example<br>  An example of testdata: Binary tree {3,9,20,#,#,15,7}, denote the following structure, Our data serialization use bfs traversal:<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20351;&#29992;code block&#21487;&#20197;&#20445;&#30041;&#26684;&#24335;&#10;  3&#10; / \&#10;9  20&#10;  /  \&#10; 15   7</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="分析">分析</h2><h3 id="Serialize">Serialize</h3><ul>
+<li>注意这个是Lintcode的Serialize, 和Leetcode的区别在于他使用的是BFS. 而后者则是使用的pre-order DFS.</li>
+<li>null object 和 null的区别.</li>
+<li>flag的设计: 要有初始值, 在进入循环的时候update, 对于每一个节点再次update. 那么当这一层结束后就是有效的flag.</li>
+</ul>
+<h3 id="De-serialize">De-serialize</h3><ul>
+<li>还是使用BFS解决. 和Pre-order的de-serialize一样, 和各自的Serialize有一个一一对应的关系.</li>
+<li>第一次写的时候出现idx超出array size的问题. 这是为什么呢? 因为我在判断token[idx]的时候居然判断了4次. 因为每一次判断都要idx++. 然后我把4个if并成2个if…else就OK了.</li>
+<li>注意这个时候的while loop判断不是parents queue是否为空, 而是判断token[] array走完没有. 我一开始这里搞错了, 居然去判断string走完没有. 注意string就是char Array. 例如{3, 9, 20, #, #, 15, 7}, 这个string的length是21. 而token[]则是7.</li>
+<li>还有注意这里update parents queue的时候要注意. 这里的做法是对于”#”, 则不加入null到queue. 不然queue的size()就不对了. 因为这里不用traverse null node.</li>
+</ul>
+<h2 id="code">code</h2><h3 id="1-_Serialize_Binary_Tree_:_BFS遍历">1. Serialize Binary Tree : BFS遍历</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">String <span class="title">serializeBFS</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"#"</span>;</span><br><span class="line">    String ans = <span class="string">""</span>;</span><br><span class="line">    Queue&lt;TreeNode&gt; <span class="keyword">parents</span> = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">parents</span>.offer(root);</span><br><span class="line">    <span class="keyword">boolean</span> end = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="keyword">parents</span>.isEmpty() &amp;&amp; !end) &#123;</span><br><span class="line">        end = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> size = <span class="keyword">parents</span>.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">            TreeNode head = <span class="keyword">parents</span>.poll();</span><br><span class="line">            <span class="comment">// update result</span></span><br><span class="line">            String thisnode = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">                thisnode = <span class="string">"#"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                thisnode = head.value + <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ans.length() == <span class="number">0</span>) &#123;</span><br><span class="line">                ans = ans + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ans = ans + <span class="string">", "</span> + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// update queue</span></span><br><span class="line">            <span class="keyword">if</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!head.isLeaf())</span><br><span class="line">                    end = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.left);</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>De-serialize binary tree<br><del>还是直接link github代码好了.</del><br>试了几个方法. 最后还是觉得使用gist-it方便. 但是前提是代码不能有中文. 否则python解析不了.</li>
+</ol>
+<script src="http://gist-it.appspot.com/https://github.com/vlsi1217/leetlint/blob/master/nineChap3_BST/ValidateBST.java">
+</script>
+
+
+
+
+]]></content>
+    <summary type="html">
+    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
+    
+    </summary>
+    
+      <category term="BFS" scheme="http://vlsi1217.github.io/tags/BFS/"/>
+    
+      <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
+    
+      <category term="Lintcode" scheme="http://vlsi1217.github.io/tags/Lintcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Unit 4 NineChap : Dynamic programming - part I]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/13/Leetcode/Unit4_9chap-DP1/"/>
+    <id>http://vlsi1217.github.io/2015/05/13/Leetcode/Unit4_9chap-DP1/</id>
+    <published>2015-05-14T03:17:16.000Z</published>
+    <updated>2015-05-24T23:45:24.083Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>今天开始讲Dynamic Programming.<ul>
+<li>先讲的前2个常见的DP类型题: Matrix DP和Sequence DP.</li>
+<li>下一节课再讲后2个DP类型题: 2 Sequencee DP和Backpack.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="DP的实现方式:">DP的实现方式:</h2><ol>
+<li>top-down的recursion: memorization search</li>
+<li>bottom-up的iteration或者recursion.</li>
+</ol>
+<h2 id="如何想到使用DP">如何想到使用DP</h2><ul>
+<li>虽然和recursion都是使用了子问题解决大问题. 不过动归是一种算法思想, 而递归则如同Algs4书本所说: 是一种organize代码的方式.</li>
+<li>我感觉段老师这里所说的动归是指严格的动归, 他将memorization search作为广义的动归, 到底还是search.</li>
+<li>如何想到使用动归<ul>
+<li>满足其中一个条件:<ol>
+<li>求极值</li>
+<li>判断是否存在</li>
+<li>Count(*)</li>
+</ol>
+</li>
+<li>can not sort/swap. 参考LCS(subsequence vs substring)</li>
+</ul>
+</li>
+</ul>
+<h2 id="动归4要素">动归4要素</h2><ol>
+<li>状态 : 关键的关键. 这个靠经验(参见: <a href="http://blog.csdn.net/liuqiyao_01/article/details/8765812" target="_blank" rel="external">100个动规方程</a>) 相当于几何题目的辅助线. 往往不是一次成功, 要反复的实验. 经典的例子是: LIS.</li>
+<li>递推式 : 表述state之间的联系: 如何使用小state来算大state. 这里的大小是段老师定义的. 例如unique path, 小state就是距离起点近的, 大state就是举例起点近, 或者说举例终点近的.</li>
+<li>初始条件 : 最极限的小状态. 例如2D DP表就是初始化第一行/第一列.</li>
+<li>答案 : 最大的状态.</li>
+</ol>
+<h2 id="面试最常见的4种类型">面试最常见的4种类型</h2><ol>
+<li>Matrix DP(10%)</li>
+<li>Sequence (40%)</li>
+<li>2 Sequence (40%) —- 全都可以用rolling DP!</li>
+<li>Backpack (10%)  —- 可以参考<em>背包九讲2.0</em></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
+    
+    </summary>
+    
+      <category term="DP" scheme="http://vlsi1217.github.io/tags/DP/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Unit 3 NineChap : Binary Tree-Divide & Conquer]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/09/Leetcode/Unit3_9chap-BST-DC/"/>
+    <id>http://vlsi1217.github.io/2015/05/09/Leetcode/Unit3_9chap-BST-DC/</id>
     <published>2015-05-10T03:17:16.000Z</published>
-    <updated>2015-05-11T21:34:24.242Z</updated>
+    <updated>2015-05-20T22:13:42.122Z</updated>
     <content type="html"><![CDATA[<h2 id="Binary_Tree的2个重点:_DFS和BFS-">Binary Tree的2个重点: DFS和BFS.</h2><h3 id="Traverse">Traverse</h3><blockquote>
 <p>必须会iteration. 可以先背下来.</p>
 <ul>
@@ -40,88 +422,24 @@
     
     </summary>
     
+      <category term="BinaryTree" scheme="http://vlsi1217.github.io/tags/BinaryTree/"/>
+    
+      <category term="DC" scheme="http://vlsi1217.github.io/tags/DC/"/>
+    
       <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
     
-      <category term="九章" scheme="http://vlsi1217.github.io/tags/%E4%B9%9D%E7%AB%A0/"/>
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
     
       <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Unit 2 九章算法课: Binary Search]]></title>
-    <link href="http://vlsi1217.github.io/2015/05/06/Leetcode/Unit2_9chap/"/>
-    <id>http://vlsi1217.github.io/2015/05/06/Leetcode/Unit2_9chap/</id>
+    <title><![CDATA[Unit 1 NineChap: 学习/做题思路]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/06/Leetcode/Unit1_9chap-Perm-Comb/"/>
+    <id>http://vlsi1217.github.io/2015/05/06/Leetcode/Unit1_9chap-Perm-Comb/</id>
     <published>2015-05-07T03:17:16.000Z</published>
-    <updated>2015-05-11T20:50:02.211Z</updated>
-    <content type="html"><![CDATA[<h2 id="2分法模版">2分法模版</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (start + <span class="number">1</span> &lt; <span class="keyword">end</span>) &#123;</span><br><span class="line">    mid = start + (<span class="keyword">end</span> - start) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (A[mid] == <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;  // key</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &lt; <span class="type">target</span>) &#123;</span><br><span class="line">        start = mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &gt; <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (A[start] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> start;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[<span class="keyword">end</span>] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>while退出条件: lo+1&lt;hi</li>
-<li>中间处理通用: 都是lo=mid, hi=mid. 不用mid+1/mid-1.</li>
-<li>while循环结束后, 只要处理2个数就可以了: start和end. 可以很容易分析.<ul>
-<li>这里的start/end的意义是什么呢? 并不一定是target的范围就已经确定了, 例如有dup的时候, 就要看你是求first, any, 还是last了.</li>
-<li>或者说target不再A[]里面的情况呢? 那么target &lt; A[lo] 或者 A[hi] &lt; target.</li>
-</ul>
-</li>
-</ul>
-<h3 id="从复杂度-&gt;算法">从复杂度-&gt;算法</h3><ul>
-<li>一般的复杂度有O(n), 比他好的就是O(lgn). 那就只有二分了. 所以看到这种复杂度要求的题目, 就是用二分模版.</li>
-</ul>
-<h3 id="p1-_search_insert_position">p1. search insert position</h3><ul>
-<li>其实根据题意了解到, 就是找first position i, that A[i] &gt;= target. 所以对于这种sorted array的search first/last position就是用二分法. </li>
-<li>模版是要灵活运用的, 只是说这样写不太容易出错. 但是也要在适当范围内根据问题来做. 譬如insert的target不再A[]内会怎么样呢? 实际还是只要根据lo/hi这2个数分析就好, 但是这里学到了有了range, 有了lo/hi, 并<strong>不一定</strong>就是分3段: 左中右. 这里的分法有意思. <code>&lt;= low, &lt;= hi, 和大于hi.</code></li>
-</ul>
-<h2 id="Sorted_Array_问题">Sorted Array 问题</h2><h3 id="重要的2题:_Search_in_rotated_sorted_array">重要的2题: Search in rotated sorted array</h3><ul>
-<li>binary search<ul>
-<li>重要做题概念: 做题先画图, 容易直观分析.</li>
-</ul>
-<ul>
-<li>如果有duplicate, 就没得2分. 因为lo=mid=hi = 1的话, 所以2分无意义.</li>
-</ul>
-</li>
-<li>不用二分做<ul>
-<li>find minimum in rotated sorted array. 也是2分.</li>
-<li>recover rotatted sorted array.</li>
-<li>然后用min来search, 或者recover在search.</li>
-</ul>
-</li>
-</ul>
-<h4 id="p1-_Find_minimum_in_Rotated_sorted_array_I/II">p1. Find minimum in Rotated sorted array I/II</h4><h3 id="重要的2题:_Median_of_two_sorted_arrays">重要的2题: Median of two sorted arrays</h3><ul>
-<li>这题的算法思想很重要. 能提升自己的能力.</li>
-<li>先做: find kth int of two sorted arrays<ul>
-<li>其实就等于做出来median这题了.</li>
-</ul>
-</li>
-<li>注意 k-k/2!=k/2. 因为有奇数偶数的情况. 所以统一用k-k/2.</li>
-</ul>
-<h4 id="kth_of_two_sorted_arrays">kth of two sorted arrays</h4><h2 id="其他简单">其他简单</h2><ul>
-<li>merge sorted array/list.<ul>
-<li>小技巧: 从末尾开始插入.</li>
-<li></li>
-</ul>
-</li>
-<li>三步反转法</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
-    
-      <category term="九章" scheme="http://vlsi1217.github.io/tags/%E4%B9%9D%E7%AB%A0/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Unit 1 九章算法课: 学习/做题思路]]></title>
-    <link href="http://vlsi1217.github.io/2015/05/06/Leetcode/Unit1_9chap/"/>
-    <id>http://vlsi1217.github.io/2015/05/06/Leetcode/Unit1_9chap/</id>
-    <published>2015-05-07T03:17:16.000Z</published>
-    <updated>2015-05-11T20:28:44.380Z</updated>
+    <updated>2015-05-20T22:13:10.807Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <ul>
 <li>这节课我miss了, 所以只是放上对PPT的理解.<ul>
@@ -154,7 +472,7 @@
 </blockquote>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt; Search(<span class="built_in">int</span>[] A) &#123;</span><br><span class="line">    <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt; ans = <span class="keyword">new</span> ArrayList&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span> (A==<span class="keyword">null</span> || A.length()==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    Arrays.sort(A);</span><br><span class="line">    dfs(A, <span class="keyword">new</span> boolean[A.length()], <span class="keyword">new</span> <span class="built_in">List</span>&lt;Integer&gt;(), ans);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private <span class="literal">static</span> <span class="keyword">void</span> dfs(<span class="built_in">int</span>[] A, boolean[] used, <span class="built_in">List</span>&lt;Integer&gt; path, <span class="built_in">List</span>&lt;<span class="built_in">List</span>&lt;Integer&gt;&gt;res) &#123;</span><br><span class="line">    <span class="keyword">if</span> (path.length() == A.length()) &#123;</span><br><span class="line">        res.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;(path))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; A.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; !used[i-<span class="number">1</span>] &amp;&amp; A[i]==A[i-<span class="number">1</span>])  <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> (used[i])  <span class="keyword">continue</span>;</span><br><span class="line">        path.add(A[i]);</span><br><span class="line">        dfs(A, used, path, res);</span><br><span class="line">        path.remove(path.size()-<span class="number">1</span>);</span><br><span class="line">        used[i] = <span class="keyword">false</span>;  <span class="comment">// 记得recursion一定要恢复现场. 即call stack回退之后的状态要和进入之前一样. 可以看看Ganker的解释.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Subset">Subset</h3><h3 id="Permutation">Permutation</h3><ul>
-<li>这里通过boolean[] used, 来处理duplicate. </li>
+<li>这里通过boolean[] used, 来处理duplicate.</li>
 <li>例子：[1 2 3 4 4 4 5 6 7 8]. 这个例子via <a href="http://www.cnblogs.com/yuzhangcmu/p/4141085.html" target="_blank" rel="external">CMUyu</a><ul>
 <li>444这个的选法只能:4, 44, 444连续这三种选法. 即是说: 只对第一个4做递归调用. 然后对于后面2个4就不用递归了, 因为第一个4已经将这3种选法保存到result里面了.</li>
 </ul>
@@ -175,7 +493,74 @@
     
       <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
     
-      <category term="九章" scheme="http://vlsi1217.github.io/tags/%E4%B9%9D%E7%AB%A0/"/>
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Unit 2 NineChap: Binary Search]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/06/Leetcode/Unit2_9chap-BinSearch/"/>
+    <id>http://vlsi1217.github.io/2015/05/06/Leetcode/Unit2_9chap-BinSearch/</id>
+    <published>2015-05-07T03:17:16.000Z</published>
+    <updated>2015-05-20T22:13:35.527Z</updated>
+    <content type="html"><![CDATA[<h2 id="2分法模版">2分法模版</h2><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (start + <span class="number">1</span> &lt; <span class="keyword">end</span>) &#123;</span><br><span class="line">    mid = start + (<span class="keyword">end</span> - start) / <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">if</span> (A[mid] == <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;  // key</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &lt; <span class="type">target</span>) &#123;</span><br><span class="line">        start = mid;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[mid] &gt; <span class="type">target</span>) &#123;</span><br><span class="line">        <span class="keyword">end</span> = mid;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (A[start] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> start;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (A[<span class="keyword">end</span>] &gt;= <span class="type">target</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">end</span> + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>while退出条件: lo+1&lt;hi</li>
+<li>中间处理通用: 都是lo=mid, hi=mid. 不用mid+1/mid-1.</li>
+<li>while循环结束后, 只要处理2个数就可以了: start和end. 可以很容易分析.<ul>
+<li>这里的start/end的意义是什么呢? 并不一定是target的范围就已经确定了, 例如有dup的时候, 就要看你是求first, any, 还是last了.</li>
+<li>或者说target不再A[]里面的情况呢? 那么target &lt; A[lo] 或者 A[hi] &lt; target.</li>
+</ul>
+</li>
+</ul>
+<h3 id="从复杂度-&gt;算法">从复杂度-&gt;算法</h3><ul>
+<li>一般的复杂度有O(n), 比他好的就是O(lgn). 那就只有二分了. 所以看到这种复杂度要求的题目, 就是用二分模版.</li>
+</ul>
+<h3 id="p1-_search_insert_position">p1. search insert position</h3><ul>
+<li>其实根据题意了解到, 就是找first position i, that A[i] &gt;= target. 所以对于这种sorted array的search first/last position就是用二分法.</li>
+<li>模版是要灵活运用的, 只是说这样写不太容易出错. 但是也要在适当范围内根据问题来做. 譬如insert的target不再A[]内会怎么样呢? 实际还是只要根据lo/hi这2个数分析就好, 但是这里学到了有了range, 有了lo/hi, 并<strong>不一定</strong>就是分3段: 左中右. 这里的分法有意思. <code>&lt;= low, &lt;= hi, 和大于hi.</code></li>
+</ul>
+<h2 id="Sorted_Array_问题">Sorted Array 问题</h2><h3 id="重要的2题:_Search_in_rotated_sorted_array">重要的2题: Search in rotated sorted array</h3><ul>
+<li>binary search<ul>
+<li>重要做题概念: 做题先画图, 容易直观分析.</li>
+</ul>
+<ul>
+<li>如果有duplicate, 就没得2分. 因为lo=mid=hi = 1的话, 所以2分无意义.</li>
+</ul>
+</li>
+<li>不用二分做<ul>
+<li>find minimum in rotated sorted array. 也是2分.</li>
+<li>recover rotatted sorted array.</li>
+<li>然后用min来search, 或者recover在search.</li>
+</ul>
+</li>
+</ul>
+<h4 id="p1-_Find_minimum_in_Rotated_sorted_array_I/II">p1. Find minimum in Rotated sorted array I/II</h4><h3 id="重要的2题:_Median_of_two_sorted_arrays">重要的2题: Median of two sorted arrays</h3><ul>
+<li>这题的算法思想很重要. 能提升自己的能力.</li>
+<li>先做: find kth int of two sorted arrays<ul>
+<li>其实就等于做出来median这题了.</li>
+</ul>
+</li>
+<li>注意 k-k/2!=k/2. 因为有奇数偶数的情况. 所以统一用k-k/2.</li>
+</ul>
+<h4 id="kth_of_two_sorted_arrays">kth of two sorted arrays</h4><h2 id="其他简单">其他简单</h2><ul>
+<li>merge sorted array/list.<ul>
+<li>小技巧: 从末尾开始插入.<br>+</li>
+</ul>
+</li>
+<li>三步反转法</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
+    
+    </summary>
+    
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
     
       <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
     
@@ -247,7 +632,7 @@
     <link href="http://vlsi1217.github.io/2015/02/20/Leetcode/Freq3/"/>
     <id>http://vlsi1217.github.io/2015/02/20/Leetcode/Freq3/</id>
     <published>2015-02-21T04:17:16.000Z</published>
-    <updated>2015-05-11T20:09:45.332Z</updated>
+    <updated>2015-05-22T17:31:09.539Z</updated>
     <content type="html"><![CDATA[<h1 id="Leetcode_freq_3">Leetcode freq 3</h1><p>标签（空格分隔）： leetcode</p>
 <hr>
 <h1 id="Frequency_3题解">Frequency 3题解</h1><p>[TOC]</p>
@@ -257,19 +642,19 @@
 <li>还有iteration的写法.</li>
 </ul>
 <h3 id="Letter_Combinations_of_a_Phone_Number">Letter Combinations of a Phone Number</h3><ul>
-<li>然后再来看这道题, 可以用Simple&amp;Stupid的做法, 和N00t的Combination差不多. </li>
-<li>或者N00t的iteration解法. </li>
+<li>然后再来看这道题, 可以用Simple&amp;Stupid的做法, 和N00t的Combination差不多.</li>
+<li>或者N00t的iteration解法.</li>
 </ul>
 <h3 id="Combination_Sum_I/II">Combination Sum I/II</h3><ul>
 <li>N00t和Ganker结合. 注意2个的区别: I是可以reuse自己. 即可以用2(0), 2(0). 这里的2(0)表示在位置0的2. eg: {2, 2, 3, 7} 求sum=7. 而II是不能reuse自己. 所以答案是2(0), 2(1).</li>
 </ul>
 <h3 id="Maximum_Subarray_I/II">Maximum Subarray I/II</h3><ul>
-<li>N00t的I是用的简单的一次过. 里面的sum初始化的条件是sum&lt;0. 但是看了Ganker的方法才知道原来这道题目是典型的DP. </li>
+<li>N00t的I是用的简单的一次过. 里面的sum初始化的条件是sum&lt;0. 但是看了Ganker的方法才知道原来这道题目是典型的DP.</li>
 <li>其实LC的要求是不用DP做来达到O(n). 而是用Divide and Conquer来做. 看水中的鱼(C++). 或者一天一学(Java): <a href="http://joycelearning.blogspot.com/2013/10/leetcode-maximum-subarray.html" target="_blank" rel="external">链接</a></li>
 <li>其实II并<strong>不能</strong>用N00t的做法. 因为有可能出现有多个subarray的值都一样! 可以看LintCode的解法: <a href="http://codeanytime.blogspot.com/2014/12/lintcode-maximum-subarray-ii.html" target="_blank" rel="external">链接</a></li>
 </ul>
 <h3 id="Jump_Game">Jump Game</h3><ul>
-<li>Ganker在Maximum Subarray里面提到了DP里面常用的一个方法: 称为”局部最优和全局最优解法”. 在Jump game里面也用到了. </li>
+<li>Ganker在Maximum Subarray里面提到了DP里面常用的一个方法: 称为”局部最优和全局最优解法”. 在Jump game里面也用到了.</li>
 </ul>
 <h2 id="20141217">20141217</h2><h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><ul>
 <li><a href="http://blog.csdn.net/linhuanmars/article/details/20888505" target="_blank" rel="external">Ganker CSDN大神的DP解法</a></li>
@@ -284,11 +669,11 @@
 <li>简单题: 用2次binary search. 或者当作1个sorted array只要一次binary search就行了.</li>
 </ul>
 <h3 id="Partition_List">Partition List</h3><ul>
-<li>参考的Ganker的答案, 但是有点混乱了. Java里面不是copy的handle吗? 那walk, runner一直改变, 不是也同时改变了helper吗? </li>
+<li>参考的Ganker的答案, 但是有点混乱了. Java里面不是copy的handle吗? 那walk, runner一直改变, 不是也同时改变了helper吗?</li>
 <li>ANS: NONONONONO. 双指针大法: walker/runner只是copy了pointer. 而每次walker = walker.next. 就assign了walker到下一个pointer. 这和C/C++一样.</li>
 </ul>
 <h3 id="Number_of_Islands">Number of Islands</h3><ul>
-<li>简单题. ProgramCreek使用的recursion解法. </li>
+<li>简单题. ProgramCreek使用的recursion解法.</li>
 </ul>
 <h2 id="20141208">20141208</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node">Populating Next Right Pointers in Each Node</h3><h3 id="Divide_Two_Integers">Divide Two Integers</h3><h3 id="Search_in_Rotated_Sorted_Array_I/II">Search in Rotated Sorted Array I/II</h3><h3 id="Deep_Iterator_:_LinkedIn老题目">Deep Iterator : LinkedIn老题目</h3><ul>
 <li>C++的解法: <a href="http://www.fgdsb.com/2015/01/19/nested-iterator/" target="_blank" rel="external">fgdsd的解法</a> 以及<a href="http://www.oodesign.com/iterator-pattern.html" target="_blank" rel="external">Iterator pattern</a></li>
@@ -306,24 +691,24 @@
 </ul>
 <h3 id="N-Queens_I/II">N-Queens I/II</h3><ul>
 <li>Matrix67/N00t用的是位运算解决问题.</li>
-<li>Ganker用的是传统的<strong>循环递归</strong>解决这种NP问题. </li>
-<li>又听了段公子的DP+Recursion讲座. 讲了用遍历+backtracking这种都是NP, 即是NP问题. 里面也提到了像Word Break这种可以Top-Down(memorize)和Button-Up(DP)的区别. 以及求CSP的个数和所有解空间的区别. </li>
-<li>Quora上面讲了top-down跟button-up的DP都不一定需要用recursion. </li>
+<li>Ganker用的是传统的<strong>循环递归</strong>解决这种NP问题.</li>
+<li>又听了段公子的DP+Recursion讲座. 讲了用遍历+backtracking这种都是NP, 即是NP问题. 里面也提到了像Word Break这种可以Top-Down(memorize)和Button-Up(DP)的区别. 以及求CSP的个数和所有解空间的区别.</li>
+<li>Quora上面讲了top-down跟button-up的DP都不一定需要用recursion.</li>
 </ul>
 <h2 id="20141205">20141205</h2><h3 id="Restore_IP_Addresses">Restore IP Addresses</h3><ul>
-<li>太好了, 又深入的理解了recursion. 这里虽然只有一次显式的recursion, 但他是位于loop里面, 后面还有个results.add(). 以及共用(?和谁)一个results. 所以这种是一个今天学到的recursion: loop内的recursion用于循环遍历一层. </li>
+<li>太好了, 又深入的理解了recursion. 这里虽然只有一次显式的recursion, 但他是位于loop里面, 后面还有个results.add(). 以及共用(?和谁)一个results. 所以这种是一个今天学到的recursion: loop内的recursion用于循环遍历一层.</li>
 <li>N00t果然是recursion很厉害. 佩服. 这里是DFS还是BFS? 是不是子解树? 之前看的那个CSDN 链接在哪?</li>
 </ul>
 <h3 id="Triangle_Path_Sum">Triangle Path Sum</h3><ul>
 <li>很好的DP问题. 简单, 也分为top-down, 和button-up的2种思维方式.</li>
 <li>初始化List<list<>&gt;费了些心思, 觉得还是anonymous inner class比较简洁. <a href="http://mangstacular.blogspot.com/2013/04/4-ways-to-initialize-list-in-java.html" target="_blank" rel="external">link</a>. 其中<a href="http://www.programmerinterview.com/index.php/java-questions/java-anonymous-class-example/" target="_blank" rel="external">programinterview的讲解很清晰</a></list<></li>
-<li>N00t的top-down又让我深入理解了recursion中的param是primitive/object的区别. 以及call stack的new和clr的过程(Eclipse). </li>
+<li>N00t的top-down又让我深入理解了recursion中的param是primitive/object的区别. 以及call stack的new和clr的过程(Eclipse).</li>
 <li>暂时还没看N00t的top-down的BFS解法………………………………….</li>
 </ul>
 <h3 id="Surrounded_Regions">Surrounded Regions</h3><ul>
-<li>极度经典的图形学算法题目: flood fill. 同时关于DFS/BFS的取舍. 以及Queue的API: offer/poll. (这和stack的push/pull对应) </li>
-<li>参考Ganker/N00t的解法. </li>
-<li>Palindrome Partitioning I/II    </li>
+<li>极度经典的图形学算法题目: flood fill. 同时关于DFS/BFS的取舍. 以及Queue的API: offer/poll. (这和stack的push/pull对应)</li>
+<li>参考Ganker/N00t的解法.</li>
+<li>Palindrome Partitioning I/II</li>
 <li><p>N00t大神的DP+DP/DP+, 还有美丽的<strong>partitionHelper()</strong></p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private <span class="keyword">static</span> <span class="type">void</span> recur(<span class="type">String</span> s, <span class="type">int</span> left, <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; <span class="literal">result</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (left == s.length()) &#123;</span><br><span class="line">      <span class="literal">result</span>.add(new <span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt; s.length(); ++i) &#123;</span><br><span class="line">      <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; temp = new <span class="type">ArrayList</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt;();</span><br><span class="line">      recur(s, i + <span class="number">1</span>, temp);</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">List</span>&lt;<span class="type">String</span>&gt; partitions : temp) &#123;</span><br><span class="line">        partitions.add(<span class="number">0</span>, s.substring(left, i + <span class="number">1</span>));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="literal">result</span>.addAll(temp);  // add()和addAll()的区别.</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -339,7 +724,7 @@
 </ul>
 <h3 id="Word_Segment_I/II">Word Segment I/II</h3><ul>
 <li>Naive做法是N00t的好</li>
-<li>DP做法有2D和1D, 可以是aray或者arrayList, N00t的做法和ProgramCreek的不同. </li>
+<li>DP做法有2D和1D, 可以是aray或者arrayList, N00t的做法和ProgramCreek的不同.</li>
 <li>Word Break II的主要参照programCreek的做法. 很完美经典的DFS+DP解法. 漂亮!!! ProgramCreek还赔了图, 其中的words即dp[].显而可见index为什么是s.length()+1了. <img src="http://www.programcreek.com/wp-content/uploads/2014/03/word-break-II-java-298x400.png" alt="ProgramCreek的配图"></li>
 </ul>
 <h2 id="20141129">20141129</h2><h3 id="Find_the_k-th_Smallest_Element_in_the_Union_of_Two_Sorted_Arrays">Find the k-th Smallest Element in the Union of Two Sorted Arrays</h3><ul>
@@ -347,31 +732,30 @@
 <li>这里关键的问题可以转化为: 找B[j-1] &lt;A[i] &lt; B[j] 或者 A[i-1] &lt; B[j] &lt; A[i]. 如果不成立就recursion. 注意这里因为Java不能用指针, 所以要稍微站换一下1337的写法.</li>
 </ul>
 <h3 id="Median_of_Two_Sorted_Arrays">Median of Two Sorted Arrays</h3><ul>
-<li>这题有很多思考, 值得说道说道. 这题是源自于CLRS. 而且里面还简化了: m=n. 而LC这道题是generic的. </li>
-<li>要做这题先要理解这道题: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 见上.</li>
-<li></li>
+<li>这题有很多思考, 值得说道说道. 这题是源自于CLRS. 而且里面还简化了: m=n. 而LC这道题是generic的.</li>
+<li>要做这题先要理解这道题: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 见上.<br>+</li>
 </ul>
 <h3 id="Regular_Expression_Matching">Regular Expression Matching</h3><ul>
 <li>如何保证考虑详细?</li>
 <li>N00t的解法很好<ul>
 <li>不知道怎样才能像他那样那么有逻辑. 不会有错漏. 这个if/else设计的太美了</li>
 <li>redundant分析我觉得不对. 因为到了2nd iteration中. “b” vs “a<em>a</em>b”是不会有3个substructure的. 因为不match.</li>
-<li>backtracking做法中, 一个用substring, 一个就是用2个指针i,j. 避免了substring()来copy浪费空间. 不过之所以这里可以用”char array”是因为这里只是比对. 而不需要修改. 所以直接reference即可. 但是像之前的partitionHelper里面可以用吗??? 或者是更之前的: </li>
+<li>backtracking做法中, 一个用substring, 一个就是用2个指针i,j. 避免了substring()来copy浪费空间. 不过之所以这里可以用”char array”是因为这里只是比对. 而不需要修改. 所以直接reference即可. 但是像之前的partitionHelper里面可以用吗??? 或者是更之前的:</li>
 </ul>
 </li>
 </ul>
-<h3 id="Wildcard_Matching">Wildcard Matching</h3><pre><code><span class="bullet">+    </span>
+<h3 id="Wildcard_Matching">Wildcard Matching</h3><pre><code><span class="addition">+</span>
 </code></pre><h2 id="20141118">20141118</h2><h3 id="Construct_Binary_Tree_from_Inorder_and_Postorder_traversal">Construct Binary Tree from Inorder and Postorder traversal</h3><ul>
-<li>首先通过pre, post, in加深了对recursion的理解. </li>
+<li>首先通过pre, post, in加深了对recursion的理解.</li>
 <li>还是老话, 思考问题的方式. 先是找规律. 发现pre order的头的root, 然后可以在In order里面找到左右子树的大小, 再回到pre order里面找到左右子树的root. 如此recursion.</li>
 </ul>
 <h3 id="construct_binary_tree_from_preorder_and_inorder_traversal">construct binary tree from preorder and inorder traversal</h3><ul>
 <li>举一反三. 找规律看到了post-order反着读的话就正好是pre order的mirror. 所以这次从post order的尾巴开始读. 发现尾巴就是root, 然后回到inorder里面找左右子树的大小. 从而回到post-order里面找左右子树的root. 要注意的是不能点到mid &lt; end和mid &gt; start! 一开始就这样, 发现有错误, 进行到一半就停了.</li>
-<li>Flatten Binary Tree to Linked List  </li>
+<li>Flatten Binary Tree to Linked List</li>
 <li><a href="http://n00tc0d3r.blogspot.com/2013/03/flatten-binary-tree-to-linked-list-in.html" target="_blank" rel="external">太好了, 终于完全理解复杂recursion了</a></li>
 </ul>
 <h3 id="Path_Sum">Path Sum</h3><ul>
-<li>root-to-leaf Path sum: <a href="http://www.programcreek.com/2013/01/leetcode-path-sum/" target="_blank" rel="external">ProgramCreek的解法</a>   </li>
+<li>root-to-leaf Path sum: <a href="http://www.programcreek.com/2013/01/leetcode-path-sum/" target="_blank" rel="external">ProgramCreek的解法</a></li>
 <li>Binary Tree Maximum Path Sum</li>
 <li>Find ALL Path Sum</li>
 </ul>
@@ -379,20 +763,20 @@
 <li>要注意overflow, 跟负号</li>
 </ul>
 <h3 id="Unique_Paths_I/II">Unique Paths I/II</h3><ul>
-<li>经典的DP问题    </li>
+<li>经典的DP问题</li>
 <li>也是path问题, 可以找规律, 变成排列组合题.</li>
-<li>如果有obstacle呢? </li>
+<li>如果有obstacle呢?</li>
 <li>觉得还是N00t的解法比较好. 相对于1337的2D opt, 这个只要1D. 而且可以解出来.</li>
 </ul>
 <h3 id="Longest_Consecutive_Sequence">Longest Consecutive Sequence</h3><ul>
-<li>还是觉得N00t的方法. 还是一样, 学会抽象, 不要以为tree型就一定要用tree实现, 或者range就必须要知道左右和长度. 要有了整体把握才设计API. HashMap的关键在于key/value的设计. </li>
+<li>还是觉得N00t的方法. 还是一样, 学会抽象, 不要以为tree型就一定要用tree实现, 或者range就必须要知道左右和长度. 要有了整体把握才设计API. HashMap的关键在于key/value的设计.</li>
 <li>还是N00t的”simple”(不觉得simple, 然而很多技巧在里面). 好聪明的做法. 果然是精通API和recursion的N00t.</li>
 </ul>
 <h2 id="20141115">20141115</h2><h3 id="Edit_Distance">Edit Distance</h3><ul>
 <li>这个是个经典的DP问题.  是Stanford Algs 2 DP问题DNA Sequence Alignment的扩展, 因为不只是ACGT, 也不只是Gap, 而是有3种操作. 注意n00tc0d3r的DP的优化! (用的空间是O(min(l1, l2) 而不是通常的O(l1*l2)) 我觉得这个是一个通用的optimize方法. 是不是four Russian(不是)?</li>
 </ul>
 <h3 id="One_Edit_Distance">One Edit Distance</h3><ul>
-<li>这个看起来就是直接用Edit Distance就行了. 其实会超时间! 注意是one distance. 所以直接1 pass. </li>
+<li>这个看起来就是直接用Edit Distance就行了. 其实会超时间! 注意是one distance. 所以直接1 pass.</li>
 </ul>
 <h3 id="Binary_Tree_Inorder_Traversal">Binary Tree Inorder Traversal</h3><ul>
 <li>很喜欢N00tc03的post-order=pre-order的mirror.</li>
@@ -411,7 +795,7 @@
 </ul>
 <h3 id="Remove_duplicates_from_sorted_Array">Remove duplicates from sorted Array</h3><ul>
 <li>这个可以看N00tc0d3r的解法. 先学会remove element from array</li>
-<li>而且用Nth-to-end里面的双指针, 距离n+1个node! </li>
+<li>而且用Nth-to-end里面的双指针, 距离n+1个node!</li>
 </ul>
 <h3 id="Median_of_Two_Sorted_Arrays-1">Median of Two Sorted Arrays</h3><ul>
 <li>比较难. 而且大部分答案都不对. 还是得看1337c0d3r的答案分析. 正统. 他让先看: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 他说这个是这道题的基础.</li>
@@ -629,32 +1013,76 @@
     
       <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
     
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/categories/Leetcode/"/>
     
   </entry>
   
   <entry>
-    <title><![CDATA[Leetcode 系统设计题目]]></title>
-    <link href="http://vlsi1217.github.io/2015/02/16/Leetcode/System/"/>
-    <id>http://vlsi1217.github.io/2015/02/16/Leetcode/System/</id>
+    <title><![CDATA[leetcode中学习recursion]]></title>
+    <link href="http://vlsi1217.github.io/2015/02/16/Leetcode/LeetcodeRecursion/"/>
+    <id>http://vlsi1217.github.io/2015/02/16/Leetcode/LeetcodeRecursion/</id>
     <published>2015-02-17T04:17:16.000Z</published>
-    <updated>2015-05-11T21:30:36.228Z</updated>
-    <content type="html"><![CDATA[<h2 id="20150306">20150306</h2><h3 id="Short_URL">Short URL</h3><ul>
-<li>参考N00t的设计</li>
+    <updated>2015-05-11T20:54:11.430Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<ul>
+<li>N00t大神的recursion出神入化</li>
+<li>LC中大量的recursion解法</li>
+<li>recursion的关键在于代码结构, 以及param/return.</li>
 </ul>
-<h3 id="Battlefield">Battlefield</h3><h3 id="Game_of_Life">Game of Life</h3><ul>
-<li>参考Holub书中的介绍以及UML</li>
+</blockquote>
+<h2 id="recursion的种类">recursion的种类</h2><h3 id="1-_简单的按照结构分的有">1. 简单的按照结构分的有</h3><h4 id="1个rec-_以及简单三明治关系-">1个rec. 以及简单三明治关系.</h4><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void <span class="keyword">rec</span><span class="literal">()</span>&#123;</span><br><span class="line">    codeTD;</span><br><span class="line">    <span class="keyword">rec</span><span class="literal">()</span>;</span><br><span class="line">    codeBU;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这里面的codeTD可以看作是walk DOWN the tree, codeBU理解为walk UP the tree.</li>
 </ul>
-<h3 id="Chess">Chess</h3><ul>
-<li>参考Github的UML</li>
+<h4 id="1个rec-_但是在for_loop里面的话,_会更有意思-">1个rec. 但是在for loop里面的话, 会更有意思.</h4><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void rec<span class="comment">()</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="comment">(lastRow)</span></span><br><span class="line">        res.add<span class="comment">(path + s)</span>;</span><br><span class="line">    for<span class="comment">(i = 1; i &lt; path.size()</span>; i++)&#123;</span><br><span class="line">        rec<span class="comment">(path.append, res)</span>;</span><br><span class="line">        path.delete;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这在restore IP的N00t的第一个解法中遇到.</li>
 </ul>
-<h3 id="Collaberative_Editor_(Google_doc)">Collaberative Editor (Google doc)</h3><ul>
-<li>参考isnowfy的设计<a href="http://www.isnowfy.com/collaborative-editor/" target="_blank" rel="external">Blog链接</a><br><img src="/images/Leetcode/google_doc.png" alt="google_doc"></li>
+<h4 id="1个recursion,_这次是在for_each()_括号里面-_更有意思啦">1个recursion, 这次是在for each() 括号里面. 更有意思啦</h4><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>&lt;<span class="type">List</span>&lt;?&gt; segmentRec(<span class="type">String</span> s) &#123;</span><br><span class="line">    // <span class="keyword">do</span> something</span><br><span class="line">    <span class="keyword">for</span> ( i ) &#123;</span><br><span class="line">        rest = s.substring(i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">List</span>&lt;?&gt; seg : segmentRec(rest)) &#123;</span><br><span class="line">            // <span class="keyword">do</span> something</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这个是在word segment里面用到.</li>
 </ul>
-<h3 id="Google_自动补全搜索">Google 自动补全搜索</h3><p>* </p>
-]]></content>
+<h4 id="2个连续rec_call-_有param,_有return">2个连续rec call. 有param, 有return</h4><h5 id="在triangle_Path_Sum中的N00t的第一个解法-">在triangle Path Sum中的N00t的第一个解法.</h5><ul>
+<li>注意这里的minSum既是recursion method的param, 又是param的返回值. 这在recursion中很常用. 可以记录在<strong>触底反弹</strong>的时候不断update这个值. </li>
+<li>因为rec有返回值, 而且复制给同一个var(minSum). 因为2个recursion的话, 第二个rec中的param会在第一个rec算完后update. 所以这一套组合拳就能在Traversal tree中不断update. 也就相当于brute force的找所有组合的极值. </li>
+</ul>
+<ul>
+<li>这就体现出recursion的意义: 有目的, 有结构的遍历符合规则的结构的所有path. 例如triangle Path Sum就是想要找DFS path的最小路径. 而不是随便一个乱序的路径. <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> DFS(a, <span class="keyword">sum</span>, minSum) &#123;</span><br><span class="line">  <span class="keyword">sum</span> += a;  <span class="comment">// walking down the tree.</span></span><br><span class="line">  <span class="keyword">if</span> (lastRow &amp;&amp; <span class="keyword">sum</span> &lt; minSum)  <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    minSum = DFS(a, <span class="keyword">sum</span>, minSum);  <span class="comment">// 注意这里的赋值是minSum, 而不是其他var name. 所以跟着的第二条recursion中的minSum才会update.</span></span><br><span class="line">    minSum = DFS(a, <span class="keyword">sum</span>, minSum);  <span class="comment">// 这里的minSum用于DFS的return.</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> minSum; <span class="comment">// walking up the tree.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="还有个很好的例子就是flatten_Binary_Tree的九章算法模版-">还有个很好的例子就是flatten Binary Tree的九章算法模版.</h5><ul>
+<li>recursion中有param不一定必须return. 主要修改就OK了. </li>
+<li>关键在于2个recursion的时候, 第二个recursion计算的root</li>
+</ul>
+<h5 id="还有很经典的是Maximum_Subarray的divid_and_conquer解法-">还有很经典的是Maximum Subarray的divid and conquer解法.</h5><ul>
+<li>2个连续的rec. 一个左子树, 一个右子树. 然后下面的code是向上走. 即合并的时候做的. 干什么呢? 自然是用来合并左右子树计算得到的结果. <a href="http://joycelearning.blogspot.com/2013/10/leetcode-maximum-subarray.html" target="_blank" rel="external">一天一学的Java</a>分析很到位.</li>
+</ul>
+<h4 id="2个不连续的rec_call-_中间有code-_注意N00t和programCreek的一点区别">2个不连续的rec call. 中间有code. 注意N00t和programCreek的一点区别</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node <span class="title">rec</span><span class="params">(l, h)</span> </span>&#123;</span><br><span class="line">  mid = lo + (hi-lo)/<span class="number">2</span>;</span><br><span class="line">  leftNode = rec(lo, mid-<span class="number">1</span>);</span><br><span class="line">  middleCode;</span><br><span class="line">  rightNode = rec(mid+<span class="number">1</span>, hi);</span><br><span class="line">  <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这在Sorted list to Binary Tree里面用到了.<h4 id="2个不连续的recur_call-_中间有code,_而且使用的return-">2个不连续的recur call. 中间有code, 而且使用的return.</h4></li>
+<li>经典案例: Recover Binary Search Tree —- N00t的方法. 这才是真正的使用in-order. 注意每一次的rec call里面的param都变化. 而不是像dummy in-order那样对称.<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> TreeNode inorder(TreeNode root, TreeNode[] nodes, TreeNode pre) &#123;  </span><br><span class="line">   <span class="keyword">if</span> (root == <span class="constant">null</span>) <span class="constant">return</span> pre;  </span><br><span class="line">  <span class="comment"> // left subtree  </span></span><br><span class="line">   TreeNode <span class="keyword">last</span> = inorder(root.left, nodes, pre);  </span><br><span class="line">  <span class="comment"> // visit  </span></span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">last</span> != <span class="constant">null</span> &amp;&amp; root.val &lt; <span class="keyword">last</span>.val) &#123;  </span><br><span class="line">    <span class="comment"> // some code</span></span><br><span class="line">   &#125;  </span><br><span class="line">  <span class="comment"> // right subtree  </span></span><br><span class="line">   <span class="constant">return</span> inorder(root.<span class="constant">right</span>, nodes, root);  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="3个rec_call,_中间有code,_有param,_有返回-">3个rec call, 中间有code, 有param, 有返回.</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DFS(tri, row, col, HashMap)&#123;</span><br><span class="line">    <span class="comment">// base condition</span></span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">    <span class="keyword">if</span>(Map.contains())</span><br><span class="line">        min+= Math.min(DFS(Hashmap), DFS(Hashmap));</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        min+= Math.min(map.get(), DFS(HashMap));</span><br><span class="line">    map.put(row, min);</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>在Triangle Path Sum的DFS recursion解法里面用到. 注意这里的Math.min()里面的第二个DFS的map已经在在第一个DFS中改变了.</li>
+<li>记住: java永远是call by value. <ul>
+<li>所以primitive 的话不会改变. 于是必须return. 所以在Triangle Path Sum中的第一个解法必须return, 然后第二个recursion的minSum才是改动过的.</li>
+<li>如果是object, call-by-value的是地址. 所以可以改动. 于是不需要return. 就如Triangle Path Sum里面的DFS解法的map. 这里的map是重复使用(update)的.</li>
+<li>其实这里就是段公子说的用HashMap来代替array保存DP结果更有通用性. array其实是最简单的HashMap, 即key是index, value则是a[i].</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="2-_按照DFS中使用的分">2. 按照DFS中使用的分</h3><blockquote>
+<ul>
+<li>根据<a href="http://leetcodesummary.blogspot.com/2013/10/leetcode-treerecursion.html" target="_blank" rel="external">leetcode summary的博客</a></li>
+<li>还有就是CS的关键: <strong>抽象抽象再抽象</strong>. 并不一定要真的是一个Tree放在那里让你traverse. 而是题目可以按照tree的结构分析分解和理解. 比如说word segment, word ladder, Graph, 乃至2-SAT-&gt;SCC. 等等.</li>
+</ul>
+</blockquote>
+<h4 id="例如NP问题:_Subsets_I/II">例如NP问题: Subsets I/II</h4><h4 id="NP问题:_Permutation_I/II">NP问题: Permutation I/II</h4>]]></content>
     <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
+    <![CDATA[Leetcode总结题型.]]>
     
     </summary>
     
@@ -669,10 +1097,10 @@
     <link href="http://vlsi1217.github.io/2015/02/16/Leetcode/Freq2/"/>
     <id>http://vlsi1217.github.io/2015/02/16/Leetcode/Freq2/</id>
     <published>2015-02-17T04:17:16.000Z</published>
-    <updated>2015-05-16T01:19:48.448Z</updated>
-    <content type="html"><![CDATA[<h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><ul>
-<li><h3 id="Lowest_Common_Ancestors_I/II:">Lowest Common Ancestors I/II:</h3><h4 id="I:_即没有parent的pointer怎么做?">I: 即没有parent的pointer怎么做?</h4></li>
-<li>这题不仅在九章算法课第二课里面讲了, 而且在<a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html" target="_blank" rel="external">1337文章link</a>也详细的解释了Bottom-up的意义. 我认为那个是设计思路. </li>
+    <updated>2015-05-22T17:31:13.062Z</updated>
+    <content type="html"><![CDATA[<h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><p>*</p>
+<h3 id="Lowest_Common_Ancestors_I/II:">Lowest Common Ancestors I/II:</h3><h4 id="I:_即没有parent的pointer怎么做?">I: 即没有parent的pointer怎么做?</h4><ul>
+<li>这题不仅在九章算法课第二课里面讲了, 而且在<a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html" target="_blank" rel="external">1337文章link</a>也详细的解释了Bottom-up的意义. 我认为那个是设计思路.</li>
 <li><p>先复习一下: top-down/bottom-up approach: <a href="http://www.meetqun.com/thread-2732-1-1.html" target="_blank" rel="external">TD/BU的区别-米群讨论</a>, 但是里面大牛的回答也不准确, DP的top-down/bottom-up和recursion没什么关系. 例如这里的LCA的Bottom-up就是recursion. 但是Scramble String的3D Bottom-up DP就是iteration. 那么在Bottom-up有什么好处呢? 在Binary Tree的BU解法中, 相对于Top-Down是</p>
 <blockquote>
 <p>avoiding traversing the same nodes over and over again.      —- 1337</p>
@@ -686,11 +1114,11 @@
 <ul>
 <li>而且这里很有意思的是Top down的LCA是recursion, 里面还调用countMatches这个小recursion.<ul>
 <li>这还是见得比较少的, 一般就是client调用helper recursion.</li>
-<li>照<a href="http://www.faceye.net/search/136311.html" target="_blank" rel="external">Tree总结</a>所总结的万金油方法, 不过这个表述没看明白, 原来是在<a href="http://www.cnblogs.com/leetcode/p/4003795.html" target="_blank" rel="external">cnblog symetric Tree</a>里面的分析的思路: <blockquote>
+<li>照<a href="http://www.faceye.net/search/136311.html" target="_blank" rel="external">Tree总结</a>所总结的万金油方法, 不过这个表述没看明白, 原来是在<a href="http://www.cnblogs.com/leetcode/p/4003795.html" target="_blank" rel="external">cnblog symetric Tree</a>里面的分析的思路:<blockquote>
 <ol>
 <li>top-down 还是 bottom-up.    选择top-down.        O(n^2)</li>
 <li>用递归. 是否需要内嵌小递归.   需要. 其实就是判定root的是否一样的小递归.</li>
-<li>逻辑运用小递归.  </li>
+<li>逻辑运用小递归.</li>
 </ol>
 </blockquote>
 </li>
@@ -714,7 +1142,7 @@
 <li>sum则是左右sum的最大值, 或者左右边最大值加上当前node.</li>
 </ul>
 </li>
-<li><p>由<a href="http://bangbingsyb.blogspot.com/2014/11/leetcode-binary-tree-maximum-path-sum.html" target="_blank" rel="external">嘻唰唰blog</a>题解里面分析的: 对于每一个node的Maximum Path Sum分2类: </p>
+<li><p>由<a href="http://bangbingsyb.blogspot.com/2014/11/leetcode-binary-tree-maximum-path-sum.html" target="_blank" rel="external">嘻唰唰blog</a>题解里面分析的: 对于每一个node的Maximum Path Sum分2类:</p>
 <blockquote>
 <ol>
 <li>single path是指由该node出发向leaf的第一类path中最大的path sum</li>
@@ -751,7 +1179,7 @@
 <li>注意这里的最后一步就是Concatenation bucket到原array的时候有3个var, 不要搞混了.</li>
 </ul>
 </li>
-<li>注意ganker的内循环判定的条件是<code>A[i] != A[A[i]-1]</code>. 而且最后要<code>i--</code>. 为什么不能换成<code>A[i] != i+1</code>. <ul>
+<li>注意ganker的内循环判定的条件是<code>A[i] != A[A[i]-1]</code>. 而且最后要<code>i--</code>. 为什么不能换成<code>A[i] != i+1</code>.<ul>
 <li>因为若是换成直接判断A[i]!=i+1的话, 则会导致在重复字符的情况下出现死循环.</li>
 <li>之所以i—. 是因为交换完之后不一定是正确的. 例如{3,1,2}一开始的3,2交换为2,3后, 2并不是正确位置. 所以再判断2,1并交换才对.</li>
 <li>所以Ganker说这道题目很简单, 但其中包含的算法思想和编程基础很适合面试!</li>
@@ -762,10 +1190,10 @@
 <li>Google考过, 见<a href="http://www.mitbbs.com/article_t/JobHunting/32107851.html" target="_blank" rel="external">MITBBS 2012年帖子</a></li>
 <li>先理解这个Scramble是什么意思: <code>s1 = &quot;great&quot;, s2 = &quot;rtgae&quot;;</code>就不是有效的. 注意要求是</li>
 <li>这道题目可以用recursion, 更可以用DP. 是一道经典的3D DP. 但正如段公子所说: DP table可以用array也可以用HashMap, 可见武大csdn的hashmap解法. 但是觉得这个和N00t的backtracking差不多? 看看九章算法主页君的就搞懂了, 其实不一样.</li>
-<li><p>参考的: </p>
+<li><p>参考的:</p>
 <ul>
 <li><a href="http://blog.csdn.net/fightforyourdream/article/details/17707187" target="_blank" rel="external">fightforyourdream的recursion+DP</a>.</li>
-<li><a href="http://blog.csdn.net/whuwangyi/article/details/14105063" target="_blank" rel="external">武大CSDN的Hashmap动态规划</a>, </li>
+<li><a href="http://blog.csdn.net/whuwangyi/article/details/14105063" target="_blank" rel="external">武大CSDN的Hashmap动态规划</a>,</li>
 <li><a href="http://blog.unieagle.net/2012/10/23/leetcode%E9%A2%98%E7%9B%AE%EF%BC%9Ascramble-string%EF%BC%8C%E4%B8%89%E7%BB%B4%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" target="_blank" rel="external">Unieagele解题博客的3D动归</a></li>
 <li><p><a href="http://www.cnblogs.com/yuzhangcmu/p/4189152.html" target="_blank" rel="external">九章算法主页君—CMUyu</a></p>
 <ul>
@@ -788,7 +1216,7 @@
 </ul>
 </li>
 <li>水中的鱼的recursion, 他的剪枝很好, 可以AC. 而N00t的原始的recursion(即brute-force的剪枝仅仅比较s1,s2的长度, 是很低效率的, 所以过不了).</li>
-<li>N00t的递归, DP (bottom-up) 就是iteration, 而LCA的DP (bottom-up)则是recursion. 那么这个是怎么想出来的呢: <blockquote>
+<li>N00t的递归, DP (bottom-up) 就是iteration, 而LCA的DP (bottom-up)则是recursion. 那么这个是怎么想出来的呢:<blockquote>
 <ul>
 <li>先理解递归是怎么做的: 从大到小substr判断. 即切割成substructure/subproblem.</li>
 <li>For each pair of (n-1)-char-long substrings of the two strings, are they scramble to each other?</li>
@@ -809,9 +1237,9 @@
 </blockquote>
 <h4 id="方法1:_recursion">方法1: recursion</h4><ul>
 <li>当然, 最好先从简单的做法入手, 先有个做对的方法: recursion是DP的前提. 或者说有了递归的思路就好想出来DP了.<ul>
-<li>对于在recursion call里面处理下一个substring的话, 即修改index, 有2种方法. <ol>
+<li>对于在recursion call里面处理下一个substring的话, 即修改index, 有2种方法.<ol>
 <li>例如remove duplicate from string, 因为简单的赋值. 所以res[j++] = s[i++];</li>
-<li>在N00t的recursive call里面, 因为一句话里面有2个地方用到i,k. eg: <code>s1[i] == s3[k] &amp;&amp; isInterleave(s1, s2, s3, i+1, j, k+1)</code>. 我一开始是用++i, j++. 这样很容易弄混. 直接干脆用<code>i+1</code>. </li>
+<li>在N00t的recursive call里面, 因为一句话里面有2个地方用到i,k. eg: <code>s1[i] == s3[k] &amp;&amp; isInterleave(s1, s2, s3, i+1, j, k+1)</code>. 我一开始是用++i, j++. 这样很容易弄混. 直接干脆用<code>i+1</code>.</li>
 <li>总结一下: 如果是简单的method call, 可以使用<code>++i; j++</code>. 不过长一点的statement还是不要弄晕自己, 代码最好不要依赖于statement的顺序, 所以还是原始的<code>i+1</code>.</li>
 </ol>
 </li>
@@ -824,7 +1252,7 @@
 <li>首先是边界条件, 或者说base case的设计: 有个trick, 每次遇到string的DP, 都要增加一个空位. 表示s1, s2都不取的情况. 所以Opt[0][0] = true. 这里参考的<a href="http://blog.csdn.net/u011095253/article/details/9248073" target="_blank" rel="external">popfish的算法路blog画的2D 打表图示</a>. 我一开始做的时候, 在打1st row和1st col的时候直接就是比较substring了. 但是结果不对. 为什么呢: 因为substring没用对.<ul>
 <li>有2点关于substring要注意<ol>
 <li>substring上界是开区间. 所以<code>substring(0,0)</code>是<code>&quot;&quot;</code>, (0,1)才相当于<code>charAt(0)</code>.</li>
-<li>刚发现: <code>&quot;n&quot;==&quot;n&quot;</code>是true, 但是<code>&quot;ni&quot;.substring(0,1)==&quot;no&quot;.substring(0,1)</code>居然是<strong>false</strong>! 刚查了<a href="http://stackoverflow.com/a/513839" target="_blank" rel="external">SOF: how to compare string</a>, 以及<a href="http://stackoverflow.com/questions/3297867/difference-between-string-object-and-string-literal" target="_blank" rel="external">SOF: string object vs string literal</a>, 才知道: <blockquote>
+<li>刚发现: <code>&quot;n&quot;==&quot;n&quot;</code>是true, 但是<code>&quot;ni&quot;.substring(0,1)==&quot;no&quot;.substring(0,1)</code>居然是<strong>false</strong>! 刚查了<a href="http://stackoverflow.com/a/513839" target="_blank" rel="external">SOF: how to compare string</a>, 以及<a href="http://stackoverflow.com/questions/3297867/difference-between-string-object-and-string-literal" target="_blank" rel="external">SOF: string object vs string literal</a>, 才知道:<blockquote>
 <p><del><strong>Java的<code>==</code>比较<em>string</em>的时候比较的是reference, 而不是value!</strong>.</del> 应该说: Java 的 “==”比较object的时候, 是看是否为同一个reference.<br>所以2个substring的reference不同, 当然就是false!</p>
 </blockquote>
 </li>
@@ -845,9 +1273,9 @@
 </li>
 <li>因为外层循环maxWord, 内层循环minWord. 所以1st row可以单独初始化. 而1st col, 即maxWord的interleave的base caseze’y则要在外层循环中初始化. 而将minWord放在内层循环upodate可以节省DP表空间.</li>
 <li>最关键的在于递推式现在怎么样勒?<ul>
-<li>我一开始就搞错了. 一定要注意: 1D其实就是2D压缩而来的. 所以就是2D的简化版. 所以要和2D的递推式紧密联合起来想. </li>
-<li>2D的递推式: <code>opt[i+1][j+1] = opt[i][j+1] &amp;&amp; s1[i] 或者 opt[i+1][j] &amp;&amp; s2[j]</code>. 所以<code>opt[j+1]</code>和上一层或者左边有关: <code>opt[j+1] = opt[j+1] &amp;&amp; maxWord[i] 或者 opt[j] &amp;&amp; minWord[j]</code>. 关键在于搞清楚现在上一层和左边需要的char是哪一个. 注意这里的j是横轴啊! <ul>
-<li>所以2d里面的左边, 即opt[i][j+1]则相当于1d里面的(opt[j])就是由2d里面的s1(横着的string). </li>
+<li>我一开始就搞错了. 一定要注意: 1D其实就是2D压缩而来的. 所以就是2D的简化版. 所以要和2D的递推式紧密联合起来想.</li>
+<li>2D的递推式: <code>opt[i+1][j+1] = opt[i][j+1] &amp;&amp; s1[i] 或者 opt[i+1][j] &amp;&amp; s2[j]</code>. 所以<code>opt[j+1]</code>和上一层或者左边有关: <code>opt[j+1] = opt[j+1] &amp;&amp; maxWord[i] 或者 opt[j] &amp;&amp; minWord[j]</code>. 关键在于搞清楚现在上一层和左边需要的char是哪一个. 注意这里的j是横轴啊!<ul>
+<li>所以2d里面的左边, 即opt[i][j+1]则相当于1d里面的(opt[j])就是由2d里面的s1(横着的string).</li>
 <li>而j+1, 就是相当于2D里面的上一层, 即相当于opt[i+1][j]. 所以是和2d里面的s2(竖着的string), 所以是maxWord的char.</li>
 </ul>
 </li>
@@ -866,18 +1294,18 @@
 </li>
 </ul>
 <h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><h3 id="Permutations_I/II">Permutations I/II</h3><ul>
-<li>NP问题的做法基本都是用Backtracking. 想象这里和Combination有什么区别呢? <ul>
-<li>Ans: 这里子问题的条件变化了. Combination里面是helper(,i+1,). 这里是每次在loop里面使能used[i] = true, helper(used[i]). 这样就能缩小到下一个子问题. </li>
+<li>NP问题的做法基本都是用Backtracking. 想象这里和Combination有什么区别呢?<ul>
+<li>Ans: 这里子问题的条件变化了. Combination里面是helper(,i+1,). 这里是每次在loop里面使能used[i] = true, helper(used[i]). 这样就能缩小到下一个子问题.</li>
 <li>这很重要. 因为recursion就是要一步步进入子问题, 解决, 跳出递归, 到保存到stack的以前的现场. 所以ganker也强调了这里要在helper()后面恢复现场, 即list.remove(list.size()-1), 以及初始化used[i]. 即used[i] = false.</li>
 </ul>
 </li>
-<li>II就是加入了一个条件: 如果是{1,2,1} 呢? 要避免112, 112出现2次的情况, 就要在dfs之前先判断是否和上一个num重复(**因为num已经sort过了). </li>
+<li>II就是加入了一个条件: 如果是{1,2,1} 呢? 要避免112, 112出现2次的情况, 就要在dfs之前先判断是否和上一个num重复(**因为num已经sort过了).</li>
 <li><a href="http://blog.csdn.net/linhuanmars/article/details/21569031" target="_blank" rel="external">评论的一个follow up: link</a>. 其实很简单, 也是加入一个判断是否和上一个item里面最后一个数相等, 若是就continue.</li>
 </ul>
 <h3 id="Rotate_Image">Rotate Image</h3><h3 id="Text_Justification">Text Justification</h3><ul>
-<li>考察基本功的好题目, 注意题目的各个细节. 参考的ganker的解. <ol>
-<li>什么是last呢? 即本行的开头, 什么是i呢?下行的开头. 什么是i-last-1呢? 就是该行的间隔个数. 例如该行如果可以放5个单词, 开头的last是4, 下一行开头是9. 那么9-1就是该行的结尾, 9-1-4既是该行有4个间隔. </li>
-<li>为什么下一步循环的时候判断<code>if(j&lt;i-1)</code>呢? 这很好理解, 因为分配<code>\b</code>只跟间隔有关, end的词在一行只有一个词的时候才要pad空格. </li>
+<li>考察基本功的好题目, 注意题目的各个细节. 参考的ganker的解.<ol>
+<li>什么是last呢? 即本行的开头, 什么是i呢?下行的开头. 什么是i-last-1呢? 就是该行的间隔个数. 例如该行如果可以放5个单词, 开头的last是4, 下一行开头是9. 那么9-1就是该行的结尾, 9-1-4既是该行有4个间隔.</li>
+<li>为什么下一步循环的时候判断<code>if(j&lt;i-1)</code>呢? 这很好理解, 因为分配<code>\b</code>只跟间隔有关, end的词在一行只有一个词的时候才要pad空格.</li>
 <li>上面2这个if语句里面最后的extraNum—是什么意思呢? 注意题目要求是尽量平均分配. 所以多余的就从start开始的间隔每个+1. 注意这里的extraNum是%间隔数. 所以最多的情况是每一个间隔的空格都加1个. 否则就是靠左的间隔s分到一个extra的空格.<blockquote>
 <p>“Extra spaces between words should be distributed as evenly as possible.”</p>
 </blockquote>
@@ -888,19 +1316,18 @@
 <h3 id="Sort_Colors">Sort Colors</h3><ul>
 <li>其实就是counting sort. 拓展题就是如何压缩, 如何返回最长连续char及其个数.</li>
 <li>follow up: 如何使用O(1)的空间来做? 而且O(n)的time? N00t和Ganker都是用的双指针. 好聪明, 怎么想到的?<ul>
-<li>最主要还是和reverse Nodes k-group的思想一样, 想好invarient. 可以这样想. 如果sort的colors只有0,1. 那么就只要一个pointer0, 然后i一个一个往下走, 如果遇到了0, 就赋值, pionter0++. 相当于swap的操作. </li>
+<li>最主要还是和reverse Nodes k-group的思想一样, 想好invarient. 可以这样想. 如果sort的colors只有0,1. 那么就只要一个pointer0, 然后i一个一个往下走, 如果遇到了0, 就赋值, pionter0++. 相当于swap的操作.</li>
 <li>现在可以看看有3个colors: 0,1,2的话怎么用pointers呢? ans: 就用2个pointers: p0, p1. 遇到0就赋值, p0++, p1++. 遇到1就赋值, p1++. 为什么这个时候p0不改变呢? 因为??????</li>
 </ul>
 </li>
 </ul>
 <h3 id="Minimum_Window_Substring">Minimum Window Substring</h3><ul>
-<li>先去复习longest non-repeated substring和Concatenation (freq1), 因为方法都一样: <blockquote>
+<li>先去复习longest non-repeated substring和Concatenation (freq1), 因为方法都一样:<blockquote>
 <p>建立一个字典，然后维护一个窗口</p>
 </blockquote>
 </li>
 <li>都是substring match 字典. 这一点类似的还有Word break(Ganker的DP解)</li>
-<li>看了N00t的Concatenation里面讲了原来双指针窗口法<del>原来就是KMP</del>(并不是KMP).不过KMP, BM, KR都很重要.</li>
-<li></li>
+<li>看了N00t的Concatenation里面讲了原来双指针窗口法<del>原来就是KMP</del>(并不是KMP).不过KMP, BM, KR都很重要.<br>-</li>
 </ul>
 <h3 id="Gray_Code">Gray Code</h3><ul>
 <li>使用的方法就是ASIC里面介绍的方法. 有意思. 感觉KMP也是FSM.</li>
@@ -908,16 +1335,16 @@
 </ul>
 <h3 id="Subsets_I/II">Subsets I/II</h3><ul>
 <li>还是Permutation/Combination这种NP问题的解法: backtracking. 只是有一点点区别: 在处理加入的元素时要去掉一些不符合条件的.</li>
-<li>很好的题目, 再次加深理解Recursion, 不仅仅是像我在<a href="https://www.zybuluo.com/mdeditor#80599" target="_blank" rel="external">LC中学习Recursion</a>那样还停留在Recursion代码之前, 之后的代码的意义. 而是要深入理解Recursion思维的想法和设计. <ul>
+<li>很好的题目, 再次加深理解Recursion, 不仅仅是像我在<a href="https://www.zybuluo.com/mdeditor#80599" target="_blank" rel="external">LC中学习Recursion</a>那样还停留在Recursion代码之前, 之后的代码的意义. 而是要深入理解Recursion思维的想法和设计.<ul>
 <li>recursion里面, subset加入的顺序是怎么样的? 如何保证 non-descending order? Ans: 其实就是对自己设计的recursion要理解, 只到recursion的顺序就ok了. 因为Ganker的rec是从3,2,1,0,-1 递减的call. 而N00t则是0,1,2,4递增的call. 所以顺序不同. 具体的trace可以参考P533-Algs4-DFS.</li>
-<li>还有就是为什么N00t的输出是从[3], [2]开始, 而Ganker的则是从[1], [1,2]开始. 这是因为base case 的判断的区别, 以及recur进入下一层子问题的顺序是递增还是递减. 这很有意思. 要thinking in recursion. </li>
+<li>还有就是为什么N00t的输出是从[3], [2]开始, 而Ganker的则是从[1], [1,2]开始. 这是因为base case 的判断的区别, 以及recur进入下一层子问题的顺序是递增还是递减. 这很有意思. 要thinking in recursion.</li>
 </ul>
 </li>
 </ul>
 <h2 id="20141225">20141225</h2><h3 id="Path_Sum_I/II">Path Sum I/II</h3><ul>
 <li>树的题目很常见, 但是方法都类似: recursion.</li>
 <li>问题也很常见: I一般就是问是否存在解. II一般是求所有解的集合.</li>
-<li>正是这道题目, N00t讲了Java的call by value对于object来说是copy他的handler, 即reference, 所以将来的改变会对之前add的reference改变, 也就改变了最终的结果: <blockquote>
+<li>正是这道题目, N00t讲了Java的call by value对于object来说是copy他的handler, 即reference, 所以将来的改变会对之前add的reference改变, 也就改变了最终的结果:<blockquote>
 <ul>
 <li>Notice that we make a copy of the path before we added it to our result set. The reason is that when we add an Object (here, an ArrayList), Java add a copy of the pointer (i.e. a reference) of the Object, rather than a deep copy. So, <strong>any changes to content</strong> of the original Object will reflect into our final result set.</li>
 </ul>
@@ -930,7 +1357,7 @@
 </ul>
 <h3 id="Longest_Substring_Without_Repeating_Characters">Longest Substring Without Repeating Characters</h3><ul>
 <li>N00t的方法是hashmap+start/end2个pointer的移动, 注意N00t只要判断当前的char是不是在当前substring中, 才update. 考虑到返回所有这种substring的问题. 我的思路是记录longest的start, 这样因为maxlength是返回值. 所以substring就可以解决. 但是有点小问题.</li>
-<li>Ganker则是使用的walker/runner 双指针法. 或者说: 窗口法来处理这一类的string问题. 还归了类. 一开始没理解为什么是while(charAt(w)!=charAt(r)). 想到了一个好例子: “xyb12b02”. 走了一遍理解了. 本来给的例子: “abcabcbb”并不好. 因为W=R都是连续的, 没看到while不等的情况. 所以有时候要多举几个case. 但不是随便举. 而是想上面那个case那样第一个重复的’b’并不是第一个字母. <ul>
+<li>Ganker则是使用的walker/runner 双指针法. 或者说: 窗口法来处理这一类的string问题. 还归了类. 一开始没理解为什么是while(charAt(w)!=charAt(r)). 想到了一个好例子: “xyb12b02”. 走了一遍理解了. 本来给的例子: “abcabcbb”并不好. 因为W=R都是连续的, 没看到while不等的情况. 所以有时候要多举几个case. 但不是随便举. 而是想上面那个case那样第一个重复的’b’并不是第一个字母.<ul>
 <li>扩展的题目有Substring with Concatenation of All Words，Minimum Window Substring，思路是非常接近的，只是操作上会更加繁琐一些。</li>
 </ul>
 </li>
@@ -941,14 +1368,14 @@
 <li>思路参考的<a href="">SOF上面的recursion</a>.</li>
 </ul>
 <h3 id="Container_With_Most_Water">Container With Most Water</h3><h3 id="Jump_Game">Jump Game</h3><ul>
-<li>经典的DP和Greedy问题. 段公子在DP/recursion里面讲了. </li>
+<li>经典的DP和Greedy问题. 段公子在DP/recursion里面讲了.</li>
 <li>第二题的想法在N00t和Ganker之间有区别. 可以加深理解. 也确实想了好久才明白他们的code.</li>
 <li>Ganker的评论里面又一个记录path的方法, 这样可以返回最少jump的path. 总而言之, 也是一个DP的方法. DP还是Greedy? 傻傻分不清. 还要回头<strong>复习一下贪新算法</strong>: MST.</li>
 </ul>
 <h3 id="3Sum/4Sum">3Sum/4Sum</h3><ul>
 <li>主要参考N00t和Ganker的解法. 但其实可以结合HashSet来做4Sum. 更简单.</li>
 <li>注意这里面的设计, 如何避免重复. 所以要sort. 通常的解法是夹逼法则. for loop循环3-2或者4-2个头, 然后剩下2个index可以用left/right来夹逼.</li>
-<li>注意这里正确的使用了do…while. </li>
+<li>注意这里正确的使用了do…while.</li>
 <li>Binary search的合理使用. 一般不会直接写一个binary search. 但是这里夹逼自然是binary search好用. O(n)-&gt;O(lgn)</li>
 </ul>
 <h3 id="Spiral_Matrix_I/II">Spiral Matrix I/II</h3><ul>
@@ -956,7 +1383,7 @@
 <li>Hello WOrld</li>
 </ul>
 <h3 id="Recover_Binary_Search_Tree">Recover Binary Search Tree</h3><ul>
-<li><p>再次加深了对Recursion的理解. 2个不连续的recursion. 而且param还不对称, N00t的recursion写的真好. N00t的方法也很好. </p>
+<li><p>再次加深了对Recursion的理解. 2个不连续的recursion. 而且param还不对称, N00t的recursion写的真好. N00t的方法也很好.</p>
 <h3 id="Distinct_Subsequences">Distinct Subsequences</h3><blockquote>
 <p>+When you see string problem that is about subsequence or matching, dynamic programming method should come to your mind naturally. —-by <a href="http://www.cnblogs.com/springfor/p/3896152.html" target="_blank" rel="external">link</a></p>
 </blockquote>
@@ -967,27 +1394,27 @@
 </li>
 </ul>
 <h2 id="20141223">20141223</h2><h3 id="Plus_One">Plus One</h3><ul>
-<li>这是一道简单题. N00t给出了他的扩展题: plus int. </li>
+<li>这是一道简单题. N00t给出了他的扩展题: plus int.</li>
 <li>Ganker说他在Google店面的时候就问了这题. 因为适合扩展和OOD的设计.<h3 id="Symmetric_Tree">Symmetric Tree</h3></li>
-<li>Ganker是简单的recursion和iteration. 注意这里判断是否对称的条件: 空的情况, 有值的情况. 注意不用判断值相等. 为什么? 因为helper是recursion, 要找到结束得点. 而值相等可以继续走下去. 而都为空就可以直接返回true. 因为走不下去了. 这里也明显的看出iteration为什么会繁琐. </li>
+<li>Ganker是简单的recursion和iteration. 注意这里判断是否对称的条件: 空的情况, 有值的情况. 注意不用判断值相等. 为什么? 因为helper是recursion, 要找到结束得点. 而值相等可以继续走下去. 而都为空就可以直接返回true. 因为走不下去了. 这里也明显的看出iteration为什么会繁琐.</li>
 <li>N00t使用的一种stl数据结构: ArrayDeque. 其他思路和Ganker是一样的.</li>
 </ul>
 <h3 id="Balanced_Binary_Tree">Balanced Binary Tree</h3><h3 id="Palindrome_Number">Palindrome Number</h3><ul>
-<li>和Freq3的PalindromeDPDP类似. </li>
+<li>和Freq3的PalindromeDPDP类似.</li>
 <li>这里的比较2end不能用pointer了. 因为不是string. 这里有2个方法. 用一个div(不断变化). 本质还是loop里面update为指向对称的end points.</li>
 <li>或者是1337里面的第三个方法: 用一个stack.</li>
 </ul>
 <h3 id="Search_Insert_Position">Search Insert Position</h3><ul>
-<li>在freq3里面已经做过 </li>
+<li>在freq3里面已经做过</li>
 </ul>
 <h3 id="Valid_Sudoku">Valid Sudoku</h3><ul>
 <li>巧妙使用<code>i/3*3</code>和<code>i%3*3</code>. 以及API的设计</li>
 </ul>
 <h3 id="SOlve_Sudoku">SOlve Sudoku</h3><ul>
-<li>加深理解循环递归. 觉得比NP的N-Queens更重要. 这里的设计是很重要的模版. </li>
+<li>加深理解循环递归. 觉得比NP的N-Queens更重要. 这里的设计是很重要的模版.</li>
 </ul>
 <h3 id="Count_and_Say">Count and Say</h3><ul>
-<li>String的小题目. 一定要bug free. </li>
+<li>String的小题目. 一定要bug free.</li>
 <li>题目居然没看懂. 还是看了<a href="http://blog.csdn.net/fightforyourdream/article/details/12901505" target="_blank" rel="external">CSDN上面FightForDream的帖子</a>才搞明白什么意思.<h3 id="Remove_Duplicates_from_Sorted_Array_I/II">Remove Duplicates from Sorted Array I/II</h3></li>
 <li>好在我回顾了这道题目. 发现N00t的思路太不好了, 很容易错, 而且扩展不了. 实际上有string, 有比较的时候就用pointer就好了. 而且这里还是in-place. 就算是II, 也只要多加一个变量cnt来看当前有几次重复元素.</li>
 <li>所以Ganker的方法远胜于N00t. 也保证了这种简单题目的清晰思路和bug-free. 就是通过</li>
@@ -1207,7 +1634,7 @@
     
       <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
     
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/categories/Leetcode/"/>
     
   </entry>
   
@@ -1253,6 +1680,37 @@
       <category term="POJ" scheme="http://vlsi1217.github.io/tags/POJ/"/>
     
       <category term="OA" scheme="http://vlsi1217.github.io/categories/OA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Leetcode 系统设计题目]]></title>
+    <link href="http://vlsi1217.github.io/2015/02/16/Leetcode/System/"/>
+    <id>http://vlsi1217.github.io/2015/02/16/Leetcode/System/</id>
+    <published>2015-02-17T04:17:16.000Z</published>
+    <updated>2015-05-11T21:30:36.228Z</updated>
+    <content type="html"><![CDATA[<h2 id="20150306">20150306</h2><h3 id="Short_URL">Short URL</h3><ul>
+<li>参考N00t的设计</li>
+</ul>
+<h3 id="Battlefield">Battlefield</h3><h3 id="Game_of_Life">Game of Life</h3><ul>
+<li>参考Holub书中的介绍以及UML</li>
+</ul>
+<h3 id="Chess">Chess</h3><ul>
+<li>参考Github的UML</li>
+</ul>
+<h3 id="Collaberative_Editor_(Google_doc)">Collaberative Editor (Google doc)</h3><ul>
+<li>参考isnowfy的设计<a href="http://www.isnowfy.com/collaborative-editor/" target="_blank" rel="external">Blog链接</a><br><img src="/images/Leetcode/google_doc.png" alt="google_doc"></li>
+</ul>
+<h3 id="Google_自动补全搜索">Google 自动补全搜索</h3><p>* </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
+    
+    </summary>
+    
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
     
   </entry>
   
@@ -1350,86 +1808,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[leetcode中学习recursion]]></title>
-    <link href="http://vlsi1217.github.io/2015/02/16/Leetcode/LeetcodeRecursion/"/>
-    <id>http://vlsi1217.github.io/2015/02/16/Leetcode/LeetcodeRecursion/</id>
-    <published>2015-02-17T04:17:16.000Z</published>
-    <updated>2015-05-11T20:54:11.430Z</updated>
-    <content type="html"><![CDATA[<blockquote>
-<ul>
-<li>N00t大神的recursion出神入化</li>
-<li>LC中大量的recursion解法</li>
-<li>recursion的关键在于代码结构, 以及param/return.</li>
-</ul>
-</blockquote>
-<h2 id="recursion的种类">recursion的种类</h2><h3 id="1-_简单的按照结构分的有">1. 简单的按照结构分的有</h3><h4 id="1个rec-_以及简单三明治关系-">1个rec. 以及简单三明治关系.</h4><figure class="highlight ocaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void <span class="keyword">rec</span><span class="literal">()</span>&#123;</span><br><span class="line">    codeTD;</span><br><span class="line">    <span class="keyword">rec</span><span class="literal">()</span>;</span><br><span class="line">    codeBU;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这里面的codeTD可以看作是walk DOWN the tree, codeBU理解为walk UP the tree.</li>
-</ul>
-<h4 id="1个rec-_但是在for_loop里面的话,_会更有意思-">1个rec. 但是在for loop里面的话, 会更有意思.</h4><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">void rec<span class="comment">()</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> <span class="comment">(lastRow)</span></span><br><span class="line">        res.add<span class="comment">(path + s)</span>;</span><br><span class="line">    for<span class="comment">(i = 1; i &lt; path.size()</span>; i++)&#123;</span><br><span class="line">        rec<span class="comment">(path.append, res)</span>;</span><br><span class="line">        path.delete;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这在restore IP的N00t的第一个解法中遇到.</li>
-</ul>
-<h4 id="1个recursion,_这次是在for_each()_括号里面-_更有意思啦">1个recursion, 这次是在for each() 括号里面. 更有意思啦</h4><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">List</span>&lt;<span class="type">List</span>&lt;?&gt; segmentRec(<span class="type">String</span> s) &#123;</span><br><span class="line">    // <span class="keyword">do</span> something</span><br><span class="line">    <span class="keyword">for</span> ( i ) &#123;</span><br><span class="line">        rest = s.substring(i)</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">List</span>&lt;?&gt; seg : segmentRec(rest)) &#123;</span><br><span class="line">            // <span class="keyword">do</span> something</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">result</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这个是在word segment里面用到.</li>
-</ul>
-<h4 id="2个连续rec_call-_有param,_有return">2个连续rec call. 有param, 有return</h4><h5 id="在triangle_Path_Sum中的N00t的第一个解法-">在triangle Path Sum中的N00t的第一个解法.</h5><ul>
-<li>注意这里的minSum既是recursion method的param, 又是param的返回值. 这在recursion中很常用. 可以记录在<strong>触底反弹</strong>的时候不断update这个值. </li>
-<li>因为rec有返回值, 而且复制给同一个var(minSum). 因为2个recursion的话, 第二个rec中的param会在第一个rec算完后update. 所以这一套组合拳就能在Traversal tree中不断update. 也就相当于brute force的找所有组合的极值. </li>
-</ul>
-<ul>
-<li>这就体现出recursion的意义: 有目的, 有结构的遍历符合规则的结构的所有path. 例如triangle Path Sum就是想要找DFS path的最小路径. 而不是随便一个乱序的路径. <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> DFS(a, <span class="keyword">sum</span>, minSum) &#123;</span><br><span class="line">  <span class="keyword">sum</span> += a;  <span class="comment">// walking down the tree.</span></span><br><span class="line">  <span class="keyword">if</span> (lastRow &amp;&amp; <span class="keyword">sum</span> &lt; minSum)  <span class="keyword">return</span> <span class="keyword">sum</span>;</span><br><span class="line">  <span class="keyword">else</span> &#123;</span><br><span class="line">    minSum = DFS(a, <span class="keyword">sum</span>, minSum);  <span class="comment">// 注意这里的赋值是minSum, 而不是其他var name. 所以跟着的第二条recursion中的minSum才会update.</span></span><br><span class="line">    minSum = DFS(a, <span class="keyword">sum</span>, minSum);  <span class="comment">// 这里的minSum用于DFS的return.</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> minSum; <span class="comment">// walking up the tree.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h5 id="还有个很好的例子就是flatten_Binary_Tree的九章算法模版-">还有个很好的例子就是flatten Binary Tree的九章算法模版.</h5><ul>
-<li>recursion中有param不一定必须return. 主要修改就OK了. </li>
-<li>关键在于2个recursion的时候, 第二个recursion计算的root</li>
-</ul>
-<h5 id="还有很经典的是Maximum_Subarray的divid_and_conquer解法-">还有很经典的是Maximum Subarray的divid and conquer解法.</h5><ul>
-<li>2个连续的rec. 一个左子树, 一个右子树. 然后下面的code是向上走. 即合并的时候做的. 干什么呢? 自然是用来合并左右子树计算得到的结果. <a href="http://joycelearning.blogspot.com/2013/10/leetcode-maximum-subarray.html" target="_blank" rel="external">一天一学的Java</a>分析很到位.</li>
-</ul>
-<h4 id="2个不连续的rec_call-_中间有code-_注意N00t和programCreek的一点区别">2个不连续的rec call. 中间有code. 注意N00t和programCreek的一点区别</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node <span class="title">rec</span><span class="params">(l, h)</span> </span>&#123;</span><br><span class="line">  mid = lo + (hi-lo)/<span class="number">2</span>;</span><br><span class="line">  leftNode = rec(lo, mid-<span class="number">1</span>);</span><br><span class="line">  middleCode;</span><br><span class="line">  rightNode = rec(mid+<span class="number">1</span>, hi);</span><br><span class="line">  <span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>这在Sorted list to Binary Tree里面用到了.<h4 id="2个不连续的recur_call-_中间有code,_而且使用的return-">2个不连续的recur call. 中间有code, 而且使用的return.</h4></li>
-<li>经典案例: Recover Binary Search Tree —- N00t的方法. 这才是真正的使用in-order. 注意每一次的rec call里面的param都变化. 而不是像dummy in-order那样对称.<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> TreeNode inorder(TreeNode root, TreeNode[] nodes, TreeNode pre) &#123;  </span><br><span class="line">   <span class="keyword">if</span> (root == <span class="constant">null</span>) <span class="constant">return</span> pre;  </span><br><span class="line">  <span class="comment"> // left subtree  </span></span><br><span class="line">   TreeNode <span class="keyword">last</span> = inorder(root.left, nodes, pre);  </span><br><span class="line">  <span class="comment"> // visit  </span></span><br><span class="line">   <span class="keyword">if</span> (<span class="keyword">last</span> != <span class="constant">null</span> &amp;&amp; root.val &lt; <span class="keyword">last</span>.val) &#123;  </span><br><span class="line">    <span class="comment"> // some code</span></span><br><span class="line">   &#125;  </span><br><span class="line">  <span class="comment"> // right subtree  </span></span><br><span class="line">   <span class="constant">return</span> inorder(root.<span class="constant">right</span>, nodes, root);  </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="3个rec_call,_中间有code,_有param,_有返回-">3个rec call, 中间有code, 有param, 有返回.</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DFS(tri, row, col, HashMap)&#123;</span><br><span class="line">    <span class="comment">// base condition</span></span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">    <span class="keyword">if</span>(Map.contains())</span><br><span class="line">        min+= Math.min(DFS(Hashmap), DFS(Hashmap));</span><br><span class="line">    <span class="keyword">else</span> </span><br><span class="line">        min+= Math.min(map.get(), DFS(HashMap));</span><br><span class="line">    map.put(row, min);</span><br><span class="line">    <span class="keyword">return</span> min;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>在Triangle Path Sum的DFS recursion解法里面用到. 注意这里的Math.min()里面的第二个DFS的map已经在在第一个DFS中改变了.</li>
-<li>记住: java永远是call by value. <ul>
-<li>所以primitive 的话不会改变. 于是必须return. 所以在Triangle Path Sum中的第一个解法必须return, 然后第二个recursion的minSum才是改动过的.</li>
-<li>如果是object, call-by-value的是地址. 所以可以改动. 于是不需要return. 就如Triangle Path Sum里面的DFS解法的map. 这里的map是重复使用(update)的.</li>
-<li>其实这里就是段公子说的用HashMap来代替array保存DP结果更有通用性. array其实是最简单的HashMap, 即key是index, value则是a[i].</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h3 id="2-_按照DFS中使用的分">2. 按照DFS中使用的分</h3><blockquote>
-<ul>
-<li>根据<a href="http://leetcodesummary.blogspot.com/2013/10/leetcode-treerecursion.html" target="_blank" rel="external">leetcode summary的博客</a></li>
-<li>还有就是CS的关键: <strong>抽象抽象再抽象</strong>. 并不一定要真的是一个Tree放在那里让你traverse. 而是题目可以按照tree的结构分析分解和理解. 比如说word segment, word ladder, Graph, 乃至2-SAT-&gt;SCC. 等等.</li>
-</ul>
-</blockquote>
-<h4 id="例如NP问题:_Subsets_I/II">例如NP问题: Subsets I/II</h4><h4 id="NP问题:_Permutation_I/II">NP问题: Permutation I/II</h4>]]></content>
-    <summary type="html">
-    <![CDATA[Leetcode总结题型.]]>
-    
-    </summary>
-    
-      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Leetcode freq 1]]></title>
     <link href="http://vlsi1217.github.io/2015/01/16/Leetcode/Freq1/"/>
     <id>http://vlsi1217.github.io/2015/01/16/Leetcode/Freq1/</id>
     <published>2015-01-17T04:17:16.000Z</published>
-    <updated>2015-05-16T01:21:54.740Z</updated>
+    <updated>2015-05-22T17:31:16.755Z</updated>
     <content type="html"><![CDATA[<h2 id="20150122">20150122</h2><h3 id="Length_of_Last_Word">Length of Last Word</h3><ul>
 <li>额, 简单题…</li>
 </ul>
@@ -1452,7 +1835,7 @@
 <h3 id="Simplify_Path">Simplify Path</h3><ul>
 <li><p>先读懂Unix中的path的op意义. 发现<a href="http://huntfor.iteye.com/blog/2066875" target="_blank" rel="external">阿猫阿狗blog</a>的解释最清晰易懂. 我也测试了一下: 确实就是很简单的规则: <code>/.表示当前目录，/..表示上级目录，/表示根目录</code>. 如下图所示:<br><img src="http://7xj2zx.com1.z0.glb.clouddn.com/freq1_simpPath1.PNG" alt="freq1SimPath">. <code>cd /MOOC/./../MOOC</code>. 以<code>/</code>为分界来认识就是: cd /(回到根目录); MOOC(去根目录下的MOOC文件夹); /..(返回上一级, 即回到c:); /.(表示当前目录, 所以还是在c:); /MOOC. 又去到MOOC文件夹. 所以执行完后表示还是去到了MOOC文件夹中. 而在command里的第二行则直接cd MOOC是找不到的, 因为pwd是c:\MOOC\NodeJS_Intro. 题目已经说了给的是<strong>absolute path</strong>, 即从根目录开始的path. 所以打头是<code>/</code>.</p>
 </li>
-<li><p>这里再复习一下Stack/Queue: </p>
+<li><p>这里再复习一下Stack/Queue:</p>
 <ol>
 <li>虽然Stack在Java.util已经实现了stack class, 但最好不要用, 因为很多问题. 参考<a href="http://cs.lmu.edu/~ray/notes/stacks/" target="_blank" rel="external">lmu课件</a>. 所以Ganker也是使用的LinkedList来instantiate, 而且要注意, 这时候是: <code>LinkedList&lt;Integer&gt; stack = LinkedList&lt;Integer&gt;()</code>, 只是这个list叫做stack而已. 其实看了<a href="http://stackoverflow.com/a/12524949" target="_blank" rel="external">SOF stack/deque</a>, 讲了Stack在JavaDoc里面也是推荐用Deque来当作stack用: <code>Deque&lt;Integer&gt; stack = new ArrayDeque&lt;Integer&gt;();</code></li>
 <li>Queue更彻底, 是interface. 根本不能instantiate. 所以也可以使用LinkedList来实现: <code>Queue&lt;Integer&gt; queue = new LinkedList&lt;Integer&gt;()</code>.</li>
@@ -1473,7 +1856,7 @@
 <li>目前只看到N00t是用了recursion和DP来解决.<h4 id="recursion解法">recursion解法</h4></li>
 <li>和分析的一样, 遍历l-&gt;r, 让每一个都有机会做root, 然后Divide递归左右子树的所有可能性(所以返回值是<code>List&lt;TreeNode&gt;</code>, 即以TreeNode的有效的BST). 然后Conquer遍历所有有效左右子树, 并接上Node(i).</li>
 <li>有几点要注意:<ol>
-<li>正如Effective java item 43所说: return empty list rather than null. <ul>
+<li>正如Effective java item 43所说: return empty list rather than null.<ul>
 <li>这是一般情况下的trick. 而且这里还有她的实际意义: 即空树的root. 这样在接上Node(i)的时候, 是接上空树. 因为for each的时候一定要能see到空树. 而如果在l&gt;r的时候返回null, 而不是res.add(null)的话, 就直接忽略了空树的情况. 更重要的是: 根源上避免了判断Null pointer. 如果我return null的话, 会出现<code>Exception in thread &quot;main&quot; java.lang.NullPointerException</code></li>
 </ul>
 </li>
@@ -1486,7 +1869,7 @@
 <li>注意到recursion的时候, 例如n=4的情况. [1,2]就给recursion了好几次: [1,2,3], [1,2]. 所以明显是可以保存计算过的结果来DP.</li>
 <li>但是具体怎么写呢? 先搞懂N00t的思路. 但实际写起来很多地方要注意:<ul>
 <li>虽然说是T[i,l]. 但实际上N00t是用的list<list<list<treenode>&gt;&gt;来写. 原因很简单. 就是前2个保存i和l. 最后一个保存T[i,l], 即满足这个range的BST的root和合集. 因为有了root, 就能得到tree(所以我在main里面最后call了writeBST()来serialize每个BST).</list<list<treenode></li>
-<li>边界条件很简单, 就是l=0. </li>
+<li>边界条件很简单, 就是l=0.</li>
 <li>那么打表是怎么个打法. 在interleaving string的DP的设计是T[i][j]. 分别是2个string的坐标, 所以无所谓哪个是外层,哪个是内层循环. 但是这里是T[i][l]. 这个l是长度. N00t的设计是<strong>外层是l, 内层是i</strong>. 所以是按照starting point分类的. 为什么这样loop呢?</li>
 </ul>
 </li>
@@ -1494,8 +1877,8 @@
 <h3 id="Serialize/De-serialize_Binary_Tree">Serialize/De-serialize Binary Tree</h3><ul>
 <li>先是什么是serialize/deserialize. 可以看水中的鱼的图解: <a href="http://7xj2zx.com1.z0.glb.clouddn.com/freq1_serilizeBinTreeYUBlog.PNG" target="_blank" rel="external">水中的鱼花树</a></li>
 <li>pre-order traverse的一个应用. 从而可以解决isValidBST. 而且这个在Leetcode的Binary Tree很常见.</li>
-<li>为什么Deserialize也是用pre-order呢? 这个顺序不会反吗? 感觉上觉得应该使用serialize的相反的traverse—&gt;post-order. 但这样其实是不对的. 见<a href="http://yuanhsh.iteye.com/blog/2171113" target="_blank" rel="external">ITeye的分析</a>. 这里我一开始做的方法也是使用的index来判断是读取list中的第几个字符. 但这里我就搞混了: 到底对于right subtree的index该用多少. <ul>
-<li>水中的鱼使用了一个int[1]. 然后java当作object, 可以传值. 而且也就避免了return. </li>
+<li>为什么Deserialize也是用pre-order呢? 这个顺序不会反吗? 感觉上觉得应该使用serialize的相反的traverse—&gt;post-order. 但这样其实是不对的. 见<a href="http://yuanhsh.iteye.com/blog/2171113" target="_blank" rel="external">ITeye的分析</a>. 这里我一开始做的方法也是使用的index来判断是读取list中的第几个字符. 但这里我就搞混了: 到底对于right subtree的index该用多少.<ul>
+<li>水中的鱼使用了一个int[1]. 然后java当作object, 可以传值. 而且也就避免了return.</li>
 <li>我则是用的int, 所以必须return. 所以在left算完之后return的cnt必须是对应left subtree的最后一个node. return之后, right recursion的时候这个index还要再加一. 并且右子树结束后还要return给他的parent(注意这就是recursion后的code的意义: 往上走)</li>
 <li>1337原帖后面又一个Java写的. 我改了一点. 使用了stringTokenizer. 也是对的, 而且他并没有使用index来定位这个char, 而是使用了boolean left. 然后每次就是nextToken(). 也是可以的.</li>
 </ul>
@@ -1631,2124 +2014,7 @@
     
       <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
     
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Awesome Courses]]></title>
-    <link href="http://vlsi1217.github.io/2015/01/15/thinking/AwesomeCourses/"/>
-    <id>http://vlsi1217.github.io/2015/01/15/thinking/AwesomeCourses/</id>
-    <published>2015-01-16T04:17:16.000Z</published>
-    <updated>2015-05-11T19:52:43.378Z</updated>
-    <content type="html"><![CDATA[<h2 id="Introduction">Introduction</h2><p>This is an addition to the well done awesome courses by <a href="https://github.com/prakhar1989/awesome-courses" target="_blank" rel="external">Prakhar1989-github</a>. And here is for the algorithm specifically.</p>
-<h2 id="Table_of_Contents">Table of Contents</h2><ul>
-<li><a href="#systems">Systems</a></li>
-<li><a href="#programming-languages--compilers">Programming Languages / Compilers</a></li>
-<li><a href="#algorithms">Algorithms</a></li>
-<li><a href="#cs-theory">CS Theory</a></li>
-<li><a href="#introduction-to-cs">Introduction to CS</a></li>
-<li><a href="#machine-learning">Machine Learning</a></li>
-<li><a href="#misc">Misc</a></li>
-</ul>
-<h2 id="Good_courses">Good courses</h2><ul>
-<li><a href="https://courses.cs.washington.edu/courses/cse373/13wi/lectures.shtml#today" target="_blank" rel="external">cs.washington.CSE373</a>. <ul>
-<li>this is a undergrad level data structure class, so not much algs, but I found the sorting is useful. And as <strong>Code Ganker</strong> said, a lot of important algs ideas lies behind basic sorting algs: recursion, DP, D&amp;C, trade-off, etc, you name it.</li>
-</ul>
-</li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="mooc" scheme="http://vlsi1217.github.io/tags/mooc/"/>
-    
-      <category term="Thinking" scheme="http://vlsi1217.github.io/categories/Thinking/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Leetcode的题解收集]]></title>
-    <link href="http://vlsi1217.github.io/2015/01/15/Leetcode/LeetcodeBlogs/"/>
-    <id>http://vlsi1217.github.io/2015/01/15/Leetcode/LeetcodeBlogs/</id>
-    <published>2015-01-16T04:17:16.000Z</published>
-    <updated>2015-05-16T01:23:59.116Z</updated>
-    <content type="html"><![CDATA[<h2 id="20150512">20150512</h2><ul>
-<li>这个博客一直有更新Leetcode新题的题解报告不错: <a href="http://pisxw.com/tag/" target="_blank" rel="external">一丝凉意</a></li>
-</ul>
-<h2 id="20150508">20150508</h2><blockquote>
-<p>今天做Scramble string的时候看到了很多很好的分析.</p>
-</blockquote>
-<ul>
-<li><a href="http://blog.csdn.net/whuwangyi/article/details/43112895" target="_blank" rel="external">武大的wangyi大牛</a>. 不但是很好的Leetcode题解. 而且还是FLAG面经大牛.</li>
-<li><a href="http://blog.unieagle.net/" target="_blank" rel="external">Unieagel的leetcode题解博客</a></li>
-<li><a href="http://blog.csdn.net/fightforyourdream/article/details/17707187" target="_blank" rel="external">Fightingforyourdream题解CSDN</a></li>
-</ul>
-<h2 id="20150507">20150507</h2><ul>
-<li>fgdsb大牛做的<a href="http://www.fgdsb.com/" target="_blank" rel="external">在Leetcode122题和不在Leetcode的题目153题blog</a></li>
-</ul>
-<h2 id="20150426">20150426</h2><ul>
-<li>ACM之家的Leetcode题解和很多算法题目的分析/题解(Java) <a href="http://www.acmerblog.com/leetcode-solutions-6422.html" target="_blank" rel="external">link</a></li>
-<li><a href="http://www.cnblogs.com/lautsie/p/3371354.html" target="_blank" rel="external">刚去了Google的大牛的题集link</a>. 看看她的Google面试准备帖子.</li>
-</ul>
-<h2 id="20150421">20150421</h2><ul>
-<li><a href="http://blog.csdn.net/fightforyourdream/article/details/12901505" target="_blank" rel="external">CSDN fightfordream的Leetcode整理</a>. 而且他还有DP/Recursion/Backtracking题集. 等等. 挺不错的.</li>
-</ul>
-<h2 id="20150324">20150324</h2><ul>
-<li><a href="http://yishafang.blogspot.com/2015/02/triangle.html" target="_blank" rel="external">2个月刷完LC的blog</a>. 要向别人学习努力.</li>
-</ul>
-<h2 id="20150317">20150317</h2><ul>
-<li><a href="http://blog.csdn.net/linhuanmars/article/details/20888505" target="_blank" rel="external">Ganker大神的lc解题报告</a> 要做到这个程度: 算法的分析和比较. 题目类型要心中有数, 信手拈来!</li>
-</ul>
-<h2 id="20150311">20150311</h2><ul>
-<li><a href="http://okckd.github.io/blog/categories/leetcode/" target="_blank" rel="external">okckd的leetcode 175/CC150题解合集以及大量OOP问题整理</a>: 而且有个bonus就是他的题目加了编号和link, 所以方便我在freq里面找. </li>
-</ul>
-<h2 id="20150301">20150301</h2><ul>
-<li>主页君的LC解答分析了他人的做法, 也有总结. Java.<a href="http://www.cnblogs.com/yuzhangcmu/p/4113462.html" target="_blank" rel="external">主页君的Leetcode/Lintcode解答</a></li>
-</ul>
-<h2 id="20150228">20150228</h2><ul>
-<li>看了很多多人有不同的解法. 思路来说, 还是官方自己的答案最好, 每道题都有详细的分析和图解. <a href="http://leetcode.com/2010/11/largest-binary-search-tree-bst-in_22.html" target="_blank" rel="external">1337c0d3r的答题贴</a></li>
-</ul>
-<h2 id="20150215">20150215</h2><ul>
-<li>当然还有LeetCode官方出的clean code handbook. 今天是1.0.3. 只有50题的答案和分析, 但是也有善良点. 比如edit distance分析了答案和经典DP algs的优劣.</li>
-</ul>
-<h2 id="20150129">20150129</h2><ul>
-<li>200题Leetcode Java解答, 而且还有<a href="http://leetcode.tgic.me/" target="_blank" rel="external">题解报告</a>和<a href="https://github.com/tg123/leetcode" target="_blank" rel="external">github连接</a></li>
-<li>200题Leetcode C++11解答, 左耳朵耗子大神的<a href="https://github.com/haoel/leetcode" target="_blank" rel="external">github解答</a></li>
-</ul>
-<h2 id="20141111">20141111</h2><ul>
-<li><a href="http://leetcodesummary.blogspot.com/2013/09/leetcode-dfs.html" target="_blank" rel="external">Leetcode总结提炼</a></li>
-<li>codeMonkey<a href="http://okckd.github.io/blog/2014/06/12/NineChap-Permutation" target="_blank" rel="external">九章算术Leetcode, Design分析, CC150题解</a></li>
-</ul>
-<h2 id="20141102">20141102</h2><ul>
-<li><a href="http://blog.csdn.net/fightforyourdream/article/details/19755859" target="_blank" rel="external">leetcode答案总结(Java)</a></li>
-<li><a href="http://yucoding.blogspot.com/2013/08/leetcode-question-127-word-ladder.html" target="_blank" rel="external">leetcode答案分析</a></li>
-</ul>
-<h2 id="20141029)">20141029)</h2><ul>
-<li><a href="http://bowang.name/leetcode-150/" target="_blank" rel="external">leetcode总结</a></li>
-<li><a href="http://www.douban.com/note/330562764" target="_blank" rel="external">leetcode分类</a></li>
-<li><a href="http://goo.gl/etltPX" target="_blank" rel="external">leetcode分析</a></li>
-<li><a href="http://www.danielbit.com/blog/puzzle/leetcode/leetcode-summary" target="_blank" rel="external">leetcode分类</a></li>
-<li><a href="http://www.uuiy.cn/?p=127" target="_blank" rel="external">leetcode总结</a></li>
-<li><a href="http://leetcodenotes.wordpress.com" target="_blank" rel="external">leetcode答案</a></li>
-<li><a href="https://github.com/openinx/algorithm-solution/tree/master/leetcode" target="_blank" rel="external">leetcode总结</a></li>
-<li><a href="http://www.programcreek.com/2012/12/leetcode-solution-of-two-sum-in-java/" target="_blank" rel="external">leetcode答案(分析详细)</a></li>
-<li><a href="http://www.cnblogs.com/wwwjieo0/p/3452930.html" target="_blank" rel="external">leetcode答案</a></li>
-</ul>
-<h2 id="20141006:">20141006:</h2><ul>
-<li>1p3a今天有人问答案，然后大牛门的回答: <a href="http://yucoding.blogspot.com" target="_blank" rel="external">http://yucoding.blogspot.com</a></li>
-</ul>
-<h2 id="20140928">20140928</h2><ul>
-<li><a href="http://www.meetqun.com/thread-703-1-1.html" target="_blank" rel="external">米群网的刷题汇总贴</a></li>
-<li><a href="http://www.1point3acres.com/bbs/thread-97234-1-1.html" target="_blank" rel="external">1p3a上面CMU ebiz的Leetcode/CC150 java合集</a></li>
-</ul>
-<h2 id="20140424">20140424</h2><ul>
-<li><a href="https://www.zybuluo.com/smilence/note/76" target="_blank" rel="external">段公子的编程笔记</a></li>
-<li>[段公子的励志贴](<a href="http://www.mitbbs.com/article_t/JobHunting/32594745.html" target="_blank" rel="external">http://www.mitbbs.com/article_t/JobHunting/32594745.html</a></li>
-<li><a href="https://github.com/iphkwan/leetcode" target="_blank" rel="external">Leetcode Github 答案1</a>          c++</li>
-<li><a href="https://github.com/fanfank/leetcode" target="_blank" rel="external">Leetcode Github 答案2</a>           C++</li>
-<li><a href="http://fisherlei.blogspot.com/2012/12/leetcode-remove-duplicates-from-sorted_5307.html" target="_blank" rel="external">Leetcode 水中的鱼</a>         c++</li>
-<li><a href="http://n00tc0d3r.blogspot.com/2013/05/remove-duplicates-from-sorted-list.html" target="_blank" rel="external">n00tc0d3r博客(多种解法)</a>                 java  </li>
-<li><a href="https://github.com/starforever/leet-code/blob/master/Remove%20Duplicates%20from%20Sorted%20Array/Solution.java" target="_blank" rel="external">github starforever</a></li>
-</ul>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hexo搭建的经历和问题]]></title>
-    <link href="http://vlsi1217.github.io/2015/01/15/Web/hexoBuilt/"/>
-    <id>http://vlsi1217.github.io/2015/01/15/Web/hexoBuilt/</id>
-    <published>2015-01-16T04:17:16.000Z</published>
-    <updated>2015-05-20T01:58:20.885Z</updated>
-    <content type="html"><![CDATA[<h1 id="这里记录Hexo搭建的经历和问题">这里记录Hexo搭建的经历和问题</h1><hr>
-<h2 id="20150519">20150519</h2><h3 id="怎么更好的铁贴码?">怎么更好的铁贴码?</h3><ul>
-<li>我想在每一个解题报告里面加入github, 有什么好的办法呢?<ul>
-<li>gist-it.</li>
-<li><script url-to-gist="" script=""></li>
-<li>data-file-folder</li>
-</ul>
-</li>
-</ul>
-<h2 id="20150513">20150513</h2><ul>
-<li>因为主要还是在zybuluo里面写markdown. 写完之后放到Hexo并deploy. 所以就直接用img的链接. 一开始试了一下google drive, 分享链接不太好用(要选择是public的程度). 所以还是使用了七牛. 发现还挺方便的. 而且1G空间很够用了. 而且读取很快. 不错. </li>
-<li>所以以后就是图片本地还是放在img文件夹里面. 不过同时上传到七牛. 最好还是压缩一下. 有的图片大于1M了.</li>
-</ul>
-<h2 id="20150508">20150508</h2><ul>
-<li>今天主要的任务是把我的github.io从wiki-in-box搬到了Hexo-Freemind. 感受到了强大的Hexo.</li>
-<li>不过其中遇到了不少问题. 所以也用了挺长时间做:<ol>
-<li>disque怎么弄? 原来是名字是’abc123’, 而不是’<abc213>‘. 所以造成了无法和我在disqus里面注册的.</li>
-<li>RSS/SiteMap怎么弄? 我本来是按照教程直接npm install这2个plugin. 但是hexo g之后并没有产生atom.xml/sitemap.xml. 然后才发现这个plugin应该安装在hexo/tonyhexo里面, 而不是安装到<code>C:\MOOC\NodeJS_Intro\</code>下面. 所以又倒来倒去. </li>
-</ol>
-</li>
-<li>主要参考的: <ul>
-<li><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/#">如何搭建一个独立博客</a>. 这里还讲了如何DNS,</li>
-<li><a href="http://baoxiehao.com/2014/05/17/Hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/">Hexo博客优化</a>. 这个讲了如何使用google analytics和sitemap的用法.</li>
-</ul>
-</li>
-<li>但是发现Hexo还是有些缺陷:<ul>
-<li>例如N00t的博客, 她的search可以实时先是match的blog, 而且还能多种显示博客的形式.</li>
-<li>这个markdown和作业部落的不太一样, 不过差别不大就是了.</li>
-</ul>
-</li>
-<li>方式: <ul>
-<li>主要是在作业部落上面写好, 然后再放到这个Hexo上面. 因为作业部落确实是markdown很友好. 不过Hexo是我的个人博客. 更大自由.</li>
-</ul>
-</li>
-</ul>
-</script></li></ul></li></ul>]]></content>
-    <summary type="html">
-    <![CDATA[Nice Hexo and Freemind]]>
-    
-    </summary>
-    
-      <category term="webApp" scheme="http://vlsi1217.github.io/tags/webApp/"/>
-    
-      <category term="Web" scheme="http://vlsi1217.github.io/categories/Web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Leetcode freq 4~5]]></title>
-    <link href="http://vlsi1217.github.io/2015/01/10/Leetcode/Freq45/"/>
-    <id>http://vlsi1217.github.io/2015/01/10/Leetcode/Freq45/</id>
-    <published>2015-01-11T04:17:16.000Z</published>
-    <updated>2015-05-11T20:10:11.627Z</updated>
-    <content type="html"><![CDATA[<h1 id="Leetcode_Freq_4-5">Leetcode Freq 4-5</h1><h2 id="标签（空格分隔）：_leetcode">标签（空格分隔）： leetcode</h2><h2 id="目录">目录</h2><p>[TOC]</p>
-<h2 id="20141111">20141111</h2><h3 id="Remove_Element">Remove Element</h3><h3 id="Roman_to_Integer">Roman to Integer</h3><h3 id="Swap_Nodes_in_Pairs">Swap Nodes in Pairs</h3><ul>
-<li>List的经典操作: 交换nodes. 注意这里什么不变, 什么变. 以及如何处理边界条件. 头脑要清晰. 意乱就麻烦.</li>
-<li>follow up就是freq 2的reverse Nodes K-group <h3 id="Add_Binary">Add Binary</h3><h3 id="Sum_Root_to_Leaf_Numbers">Sum Root to Leaf Numbers</h3><h3 id="Add_Two_Numbers">Add Two Numbers</h3><h3 id="Integer_to_Roman">Integer to Roman</h3></li>
-</ul>
-<h2 id="20141108">20141108</h2><h3 id="Word_Search">Word Search</h3><h3 id="Decode_Ways">Decode Ways</h3><h3 id="Binary_Tree_Level_Order_Traversal">Binary Tree Level Order Traversal</h3><h3 id="Palindrome_Partitioning">Palindrome Partitioning</h3><h3 id="Sqrt(x)">Sqrt(x)</h3><h3 id="Generate_Parentheses">Generate Parentheses</h3><h3 id="Merge_k_Sorted_Lists">Merge k Sorted Lists</h3><h2 id="20141105：">20141105：</h2><h3 id="1-_word_ladder">1. word ladder</h3><ul>
-<li>为什么wordladder用linkedlist来保存distanct？为什么要在for loop加distance并enqueue？为什么<code>!isEmpty</code>的时候pop出来的distance就是对的。<ul>
-<li>a. ANS: 可以参考Algs Princeton的BFS正确性证明。每次wordQ 在enqueue的时候都是同样深度的。而且queue的pop（remove and return）保证了distance的正确性。<br>eg：ab-&gt;aa的最短距离。虽然az的话。loop会把distanceQ+1. 但是不同的word话要pop distance。如果不同的话又返回到aa了。<ul>
-<li>b. 不过还是觉得不太对劲。如果运气不好一直网az,dz,zz方向走不就成了DFS了？而不是BFS（一层一层的走吗？）.<br>ANS：BFS是搜完距离1的继续搜距离2的。当全部搜完之后call distTo来输出start到end的最近距离。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">  ab</span><br><span class="line"> /   <span class="string">\</span></span><br><span class="line">aa   az</span><br><span class="line">         <span class="string">\</span></span><br><span class="line">         dz</span><br><span class="line">           <span class="string">\</span></span><br><span class="line">           zz</span><br></pre></td></tr></table></figure>
-<h2 id="20141103:">20141103:</h2><h3 id="0-_BFS">0. BFS</h3><ul>
-<li>联系看pseudocode来写java。比如Wiki page的BFS (link).</li>
-<li>还是学习一下regex方便些。因为Java的replaceall支持regex。而且今天在删除eclipse里面的空行也是用的<code>regex: ^\s*\n</code></li>
-</ul>
-<h3 id="1-_Word_Ladder">1. Word Ladder</h3><ul>
-<li>怎么想到本质一个graph的shortest path呢？<ul>
-<li>a. 先是看了yutianzuijin的csdn博客（link）他先是想到2d matrix 然后再想到graph的2种表示方法：<ul>
-<li>一. adjacent matrix </li>
-<li>二.adjacent list. 然后就可以用graph的BFS来解决。但是时间复杂度又太大了，是O(m<em>dict_size). 其实可以做到O(26</em>m)</li>
-</ul>
-</li>
-<li>b. 鱼的（link）讲了可以用<code>bi-directional BFS</code>，也可以看作是夹逼方法和k-Sum问题类似。</li>
-<li>c. n00tc0d3r比较详细的分析并给出不同解法。而且说了hashset/hashmap在Java和C++里面的区别：在Java中map快，在C++中set快。</li>
-</ul>
-</li>
-</ul>
-<h2 id="20141102:">20141102:</h2><blockquote>
-<p>finish freq 5</p>
-</blockquote>
-<h3 id="1-_set_Matrix_Zeros-">1.  set Matrix Zeros.</h3><ul>
-<li>这又是一道：达到目的可以改变方式。为了in place. </li>
-<li>必须要有2组set来记录行列为0的info。既然有matrix给我们。就可以改变它。为什么不用第一行列作为这个row/col set. 当然如果第一行列有zero怎么回忆起来呢？虽说inplace不能用additional set. 但是flag还是可以的。因为O(1)=in place。</li>
-</ul>
-<h3 id="2-_Merge_sorted_array/list-">2. Merge sorted array/list.</h3><p>复习一下java里面的lnkedlist和指针了。</p>
-<h2 id="20141101:">20141101:</h2><h3 id="1-_Pow(x,n):">1. Pow(x,n):</h3><p>我看了n00tc的答案，他是用n&gt;&gt;1 和 n&amp;1来代替除法和取余数。但是我直接把pow2的计算换成bit后答案就错了。为什么呐？我测试了一下&gt;&gt;1 跟 &amp;1. 发现如果是正数当然没问题。但如果是负数则除法跟取模都会得到意外的答案。</p>
-<ol>
-<li>I got yu shu: 1 vs 1</li>
-<li>I got remainder: 1 vs 1</li>
-<li>I got yu shu: -1 vs -2</li>
-<li>I got remainder: -1 vs 1<br>注意到N00tc0d3r一开始就把指数n取了绝对值。</li>
-</ol>
-<h3 id="2-_Validate_BST">2. Validate BST</h3><p>很好的题目。可以复习到recursion跟iteration的转化。其实traverse里面的迭代版本不好想。邓俊辉的教材分析得很详细。而且recursion里面的每个return只是结束当前的stack，从而可以继续之前保存的stack。觉得CMU-ebiz的答案最好懂。这里面的lastVisit = root.val放到if(root.val&lt;=lastVisit)之后。这个顺序也是一个高潮。要真正理解recursion才能想出来这点。</p>
-<h3 id="3-_kd-Tree-">3.  kd-Tree.</h3><ul>
-<li>参见Coursera Algo4th 的作业五：在一堆点里面找能用一个unit square抱住的点群。这就需要用2d tree来search了。link</li>
-</ul>
-<h3 id="4-_Palindrome">4.  Palindrome</h3><ul>
-<li>做palindrome之前先看一下java的replaceall用的regex: <a href="">link</a></li>
-<li>这里要了解的就是[^a-z], [a-z0-3]的意思。前者是除了a到z以外。后者表示a到z和0到3.所以这里就是先把输入的string的非字母数字的字符都换成”“。</li>
-</ul>
-<h3 id="5-_Valid_Number">5. Valid Number</h3><ul>
-<li>居然说Valid Number是难度2的题目。。。跪了。第一次面试做compiler的parser就是一个automa。然后不会写Java的状态机。这次一定要搞懂。记得moore和mooley FSM最难的就是设计states。就连最简单的判断100101都容易写错。可以参考这个link看看这个状态图是怎么画的。N00tc0d3r只给了图….</li>
-<li>注意switch case的格式：要在每个case最后加break或者return。而且case只能是每一个值而不能给范围。所以a-zA-Z0-9就呆了。还是if else好用些。</li>
-</ul>
-<h3 id="6-_setMatrixZeros">6. setMatrixZeros</h3><ul>
-<li>做setMatrixZeros看到用的hashset，为什么呢？hashmap不行吗？为什么用<code>Set&lt;Integer&gt; rows = new HashSet&lt;Integer&gt;();</code><br>然后看到了一片总结：link。<br>可以看看我在CS108里面贴的那个java collection framework关系图。<br>注意在jdk里面set.class和hashset.class. 前者是interface后者是implementation。</li>
-</ul>
-<h2 id="20141030:">20141030:</h2><h3 id="0-_climb_chairs">0. climb chairs</h3><p>这题和数硬币组合类似。不过前者是permutation后者为combination。</p>
-<h3 id="1-_2_sum:">1. 2 sum:</h3><p>首先把题意搞清楚:<br>输入是一组未排序的可重复数组，以及一个目标数。且一组数组只有一组解。求这两个数的index。</p>
-<p>ANS:<br>一开始想是：<br><figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for i:<span class="instruction"> array</span><br><span class="line"></span>     for: j: rest of<span class="instruction"> array</span><br><span class="line"></span>         <span class="instruction"> if </span>(i+j==target<span class="function">)</span></span><br><span class="line">               return.</span><br></pre></td></tr></table></figure></p>
-<p>但是这样就会得到O(n^2)!</p>
-<p>记得quick sort之类的排序算法是O(nlgn)。可以得到吗。<br>唉。想不出来。<br>看网上答案也就n00tc03r和lexi女的博客有思路分析。还有CMU-ebiz的java整个打包但是答案质量一般。不过也可以看看。programcreek的也很好。</p>
-<p>但最主要还是像段公子说的那样要总结分析出pattern而不是一题一题的解决。这样永远会有不会做“新题”的可能。</p>
-<p>比如这里面一般C++的都会用头尾指针，如CMU的做法。这里有个分析点很重要：首位指针如果大于target则可以把大的元素永远排除！也很容易想：因为这个最大的数加上最小的那个数都超了，那他就不可能和任意其他元素相加得到target。但是小的那个数却可以保留。因为他还有机会。这里和merge 2个排好序的数组要从最后排起。以及删除一个linked list的node却只给了前一个pointer一样。要脑子拐过弯！</p>
-<p>所以先写第二种解法：头尾指针往中间靠。这样的时间复杂度是多少呢？<br>仔细看一下。CC里面的2sum是return 满足条件的2个element的值。所以可以用java的sort。<br>但因为leetcode是要求index。所以要多一个O(N)空间复杂度来保存index。<br>九章和CMU_ebiz都给了这个答案。</p>
-<p>第三种解法：用hashmap。则可以O(1)+O(n)=O(n)<br>一个for loop, 搜索map里面有没满足的数，途中把target-input[i] 放到map里面。<br>这个最好。用到了java的library。又快又方便啊！而且HashTable解决所有搜索问题啊。</p>
-<h3 id="2-_3_sum：">2. 3 sum：</h3><p>还是要把题目理解：<br>找到一组未排序的可重复数组里面的所有 不重复的满足sum为0的triplets。<br>艹，搞了一上午，为什么Java ArrayList<arraylist<integer>&gt; remains empty when I add an ArrayList<integer>. 原来是ret.add(each)的不是copy而是reference。在each.clear()后，前一句的2D list add就是add了一个空的ArrayList。正如Core Java里面讲的：“parameters to java methods are always passed by value. The value of any object variable is a reference to an object that stored elsewhere.<br>中饭回来查了一发现stack overflow上有这个解答：link<br>所以有2个方法解决clear就把之前added的删去的问题：<br>     a. 用add new（each） 也就是copy过来。<br>     b. 每次在inner loop里面new一个each。</integer></arraylist<integer></p>
-<h3 id="3-_3_sum_closest">3. 3 sum closest</h3><h3 id="4-_4_sum">4. 4 sum</h3><h3 id="5-_k-sum-">5. k-sum.</h3><h3 id="6-pow(x,n)：">6.pow(x,n)：</h3><p>先是naive做法。直接循环。但是傻了，忘了负指数是取倒数了。<br>到了用naive的recursion做法，Programcreek是说：’a recursive solution can easily be written.’。。。好容易弄混。要好好分类。其实就3类，先按N的奇偶正负分，同时和x的正负。而且记住是recursion，所以三个case都是互相调用，每次调用都是<code>pow*pow*pow</code>！而不是pow一次。<br>但是naive的recursion还是不够快，而且recursion的重复计算总是不好的。</p>
-<hr>
-<table>
-<thead>
-<tr>
-<th>ID</th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>27</td>
-<td>Remove Element</td>
-<td>1</td>
-<td>4</td>
-</tr>
-<tr>
-<td>13</td>
-<td>Roman to Integer</td>
-<td>2</td>
-<td>4</td>
-</tr>
-<tr>
-<td>24</td>
-<td><del>Swap Nodes in Pairs</del></td>
-<td>2</td>
-<td>4</td>
-</tr>
-<tr>
-<td>67</td>
-<td>Add Binary</td>
-<td>2</td>
-<td>4</td>
-</tr>
-<tr>
-<td>129</td>
-<td>Sum Root to Leaf Numbers</td>
-<td>2</td>
-<td>4</td>
-</tr>
-<tr>
-<td>2</td>
-<td><del>Add Two Numbers</del></td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>12</td>
-<td>Integer to Roman</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>22</td>
-<td>Generate Parentheses</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>23</td>
-<td>Merge k Sorted Lists</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>46</td>
-<td><del>Permutations</del></td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>49</td>
-<td><del>Anagrams</del></td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>77</td>
-<td><del>Combinations</del></td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>78</td>
-<td><del>Subsets</del></td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>79</td>
-<td>Word Search</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>91</td>
-<td>Decode Ways</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>102</td>
-<td>Binary Tree Level Order Traversal</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>131</td>
-<td>Palindrome Partitioning</td>
-<td>3</td>
-<td>4</td>
-</tr>
-<tr>
-<td>69</td>
-<td>Sqrt(x)</td>
-<td>4</td>
-<td>4</td>
-</tr>
-<tr>
-<td>1</td>
-<td><del>Two Sum</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>8</td>
-<td><del>String to Integer (atoi)</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>20</td>
-<td><del>Valid Parentheses</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>21</td>
-<td><del>Merge Two Sorted Lists</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>65</td>
-<td><del>Valid Number</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>70</td>
-<td><del>Climbing Stairs</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>88</td>
-<td><del>Merge Sorted Array</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>125</td>
-<td><del>Valid Palindrome</del></td>
-<td>2</td>
-<td>5</td>
-</tr>
-<tr>
-<td>15</td>
-<td><del>3Sum</del></td>
-<td>3</td>
-<td>5</td>
-</tr>
-<tr>
-<td>50</td>
-<td><del>Pow(x, n)</del></td>
-<td>3</td>
-<td>5</td>
-</tr>
-<tr>
-<td>73</td>
-<td><del>Set Matrix Zeroes</del></td>
-<td>3</td>
-<td>5</td>
-</tr>
-<tr>
-<td>98</td>
-<td><del>Validate Binary Search Tree</del></td>
-<td>3</td>
-<td>5</td>
-</tr>
-<tr>
-<td>127</td>
-<td><del>Word Ladder</del></td>
-<td>3</td>
-<td>5</td>
-</tr>
-<tr>
-<td>28</td>
-<td><del>Implement strStr()</del></td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>56</td>
-<td><del>Merge Intervals</del></td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>57</td>
-<td><del>Insert Interval</del></td>
-<td>4</td>
-<td>5</td>
-</tr>
-<tr>
-<td>ID</td>
-<td>念念不忘, 必有回响</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Leetcode 高频题 频率表]]></title>
-    <link href="http://vlsi1217.github.io/2015/01/01/Leetcode/Frequency/"/>
-    <id>http://vlsi1217.github.io/2015/01/01/Leetcode/Frequency/</id>
-    <published>2015-01-02T04:17:16.000Z</published>
-    <updated>2015-05-11T20:10:33.655Z</updated>
-    <content type="html"><![CDATA[<h1 id="Leetcode_高频题_频率表">Leetcode 高频题 频率表</h1><p>标签（空格分隔）： leetcode</p>
-<hr>
-<p>[TOC]</p>
-<table>
-<thead>
-<tr>
-<th>Leetcode</th>
-<th>Questions</th>
-<th></th>
-<th></th>
-<th>一代</th>
-<th>宗师</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>题号</td>
-<td>QUESTION</td>
-<td>难度</td>
-<td>频率</td>
-<td>数据结构</td>
-<td>算法</td>
-</tr>
-<tr>
-<td>58</td>
-<td>Length of Last Word</td>
-<td>1</td>
-<td>1</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>100</td>
-<td>Same Tree</td>
-<td>1</td>
-<td>1</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>104</td>
-<td>Maximum Depth of Binary Tree</td>
-<td>1</td>
-<td>1</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>111</td>
-<td>Minimum Depth of Binary Tree</td>
-<td>1</td>
-<td>1</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>126</td>
-<td>Word Ladder II</td>
-<td>1</td>
-<td>1</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>14</td>
-<td>Longest Common Prefix</td>
-<td>2</td>
-<td>1</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>118</td>
-<td>Pascal’s Triangle</td>
-<td>2</td>
-<td>1</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>119</td>
-<td>Pascal’s Triangle II</td>
-<td>2</td>
-<td>1</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>121</td>
-<td>Best Time to Buy and Sell Stock</td>
-<td>2</td>
-<td>1</td>
-<td>array</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>6</td>
-<td>ZigZag Conversion</td>
-<td>3</td>
-<td>1</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>16</td>
-<td>3Sum Closest</td>
-<td>3</td>
-<td>1</td>
-<td>array</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>30</td>
-<td>Substring with Concatenation of All Words</td>
-<td>3</td>
-<td>1</td>
-<td>string</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>71</td>
-<td>Simplify Path</td>
-<td>3</td>
-<td>1</td>
-<td>string</td>
-<td>stack</td>
-</tr>
-<tr>
-<td>96</td>
-<td>Unique Binary Search Trees</td>
-<td>3</td>
-<td>1</td>
-<td>tree</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>107</td>
-<td>Binary Tree Level Order Traversal II</td>
-<td>3</td>
-<td>1</td>
-<td>tree</td>
-<td>bfs</td>
-</tr>
-<tr>
-<td>120</td>
-<td>Triangle</td>
-<td>3</td>
-<td>1</td>
-<td>array</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>122</td>
-<td>Best Time to Buy and Sell Stock II</td>
-<td>3</td>
-<td>1</td>
-<td>array</td>
-<td>greedy</td>
-</tr>
-<tr>
-<td>32</td>
-<td>Longest Valid Parentheses</td>
-<td>4</td>
-<td>1</td>
-<td>string</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>95</td>
-<td>Unique Binary Search Trees II</td>
-<td>4</td>
-<td>1</td>
-<td>tree</td>
-<td>dp, dfs</td>
-</tr>
-<tr>
-<td>123</td>
-<td>Best Time to Buy and Sell Stock III</td>
-<td>4</td>
-<td>1</td>
-<td>array</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>60</td>
-<td>Permutation Sequence</td>
-<td>5</td>
-<td>1</td>
-<td></td>
-<td>permutation, math</td>
-</tr>
-<tr>
-<td>85</td>
-<td>Maximal Rectangle</td>
-<td>5</td>
-<td>1</td>
-<td>array</td>
-<td>dp, stack</td>
-</tr>
-<tr>
-<td>66</td>
-<td>Plus One</td>
-<td>1</td>
-<td>2</td>
-<td>array</td>
-<td>math</td>
-</tr>
-<tr>
-<td>101</td>
-<td>Symmetric Tree</td>
-<td>1</td>
-<td>2</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>110</td>
-<td>Balanced Binary Tree</td>
-<td>1</td>
-<td>2</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>9</td>
-<td>Palindrome Number</td>
-<td>2</td>
-<td>2</td>
-<td></td>
-<td>math</td>
-</tr>
-<tr>
-<td>35</td>
-<td>Search Insert Position</td>
-<td>2</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>36</td>
-<td>Valid Sudoku</td>
-<td>2</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>38</td>
-<td>Count and Say</td>
-<td>2</td>
-<td>2</td>
-<td>string</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>80</td>
-<td>Remove Duplicates from Sorted Array II</td>
-<td>2</td>
-<td>2</td>
-<td>array</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>113</td>
-<td>Path Sum II</td>
-<td>2</td>
-<td>2</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>3</td>
-<td>Longest Substring Without Repeating Characters</td>
-<td>3</td>
-<td>2</td>
-<td>string, hashtable</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>11</td>
-<td>Container With Most Water</td>
-<td>3</td>
-<td>2</td>
-<td>array</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>18</td>
-<td>4Sum</td>
-<td>3</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>55</td>
-<td>Jump Game</td>
-<td>3</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>59</td>
-<td>Spiral Matrix II</td>
-<td>3</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>61</td>
-<td>Rotate List</td>
-<td>3</td>
-<td>2</td>
-<td>linked list</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>92</td>
-<td>Reverse Linked List II</td>
-<td>3</td>
-<td>2</td>
-<td>linked list</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>5</td>
-<td>Longest Palindromic Substring</td>
-<td>4</td>
-<td>2</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>25</td>
-<td>Reverse Nodes in k-Group</td>
-<td>4</td>
-<td>2</td>
-<td>linked list</td>
-<td>recursion, two pointers</td>
-</tr>
-<tr>
-<td>37</td>
-<td>Sudoku Solver</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>40</td>
-<td>Combination Sum II</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td>combination</td>
-</tr>
-<tr>
-<td>42</td>
-<td>Trapping Rain Water</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td>two pointers, stack</td>
-</tr>
-<tr>
-<td>45</td>
-<td>Jump Game II</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>47</td>
-<td>Permutations II</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td>permutation</td>
-</tr>
-<tr>
-<td>48</td>
-<td>Rotate Image</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>54</td>
-<td>Spiral Matrix</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>68</td>
-<td>Text Justification</td>
-<td>4</td>
-<td>2</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>75</td>
-<td>Sort Colors</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td>sort, two pointers</td>
-</tr>
-<tr>
-<td>76</td>
-<td>Minimum Window Substring</td>
-<td>4</td>
-<td>2</td>
-<td>string</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>89</td>
-<td>Gray Code</td>
-<td>4</td>
-<td>2</td>
-<td></td>
-<td>combination</td>
-</tr>
-<tr>
-<td>90</td>
-<td>Subsets II</td>
-<td>4</td>
-<td>2</td>
-<td>array</td>
-<td>recursion, combination</td>
-</tr>
-<tr>
-<td>99</td>
-<td>Recover Binary Search Tree</td>
-<td>4</td>
-<td>2</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>115</td>
-<td>Distinct Subsequences</td>
-<td>4</td>
-<td>2</td>
-<td>string</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>117</td>
-<td>Populating Next Right Pointers in Each Node II</td>
-<td>4</td>
-<td>2</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>124</td>
-<td>Binary Tree Maximum Path Sum</td>
-<td>4</td>
-<td>2</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>31</td>
-<td>Next Permutation</td>
-<td>5</td>
-<td>2</td>
-<td>array</td>
-<td>permutation</td>
-</tr>
-<tr>
-<td>41</td>
-<td>First Missing Positive</td>
-<td>5</td>
-<td>2</td>
-<td>array</td>
-<td>sort</td>
-</tr>
-<tr>
-<td>84</td>
-<td>Largest Rectangle in Histogram</td>
-<td>5</td>
-<td>2</td>
-<td>array</td>
-<td>stack</td>
-</tr>
-<tr>
-<td>87</td>
-<td>Scramble String</td>
-<td>5</td>
-<td>2</td>
-<td>string</td>
-<td>recursion, dp</td>
-</tr>
-<tr>
-<td>97</td>
-<td>Interleaving String</td>
-<td>5</td>
-<td>2</td>
-<td>string</td>
-<td>recursion, dp</td>
-</tr>
-<tr>
-<td>26</td>
-<td>Remove Duplicates from Sorted Array</td>
-<td>1</td>
-<td>3</td>
-<td>array</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>83</td>
-<td>Remove Duplicates from Sorted List</td>
-<td>1</td>
-<td>3</td>
-<td>linked list</td>
-<td></td>
-</tr>
-<tr>
-<td>112</td>
-<td>Path Sum</td>
-<td>1</td>
-<td>3</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>7</td>
-<td>Reverse Integer</td>
-<td>2</td>
-<td>3</td>
-<td></td>
-<td>math</td>
-</tr>
-<tr>
-<td>19</td>
-<td>Remove Nth Node From End of List</td>
-<td>2</td>
-<td>3</td>
-<td>linked list</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>62</td>
-<td>Unique Paths</td>
-<td>2</td>
-<td>3</td>
-<td>array</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>108</td>
-<td>Convert Sorted Array to Binary Search Tree</td>
-<td>2</td>
-<td>3</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>17</td>
-<td>Letter Combinations of a Phone Number</td>
-<td>3</td>
-<td>3</td>
-<td>string</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>39</td>
-<td>Combination Sum</td>
-<td>3</td>
-<td>3</td>
-<td>array</td>
-<td>combination</td>
-</tr>
-<tr>
-<td>53</td>
-<td>Maximum Subarray</td>
-<td>3</td>
-<td>3</td>
-<td>array</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>63</td>
-<td>Unique Paths II</td>
-<td>3</td>
-<td>3</td>
-<td>array</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>64</td>
-<td>Minimum Path Sum</td>
-<td>3</td>
-<td>3</td>
-<td>array</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>74</td>
-<td>Search a 2D Matrix</td>
-<td>3</td>
-<td>3</td>
-<td>array</td>
-<td>binary search</td>
-</tr>
-<tr>
-<td>82</td>
-<td>Remove Duplicates from Sorted List II</td>
-<td>3</td>
-<td>3</td>
-<td>linked list</td>
-<td>recursion, two pointers</td>
-</tr>
-<tr>
-<td>86</td>
-<td>Partition List</td>
-<td>3</td>
-<td>3</td>
-<td>linked list</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>93</td>
-<td>Restore IP Addresses</td>
-<td>3</td>
-<td>3</td>
-<td>string</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>105</td>
-<td>Construct Binary Tree from Preorder and Inorder Tr</td>
-<td>3</td>
-<td>3</td>
-<td>array, tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>106</td>
-<td>Construct Binary Tree from Inorder and Postorder T</td>
-<td>3</td>
-<td>3</td>
-<td>array, tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>114</td>
-<td>Flatten Binary Tree to Linked List</td>
-<td>3</td>
-<td>3</td>
-<td>tree</td>
-<td>recursion, stack</td>
-</tr>
-<tr>
-<td>116</td>
-<td>Populating Next Right Pointers in Each Node</td>
-<td>3</td>
-<td>3</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>29</td>
-<td>Divide Two Integers</td>
-<td>4</td>
-<td>3</td>
-<td></td>
-<td>binary search, math</td>
-</tr>
-<tr>
-<td>33</td>
-<td>Search in Rotated Sorted Array</td>
-<td>4</td>
-<td>3</td>
-<td>array</td>
-<td>binary search</td>
-</tr>
-<tr>
-<td>34</td>
-<td>Search for a Range</td>
-<td>4</td>
-<td>3</td>
-<td>array</td>
-<td>binary search</td>
-</tr>
-<tr>
-<td>43</td>
-<td>Multiply Strings</td>
-<td>4</td>
-<td>3</td>
-<td>string</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>51</td>
-<td>N-Queens</td>
-<td>4</td>
-<td>3</td>
-<td>array</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>52</td>
-<td>N-Queens II</td>
-<td>4</td>
-<td>3</td>
-<td>array</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>72</td>
-<td>Edit Distance</td>
-<td>4</td>
-<td>3</td>
-<td>string</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>94</td>
-<td>Binary Tree Inorder Traversal</td>
-<td>4</td>
-<td>3</td>
-<td>tree, hashtable</td>
-<td>recursion, morris, stack</td>
-</tr>
-<tr>
-<td>103</td>
-<td>Binary Tree Zigzag Level Order Traversal</td>
-<td>4</td>
-<td>3</td>
-<td>queue, tree</td>
-<td>bfs, stack</td>
-</tr>
-<tr>
-<td>109</td>
-<td>Convert Sorted List to Binary Search Tree</td>
-<td>4</td>
-<td>3</td>
-<td>linked list</td>
-<td>recursion, two pointers</td>
-</tr>
-<tr>
-<td>128</td>
-<td>Longest Consecutive Sequence</td>
-<td>4</td>
-<td>3</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>130</td>
-<td>Surrounded Regions</td>
-<td>4</td>
-<td>3</td>
-<td>array</td>
-<td>bfs, dfs</td>
-</tr>
-<tr>
-<td>132</td>
-<td>Palindrome Partitioning II</td>
-<td>4</td>
-<td>3</td>
-<td>string</td>
-<td>dp</td>
-</tr>
-<tr>
-<td>4</td>
-<td>Median of Two Sorted Arrays</td>
-<td>5</td>
-<td>3</td>
-<td>array</td>
-<td>binary search</td>
-</tr>
-<tr>
-<td>10</td>
-<td>Regular Expression Matching</td>
-<td>5</td>
-<td>3</td>
-<td>string</td>
-<td>recursion, dp</td>
-</tr>
-<tr>
-<td>44</td>
-<td>Wildcard Matching</td>
-<td>5</td>
-<td>3</td>
-<td>string</td>
-<td>recursion, dp, greedy</td>
-</tr>
-<tr>
-<td>81</td>
-<td>Search in Rotated Sorted Array II</td>
-<td>5</td>
-<td>3</td>
-<td>array</td>
-<td>binary search</td>
-</tr>
-<tr>
-<td>27</td>
-<td>Remove Element</td>
-<td>1</td>
-<td>4</td>
-<td>array</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>13</td>
-<td>Roman to Integer</td>
-<td>2</td>
-<td>4</td>
-<td></td>
-<td>math</td>
-</tr>
-<tr>
-<td>24</td>
-<td>Swap Nodes in Pairs</td>
-<td>2</td>
-<td>4</td>
-<td>linked list</td>
-<td></td>
-</tr>
-<tr>
-<td>67</td>
-<td>Add Binary</td>
-<td>2</td>
-<td>4</td>
-<td>string</td>
-<td>two pointers, math</td>
-</tr>
-<tr>
-<td>129</td>
-<td>Sum Root to Leaf Numbers</td>
-<td>2</td>
-<td>4</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>2</td>
-<td>Add Two Numbers</td>
-<td>3</td>
-<td>4</td>
-<td>linked list</td>
-<td>two pointers, math</td>
-</tr>
-<tr>
-<td>12</td>
-<td>Integer to Roman</td>
-<td>3</td>
-<td>4</td>
-<td></td>
-<td>math</td>
-</tr>
-<tr>
-<td>22</td>
-<td>Generate Parentheses</td>
-<td>3</td>
-<td>4</td>
-<td>string</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>23</td>
-<td>Merge k Sorted Lists</td>
-<td>3</td>
-<td>4</td>
-<td>linked list, heap</td>
-<td>sort, two pointers, merge</td>
-</tr>
-<tr>
-<td>46</td>
-<td>Permutations</td>
-<td>3</td>
-<td>4</td>
-<td>array</td>
-<td>permutation</td>
-</tr>
-<tr>
-<td>49</td>
-<td>Anagrams</td>
-<td>3</td>
-<td>4</td>
-<td>string, hashtable</td>
-<td></td>
-</tr>
-<tr>
-<td>77</td>
-<td>Combinations</td>
-<td>3</td>
-<td>4</td>
-<td></td>
-<td>combination</td>
-</tr>
-<tr>
-<td>78</td>
-<td>Subsets</td>
-<td>3</td>
-<td>4</td>
-<td>array</td>
-<td>recursion, combination</td>
-</tr>
-<tr>
-<td>79</td>
-<td>Word Search</td>
-<td>3</td>
-<td>4</td>
-<td>array</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>91</td>
-<td>Decode Ways</td>
-<td>3</td>
-<td>4</td>
-<td>string</td>
-<td>recursion, dp</td>
-</tr>
-<tr>
-<td>102</td>
-<td>Binary Tree Level Order Traversal</td>
-<td>3</td>
-<td>4</td>
-<td>tree</td>
-<td>bfs</td>
-</tr>
-<tr>
-<td>131</td>
-<td>Palindrome Partitioning</td>
-<td>3</td>
-<td>4</td>
-<td>string</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>69</td>
-<td>Sqrt(x)</td>
-<td>4</td>
-<td>4</td>
-<td></td>
-<td>binary search</td>
-</tr>
-<tr>
-<td>1</td>
-<td>Two Sum</td>
-<td>2</td>
-<td>5</td>
-<td>array, set</td>
-<td>sort, two pointers</td>
-</tr>
-<tr>
-<td>8</td>
-<td>String to Integer (atoi)</td>
-<td>2</td>
-<td>5</td>
-<td>string</td>
-<td>math</td>
-</tr>
-<tr>
-<td>20</td>
-<td>Valid Parentheses</td>
-<td>2</td>
-<td>5</td>
-<td>string</td>
-<td>stack</td>
-</tr>
-<tr>
-<td>21</td>
-<td>Merge Two Sorted Lists</td>
-<td>2</td>
-<td>5</td>
-<td>linked list</td>
-<td>sort, two pointers, merge</td>
-</tr>
-<tr>
-<td>65</td>
-<td>Valid Number</td>
-<td>2</td>
-<td>5</td>
-<td>string</td>
-<td>math</td>
-</tr>
-<tr>
-<td>70</td>
-<td>Climbing Stairs</td>
-<td>2</td>
-<td>5</td>
-<td></td>
-<td>dp</td>
-</tr>
-<tr>
-<td>88</td>
-<td>Merge Sorted Array</td>
-<td>2</td>
-<td>5</td>
-<td>array</td>
-<td>two pointers, merge</td>
-</tr>
-<tr>
-<td>125</td>
-<td>Valid Palindrome</td>
-<td>2</td>
-<td>5</td>
-<td>string</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>15</td>
-<td>3Sum</td>
-<td>3</td>
-<td>5</td>
-<td>array</td>
-<td>two pointers</td>
-</tr>
-<tr>
-<td>50</td>
-<td>Pow(x, n)</td>
-<td>3</td>
-<td>5</td>
-<td></td>
-<td>binary search, math</td>
-</tr>
-<tr>
-<td>73</td>
-<td>Set Matrix Zeroes</td>
-<td>3</td>
-<td>5</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>98</td>
-<td>Validate Binary Search Tree</td>
-<td>3</td>
-<td>5</td>
-<td>tree</td>
-<td>dfs</td>
-</tr>
-<tr>
-<td>127</td>
-<td>Word Ladder</td>
-<td>3</td>
-<td>5</td>
-<td>graph</td>
-<td>bfs, shortest path</td>
-</tr>
-<tr>
-<td>28</td>
-<td>Implement strStr()</td>
-<td>4</td>
-<td>5</td>
-<td>string</td>
-<td>two pointers, KMP, rolling hash</td>
-</tr>
-<tr>
-<td>56</td>
-<td>Merge Intervals</td>
-<td>4</td>
-<td>5</td>
-<td>array, linked list, red-black tree</td>
-<td>sort, merge</td>
-</tr>
-<tr>
-<td>57</td>
-<td>Insert Interval</td>
-<td>4</td>
-<td>5</td>
-<td>array, linked list, red-black tree</td>
-<td>sort, merge</td>
-</tr>
-<tr>
-<td>念念</td>
-<td>不忘</td>
-<td>必有</td>
-<td>回响</td>
-<td>王家卫</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Lintcode 动态规划题目]]></title>
-    <link href="http://vlsi1217.github.io/2014/11/10/Leetcode/LintcodeDP/"/>
-    <id>http://vlsi1217.github.io/2014/11/10/Leetcode/LintcodeDP/</id>
-    <published>2014-11-11T04:17:16.000Z</published>
-    <updated>2015-05-11T20:32:13.391Z</updated>
-    <content type="html"><![CDATA[<h1 id="Lintcode_动态规划题目">Lintcode 动态规划题目</h1><p>标签（空格分隔）： leetcode</p>
-<hr>
-<p>[TOC]</p>
-<hr>
-<h2 id="Wildcard_Matching">Wildcard Matching</h2><h2 id="Maximum_Product_Subarray">Maximum Product Subarray</h2><h2 id="Unique_Binary_Search_Trees_II">Unique Binary Search Trees II</h2><h2 id="Unique_Binary_Search_Trees">Unique Binary Search Trees</h2><h2 id="Regular_Expression_Matching">Regular Expression Matching</h2><h2 id="Backpack_II">Backpack II</h2><h2 id="Edit_Distance">Edit Distance</h2><h2 id="Distinct_Subsequences">Distinct Subsequences</h2><h2 id="Unique_Paths_II">Unique Paths II</h2><h2 id="Unique_Paths">Unique Paths</h2><h2 id="Climbing_Stairs">Climbing Stairs</h2><h2 id="Minimum_Path_Sum">Minimum Path Sum</h2><h2 id="Triangle">Triangle</h2><h2 id="Word_Segmentation">Word Segmentation</h2><h2 id="Palindrome_Partitioning_II">Palindrome Partitioning II</h2><h2 id="Binary_Tree_Maximum_Path_Sum">Binary Tree Maximum Path Sum</h2><h2 id="Backpack">Backpack</h2><h2 id="Minimum_Adjustment_Cost">Minimum Adjustment Cost</h2><h2 id="k_Sum">k Sum</h2><h2 id="Longest_Common_Substring">Longest Common Substring</h2><h2 id="Longest_Common_Subsequence">Longest Common Subsequence</h2><h2 id="Longest_Increasing_Subsequence">Longest Increasing Subsequence</h2><h2 id="Maximum_Subarray_III">Maximum Subarray III</h2><h2 id="Interleaving_String">Interleaving String</h2>]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="Leetcode" scheme="http://vlsi1217.github.io/tags/Leetcode/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Google面试准备]]></title>
-    <link href="http://vlsi1217.github.io/2014/10/16/OA/GooglePrep/"/>
-    <id>http://vlsi1217.github.io/2014/10/16/OA/GooglePrep/</id>
-    <published>2014-10-17T03:17:16.000Z</published>
-    <updated>2015-05-11T20:31:54.813Z</updated>
-    <content type="html"><![CDATA[<h1 id="Google_准备">Google 准备</h1><p>标签（空格分隔）： leetcode</p>
-<hr>
-<p>[TOC]</p>
-<hr>
-<h2 id="Google面试准备">Google面试准备</h2><ul>
-<li><a href="http://www.cnblogs.com/lautsie/p/4317046.html" target="_blank" rel="external">阿牧遥link</a></li>
-</ul>
-<h2 id="POJ_50题">POJ 50题</h2><h3 id="第一类_动态规划_(至少6题，2479_and_2593必做)">第一类 动态规划 (至少6题，2479 and 2593必做)</h3><p>2479 and 2593</p>
-<p>1015</p>
-<p>1042 (也可贪心)</p>
-<p>1141</p>
-<p>1050</p>
-<p>1080</p>
-<p>1221</p>
-<p>1260</p>
-<p>2411 (稍难)</p>
-<p>1276</p>
-<h3 id="第二类_搜索_(至少4题)">第二类 搜索 (至少4题)</h3><p>1011</p>
-<p>1033</p>
-<p>1129</p>
-<p>2049</p>
-<p>2056</p>
-<p>2488</p>
-<p>2492 (稍难，也可并查集)</p>
-<h3 id="第三类_贪心_(至少2题)">第三类 贪心 (至少2题)</h3><p>1065</p>
-<p>2054 (难)</p>
-<p>1521</p>
-<p>2709</p>
-<h3 id="第四类_最短路_(至少3题)">第四类 最短路 (至少3题)</h3><p>1062</p>
-<p>1125</p>
-<p>1797</p>
-<p>2253</p>
-<p>2679 Bellman-Ford (难)</p>
-<h3 id="第五类_最小生成树_(至少2题,_而且_Prim_和_Kruskal_至少各用一次)">第五类 最小生成树 (至少2题, 而且 Prim 和 Kruskal 至少各用一次)</h3><p>1251</p>
-<p>1258</p>
-<p>1789</p>
-<p>2485</p>
-<h3 id="第六类_最大流_(至少2题)">第六类 最大流 (至少2题)</h3><p>1087</p>
-<p>1459</p>
-<p>1149</p>
-<p>2516 (最小费用最大流) (难)</p>
-<h3 id="第七类_二分图_(至少3题)">第七类 二分图 (至少3题)</h3><p>1325</p>
-<p>1469</p>
-<p>2195 (KM 算法或最小费用最大流) (难)</p>
-<p>2446</p>
-<p>1422 and 2594</p>
-<h3 id="第八类_并查集_(至少2题)">第八类 并查集 (至少2题)</h3><p>1861</p>
-<p>1182 (难)</p>
-<p>1308</p>
-<p>2524</p>
-<h3 id="第九类_快速查找_(B-Search,_Hash_and_so_on)_(至少3题)">第九类 快速查找 (B-Search, Hash and so on) (至少3题)</h3><p>2503</p>
-<p>2513 (+Euler回路的判定)</p>
-<p>1035</p>
-<p>1200</p>
-<p>2002</p>
-<h3 id="第十类_数论_(至少2题)">第十类 数论 (至少2题)</h3><p>1061</p>
-<p>1142</p>
-<p>2262</p>
-<p>2407</p>
-<p>1811(难)</p>
-<p>2447 (难)</p>
-<h3 id="第十一类_线段树_(无最少题数要求)">第十一类 线段树 (无最少题数要求)</h3><p>2352 (可用简单方法)</p>
-<p>2528</p>
-<h3 id="第十二类_计算几何_(至少2题，1113凸包算法必做)">第十二类 计算几何 (至少2题，1113凸包算法必做)</h3><p>1113</p>
-<p>1292</p>
-<p>2148 (难)</p>
-<p>2653</p>
-<p>1584</p>
-<h3 id="第十三类_高精度_(至少3题，1001必做)">第十三类 高精度 (至少3题，1001必做)</h3><p>1001</p>
-<p>1047</p>
-<p>1131</p>
-<p>1503</p>
-<p>1504</p>
-<p>1060 and 1996 (多项式)</p>
-<p>SCU1002, 1003, 1004 (<a href="http://acm.scu.edu.cn/soj" target="_blank" rel="external">http://acm.scu.edu.cn/soj</a>)</p>
-<h3 id="第十四类_模拟_(至少5题)">第十四类 模拟 (至少5题)</h3><p>1029 and 1013</p>
-<p>1083 and 2028</p>
-<p>2234 and 1067</p>
-<p>1012</p>
-<p>1026</p>
-<p>1068</p>
-<p>1120</p>
-<p>2271</p>
-<p>2632</p>
-<h3 id="第十五类_数学_(至少4题)">第十五类 数学 (至少4题)</h3><p>2249</p>
-<p>1023</p>
-<p>2506</p>
-<p>1079</p>
-<p>1019 and 1095</p>
-<p>1905 and 1064 (二分)</p>
-<p>PS搜索</p>
-<p>二.搜索<br>参考资料：<br>刘汝佳《算法艺术与信息学竞赛》<br>推荐题目：<br><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=1011" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=1011</a><br>简单，深搜入门题</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=1324" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=1324</a><br>中等，广搜</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=2044" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=2044</a><br>中等，广搜</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=2286" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=2286</a><br>较难，广搜</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=1945" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=1945</a><br>难，IDA*，迭代加深搜索，需要较好的启发函数</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=2449" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=2449</a><br>难，可重复K最短路，A*。<br>可参考解题报告:</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/showcontest?contest_id=1144" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/showcontest?contest_id=1144</a></p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=1190" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=1190</a><br>难，深搜剪枝，《算法艺术与信息学竞赛》中有解答</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=1084" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=1084</a><br>难，《算法艺术与信息学竞赛》习题</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=2989" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=2989</a><br>难，深搜</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=1167" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=1167</a><br>较难，《算法艺术与信息学竞赛》中有解答</p>
-<p><a href="http://acm.pku.edu.cn/JudgeOnline/problem?id=1069" target="_blank" rel="external">http://acm.pku.edu.cn/JudgeOnline/problem?id=1069</a><br>很难</p>
-<p>搜索        3009      1676      1324         1376    1101   (zhou 推荐)<br>容易：<br>1128, 1166, 1176, 1231, 1256, 1270, 1321, 1543, 1606, 1664, 1731, 1742, 1745, 1847, 1915, 1950, 2038, 2157, 2182, 2183, 2381, 2386, 2426,<br>不易：<br>1024, 1054, 1117, 1167, 1708, 1746, 1775, 1878, 1903, 1966, 2046, 2197, 2349,<br>推荐：<br>1011, 1190, 1191, 1416, 1579, 1632, 1639, 1659, 1680, 1683, 1691, 1709, 1714, 1753, 1771, 1826, 1855, 1856, 1890, 1924, 1935, 1948, 1979, 1980, 2170, 2288, 2331, 2339, 2340,</p>
-<hr>
-<h2 id="Google面试中的LC题目(很少概率)">Google面试中的LC题目(很少概率)</h2><table>
-<thead>
-<tr>
-<th>题号</th>
-<th>题目</th>
-<th>link</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>valid parenthesis</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Minimum window string</td>
-<td>???</td>
-</tr>
-<tr>
-<td>0</td>
-<td>Max points on a line</td>
-<td>Algs4 作业题: collinear point</td>
-</tr>
-<tr>
-<td>0</td>
-<td>subarray contain continuous 1’s</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>valid bst</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>next permutation</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Spiral Matrix</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Longest consecutive sequence</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Binary Tree height</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>LRU</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>int to Roman</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>时针分针</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>merge ordered linkedlist</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>reverse Portland</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>longest common suffix of two linked list</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Stack to query minimum in O(1)</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>intersection points</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>smallest window in Str A convers all in B</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>max rectangle area</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>link list addition</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>String match</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Median in two sorted array</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Max un-colored sub squares</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>search in rotated array</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Missing positive integer</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Valid sudoku</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>trapping rain water</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>reverse word order in string</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>merge intervals</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>merge sorted array</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>CTCI  chap 9.7</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>CTCI chap 12.3</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>Hash table/bloom filter</td>
-<td></td>
-</tr>
-<tr>
-<td>0</td>
-<td>念念不忘必有回响</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="OA" scheme="http://vlsi1217.github.io/tags/OA/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[CMD markdown]]></title>
-    <link href="http://vlsi1217.github.io/2014/03/16/Sample/cmdMarkdown/"/>
-    <id>http://vlsi1217.github.io/2014/03/16/Sample/cmdMarkdown/</id>
-    <published>2014-03-17T03:17:16.000Z</published>
-    <updated>2015-05-11T23:22:03.264Z</updated>
-    <content type="html"><![CDATA[<p><a href="https://www.zybuluo.com/mdeditor" title="作业部落旗下 Cmd 在线 Markdown 编辑阅读器" target="_blank" rel="external">『Cmd 技术渲染的沙箱页面，点击此处编写自己的文档』</a></p>
-<h1 id="Cmd_Markdown_简明语法手册">Cmd Markdown 简明语法手册</h1><p>标签： Cmd-Markdown</p>
-<hr>
-<h3 id="1-_斜体和粗体">1. 斜体和粗体</h3><p>使用 <em> 和 *</em> 表示斜体和粗体。</p>
-<p>示例：</p>
-<p>这是 <em>斜体</em>，这是 <strong>粗体</strong>。</p>
-<h3 id="2-_分级标题">2. 分级标题</h3><p>使用 === 表示一级标题，使用 —- 表示二级标题。</p>
-<p>示例：</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="header">这是一个一级标题</span><br><span class="line">============================</span></span><br><span class="line"></span><br><span class="line"><span class="header">这是一个二级标题</span><br><span class="line">--------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">### 这是一个三级标题</span><br></pre></td></tr></table></figure>
-<p>你也可以选择在行首加井号表示不同级别的标题 (H1-H6)，例如：# H1, ## H2, ### H3，#### H4。</p>
-<h3 id="3-_外链接">3. 外链接</h3><p>使用 [描述](链接地址) 为文字增加外链接。</p>
-<p>示例：</p>
-<p>这是去往 <a href="http://ghosertblog.github.com" target="_blank" rel="external">本人博客</a> 的链接。</p>
-<h3 id="4-_无序列表">4. 无序列表</h3><p>使用 *，+，- 表示无序列表。</p>
-<p>示例：</p>
-<ul>
-<li>无序列表项 一</li>
-<li>无序列表项 二</li>
-<li>无序列表项 三</li>
-</ul>
-<h3 id="5-_有序列表">5. 有序列表</h3><p>使用数字和点表示有序列表。</p>
-<p>示例：</p>
-<ol>
-<li>有序列表项 一</li>
-<li>有序列表项 二</li>
-<li>有序列表项 三</li>
-</ol>
-<h3 id="6-_文字引用">6. 文字引用</h3><p>使用 &gt; 表示文字引用。</p>
-<p>示例：</p>
-<blockquote>
-<p>野火烧不尽，春风吹又生。</p>
-</blockquote>
-<h3 id="7-_行内代码块">7. 行内代码块</h3><p>使用 `代码` 表示行内代码块。</p>
-<p>示例：</p>
-<p>让我们聊聊 <code>html</code>。</p>
-<h3 id="8-_代码块">8.  代码块</h3><p>使用 四个缩进空格 表示代码块。</p>
-<p>示例：</p>
-<pre><code>这是一个代码块，此行左侧有四个不可见的空格。
-</code></pre><h3 id="9-_插入图像">9.  插入图像</h3><p>使用 ![描述](图片链接地址) 插入图像。</p>
-<p>示例：</p>
-<p><img src="https://www.zybuluo.com/static/img/my_head.jpg" alt="我的头像"></p>
-<h1 id="Cmd_Markdown_高阶语法手册">Cmd Markdown 高阶语法手册</h1><h3 id="1-_内容目录">1. 内容目录</h3><p>在段落中填写 <code>[TOC]</code> 以显示全文内容的目录结构。</p>
-<p>[TOC]</p>
-<h3 id="2-_标签分类">2. 标签分类</h3><p>在编辑区任意行的列首位置输入以下代码给文稿标签：</p>
-<p>标签： 数学 英语 Markdown</p>
-<p>或者</p>
-<p>Tags： 数学 英语 Markdown</p>
-<h3 id="3-_删除线">3. 删除线</h3><p>使用 ~~ 表示删除线。</p>
-<p><del>这是一段错误的文本。</del></p>
-<h3 id="4-_注脚">4. 注脚</h3><p>使用 [^keyword] 表示注脚。</p>
-<p>这是一个注脚[^footnote]的样例。</p>
-<p>这是第二个注脚[^footnote2]的样例。</p>
-<h3 id="5-_LaTeX_公式">5. LaTeX 公式</h3><p>$ 表示行内公式： </p>
-<p>质能守恒方程可以用一个很简洁的方程式 $E=mc^2$ 来表达。</p>
-<p>$$ 表示整行公式：</p>
-<p>$$\sum_{i=1}^n a_i=0$$</p>
-<p>$$f(x_1,x_x,\ldots,x_n) = x_1^2 + x_2^2 + \cdots + x_n^2 $$</p>
-<p>$$\sum^{j-1}<em>{k=0}{\widehat{\gamma}</em>{kj} z_k}$$</p>
-<p>访问 <a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="external">MathJax</a> 参考更多使用方法。</p>
-<h3 id="6-_加强的代码块">6. 加强的代码块</h3><p>支持四十一种编程语言的语法高亮的显示，行号显示。</p>
-<p>非代码示例：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-<span class="built_in">get</span> install <span class="keyword">vim</span>-gnome</span><br></pre></td></tr></table></figure>
-<p>Python 示例：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="decorator">@requires_authorization</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">somefunc</span><span class="params">(param1=<span class="string">''</span>, param2=<span class="number">0</span>)</span>:</span></span><br><span class="line">    <span class="string">'''A docstring'''</span></span><br><span class="line">    <span class="keyword">if</span> param1 &gt; param2: <span class="comment"># interesting</span></span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Greater'</span></span><br><span class="line">    <span class="keyword">return</span> (param2 - param1 + <span class="number">1</span>) <span class="keyword">or</span> <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>message = <span class="string">'''interpreter</span><br><span class="line"><span class="prompt">... </span>prompt'''</span></span><br></pre></td></tr></table></figure>
-<p>JavaScript 示例：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line">* nth element in the fibonacci series.</span><br><span class="line">* @param n &gt;= 0</span><br><span class="line">* @return the nth element, &gt;= 0.</span><br><span class="line">*/</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fib</span><span class="params">(n)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>, b = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">var</span> tmp;</span><br><span class="line">  <span class="keyword">while</span> (--n &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">    tmp = a;</span><br><span class="line">    a += b;</span><br><span class="line">    b = tmp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.write(fib(<span class="number">10</span>));</span><br></pre></td></tr></table></figure>
-<h3 id="7-_流程图">7. 流程图</h3><h4 id="示例">示例</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st=&#62;start: Start:&#62;https://www.zybuluo.com&#10;io=&#62;inputoutput: verification&#10;op=&#62;operation: Your Operation&#10;cond=&#62;condition: Yes or No?&#10;sub=&#62;subroutine: Your Subroutine&#10;e=&#62;end&#10;&#10;st-&#62;io-&#62;op-&#62;cond&#10;cond(yes)-&#62;e&#10;cond(no)-&#62;sub-&#62;io</span><br></pre></td></tr></table></figure>
-<h4 id="更多语法参考：流程图语法参考">更多语法参考：<a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">流程图语法参考</a></h4><h3 id="8-_序列图">8. 序列图</h3><h4 id="示例_1">示例 1</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Alice-&#62;Bob: Hello Bob, how are you?&#10;Note right of Bob: Bob thinks&#10;Bob--&#62;Alice: I am good thanks!</span><br></pre></td></tr></table></figure>
-<h4 id="示例_2">示例 2</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Title: Here is a title&#10;A-&#62;B: Normal line&#10;B--&#62;C: Dashed line&#10;C-&#62;&#62;D: Open arrow&#10;D--&#62;&#62;A: Dashed open arrow</span><br></pre></td></tr></table></figure>
-<h4 id="更多语法参考：序列图语法参考">更多语法参考：<a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">序列图语法参考</a></h4><h3 id="9-_表格支持">9. 表格支持</h3><p>示例：</p>
-<table>
-<thead>
-<tr>
-<th>hello</th>
-<th style="text-align:right">价格</th>
-<th style="text-align:center">数量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>world</td>
-<td style="text-align:right">$1600</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td></td>
-<td style="text-align:right"></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<table>
-<thead>
-<tr>
-<th>项目</th>
-<th style="text-align:right">价格</th>
-<th style="text-align:center">数量</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>计算机</td>
-<td style="text-align:right">$1600</td>
-<td style="text-align:center">5</td>
-</tr>
-<tr>
-<td>手机</td>
-<td style="text-align:right">$12</td>
-<td style="text-align:center">12</td>
-</tr>
-<tr>
-<td>管线</td>
-<td style="text-align:right">$1</td>
-<td style="text-align:center">234</td>
-</tr>
-</tbody>
-</table>
-<h3 id="10-_定义型列表">10. 定义型列表</h3><p>名词 1<br>:   定义 1（左侧有一个可见的冒号和四个不可见的空格）</p>
-<p>代码块 2<br>:   这是代码块的定义（左侧有一个可见的冒号和四个不可见的空格）</p>
-<pre><code>代码块（左侧有八个不可见的空格）
-</code></pre><h3 id="11-_Html_标签">11. Html 标签</h3><p>本站支持在 Markdown 语法中嵌套 Html 标签，譬如，你可以用 Html 写一个纵跨两行的表格：</p>
-<pre><code><span class="tag">&lt;<span class="title">table</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">th</span> <span class="attribute">rowspan</span>=<span class="value">"2"</span>&gt;</span>值班人员<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">th</span>&gt;</span>星期一<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">th</span>&gt;</span>星期二<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">th</span>&gt;</span>星期三<span class="tag">&lt;/<span class="title">th</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">td</span>&gt;</span>李强<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">td</span>&gt;</span>张明<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">td</span>&gt;</span>王平<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">table</span>&gt;</span>
-</code></pre><table><br>    <tr><br>        <th rowspan="2">值班人员</th><br>        <th>星期一</th><br>        <th>星期二</th><br>        <th>星期三</th><br>    </tr><br>    <tr><br>        <td>李强</td><br>        <td>张明</td><br>        <td>王平</td><br>    </tr><br></table>
-
-<h3 id="12-_内嵌图标">12. 内嵌图标</h3><p>本站的图标系统对外开放，在文档中输入</p>
-<pre><code><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"icon-weibo"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
-</code></pre><p>即显示微博的图标： <i class="icon-weibo icon-2x"></i></p>
-<p>替换 上述 <code>i 标签</code> 内的 <code>icon-weibo</code> 以显示不同的图标，例如：</p>
-<pre><code><span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"icon-renren"</span>&gt;</span><span class="tag">&lt;/<span class="title">i</span>&gt;</span>
-</code></pre><p>即显示人人的图标： <i class="icon-renren icon-2x"></i></p>
-<p>更多的图标和玩法可以参看 <a href="http://fortawesome.github.io/Font-Awesome/3.2.1/icons/" target="_blank" rel="external">font-awesome</a> 官方网站。</p>
-<p>[^footnote]: 这是一个 <em>注脚</em> 的 <strong>文本</strong>。</p>
-<p>[^footnote2]: 这是另一个 <em>注脚</em> 的 <strong>文本</strong>。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="demo" scheme="http://vlsi1217.github.io/tags/demo/"/>
-    
-      <category term="Demo" scheme="http://vlsi1217.github.io/categories/Demo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Room plan]]></title>
-    <link href="http://vlsi1217.github.io/2014/01/15/thinking/BestRoom/"/>
-    <id>http://vlsi1217.github.io/2014/01/15/thinking/BestRoom/</id>
-    <published>2014-01-16T04:17:16.000Z</published>
-    <updated>2015-05-20T01:58:42.984Z</updated>
-    <content type="html"><![CDATA[<h1 id="加入Github代码:">加入Github代码:</h1><figure class="highlight ruby"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">_</span>.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="keyword">false</span>, <span class="number">2</span>, <span class="string">''</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="status">=&gt;</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-<h1 id="书房布置">书房布置</h1><ul>
-<li>最近看了中国的Golang/Docker推广人: 马道长的博客, 发现他的书桌真是很赞. 其实很简单, 就是macbook+LCD+机械键盘. 感觉很舒适.<br><img src="http://7xj2zx.com1.z0.glb.clouddn.com/desk.jpg" alt="马道长"></li>
-</ul>
-<h1 id="测试gist:">测试gist:</h1><script src="https://gist.github.com/4505639.js?file=macroBuild.scala" type="text/javascript"></script>
-
-<h1 id="2">2</h1><script src="http://gist-it.appspot.com/https://github.com/vlsi1217/LeetCode-1/blob/master/bfs/Solve_SurroundedRegions.java">
-</script>
-
-<h1 id="测试Data_Files:">测试Data Files:</h1>
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="misc" scheme="http://vlsi1217.github.io/tags/misc/"/>
-    
-      <category term="Thinking" scheme="http://vlsi1217.github.io/categories/Thinking/"/>
+      <category term="Leetcode" scheme="http://vlsi1217.github.io/categories/Leetcode/"/>
     
   </entry>
   

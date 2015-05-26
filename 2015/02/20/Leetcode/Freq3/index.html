@@ -148,19 +148,19 @@ var _hmt = _hmt || [];
 <li>还有iteration的写法.</li>
 </ul>
 <h3 id="Letter_Combinations_of_a_Phone_Number">Letter Combinations of a Phone Number</h3><ul>
-<li>然后再来看这道题, 可以用Simple&amp;Stupid的做法, 和N00t的Combination差不多. </li>
-<li>或者N00t的iteration解法. </li>
+<li>然后再来看这道题, 可以用Simple&amp;Stupid的做法, 和N00t的Combination差不多.</li>
+<li>或者N00t的iteration解法.</li>
 </ul>
 <h3 id="Combination_Sum_I/II">Combination Sum I/II</h3><ul>
 <li>N00t和Ganker结合. 注意2个的区别: I是可以reuse自己. 即可以用2(0), 2(0). 这里的2(0)表示在位置0的2. eg: {2, 2, 3, 7} 求sum=7. 而II是不能reuse自己. 所以答案是2(0), 2(1).</li>
 </ul>
 <h3 id="Maximum_Subarray_I/II">Maximum Subarray I/II</h3><ul>
-<li>N00t的I是用的简单的一次过. 里面的sum初始化的条件是sum&lt;0. 但是看了Ganker的方法才知道原来这道题目是典型的DP. </li>
+<li>N00t的I是用的简单的一次过. 里面的sum初始化的条件是sum&lt;0. 但是看了Ganker的方法才知道原来这道题目是典型的DP.</li>
 <li>其实LC的要求是不用DP做来达到O(n). 而是用Divide and Conquer来做. 看水中的鱼(C++). 或者一天一学(Java): <a href="http://joycelearning.blogspot.com/2013/10/leetcode-maximum-subarray.html" target="_blank" rel="external">链接</a></li>
 <li>其实II并<strong>不能</strong>用N00t的做法. 因为有可能出现有多个subarray的值都一样! 可以看LintCode的解法: <a href="http://codeanytime.blogspot.com/2014/12/lintcode-maximum-subarray-ii.html" target="_blank" rel="external">链接</a></li>
 </ul>
 <h3 id="Jump_Game">Jump Game</h3><ul>
-<li>Ganker在Maximum Subarray里面提到了DP里面常用的一个方法: 称为”局部最优和全局最优解法”. 在Jump game里面也用到了. </li>
+<li>Ganker在Maximum Subarray里面提到了DP里面常用的一个方法: 称为”局部最优和全局最优解法”. 在Jump game里面也用到了.</li>
 </ul>
 <h2 id="20141217">20141217</h2><h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><ul>
 <li><a href="http://blog.csdn.net/linhuanmars/article/details/20888505" target="_blank" rel="external">Ganker CSDN大神的DP解法</a></li>
@@ -175,11 +175,11 @@ var _hmt = _hmt || [];
 <li>简单题: 用2次binary search. 或者当作1个sorted array只要一次binary search就行了.</li>
 </ul>
 <h3 id="Partition_List">Partition List</h3><ul>
-<li>参考的Ganker的答案, 但是有点混乱了. Java里面不是copy的handle吗? 那walk, runner一直改变, 不是也同时改变了helper吗? </li>
+<li>参考的Ganker的答案, 但是有点混乱了. Java里面不是copy的handle吗? 那walk, runner一直改变, 不是也同时改变了helper吗?</li>
 <li>ANS: NONONONONO. 双指针大法: walker/runner只是copy了pointer. 而每次walker = walker.next. 就assign了walker到下一个pointer. 这和C/C++一样.</li>
 </ul>
 <h3 id="Number_of_Islands">Number of Islands</h3><ul>
-<li>简单题. ProgramCreek使用的recursion解法. </li>
+<li>简单题. ProgramCreek使用的recursion解法.</li>
 </ul>
 <h2 id="20141208">20141208</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node">Populating Next Right Pointers in Each Node</h3><h3 id="Divide_Two_Integers">Divide Two Integers</h3><h3 id="Search_in_Rotated_Sorted_Array_I/II">Search in Rotated Sorted Array I/II</h3><h3 id="Deep_Iterator_:_LinkedIn老题目">Deep Iterator : LinkedIn老题目</h3><ul>
 <li>C++的解法: <a href="http://www.fgdsb.com/2015/01/19/nested-iterator/" target="_blank" rel="external">fgdsd的解法</a> 以及<a href="http://www.oodesign.com/iterator-pattern.html" target="_blank" rel="external">Iterator pattern</a></li>
@@ -197,24 +197,24 @@ var _hmt = _hmt || [];
 </ul>
 <h3 id="N-Queens_I/II">N-Queens I/II</h3><ul>
 <li>Matrix67/N00t用的是位运算解决问题.</li>
-<li>Ganker用的是传统的<strong>循环递归</strong>解决这种NP问题. </li>
-<li>又听了段公子的DP+Recursion讲座. 讲了用遍历+backtracking这种都是NP, 即是NP问题. 里面也提到了像Word Break这种可以Top-Down(memorize)和Button-Up(DP)的区别. 以及求CSP的个数和所有解空间的区别. </li>
-<li>Quora上面讲了top-down跟button-up的DP都不一定需要用recursion. </li>
+<li>Ganker用的是传统的<strong>循环递归</strong>解决这种NP问题.</li>
+<li>又听了段公子的DP+Recursion讲座. 讲了用遍历+backtracking这种都是NP, 即是NP问题. 里面也提到了像Word Break这种可以Top-Down(memorize)和Button-Up(DP)的区别. 以及求CSP的个数和所有解空间的区别.</li>
+<li>Quora上面讲了top-down跟button-up的DP都不一定需要用recursion.</li>
 </ul>
 <h2 id="20141205">20141205</h2><h3 id="Restore_IP_Addresses">Restore IP Addresses</h3><ul>
-<li>太好了, 又深入的理解了recursion. 这里虽然只有一次显式的recursion, 但他是位于loop里面, 后面还有个results.add(). 以及共用(?和谁)一个results. 所以这种是一个今天学到的recursion: loop内的recursion用于循环遍历一层. </li>
+<li>太好了, 又深入的理解了recursion. 这里虽然只有一次显式的recursion, 但他是位于loop里面, 后面还有个results.add(). 以及共用(?和谁)一个results. 所以这种是一个今天学到的recursion: loop内的recursion用于循环遍历一层.</li>
 <li>N00t果然是recursion很厉害. 佩服. 这里是DFS还是BFS? 是不是子解树? 之前看的那个CSDN 链接在哪?</li>
 </ul>
 <h3 id="Triangle_Path_Sum">Triangle Path Sum</h3><ul>
 <li>很好的DP问题. 简单, 也分为top-down, 和button-up的2种思维方式.</li>
 <li>初始化List<list<>&gt;费了些心思, 觉得还是anonymous inner class比较简洁. <a href="http://mangstacular.blogspot.com/2013/04/4-ways-to-initialize-list-in-java.html" target="_blank" rel="external">link</a>. 其中<a href="http://www.programmerinterview.com/index.php/java-questions/java-anonymous-class-example/" target="_blank" rel="external">programinterview的讲解很清晰</a></list<></li>
-<li>N00t的top-down又让我深入理解了recursion中的param是primitive/object的区别. 以及call stack的new和clr的过程(Eclipse). </li>
+<li>N00t的top-down又让我深入理解了recursion中的param是primitive/object的区别. 以及call stack的new和clr的过程(Eclipse).</li>
 <li>暂时还没看N00t的top-down的BFS解法………………………………….</li>
 </ul>
 <h3 id="Surrounded_Regions">Surrounded Regions</h3><ul>
-<li>极度经典的图形学算法题目: flood fill. 同时关于DFS/BFS的取舍. 以及Queue的API: offer/poll. (这和stack的push/pull对应) </li>
-<li>参考Ganker/N00t的解法. </li>
-<li>Palindrome Partitioning I/II    </li>
+<li>极度经典的图形学算法题目: flood fill. 同时关于DFS/BFS的取舍. 以及Queue的API: offer/poll. (这和stack的push/pull对应)</li>
+<li>参考Ganker/N00t的解法.</li>
+<li>Palindrome Partitioning I/II</li>
 <li><p>N00t大神的DP+DP/DP+, 还有美丽的<strong>partitionHelper()</strong></p>
 <figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private <span class="keyword">static</span> <span class="type">void</span> recur(<span class="type">String</span> s, <span class="type">int</span> left, <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; <span class="literal">result</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (left == s.length()) &#123;</span><br><span class="line">      <span class="literal">result</span>.add(new <span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt; s.length(); ++i) &#123;</span><br><span class="line">      <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; temp = new <span class="type">ArrayList</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt;();</span><br><span class="line">      recur(s, i + <span class="number">1</span>, temp);</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">List</span>&lt;<span class="type">String</span>&gt; partitions : temp) &#123;</span><br><span class="line">        partitions.add(<span class="number">0</span>, s.substring(left, i + <span class="number">1</span>));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="literal">result</span>.addAll(temp);  // add()和addAll()的区别.</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 </li>
@@ -230,7 +230,7 @@ var _hmt = _hmt || [];
 </ul>
 <h3 id="Word_Segment_I/II">Word Segment I/II</h3><ul>
 <li>Naive做法是N00t的好</li>
-<li>DP做法有2D和1D, 可以是aray或者arrayList, N00t的做法和ProgramCreek的不同. </li>
+<li>DP做法有2D和1D, 可以是aray或者arrayList, N00t的做法和ProgramCreek的不同.</li>
 <li>Word Break II的主要参照programCreek的做法. 很完美经典的DFS+DP解法. 漂亮!!! ProgramCreek还赔了图, 其中的words即dp[].显而可见index为什么是s.length()+1了. <img src="http://www.programcreek.com/wp-content/uploads/2014/03/word-break-II-java-298x400.png" alt="ProgramCreek的配图"></li>
 </ul>
 <h2 id="20141129">20141129</h2><h3 id="Find_the_k-th_Smallest_Element_in_the_Union_of_Two_Sorted_Arrays">Find the k-th Smallest Element in the Union of Two Sorted Arrays</h3><ul>
@@ -238,31 +238,30 @@ var _hmt = _hmt || [];
 <li>这里关键的问题可以转化为: 找B[j-1] &lt;A[i] &lt; B[j] 或者 A[i-1] &lt; B[j] &lt; A[i]. 如果不成立就recursion. 注意这里因为Java不能用指针, 所以要稍微站换一下1337的写法.</li>
 </ul>
 <h3 id="Median_of_Two_Sorted_Arrays">Median of Two Sorted Arrays</h3><ul>
-<li>这题有很多思考, 值得说道说道. 这题是源自于CLRS. 而且里面还简化了: m=n. 而LC这道题是generic的. </li>
-<li>要做这题先要理解这道题: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 见上.</li>
-<li></li>
+<li>这题有很多思考, 值得说道说道. 这题是源自于CLRS. 而且里面还简化了: m=n. 而LC这道题是generic的.</li>
+<li>要做这题先要理解这道题: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 见上.<br>+</li>
 </ul>
 <h3 id="Regular_Expression_Matching">Regular Expression Matching</h3><ul>
 <li>如何保证考虑详细?</li>
 <li>N00t的解法很好<ul>
 <li>不知道怎样才能像他那样那么有逻辑. 不会有错漏. 这个if/else设计的太美了</li>
 <li>redundant分析我觉得不对. 因为到了2nd iteration中. “b” vs “a<em>a</em>b”是不会有3个substructure的. 因为不match.</li>
-<li>backtracking做法中, 一个用substring, 一个就是用2个指针i,j. 避免了substring()来copy浪费空间. 不过之所以这里可以用”char array”是因为这里只是比对. 而不需要修改. 所以直接reference即可. 但是像之前的partitionHelper里面可以用吗??? 或者是更之前的: </li>
+<li>backtracking做法中, 一个用substring, 一个就是用2个指针i,j. 避免了substring()来copy浪费空间. 不过之所以这里可以用”char array”是因为这里只是比对. 而不需要修改. 所以直接reference即可. 但是像之前的partitionHelper里面可以用吗??? 或者是更之前的:</li>
 </ul>
 </li>
 </ul>
-<h3 id="Wildcard_Matching">Wildcard Matching</h3><pre><code><span class="bullet">+    </span>
+<h3 id="Wildcard_Matching">Wildcard Matching</h3><pre><code><span class="addition">+</span>
 </code></pre><h2 id="20141118">20141118</h2><h3 id="Construct_Binary_Tree_from_Inorder_and_Postorder_traversal">Construct Binary Tree from Inorder and Postorder traversal</h3><ul>
-<li>首先通过pre, post, in加深了对recursion的理解. </li>
+<li>首先通过pre, post, in加深了对recursion的理解.</li>
 <li>还是老话, 思考问题的方式. 先是找规律. 发现pre order的头的root, 然后可以在In order里面找到左右子树的大小, 再回到pre order里面找到左右子树的root. 如此recursion.</li>
 </ul>
 <h3 id="construct_binary_tree_from_preorder_and_inorder_traversal">construct binary tree from preorder and inorder traversal</h3><ul>
 <li>举一反三. 找规律看到了post-order反着读的话就正好是pre order的mirror. 所以这次从post order的尾巴开始读. 发现尾巴就是root, 然后回到inorder里面找左右子树的大小. 从而回到post-order里面找左右子树的root. 要注意的是不能点到mid &lt; end和mid &gt; start! 一开始就这样, 发现有错误, 进行到一半就停了.</li>
-<li>Flatten Binary Tree to Linked List  </li>
+<li>Flatten Binary Tree to Linked List</li>
 <li><a href="http://n00tc0d3r.blogspot.com/2013/03/flatten-binary-tree-to-linked-list-in.html" target="_blank" rel="external">太好了, 终于完全理解复杂recursion了</a></li>
 </ul>
 <h3 id="Path_Sum">Path Sum</h3><ul>
-<li>root-to-leaf Path sum: <a href="http://www.programcreek.com/2013/01/leetcode-path-sum/" target="_blank" rel="external">ProgramCreek的解法</a>   </li>
+<li>root-to-leaf Path sum: <a href="http://www.programcreek.com/2013/01/leetcode-path-sum/" target="_blank" rel="external">ProgramCreek的解法</a></li>
 <li>Binary Tree Maximum Path Sum</li>
 <li>Find ALL Path Sum</li>
 </ul>
@@ -270,20 +269,20 @@ var _hmt = _hmt || [];
 <li>要注意overflow, 跟负号</li>
 </ul>
 <h3 id="Unique_Paths_I/II">Unique Paths I/II</h3><ul>
-<li>经典的DP问题    </li>
+<li>经典的DP问题</li>
 <li>也是path问题, 可以找规律, 变成排列组合题.</li>
-<li>如果有obstacle呢? </li>
+<li>如果有obstacle呢?</li>
 <li>觉得还是N00t的解法比较好. 相对于1337的2D opt, 这个只要1D. 而且可以解出来.</li>
 </ul>
 <h3 id="Longest_Consecutive_Sequence">Longest Consecutive Sequence</h3><ul>
-<li>还是觉得N00t的方法. 还是一样, 学会抽象, 不要以为tree型就一定要用tree实现, 或者range就必须要知道左右和长度. 要有了整体把握才设计API. HashMap的关键在于key/value的设计. </li>
+<li>还是觉得N00t的方法. 还是一样, 学会抽象, 不要以为tree型就一定要用tree实现, 或者range就必须要知道左右和长度. 要有了整体把握才设计API. HashMap的关键在于key/value的设计.</li>
 <li>还是N00t的”simple”(不觉得simple, 然而很多技巧在里面). 好聪明的做法. 果然是精通API和recursion的N00t.</li>
 </ul>
 <h2 id="20141115">20141115</h2><h3 id="Edit_Distance">Edit Distance</h3><ul>
 <li>这个是个经典的DP问题.  是Stanford Algs 2 DP问题DNA Sequence Alignment的扩展, 因为不只是ACGT, 也不只是Gap, 而是有3种操作. 注意n00tc0d3r的DP的优化! (用的空间是O(min(l1, l2) 而不是通常的O(l1*l2)) 我觉得这个是一个通用的optimize方法. 是不是four Russian(不是)?</li>
 </ul>
 <h3 id="One_Edit_Distance">One Edit Distance</h3><ul>
-<li>这个看起来就是直接用Edit Distance就行了. 其实会超时间! 注意是one distance. 所以直接1 pass. </li>
+<li>这个看起来就是直接用Edit Distance就行了. 其实会超时间! 注意是one distance. 所以直接1 pass.</li>
 </ul>
 <h3 id="Binary_Tree_Inorder_Traversal">Binary Tree Inorder Traversal</h3><ul>
 <li>很喜欢N00tc03的post-order=pre-order的mirror.</li>
@@ -302,7 +301,7 @@ var _hmt = _hmt || [];
 </ul>
 <h3 id="Remove_duplicates_from_sorted_Array">Remove duplicates from sorted Array</h3><ul>
 <li>这个可以看N00tc0d3r的解法. 先学会remove element from array</li>
-<li>而且用Nth-to-end里面的双指针, 距离n+1个node! </li>
+<li>而且用Nth-to-end里面的双指针, 距离n+1个node!</li>
 </ul>
 <h3 id="Median_of_Two_Sorted_Arrays-1">Median of Two Sorted Arrays</h3><ul>
 <li>比较难. 而且大部分答案都不对. 还是得看1337c0d3r的答案分析. 正统. 他让先看: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 他说这个是这道题的基础.</li>
@@ -527,7 +526,7 @@ var _hmt = _hmt || [];
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/02/16/Leetcode/System/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/02/16/Leetcode/LeetcodeRecursion/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
@@ -569,7 +568,7 @@ var _hmt = _hmt || [];
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Interview/">Interview<span>14</span></a></li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>4</span></a></li>
   </li>
 
     </ul>
@@ -582,7 +581,7 @@ var _hmt = _hmt || [];
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/Leetcode/">Leetcode<span>13</span></a></li>
+  <li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
     </ul>
 	</div>
 		

@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="google-site-verification" content="en_dejusB3O2_8PtG6GlYdYmaTEHr2fTEiIoZidOypY" />
+  <meta name="baidu-site-verification" content="7tszoAHV0d" />
+  <meta charset="utf-8">
+  
+  <title>CircularQueue | 百变千幻衡山云雾十三式</title>
+  <meta name="author" content="玉娇龙">
+  
+  <meta name="description" content="整理一下Scott的Circular Queue的设计">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="CircularQueue"/>
+  <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="百变千幻衡山云雾十三式" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?null";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">百变千幻衡山云雾十三式</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Rss feed">
+			  <i class="fa fa-rss-square"></i>Rss
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> CircularQueue</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+	
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>整理一下Scott的Circular Queue的设计</p>
+			
+		</div> <!-- alert -->
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h2 id="Circular_Queue的作用">Circular Queue的作用</h2><ul>
+<li>在SRAM里面相当于是无限大的buffer.</li>
+<li>在一般来说是作为asynch thread communication. 见<a href="http://www.cs.hmc.edu/~geoff/classes/hmc.cs105.201501/labs/lab05-ringbuf/ringbuf.pdf" target="_blank" rel="external">CS105: Harvey Mudd</a></li>
+</ul>
+<h2 id="Circular_Queue的区别">Circular Queue的区别</h2><ul>
+<li>wiki已经写了circular queue的几种实现方式, 区别在于判断empty/full的方式:<ol>
+<li>head/tail+1 empty slot<ul>
+<li>这个实现在: Ring Buffer_Anders Kaloer</li>
+</ul>
+</li>
+<li>head/tail+count<ul>
+<li>一般都是用这个写, 因为简单, 而且semaphore其实就使这个count. 表示的是: 当前queue里面保存的item数量.</li>
+<li>Scott的Firmware里面的也是这样做的.</li>
+<li>我参考的Harshkn的写法. 改了一点. 主要是count在满了之后就不动了. 然后在push/pop里面加入了判断error的代码, 来自于kqchen.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="实现代码">实现代码</h2><h3 id="1-_使用Count">1. 使用Count</h3><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * https://gist.github.com/harshkn/909546</span><br><span class="line"> * C Implementation of simple circular buffer, Functionality provided are add to queue, read latest</span><br><span class="line"> *</span><br><span class="line"> * Implementation: head, tail, and count. The major different between AndersKaloer/Harshkn is the way to detect full/empty.</span><br><span class="line"> * The former trade with an empty slot, the latter use additional int-&gt;count. I review this because this is easier and Scott uses it too.</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line">typedef <span class="keyword">struct</span> circular_buffer &#123;</span><br><span class="line">	void *buffer;     <span class="comment">// data buffer</span></span><br><span class="line">	void *buffer_end; <span class="comment">// end of data buffer</span></span><br><span class="line">	size_t capacity;  <span class="comment">// maximum number of items in the buffer</span></span><br><span class="line">	size_t count;     <span class="comment">// number of items in the buffer</span></span><br><span class="line">	size_t sz;        <span class="comment">// size of each item in the buffer</span></span><br><span class="line">	void *head;       <span class="comment">// pointer to head</span></span><br><span class="line">	void *tail;       <span class="comment">// pointer to tail</span></span><br><span class="line">&#125; circular_buffer;</span><br><span class="line"></span><br><span class="line">void cb_init(circular_buffer *cb, size_t capacity, size_t sz) &#123;</span><br><span class="line">	cb-&gt;buffer = malloc(capacity * sz);</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;buffer == NULL) &#123;</span><br><span class="line">		<span class="comment">// handle error</span></span><br><span class="line">	&#125;</span><br><span class="line">	cb-&gt;buffer_end = (<span class="keyword">char</span> *) cb-&gt;buffer + capacity * sz;</span><br><span class="line">	cb-&gt;capacity = capacity;</span><br><span class="line">	cb-&gt;count = <span class="number">0</span>;</span><br><span class="line">	cb-&gt;sz = sz;</span><br><span class="line">	cb-&gt;head = cb-&gt;buffer;</span><br><span class="line">	cb-&gt;tail = cb-&gt;buffer;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void cb_free(circular_buffer *cb) &#123;</span><br><span class="line">	free(cb-&gt;buffer);</span><br><span class="line">	<span class="comment">// clear out other fields too, just to be safe</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void cb_push_back(circular_buffer *cb, <span class="keyword">const</span> void *item) &#123;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;count == cb-&gt;capacity) &#123;</span><br><span class="line">		printf(<span class="string">"%s, %d: cb push back error. \n"</span>, __FILE__, __LINE__);</span><br><span class="line"><span class="comment">//		return;</span></span><br><span class="line">	&#125;</span><br><span class="line">	memcpy(cb-&gt;head, item, cb-&gt;sz);</span><br><span class="line">	printf(<span class="string">"push data = %d\n"</span>, *(<span class="keyword">char</span> *) cb-&gt;head);</span><br><span class="line">	cb-&gt;head = (<span class="keyword">char</span>*) cb-&gt;head + cb-&gt;sz;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;head == cb-&gt;buffer_end)</span><br><span class="line">		cb-&gt;head = cb-&gt;buffer;</span><br><span class="line">	cb-&gt;count = cb-&gt;count == cb-&gt;capacity ? cb-&gt;count : cb-&gt;count + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void cb_pop_front(circular_buffer *cb, void *item) &#123;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;count == <span class="number">0</span>) &#123;</span><br><span class="line">		printf(<span class="string">"%s, %d: cb_pop_front: empty cb.\n"</span>, __FILE__, __LINE__);</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	memcpy(item, cb-&gt;tail, cb-&gt;sz);</span><br><span class="line">	printf(<span class="string">"pop data = %d\n"</span>, *(<span class="keyword">char</span> *) cb-&gt;tail);</span><br><span class="line">	cb-&gt;tail = (<span class="keyword">char</span>*) cb-&gt;tail + cb-&gt;sz;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;tail == cb-&gt;buffer_end)</span><br><span class="line">		cb-&gt;tail = cb-&gt;buffer;</span><br><span class="line">	cb-&gt;count--;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cb_empty(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">if</span> (cb-&gt;count == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> cb_full(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">return</span> cb-&gt;count == cb-&gt;capacity;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void printbuf(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; i &lt; cb-&gt;capacity; ++i)</span><br><span class="line">		printf(<span class="string">"%d "</span>, *(<span class="keyword">char</span> *) (cb-&gt;buffer + i));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * https://github.com/kqchen/workspace/blob/21ab1c18dbf6c674437b0c89bb313ddbfc2de85c/hello/circular.c</span><br><span class="line"> */</span></span><br><span class="line">void cb_print(circular_buffer *cb) &#123;</span><br><span class="line">	<span class="keyword">int</span> cnt = cb-&gt;count;</span><br><span class="line">	<span class="keyword">do</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (cb-&gt;count == <span class="number">0</span>) &#123;</span><br><span class="line">			printf(<span class="string">"%s, %d: cb is empty now.\n"</span>, __FILE__, __LINE__);</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		printf(<span class="string">"cb-&gt;tail=0x%x, cb-&gt;head=0x%x, cnt = %d\n"</span>, cb-&gt;tail, cb-&gt;head,</span><br><span class="line">				cnt);</span><br><span class="line">		cnt--;</span><br><span class="line">	&#125; <span class="keyword">while</span> (cnt &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * testing the ring buffer</span><br><span class="line"> */</span></span><br><span class="line"><span class="keyword">int</span> main() &#123;</span><br><span class="line">	circular_buffer tony; <span class="comment">// a holder</span></span><br><span class="line">	cb_init(&amp;tony, <span class="number">4</span>, <span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">for</span> (; i &lt; <span class="number">20</span>; ++i) &#123;</span><br><span class="line">		cb_push_back(&amp;tony, &amp;i);</span><br><span class="line"><span class="comment">//		printf("%d with count: %d, data = %d\n", cb_full(&amp;tony), tony.count, i);</span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	printf(<span class="string">"\nafter filling ---\n"</span>);</span><br><span class="line">	cb_print(&amp;tony);</span><br><span class="line"><span class="comment">//	printf("after filling ---\n");</span></span><br><span class="line"><span class="comment">//	printbuf(&amp;tony);</span></span><br><span class="line">	<span class="keyword">char</span> result;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (; j &lt; <span class="number">6</span>; ++j) &#123;</span><br><span class="line">		cb_pop_front(&amp;tony, &amp;result);</span><br><span class="line"><span class="comment">//		printf("%d with count: %d, result = %d\n", cb_empty(&amp;tony), tony.count, result);</span></span><br><span class="line">	&#125;</span><br><span class="line">	printf(<span class="string">"\nafter pop ---\n"</span>);</span><br><span class="line">	cb_print(&amp;tony);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/05/22/Leetcode/Unit5-9chap-DP2/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/05/20/Leetcode/Report-BinaryTreeSerialization/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-05-22 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/OS/">OS<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Circular_Queue的作用"><span class="toc-article-text">Circular Queue的作用</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Circular_Queue的区别"><span class="toc-article-text">Circular Queue的区别</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#实现代码"><span class="toc-article-text">实现代码</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#1-_使用Count"><span class="toc-article-text">1. 使用Count</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 玉娇龙
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'vlsi1217';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+   </html>

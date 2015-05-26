@@ -139,29 +139,58 @@ var _hmt = _hmt || [];
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h1 id="这里记录Hexo搭建的经历和问题">这里记录Hexo搭建的经历和问题</h1><hr>
-<h2 id="20150519">20150519</h2><h3 id="怎么更好的铁贴码?">怎么更好的铁贴码?</h3><ul>
-<li>我想在每一个解题报告里面加入github, 有什么好的办法呢?<ul>
-<li>gist-it.</li>
-<li><script url-to-gist="" script=""></li>
-<li>data-file-folder</li>
+	    <h2 id="20150519">20150519</h2><h3 id="怎么更好的贴代码?">怎么更好的贴代码?</h3><ul>
+<li><p>我想在每一个解题报告里面加入github, 有什么好的办法呢? 主要是想能在作业部落里面好改的.</p>
+<ul>
+<li>gist-it. —-&gt;但是悲催的不支持有中文的代码文件…</li>
+<li><code>&lt;script url-to-gist /script&gt;</code>  ——&gt; 只支持gist</li>
+<li>data-file-folder —-&gt;不知道怎么用, 这样不好移植…</li>
+<li>自带的. <a href="http://blog.bd17kaka.net/blog/2012/11/29/octopress-sharing-code-snippets/" target="_blank" rel="external">地址设置参考link</a></li>
 </ul>
 </li>
+<li><p>加入Github代码:</p>
+<figure class="highlight ruby"><figcaption><span>_.compact</span><a href="http://underscorejs.org/#compact" target="_blank" rel="external">Underscore.js</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">_</span>.compact([<span class="number">0</span>, <span class="number">1</span>, <span class="keyword">false</span>, <span class="number">2</span>, <span class="string">''</span>, <span class="number">3</span>]);</span><br><span class="line"><span class="status">=&gt;</span> [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>测试gist:</p>
+<script src="https://gist.github.com/4505639.js?file=macroBuild.scala" type="text/javascript">
+</script>
+
+</li>
+</ul>
+<script src="//gist.github.com/b55b0f8f994bbe156e86.js?file=testEmb.java"></script>
+<ul>
+<li><p>使用gist-it: 保存所有.java代码为utf8就OK了.</p>
+<script src="http://gist-it.appspot.com/https://github.com/vlsi1217/vlsi1217.github.io/blob/source/_codes/freq2_tony_chinese/LargestRecHistoOneStack.java">
+</script>
+</li>
+<li><p>内嵌代码: <del>悲催的不支持中文. 看来以后还是得使用英文</del> 并不是, 而是必须所有文件使用UTF-8 without BOM保存. 这样gist-it跟include_code都能正常识别. 因为js/python不支持其他保存格式</p>
+<figure class="highlight java"><figcaption><span>FourSum.java</span><a href="/_codes/freq2_tony_chinese/FourSum.java">view raw</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> freq2_tony;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="javadoc">/**</span><br><span class="line"> * 还是二分的思想解决大问题.</span><br><span class="line"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FourSum</span> </span>{</span><br><span class="line">  <span class="javadoc">/**</span><br><span class="line">   *</span><br><span class="line">   *<span class="javadoctag"> @param</span> num</span><br><span class="line">   *<span class="javadoctag"> @param</span> target</span><br><span class="line">   *<span class="javadoctag"> @return</span></span><br><span class="line">   */</span></span><br><span class="line">  <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; fourSumN00t(<span class="keyword">int</span>[] num, <span class="keyword">int</span> target) {</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line">    <span class="keyword">if</span>  (num == <span class="keyword">null</span> || num.length &lt; <span class="number">4</span>)</span><br><span class="line">      <span class="keyword">return</span> res;</span><br><span class="line">    Arrays.sort(num);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; num.length-<span class="number">3</span> &amp;&amp; num[i] &lt;= target; ++i) {</span><br><span class="line">      <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; num[i] == num[i-<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">continue</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; num.length-<span class="number">2</span>; ++j) {</span><br><span class="line">        <span class="keyword">if</span> (j &gt; i+<span class="number">1</span> &amp;&amp; num[j] == num[j-<span class="number">1</span>])</span><br><span class="line">          <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">int</span> l = j+<span class="number">1</span>, r= num.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &lt; r)  {</span><br><span class="line">          <span class="keyword">int</span> sum = num[i] + num[j] + num[l] + num[r];</span><br><span class="line">          <span class="keyword">if</span> (sum &lt; target) {</span><br><span class="line">            l++;</span><br><span class="line">          }</span><br><span class="line">          <span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(sum &gt; target)</span> </span>{</span><br><span class="line">            r--;</span><br><span class="line">          }</span><br><span class="line">          <span class="keyword">else</span> {</span><br><span class="line">            List&lt;Integer&gt; cur = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">            cur.add(num[i]);</span><br><span class="line">            cur.add(num[j]);</span><br><span class="line">            cur.add(num[l]);</span><br><span class="line">            cur.add(num[r]);</span><br><span class="line">            res.add(cur);</span><br><span class="line">            do {</span><br><span class="line">              l++;</span><br><span class="line">            } <span class="keyword">while</span> (l &lt; r &amp;&amp; num[l] == num[l-<span class="number">1</span>]);</span><br><span class="line">            do {</span><br><span class="line">              r--;</span><br><span class="line">            } <span class="keyword">while</span> (l &lt; r &amp;&amp; num[r] == num[r+<span class="number">1</span>]);</span><br><span class="line">          }</span><br><span class="line">        }</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">FourSum</span><span class="params">()</span> </span>{</span><br><span class="line">    <span class="keyword">int</span>[] input = {-<span class="number">8</span>, -<span class="number">5</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>};</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; res = fourSumN00t(input, <span class="number">4</span>);</span><br><span class="line">    <span class="comment">// ArrayList&lt;ArrayList&lt;Integer&gt;&gt; res = twoSum(input, input.length-1, 4);</span></span><br><span class="line">    System.out.println(res);</span><br><span class="line">  }</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>{</span><br><span class="line">    FourSum fs = <span class="keyword">new</span> FourSum();</span><br><span class="line">  }</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="总结一下贴代码">总结一下贴代码</h3><ul>
+<li>还是得用github来host代码, 因为gitlab不支持.</li>
+<li>使用gist-it还是直接内嵌额?<ul>
+<li>其实都是使用的本地代码. 因为github只支持embed gist文件.</li>
+<li>如果只是使用_codes来保存代码, 然后在git, 在embed的话, 其实很麻烦. 以为除了hexo d之外, 还要单独git source branch.<del>还不如直接git所有代码到github一个project里面.</del> 不管怎么样, 都是要另外git source branch. 这和单独开一个git repo有区别吗? 有的. 一来: 单独的git repo容易看到, git push简单. 而且和gitpage decouple了.</li>
+</ul>
+</li>
+<li>批量转换western到utf-8, 我使用的是: GB/BIG5/UTF-8 文件编码批量转换程序 1.3. 挺好用的.</li>
+<li>在Eclipse里面就设置了default encoding为utf-8. 这样以后就不用写完后, 在转换了. 可以参考一下: <a href="https://ekkescorner.wordpress.com/2009/07/28/howto-change-fileencoding-of-eclipse-projects-osx/" target="_blank" rel="external">Encoding Eclipse osx</a></li>
 </ul>
 <h2 id="20150513">20150513</h2><ul>
-<li>因为主要还是在zybuluo里面写markdown. 写完之后放到Hexo并deploy. 所以就直接用img的链接. 一开始试了一下google drive, 分享链接不太好用(要选择是public的程度). 所以还是使用了七牛. 发现还挺方便的. 而且1G空间很够用了. 而且读取很快. 不错. </li>
+<li>因为主要还是在zybuluo里面写markdown. 写完之后放到Hexo并deploy. 所以就直接用img的链接. 一开始试了一下google drive, 分享链接不太好用(要选择是public的程度). 所以还是使用了七牛. 发现还挺方便的. 而且1G空间很够用了. 而且读取很快. 不错.</li>
 <li>所以以后就是图片本地还是放在img文件夹里面. 不过同时上传到七牛. 最好还是压缩一下. 有的图片大于1M了.</li>
 </ul>
 <h2 id="20150508">20150508</h2><ul>
 <li>今天主要的任务是把我的github.io从wiki-in-box搬到了Hexo-Freemind. 感受到了强大的Hexo.</li>
 <li>不过其中遇到了不少问题. 所以也用了挺长时间做:<ol>
-<li>disque怎么弄? 原来是名字是’abc123’, 而不是’<abc213>‘. 所以造成了无法和我在disqus里面注册的.</li>
-<li>RSS/SiteMap怎么弄? 我本来是按照教程直接npm install这2个plugin. 但是hexo g之后并没有产生atom.xml/sitemap.xml. 然后才发现这个plugin应该安装在hexo/tonyhexo里面, 而不是安装到<code>C:\MOOC\NodeJS_Intro\</code>下面. 所以又倒来倒去. </li>
+<li>disque怎么弄? 原来是名字是’abc123’, 而不是’<abc213>‘. 所以造成了无法和我在disqus里面注册的.</abc213></li>
+<li>RSS/SiteMap怎么弄? 我本来是按照教程直接npm install这2个plugin. 但是hexo g之后并没有产生atom.xml/sitemap.xml. 然后才发现这个plugin应该安装在hexo/tonyhexo里面, 而不是安装到<code>C:\MOOC\NodeJS_Intro\</code>下面. 所以又倒来倒去.</li>
 </ol>
 </li>
-<li>主要参考的: <ul>
-<li><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/#">如何搭建一个独立博客</a>. 这里还讲了如何DNS,</li>
-<li><a href="http://baoxiehao.com/2014/05/17/Hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/">Hexo博客优化</a>. 这个讲了如何使用google analytics和sitemap的用法.</li>
+<li>主要参考的:<ul>
+<li><a href="http://cnfeat.com/2014/05/10/2014-05-11-how-to-build-a-blog/#" target="_blank" rel="external">如何搭建一个独立博客</a>. 这里还讲了如何DNS,</li>
+<li><a href="http://baoxiehao.com/2014/05/17/Hexo%E5%8D%9A%E5%AE%A2%E4%BC%98%E5%8C%96/" target="_blank" rel="external">Hexo博客优化</a>. 这个讲了如何使用google analytics和sitemap的用法.</li>
 </ul>
 </li>
 <li>但是发现Hexo还是有些缺陷:<ul>
@@ -169,12 +198,12 @@ var _hmt = _hmt || [];
 <li>这个markdown和作业部落的不太一样, 不过差别不大就是了.</li>
 </ul>
 </li>
-<li>方式: <ul>
+<li>方式:<ul>
 <li>主要是在作业部落上面写好, 然后再放到这个Hexo上面. 因为作业部落确实是markdown很友好. 不过Hexo是我的个人博客. 更大自由.</li>
 </ul>
 </li>
 </ul>
-</script></li></ul></li></ul>	  
+	  
 	</div>
 
 	<div>
@@ -254,7 +283,7 @@ var _hmt = _hmt || [];
 	
 	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
 	   <div id="toc" class="toc collapse in">
-			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#这里记录Hexo搭建的经历和问题"><span class="toc-article-text">这里记录Hexo搭建的经历和问题</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20150519"><span class="toc-article-text">20150519</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#怎么更好的铁贴码?"><span class="toc-article-text">怎么更好的铁贴码?</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20150519"><span class="toc-article-text">20150519</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#怎么更好的贴代码?"><span class="toc-article-text">怎么更好的贴代码?</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#总结一下贴代码"><span class="toc-article-text">总结一下贴代码</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20150513"><span class="toc-article-text">20150513</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20150508"><span class="toc-article-text">20150508</span></a></li></ol>
 		</div>
 	
 	</div>
