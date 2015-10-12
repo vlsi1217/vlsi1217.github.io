@@ -5,15 +5,15 @@
   <meta name="baidu-site-verification" content="7tszoAHV0d" />
   <meta charset="utf-8">
   
-  <title>TEST | 百变千幻衡山云雾十三式</title>
+  <title>Largest rectangle in instagram 解题报告 | 百变千幻衡山云雾十三式</title>
   <meta name="author" content="玉娇龙">
   
-  <meta name="description" content="this is a test复习一下, 都快忘了, 看来可以实时修改『Cmd 技术渲染的沙箱页面，点击此处编写自己的文档』">
+  <meta name="description" content="做完九章Ladder">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="TEST"/>
+  <meta property="og:title" content="Largest rectangle in instagram 解题报告"/>
   <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
 
   
@@ -118,7 +118,7 @@ var _hmt = _hmt || [];
 
 	
 		<div class="page-header">		
-			<h1> TEST</h1>
+			<h1> Largest rectangle in instagram 解题报告</h1>
 		</div>		
 	
 
@@ -130,12 +130,40 @@ var _hmt = _hmt || [];
 	<div class="col-md-9">
 	
 
+	
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>做完九章Ladder</p>
+			
+		</div> <!-- alert -->
 			
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h1 id="this_is_a_test">this is a test</h1><h2 id="复习一下,_都快忘了,_看来可以实时修改">复习一下, 都快忘了, 看来可以实时修改</h2><p><a href="https://www.zybuluo.com/mdeditor" title="作业部落旗下 Cmd 在线 Markdown 编辑阅读器" target="_blank" rel="external">『Cmd 技术渲染的沙箱页面，点击此处编写自己的文档』</a></p>
-	  
+	    <h1 id="题目">题目</h1><ul>
+<li><a href="http://www.lintcode.com/en/problem/largest-rectangle-in-histogram/" target="_blank" rel="external">题目链接</a></li>
+</ul>
+<h1 id="思考">思考</h1><h2 id="方法1:_O(n^2)的遍历做法-">方法1: O(n^2)的遍历做法.</h2><ul>
+<li>很简单, 一个个rectangle area计算出来, 然后枚举/排序/找最大.</li>
+<li>这里outer loop来抓每一个area的height, 然后分别从它向左/右找第一个比他小的数. 然后计算面积. 在计算的过程中update ans.</li>
+<li>这里向左向右的while loop找lhs/rhs可以追述到Algs4的Binary search, Quick Sort的partition. 或者是Maximum subarray的Divide &amp; Conquer的做法.</li>
+<li>这里很重要的一点: 还是: 数列问题的index. 这里的终止条件是i = -1 || i = length. 这样的话, 可以统一起来lhs总是比他小的那个位置, rhs总是比他大的那个位置. 从而width = rhs-lhs-1.</li>
+</ul>
+<h2 id="方法2:_Stack的使用:_O(1)找左右第一个比他小的数">方法2: Stack的使用: O(1)找左右第一个比他小的数</h2><ul>
+<li>Stack又一个用法: 一个<strong>严格</strong>单调递增的stack. 它的左边第一个就是就是比它小的第一个数.</li>
+<li><p>九章课上说, 可以有2个方法:</p>
+<ol>
+<li>正着跑一边incStk, 找到他的左边第一个比他小的位置, 然后reverse array, 再跑一遍stack, 找到右边第一个比他小的位置. (这和方法1有什么区别? 有的, 这个是O(n)找到所有点的左右范围.)</li>
+<li>也可以是九章答案的做法, 就是for里面一个while, 来维持单调递增性, 若违反了, 则说明找到了右边界, 因为其左侧第一个就是第一个比他小的数的位置.</li>
+</ol>
+</li>
+<li><p>但是: 虽然意思懂了, 但是一做发现很多错误! 我第一次在Lintcode上面写就出现了一个很好的错误: 如果[1,1]的话怎么弄? 应该输出2, 但我得到1! 这是因为我的width计算不对.</p>
+<ul>
+<li>有个很重要的点: 例如[1], 然后cur = 0. 那么右边界找到了, 接着pop, 于是incStk = []. 那么左边界是多少呢? 我当时直接i-l-1. 其中l是incStk.peek(). 其实这样不对. 也导致了我的area是1. 因为stack为空, 说明height[pop()]的左边界是通到i = 0! 即width = i.</li>
+<li>上面的这个错误的原因还有一个! 就是我在while loop判断的时候用的是”&lt;”, 也就是维护的是一个<code>单调不递减</code>stack, 而不是<code>单调递增</code>stack. 这样的后果是, incStk出现了[1,1], 然后cur = 0. 接着pop位于第二个的1. 算出来的不知道是有什么物理意义. 所以正确的做法是while loop的判断用的是<code>&lt;=</code>. 从而保证单调递增, 即左边就是比它小的数.</li>
+</ul>
+</li>
+</ul>
+<h2 id="方法3:_Dynamic_programming:_凡是找极值都应该想想动态规划-">方法3: Dynamic programming: 凡是找极值都应该想想动态规划.</h2>	  
 	</div>
 
 	<div>
@@ -181,7 +209,7 @@ var _hmt = _hmt || [];
 	
 	<div class="meta-widget">
 	<i class="fa fa-clock-o"></i>
-	2015-09-16 
+	2015-05-30 
 	</div>
 	
 
@@ -192,7 +220,7 @@ var _hmt = _hmt || [];
     <ul id="categorys" class="tag_box list-unstyled collapse in">
           
   <li>
-    <li><a href="/categories/Demo/">Demo<span>2</span></a></li>
+    <li><a href="/categories/Interview/">Interview<span>21</span></a></li>
   </li>
 
     </ul>
@@ -205,7 +233,7 @@ var _hmt = _hmt || [];
 	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
     <ul id="tags" class="tag_box list-unstyled collapse in">	  
 	    
-  <li><a href="/tags/demo/">demo<span>2</span></a></li>
+  <li><a href="/tags/Ladder/">Ladder<span>7</span></a></li> <li><a href="/tags/Lintcode/">Lintcode<span>7</span></a></li> <li><a href="/tags/NineChap/">NineChap<span>14</span></a></li> <li><a href="/tags/Stack/">Stack<span>1</span></a></li>
     </ul>
 	</div>
 		
@@ -215,7 +243,7 @@ var _hmt = _hmt || [];
 	
 	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
 	   <div id="toc" class="toc collapse in">
-			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#this_is_a_test"><span class="toc-article-text">this is a test</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#复习一下,_都快忘了,_看来可以实时修改"><span class="toc-article-text">复习一下, 都快忘了, 看来可以实时修改</span></a></li></ol></li></ol>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#题目"><span class="toc-article-text">题目</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#思考"><span class="toc-article-text">思考</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#方法1:_O(n^2)的遍历做法-"><span class="toc-article-text">方法1: O(n^2)的遍历做法.</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#方法2:_Stack的使用:_O(1)找左右第一个比他小的数"><span class="toc-article-text">方法2: Stack的使用: O(1)找左右第一个比他小的数</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#方法3:_Dynamic_programming:_凡是找极值都应该想想动态规划-"><span class="toc-article-text">方法3: Dynamic programming: 凡是找极值都应该想想动态规划.</span></a></li></ol></li></ol>
 		</div>
 	
 	</div>

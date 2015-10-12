@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Wikirize my knowledge]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://vlsi1217.github.io/"/>
-  <updated>2015-09-16T04:12:56.202Z</updated>
+  <updated>2015-10-11T00:31:05.021Z</updated>
   <id>http://vlsi1217.github.io/</id>
   
   <author>
@@ -15,20 +15,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[TEST]]></title>
-    <link href="http://vlsi1217.github.io/2015/09/16/Sample/teste/"/>
-    <id>http://vlsi1217.github.io/2015/09/16/Sample/teste/</id>
-    <published>2015-09-17T03:17:16.000Z</published>
-    <updated>2015-09-16T04:12:56.202Z</updated>
-    <content type="html"><![CDATA[<h1 id="this_is_a_test">this is a test</h1><h2 id="复习一下,_都快忘了,_看来可以实时修改">复习一下, 都快忘了, 看来可以实时修改</h2><p><a href="https://www.zybuluo.com/mdeditor" title="作业部落旗下 Cmd 在线 Markdown 编辑阅读器" target="_blank" rel="external">『Cmd 技术渲染的沙箱页面，点击此处编写自己的文档』</a></p>
-]]></content>
+    <title><![CDATA[Largest rectangle in instagram 解题报告]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/30/Leetcode/Report/Report-LargestRectangleInstagram/"/>
+    <id>http://vlsi1217.github.io/2015/05/30/Leetcode/Report/Report-LargestRectangleInstagram/</id>
+    <published>2015-05-30T18:17:07.000Z</published>
+    <updated>2015-10-11T00:31:05.021Z</updated>
+    <content type="html"><![CDATA[<h1 id="题目">题目</h1><ul>
+<li><a href="http://www.lintcode.com/en/problem/largest-rectangle-in-histogram/" target="_blank" rel="external">题目链接</a></li>
+</ul>
+<h1 id="思考">思考</h1><h2 id="方法1:_O(n^2)的遍历做法-">方法1: O(n^2)的遍历做法.</h2><ul>
+<li>很简单, 一个个rectangle area计算出来, 然后枚举/排序/找最大.</li>
+<li>这里outer loop来抓每一个area的height, 然后分别从它向左/右找第一个比他小的数. 然后计算面积. 在计算的过程中update ans.</li>
+<li>这里向左向右的while loop找lhs/rhs可以追述到Algs4的Binary search, Quick Sort的partition. 或者是Maximum subarray的Divide &amp; Conquer的做法.</li>
+<li>这里很重要的一点: 还是: 数列问题的index. 这里的终止条件是i = -1 || i = length. 这样的话, 可以统一起来lhs总是比他小的那个位置, rhs总是比他大的那个位置. 从而width = rhs-lhs-1.</li>
+</ul>
+<h2 id="方法2:_Stack的使用:_O(1)找左右第一个比他小的数">方法2: Stack的使用: O(1)找左右第一个比他小的数</h2><ul>
+<li>Stack又一个用法: 一个<strong>严格</strong>单调递增的stack. 它的左边第一个就是就是比它小的第一个数.</li>
+<li><p>九章课上说, 可以有2个方法:</p>
+<ol>
+<li>正着跑一边incStk, 找到他的左边第一个比他小的位置, 然后reverse array, 再跑一遍stack, 找到右边第一个比他小的位置. (这和方法1有什么区别? 有的, 这个是O(n)找到所有点的左右范围.)</li>
+<li>也可以是九章答案的做法, 就是for里面一个while, 来维持单调递增性, 若违反了, 则说明找到了右边界, 因为其左侧第一个就是第一个比他小的数的位置.</li>
+</ol>
+</li>
+<li><p>但是: 虽然意思懂了, 但是一做发现很多错误! 我第一次在Lintcode上面写就出现了一个很好的错误: 如果[1,1]的话怎么弄? 应该输出2, 但我得到1! 这是因为我的width计算不对.</p>
+<ul>
+<li>有个很重要的点: 例如[1], 然后cur = 0. 那么右边界找到了, 接着pop, 于是incStk = []. 那么左边界是多少呢? 我当时直接i-l-1. 其中l是incStk.peek(). 其实这样不对. 也导致了我的area是1. 因为stack为空, 说明height[pop()]的左边界是通到i = 0! 即width = i.</li>
+<li>上面的这个错误的原因还有一个! 就是我在while loop判断的时候用的是”&lt;”, 也就是维护的是一个<code>单调不递减</code>stack, 而不是<code>单调递增</code>stack. 这样的后果是, incStk出现了[1,1], 然后cur = 0. 接着pop位于第二个的1. 算出来的不知道是有什么物理意义. 所以正确的做法是while loop的判断用的是<code>&lt;=</code>. 从而保证单调递增, 即左边就是比它小的数.</li>
+</ul>
+</li>
+</ul>
+<h2 id="方法3:_Dynamic_programming:_凡是找极值都应该想想动态规划-">方法3: Dynamic programming: 凡是找极值都应该想想动态规划.</h2>]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="this_is_a_test">this is a test</h1><h2 id="复习一下,_都快忘了,_看来可以实时修改">复习一下, 都快忘了, 看来可以实时修改</h2><p><a href="https://www.zybuluo.com/mdedit]]>
+    <![CDATA[做完九章Ladder]]>
+    
     </summary>
     
-      <category term="demo" scheme="http://vlsi1217.github.io/tags/demo/"/>
+      <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
     
-      <category term="Demo" scheme="http://vlsi1217.github.io/categories/Demo/"/>
+      <category term="Lintcode" scheme="http://vlsi1217.github.io/tags/Lintcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Stack" scheme="http://vlsi1217.github.io/tags/Stack/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
     
   </entry>
   
@@ -328,58 +358,6 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Binary Tree Serialization 解题报告]]></title>
-    <link href="http://vlsi1217.github.io/2015/05/20/Leetcode/Report/Report-BinaryTreeSerialization/"/>
-    <id>http://vlsi1217.github.io/2015/05/20/Leetcode/Report/Report-BinaryTreeSerialization/</id>
-    <published>2015-05-20T18:17:07.000Z</published>
-    <updated>2015-06-06T23:38:20.573Z</updated>
-    <content type="html"><![CDATA[<p>标签（空格分隔）： lintcode BFS BinaryTree</p>
-<hr>
-<h2 id="题目">题目</h2><ul>
-<li><a href="http://www.lintcode.com/en/problem/binary-tree-serialization/" target="_blank" rel="external">link点我</a></li>
-<li>Example<br>  An example of testdata: Binary tree {3,9,20,#,#,15,7}, denote the following structure, Our data serialization use bfs traversal:<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20351;&#29992;code block&#21487;&#20197;&#20445;&#30041;&#26684;&#24335;&#10;  3&#10; / \&#10;9  20&#10;  /  \&#10; 15   7</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="分析">分析</h2><h3 id="Serialize">Serialize</h3><ul>
-<li>注意这个是Lintcode的Serialize, 和Leetcode的区别在于他使用的是BFS. 而后者则是使用的pre-order DFS.</li>
-<li>null object 和 null的区别.</li>
-<li>flag的设计: 要有初始值, 在进入循环的时候update, 对于每一个节点再次update. 那么当这一层结束后就是有效的flag.</li>
-</ul>
-<h3 id="De-serialize">De-serialize</h3><ul>
-<li>还是使用BFS解决. 和Pre-order的de-serialize一样, 和各自的Serialize有一个一一对应的关系.</li>
-<li>第一次写的时候出现idx超出array size的问题. 这是为什么呢? 因为我在判断token[idx]的时候居然判断了4次. 因为每一次判断都要idx++. 然后我把4个if并成2个if…else就OK了.</li>
-<li>注意这个时候的while loop判断不是parents queue是否为空, 而是判断token[] array走完没有. 我一开始这里搞错了, 居然去判断string走完没有. 注意string就是char Array. 例如{3, 9, 20, #, #, 15, 7}, 这个string的length是21. 而token[]则是7.</li>
-<li>还有注意这里update parents queue的时候要注意. 这里的做法是对于”#”, 则不加入null到queue. 不然queue的size()就不对了. 因为这里不用traverse null node.</li>
-</ul>
-<h2 id="code">code</h2><h3 id="1-_Serialize_Binary_Tree_:_BFS遍历">1. Serialize Binary Tree : BFS遍历</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">String <span class="title">serializeBFS</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"#"</span>;</span><br><span class="line">    String ans = <span class="string">""</span>;</span><br><span class="line">    Queue&lt;TreeNode&gt; <span class="keyword">parents</span> = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">parents</span>.offer(root);</span><br><span class="line">    <span class="keyword">boolean</span> end = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="keyword">parents</span>.isEmpty() &amp;&amp; !end) &#123;</span><br><span class="line">        end = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> size = <span class="keyword">parents</span>.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">            TreeNode head = <span class="keyword">parents</span>.poll();</span><br><span class="line">            <span class="comment">// update result</span></span><br><span class="line">            String thisnode = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">                thisnode = <span class="string">"#"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                thisnode = head.value + <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ans.length() == <span class="number">0</span>) &#123;</span><br><span class="line">                ans = ans + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ans = ans + <span class="string">", "</span> + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// update queue</span></span><br><span class="line">            <span class="keyword">if</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!head.isLeaf())</span><br><span class="line">                    end = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.left);</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>De-serialize binary tree<br><del>还是直接link github代码好了.</del><br>试了几个方法. 最后还是觉得使用gist-it方便. 但是前提是代码不能有中文. 否则python解析不了.</li>
-</ol>
-<script src="http://gist-it.appspot.com/https://github.com/vlsi1217/leetlint/blob/master/nineChap3_BST/ValidateBST.java">
-</script>
-
-
-
-
-]]></content>
-    <summary type="html">
-    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
-    
-    </summary>
-    
-      <category term="BFS" scheme="http://vlsi1217.github.io/tags/BFS/"/>
-    
-      <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
-    
-      <category term="Lintcode" scheme="http://vlsi1217.github.io/tags/Lintcode/"/>
-    
-      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
-    
-      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
-    
-  </entry>
-  
-  <entry>
     <title><![CDATA[Interleaving String 解题报告]]></title>
     <link href="http://vlsi1217.github.io/2015/05/20/Leetcode/Report/Report-Distinct%20Subsequences/"/>
     <id>http://vlsi1217.github.io/2015/05/20/Leetcode/Report/Report-Distinct Subsequences/</id>
@@ -488,6 +466,58 @@
     </summary>
     
       <category term="DP" scheme="http://vlsi1217.github.io/tags/DP/"/>
+    
+      <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
+    
+      <category term="Lintcode" scheme="http://vlsi1217.github.io/tags/Lintcode/"/>
+    
+      <category term="NineChap" scheme="http://vlsi1217.github.io/tags/NineChap/"/>
+    
+      <category term="Interview" scheme="http://vlsi1217.github.io/categories/Interview/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Binary Tree Serialization 解题报告]]></title>
+    <link href="http://vlsi1217.github.io/2015/05/20/Leetcode/Report/Report-BinaryTreeSerialization/"/>
+    <id>http://vlsi1217.github.io/2015/05/20/Leetcode/Report/Report-BinaryTreeSerialization/</id>
+    <published>2015-05-20T18:17:07.000Z</published>
+    <updated>2015-06-06T23:38:20.573Z</updated>
+    <content type="html"><![CDATA[<p>标签（空格分隔）： lintcode BFS BinaryTree</p>
+<hr>
+<h2 id="题目">题目</h2><ul>
+<li><a href="http://www.lintcode.com/en/problem/binary-tree-serialization/" target="_blank" rel="external">link点我</a></li>
+<li>Example<br>  An example of testdata: Binary tree {3,9,20,#,#,15,7}, denote the following structure, Our data serialization use bfs traversal:<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20351;&#29992;code block&#21487;&#20197;&#20445;&#30041;&#26684;&#24335;&#10;  3&#10; / \&#10;9  20&#10;  /  \&#10; 15   7</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="分析">分析</h2><h3 id="Serialize">Serialize</h3><ul>
+<li>注意这个是Lintcode的Serialize, 和Leetcode的区别在于他使用的是BFS. 而后者则是使用的pre-order DFS.</li>
+<li>null object 和 null的区别.</li>
+<li>flag的设计: 要有初始值, 在进入循环的时候update, 对于每一个节点再次update. 那么当这一层结束后就是有效的flag.</li>
+</ul>
+<h3 id="De-serialize">De-serialize</h3><ul>
+<li>还是使用BFS解决. 和Pre-order的de-serialize一样, 和各自的Serialize有一个一一对应的关系.</li>
+<li>第一次写的时候出现idx超出array size的问题. 这是为什么呢? 因为我在判断token[idx]的时候居然判断了4次. 因为每一次判断都要idx++. 然后我把4个if并成2个if…else就OK了.</li>
+<li>注意这个时候的while loop判断不是parents queue是否为空, 而是判断token[] array走完没有. 我一开始这里搞错了, 居然去判断string走完没有. 注意string就是char Array. 例如{3, 9, 20, #, #, 15, 7}, 这个string的length是21. 而token[]则是7.</li>
+<li>还有注意这里update parents queue的时候要注意. 这里的做法是对于”#”, 则不加入null到queue. 不然queue的size()就不对了. 因为这里不用traverse null node.</li>
+</ul>
+<h2 id="code">code</h2><h3 id="1-_Serialize_Binary_Tree_:_BFS遍历">1. Serialize Binary Tree : BFS遍历</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">String <span class="title">serializeBFS</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"#"</span>;</span><br><span class="line">    String ans = <span class="string">""</span>;</span><br><span class="line">    Queue&lt;TreeNode&gt; <span class="keyword">parents</span> = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">parents</span>.offer(root);</span><br><span class="line">    <span class="keyword">boolean</span> end = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="keyword">parents</span>.isEmpty() &amp;&amp; !end) &#123;</span><br><span class="line">        end = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> size = <span class="keyword">parents</span>.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">            TreeNode head = <span class="keyword">parents</span>.poll();</span><br><span class="line">            <span class="comment">// update result</span></span><br><span class="line">            String thisnode = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">                thisnode = <span class="string">"#"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                thisnode = head.value + <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ans.length() == <span class="number">0</span>) &#123;</span><br><span class="line">                ans = ans + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ans = ans + <span class="string">", "</span> + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// update queue</span></span><br><span class="line">            <span class="keyword">if</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!head.isLeaf())</span><br><span class="line">                    end = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.left);</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>De-serialize binary tree<br><del>还是直接link github代码好了.</del><br>试了几个方法. 最后还是觉得使用gist-it方便. 但是前提是代码不能有中文. 否则python解析不了.</li>
+</ol>
+<script src="http://gist-it.appspot.com/https://github.com/vlsi1217/leetlint/blob/master/nineChap3_BST/ValidateBST.java">
+</script>
+
+
+
+
+]]></content>
+    <summary type="html">
+    <![CDATA[A collection of Hello World applications from helloworld.org.]]>
+    
+    </summary>
+    
+      <category term="BFS" scheme="http://vlsi1217.github.io/tags/BFS/"/>
     
       <category term="Ladder" scheme="http://vlsi1217.github.io/tags/Ladder/"/>
     

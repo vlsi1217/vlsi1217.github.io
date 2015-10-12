@@ -134,8 +134,8 @@ var _hmt = _hmt || [];
 	
 	<!-- display as entry -->	
 		<h3 class="title">
-			<div class="date"> 2015-09-16 </div>
-			<div class="article-title"><a href="/2015/09/16/Sample/teste/" >TEST</a></div>						
+			<div class="date"> 2015-05-30 </div>
+			<div class="article-title"><a href="/2015/05/30/Leetcode/Report/Report-LargestRectangleInstagram/" title="做完九章Ladder">Largest rectangle in instagram 解题报告</a></div>						
 		</h3>
 	
 
@@ -146,14 +146,37 @@ var _hmt = _hmt || [];
 	<div class="col-md-12">
 	  
 	
-	  <h1 id="this_is_a_test">this is a test</h1><h2 id="复习一下,_都快忘了,_看来可以实时修改">复习一下, 都快忘了, 看来可以实时修改</h2><p><a href="https://www.zybuluo.com/mdeditor" title="作业部落旗下 Cmd 在线 Markdown 编辑阅读器" target="_blank" rel="external">『Cmd 技术渲染的沙箱页面，点击此处编写自己的文档』</a></p>
-
+	  <h1 id="题目">题目</h1><ul>
+<li><a href="http://www.lintcode.com/en/problem/largest-rectangle-in-histogram/" target="_blank" rel="external">题目链接</a></li>
+</ul>
+<h1 id="思考">思考</h1><h2 id="方法1:_O(n^2)的遍历做法-">方法1: O(n^2)的遍历做法.</h2><ul>
+<li>很简单, 一个个rectangle area计算出来, 然后枚举/排序/找最大.</li>
+<li>这里outer loop来抓每一个area的height, 然后分别从它向左/右找第一个比他小的数. 然后计算面积. 在计算的过程中update ans.</li>
+<li>这里向左向右的while loop找lhs/rhs可以追述到Algs4的Binary search, Quick Sort的partition. 或者是Maximum subarray的Divide &amp; Conquer的做法.</li>
+<li>这里很重要的一点: 还是: 数列问题的index. 这里的终止条件是i = -1 || i = length. 这样的话, 可以统一起来lhs总是比他小的那个位置, rhs总是比他大的那个位置. 从而width = rhs-lhs-1.</li>
+</ul>
+<h2 id="方法2:_Stack的使用:_O(1)找左右第一个比他小的数">方法2: Stack的使用: O(1)找左右第一个比他小的数</h2><ul>
+<li>Stack又一个用法: 一个<strong>严格</strong>单调递增的stack. 它的左边第一个就是就是比它小的第一个数.</li>
+<li><p>九章课上说, 可以有2个方法:</p>
+<ol>
+<li>正着跑一边incStk, 找到他的左边第一个比他小的位置, 然后reverse array, 再跑一遍stack, 找到右边第一个比他小的位置. (这和方法1有什么区别? 有的, 这个是O(n)找到所有点的左右范围.)</li>
+<li>也可以是九章答案的做法, 就是for里面一个while, 来维持单调递增性, 若违反了, 则说明找到了右边界, 因为其左侧第一个就是第一个比他小的数的位置.</li>
+</ol>
+</li>
+<li><p>但是: 虽然意思懂了, 但是一做发现很多错误! 我第一次在Lintcode上面写就出现了一个很好的错误: 如果[1,1]的话怎么弄? 应该输出2, 但我得到1! 这是因为我的width计算不对.</p>
+<ul>
+<li>有个很重要的点: 例如[1], 然后cur = 0. 那么右边界找到了, 接着pop, 于是incStk = []. 那么左边界是多少呢? 我当时直接i-l-1. 其中l是incStk.peek(). 其实这样不对. 也导致了我的area是1. 因为stack为空, 说明height[pop()]的左边界是通到i = 0! 即width = i.</li>
+<li>上面的这个错误的原因还有一个! 就是我在while loop判断的时候用的是”&lt;”, 也就是维护的是一个<code>单调不递减</code>stack, 而不是<code>单调递增</code>stack. 这样的后果是, incStk出现了[1,1], 然后cur = 0. 接着pop位于第二个的1. 算出来的不知道是有什么物理意义. 所以正确的做法是while loop的判断用的是<code>&lt;=</code>. 从而保证单调递增, 即左边就是比它小的数.</li>
+</ul>
+</li>
+</ul>
+<h2 id="方法3:_Dynamic_programming:_凡是找极值都应该想想动态规划-">方法3: Dynamic programming: 凡是找极值都应该想想动态规划.</h2>
 	
 	</div>
 	
   
 </div>
-	<a type="button" href="/2015/09/16/Sample/teste/#more" class="btn btn-default more">Read More</a>
+	<a type="button" href="/2015/05/30/Leetcode/Report/Report-LargestRectangleInstagram/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -489,7 +512,7 @@ var _hmt = _hmt || [];
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2015-05-20 </div>
-			<div class="article-title"><a href="/2015/05/20/Leetcode/Report/Report-BinaryTreeSerialization/" title="A collection of Hello World applications from helloworld.org.">Binary Tree Serialization 解题报告</a></div>						
+			<div class="article-title"><a href="/2015/05/20/Leetcode/Report/Report-Distinct Subsequences/" title="A collection of Hello World applications from helloworld.org.">Interleaving String 解题报告</a></div>						
 		</h3>
 	
 
@@ -500,41 +523,49 @@ var _hmt = _hmt || [];
 	<div class="col-md-12">
 	  
 	
-	  <p>标签（空格分隔）： lintcode BFS BinaryTree</p>
+	  <h1 id="Report:_Interleaving_String">Report: Interleaving String</h1><p>标签（空格分隔）： Lintcode DP Ladder</p>
 <hr>
-<h2 id="题目">题目</h2><ul>
-<li><a href="http://www.lintcode.com/en/problem/binary-tree-serialization/" target="_blank" rel="external">link点我</a></li>
-<li>Example<br>  An example of testdata: Binary tree {3,9,20,#,#,15,7}, denote the following structure, Our data serialization use bfs traversal:<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#20351;&#29992;code block&#21487;&#20197;&#20445;&#30041;&#26684;&#24335;&#10;  3&#10; / \&#10;9  20&#10;  /  \&#10; 15   7</span><br></pre></td></tr></table></figure>
+<h1 id="题目">题目</h1><ul>
+<li><a href="http://www.lintcode.com/en/problem/interleaving-string/" target="_blank" rel="external">题目链接</a></li>
+</ul>
+<h1 id="思考">思考</h1><h2 id="first_trial:_fail">first trial: fail</h2><ul>
+<li>F[i][j]表示是否可以用S1, S2的前i,j个字符表示S3的前i+j个字符. 既然是M x N的DP, 自然要先init 第一行和第一列.</li>
+<li>然后就是optimally equation. 就是每次看S3的i+j-1个字符是否等于S1的i-1或者S2的j-1. 如果是, 就沿用F[i-1][j]或F[i][j-1].</li>
+<li>但是这样fail在第15/18个test case:<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">"sdfjas;dfjoisdufzjkndfasdkfja;sdfa;dfa;dfaskdjhfasdhjdfakhdgfkajdfasdjfgajksdfgaksdhfasdkbfjkdsfbajksdfhakjsdfbajkdfbakdjsfgaksdhgfjkdsghfkdsfgadsjfgkajsdgfkjasdfh"</span>, <span class="string">"dfnakdjnfjkzghdufguweygfasjkdfgb2gf8asf7tgbgasjkdfgasodf7asdgfajksdfguayfgaogfsdkagfsdhfajksdvfbgkadsghfakdsfgasduyfgajsdkfgajkdghfaksdgfuyadgfasjkdvfjsdkvfakfgauyksgfajkefgjkdasgfdjksfgadjkghfajksdfgaskdjfgasjkdgfuyaegfasdjkfgajkdfygadjskfgjkadfg"</span>, <span class="string">"sdfjas;dfjoisdfnakdjnfjkzghdufguwdufzjkeygfasjkdfgb2gf8asf7ndtgbgasjkdfgasodf7asdfgfajkasdksdfguayfgaogfsdkagfsfjadhfajksdvfbgkadsghfa;sdkdsfgasduyfgajsdkfgafajkdghfaksdgfuyadgfas;dfjkdvfjsdkvfakfgauyksa;dgfajkefgjkdasgfdjksffaskdjhfasdhjdfakhdgadjkghfajgfkajdfksdfgaskdjfgasjkdgfuasdjfgajksdfgaksdhfasdkbfjkdsfbajksdfyaegfasdjkfgajkdfygadjskfgjkadfghakjsdfbajkdfbakdjsfgaksdhgfjkdsghfkdsfgadsjfgkajsdgfkjasdfh"</span>]</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="分析">分析</h2><h3 id="Serialize">Serialize</h3><ul>
-<li>注意这个是Lintcode的Serialize, 和Leetcode的区别在于他使用的是BFS. 而后者则是使用的pre-order DFS.</li>
-<li>null object 和 null的区别.</li>
-<li>flag的设计: 要有初始值, 在进入循环的时候update, 对于每一个节点再次update. 那么当这一层结束后就是有效的flag.</li>
+<p>应该return false, 但我return true.<br>找了好久, 终于发现问题了: 我的递推方程是:<br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">if (s3.charAt(i + j - 1) == s1.charAt(i - 1)) &#123;</span><br><span class="line">  F[<span class="link_label">i</span>][<span class="link_reference">j</span>] = F[<span class="link_label">i - 1</span>][<span class="link_reference">j</span>];</span><br><span class="line">&#125; else if (s3.charAt(i + j - 1) == s2.charAt(j - 1)) &#123;</span><br><span class="line">  F[<span class="link_label">i</span>][<span class="link_reference">j</span>] = F[<span class="link_label">i</span>][<span class="link_reference">j - 1</span>];</span><br><span class="line">&#125;</span><br><span class="line">else &#123;</span><br><span class="line">  F[<span class="link_label">i</span>][<span class="link_reference">j</span>] = false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意这里: 如果s1.charAt(i - 1)和s3.charAt(i + j - 1)和s2.charAt(j - 1)相等的话, F[i][j]是给else if覆盖了. 所以有时候对有时候错. 所以是我的optimally equation写错了. 这里是or的关系.</p>
+<h2 id="2nd_trial:_AC">2nd trial: AC</h2><ul>
+<li>这次解决了这个bug. 使用OR来得到F[i][j].</li>
 </ul>
-<h3 id="De-serialize">De-serialize</h3><ul>
-<li>还是使用BFS解决. 和Pre-order的de-serialize一样, 和各自的Serialize有一个一一对应的关系.</li>
-<li>第一次写的时候出现idx超出array size的问题. 这是为什么呢? 因为我在判断token[idx]的时候居然判断了4次. 因为每一次判断都要idx++. 然后我把4个if并成2个if…else就OK了.</li>
-<li>注意这个时候的while loop判断不是parents queue是否为空, 而是判断token[] array走完没有. 我一开始这里搞错了, 居然去判断string走完没有. 注意string就是char Array. 例如{3, 9, 20, #, #, 15, 7}, 这个string的length是21. 而token[]则是7.</li>
-<li>还有注意这里update parents queue的时候要注意. 这里的做法是对于”#”, 则不加入null到queue. 不然queue的size()就不对了. 因为这里不用traverse null node.</li>
+<h2 id="3rd_trial:_fail">3rd trial: fail</h2><ul>
+<li>虽然刚才那样做是可以AC, 但是空间复杂度太大! 因为这个只和上一层跟左一列有关系. 所以可以用1d的rolling array来做. 那为什么这里和distinct subsequences的1d不同, 是自左向右循环呢? 分析如下:</li>
+<li>update的时候要看是否使用更新前还是更新后的上一层的信息.<ul>
+<li>例如distinct subsequences就是使用更新前的上一层信息, 所以内循环是<strong>自后往前</strong>.</li>
+<li>而像Interleaving string的1d rolling array就是自前向后.</li>
+<li>这2个有什么区别呢: 区别在于optimally equation, 看到底需要上一层的哪个数, 如果是上一层的左边, 那么就不能覆盖的循环, 所以要自后向前. 而且若是同时需要上一层左侧和这一层左侧的话就不能用1d滚动数组了, 用mod rolling.</li>
+<li>总结见下图: <img src="http://7xj2zx.com1.z0.glb.clouddn.com/9chap_rollingDP_interleaveDistinctSubseq.PNG" alt="9chap_rollingDP"></li>
 </ul>
-<h2 id="code">code</h2><h3 id="1-_Serialize_Binary_Tree_:_BFS遍历">1. Serialize Binary Tree : BFS遍历</h3><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function">String <span class="title">serializeBFS</span><span class="params">(TreeNode root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"#"</span>;</span><br><span class="line">    String ans = <span class="string">""</span>;</span><br><span class="line">    Queue&lt;TreeNode&gt; <span class="keyword">parents</span> = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">    <span class="keyword">parents</span>.offer(root);</span><br><span class="line">    <span class="keyword">boolean</span> end = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">while</span> (!<span class="keyword">parents</span>.isEmpty() &amp;&amp; !end) &#123;</span><br><span class="line">        end = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">int</span> size = <span class="keyword">parents</span>.size();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">            TreeNode head = <span class="keyword">parents</span>.poll();</span><br><span class="line">            <span class="comment">// update result</span></span><br><span class="line">            String thisnode = <span class="string">""</span>;</span><br><span class="line">            <span class="keyword">if</span> (head == <span class="keyword">null</span>) &#123;</span><br><span class="line">                thisnode = <span class="string">"#"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                thisnode = head.value + <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ans.length() == <span class="number">0</span>) &#123;</span><br><span class="line">                ans = ans + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                ans = ans + <span class="string">", "</span> + thisnode;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// update queue</span></span><br><span class="line">            <span class="keyword">if</span> (head != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!head.isLeaf())</span><br><span class="line">                    end = <span class="keyword">false</span>;</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.left);</span><br><span class="line">                <span class="keyword">parents</span>.offer(head.right);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ol>
-<li>De-serialize binary tree<br><del>还是直接link github代码好了.</del><br>试了几个方法. 最后还是觉得使用gist-it方便. 但是前提是代码不能有中文. 否则python解析不了.</li>
-</ol>
-<script src="http://gist-it.appspot.com/https://github.com/vlsi1217/leetlint/blob/master/nineChap3_BST/ValidateBST.java">
-</script>
-
-
-
-
+</li>
+<li>Ganer就是这样写的. 但是我一开始先是像<a href="http://blog.csdn.net/linhuanmars/article/details/23589057" target="_blank" rel="external">distinct substring</a>那样写: 即内循环是<strong>从后向前</strong>来update State. 结果是错的.<ul>
+<li>所以这里有个重要事情. 什么时候是自前向后, 什么时候自后向前. 这里并不是说Top-down, Bottom-up. 而是说1d rolling array里面是使用更新前还是更新后的值.<blockquote>
+<p>每次迭代我们只保存了上一行的信息。接下来从前往后还是从后往前就取决于我们要用的是更新前还是更新后的信息，如果从前往后，我们会使用更新后的信息</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4th_trial_:_AC">4th trial : AC</h2><ul>
+<li>这题和distinct substring 的 rolling array的内层循环不同的是: 这里是从前往后.</li>
+</ul>
 
 	
 	</div>
 	
   
 </div>
-	<a type="button" href="/2015/05/20/Leetcode/Report/Report-BinaryTreeSerialization/#more" class="btn btn-default more">Read More</a>
+	<a type="button" href="/2015/05/20/Leetcode/Report/Report-Distinct Subsequences/#more" class="btn btn-default more">Read More</a>
 </div>
 
 		
@@ -584,9 +615,9 @@ var _hmt = _hmt || [];
 		<h4>Categories</h4>
 		<ul class="tag_box inline list-unstyled">
 		
-			<li><a href="/categories/Demo/">Demo<span>2</span></a></li>
+			<li><a href="/categories/Demo/">Demo<span>1</span></a></li>
 		
-			<li><a href="/categories/Interview/">Interview<span>20</span></a></li>
+			<li><a href="/categories/Interview/">Interview<span>21</span></a></li>
 		
 			<li><a href="/categories/Leetcode/">Leetcode<span>4</span></a></li>
 		
@@ -607,41 +638,43 @@ var _hmt = _hmt || [];
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/ACM/">ACM<span>2</span></a></li>
+			<li><a href="/tags/Lintcode/">Lintcode<span>7</span></a></li>
 		
 			<li><a href="/tags/Algorithm/">Algorithm<span>1</span></a></li>
 		
-			<li><a href="/tags/webApp/">webApp<span>1</span></a></li>
-		
-			<li><a href="/tags/mooc/">mooc<span>1</span></a></li>
-		
-			<li><a href="/tags/OA/">OA<span>2</span></a></li>
-		
-			<li><a href="/tags/misc/">misc<span>1</span></a></li>
-		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
-		
-			<li><a href="/tags/BinaryTree/">BinaryTree<span>1</span></a></li>
-		
-			<li><a href="/tags/demo/">demo<span>2</span></a></li>
-		
-			<li><a href="/tags/Lintcode/">Lintcode<span>6</span></a></li>
-		
-			<li><a href="/tags/DC/">DC<span>2</span></a></li>
-		
-			<li><a href="/tags/List/">List<span>1</span></a></li>
-		
-			<li><a href="/tags/Ladder/">Ladder<span>6</span></a></li>
-		
-			<li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
-		
-			<li><a href="/tags/NineChap/">NineChap<span>13</span></a></li>
+			<li><a href="/tags/ACM/">ACM<span>2</span></a></li>
 		
 			<li><a href="/tags/POJ/">POJ<span>1</span></a></li>
 		
+			<li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
+		
+			<li><a href="/tags/demo/">demo<span>1</span></a></li>
+		
+			<li><a href="/tags/Ladder/">Ladder<span>7</span></a></li>
+		
+			<li><a href="/tags/webApp/">webApp<span>1</span></a></li>
+		
+			<li><a href="/tags/List/">List<span>1</span></a></li>
+		
+			<li><a href="/tags/BinaryTree/">BinaryTree<span>1</span></a></li>
+		
+			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
+		
+			<li><a href="/tags/misc/">misc<span>1</span></a></li>
+		
+			<li><a href="/tags/NineChap/">NineChap<span>14</span></a></li>
+		
 			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
 		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+		
+			<li><a href="/tags/DC/">DC<span>2</span></a></li>
+		
+			<li><a href="/tags/mooc/">mooc<span>1</span></a></li>
+		
 			<li><a href="/tags/DP/">DP<span>7</span></a></li>
+		
+			<li><a href="/tags/OA/">OA<span>2</span></a></li>
 		
 		 
 		</ul>
@@ -655,7 +688,7 @@ var _hmt = _hmt || [];
   <ul class="entry list-unstyled">
     
       <li>
-        <a href="/2015/09/16/Sample/teste/" ><i class="fa fa-file-o"></i>TEST...</a>
+        <a href="/2015/05/30/Leetcode/Report/Report-LargestRectangleInstagram/"  title="做完九章Ladder" ><i class="fa fa-file-o"></i>Largest rectangle in instag...</a>
       </li>
     
       <li>
@@ -687,13 +720,19 @@ var _hmt = _hmt || [];
 	
 		<li><i class="fa fa-code"></i><a href="n00tc0d3r.blogspot.com" title="N00t." target="_blank"]);">N00t题解</a></li>
 	
-		<li><i class="fa fa-code"></i><a href="http://www.shuatiblog.com/" title="9chap." target="_blank"]);">Coding monkey</a></li>
+		<li><i class="fa fa-code"></i><a href="http://www.shuatiblog.com/" title="" target="_blank"]);">Coding monkey</a></li>
 	
-		<li><i class="fa fa-code"></i><a href="http://www.cnblogs.com/lautsie/" title="" target="_blank"]);">阿牧遥</a></li>
+		<li><i class="fa fa-code"></i><a href="http://leetcode.tgic.me/" title="" target="_blank"]);">tgic290题解</a></li>
 	
 		<li><i class="fa fa-code"></i><a href="http://www.fgdsb.com/" title="" target="_blank"]);">fgdsb题解</a></li>
 	
 		<li><i class="fa fa-github"></i><a href="http://bookshadow.com/leetcode/" title="" target="_blank"]);">书影Leetcode 290题题解</a></li>
+	
+		<li><i class="fa fa-code"></i><a href="https://sites.google.com/site/jennyshelloworld/company-blog" title="" target="_blank"]);">CMU_Jenny九章算法1笔记</a></li>
+	
+		<li><i class="fa fa-code"></i><a href="http://www.cnblogs.com/yuzhangcmu/" title="" target="_blank"]);">九章Yu&#39;s Garden</a></li>
+	
+		<li><i class="fa fa-code"></i><a href="http://www.cnblogs.com/lautsie/" title="" target="_blank"]);">阿牧遥</a></li>
 	
 		<li><i class="fa fa-coffee"></i><a href="http://freemind.pluskid.org/misc/knowledge-accumulate/" title="" target="_blank"]);">pluskid</a></li>
 	
