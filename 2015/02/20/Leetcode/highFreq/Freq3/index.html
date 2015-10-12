@@ -1,0 +1,659 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta name="google-site-verification" content="en_dejusB3O2_8PtG6GlYdYmaTEHr2fTEiIoZidOypY" />
+  <meta name="baidu-site-verification" content="7tszoAHV0d" />
+  <meta charset="utf-8">
+  
+  <title>Leetcode freq 3 | 百变千幻衡山云雾十三式</title>
+  <meta name="author" content="玉娇龙">
+  
+  <meta name="description" content="A collection of Hello World applications from helloworld.org.">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Leetcode freq 3"/>
+  <meta property="og:site_name" content="百变千幻衡山云雾十三式"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+    <link rel="alternative" href="/atom.xml" title="百变千幻衡山云雾十三式" type="application/atom+xml">
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?null";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">百变千幻衡山云雾十三式</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Rss feed">
+			  <i class="fa fa-rss-square"></i>Rss
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> Leetcode freq 3</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+	
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> <p>A collection of Hello World applications from helloworld.org.</p>
+			
+		</div> <!-- alert -->
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <h1 id="Leetcode_freq_3">Leetcode freq 3</h1><p>标签（空格分隔）： leetcode</p>
+<hr>
+<h1 id="Frequency_3题解">Frequency 3题解</h1><p>[TOC]</p>
+<h2 id="20141218">20141218</h2><h3 id="Combination_-_N00t">Combination - N00t</h3><ul>
+<li>标准的recursion DFS模版. 牢记于心.</li>
+<li>而且有topdown和buttomup2个写法. 其中BU更简练.</li>
+<li>还有iteration的写法.</li>
+</ul>
+<h3 id="Letter_Combinations_of_a_Phone_Number">Letter Combinations of a Phone Number</h3><ul>
+<li>然后再来看这道题, 可以用Simple&amp;Stupid的做法, 和N00t的Combination差不多.</li>
+<li>或者N00t的iteration解法.</li>
+</ul>
+<h3 id="Combination_Sum_I/II">Combination Sum I/II</h3><ul>
+<li>N00t和Ganker结合. 注意2个的区别: I是可以reuse自己. 即可以用2(0), 2(0). 这里的2(0)表示在位置0的2. eg: {2, 2, 3, 7} 求sum=7. 而II是不能reuse自己. 所以答案是2(0), 2(1).</li>
+</ul>
+<h3 id="Maximum_Subarray_I/II">Maximum Subarray I/II</h3><ul>
+<li>N00t的I是用的简单的一次过. 里面的sum初始化的条件是sum&lt;0. 但是看了Ganker的方法才知道原来这道题目是典型的DP.</li>
+<li>其实LC的要求是不用DP做来达到O(n). 而是用Divide and Conquer来做. 看水中的鱼(C++). 或者一天一学(Java): <a href="http://joycelearning.blogspot.com/2013/10/leetcode-maximum-subarray.html" target="_blank" rel="external">链接</a></li>
+<li>其实II并<strong>不能</strong>用N00t的做法. 因为有可能出现有多个subarray的值都一样! 可以看LintCode的解法: <a href="http://codeanytime.blogspot.com/2014/12/lintcode-maximum-subarray-ii.html" target="_blank" rel="external">链接</a></li>
+</ul>
+<h3 id="Jump_Game">Jump Game</h3><ul>
+<li>Ganker在Maximum Subarray里面提到了DP里面常用的一个方法: 称为”局部最优和全局最优解法”. 在Jump game里面也用到了.</li>
+</ul>
+<h2 id="20141217">20141217</h2><h3 id="Trapping_Rain_Water">Trapping Rain Water</h3><ul>
+<li><a href="http://blog.csdn.net/linhuanmars/article/details/20888505" target="_blank" rel="external">Ganker CSDN大神的DP解法</a></li>
+<li>当然还是N00t的解法作为入口开始理解.</li>
+</ul>
+<h3 id="Largest_Rectangle_in_Histogram">Largest Rectangle in Histogram</h3><ul>
+<li>N00t: 双Stack, 一个stack</li>
+<li>CSDN/abcbc: <a href="http://blog.csdn.net/abcbc/article/details/8943485" target="_blank" rel="external">双Stack</a></li>
+<li>GeekForGeek: sliding window, segment tree. 这2个做法很重要!要认真理解.</li>
+</ul>
+<h3 id="Search_a_2D_Matrix">Search a 2D Matrix</h3><ul>
+<li>简单题: 用2次binary search. 或者当作1个sorted array只要一次binary search就行了.</li>
+</ul>
+<h3 id="Partition_List">Partition List</h3><ul>
+<li>参考的Ganker的答案, 但是有点混乱了. Java里面不是copy的handle吗? 那walk, runner一直改变, 不是也同时改变了helper吗?</li>
+<li>ANS: NONONONONO. 双指针大法: walker/runner只是copy了pointer. 而每次walker = walker.next. 就assign了walker到下一个pointer. 这和C/C++一样.</li>
+</ul>
+<h3 id="Number_of_Islands">Number of Islands</h3><ul>
+<li>简单题. ProgramCreek使用的recursion解法.</li>
+</ul>
+<h2 id="20141208">20141208</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node">Populating Next Right Pointers in Each Node</h3><h3 id="Divide_Two_Integers">Divide Two Integers</h3><h3 id="Search_in_Rotated_Sorted_Array_I/II">Search in Rotated Sorted Array I/II</h3><h3 id="Deep_Iterator_:_LinkedIn老题目">Deep Iterator : LinkedIn老题目</h3><ul>
+<li>C++的解法: <a href="http://www.fgdsb.com/2015/01/19/nested-iterator/" target="_blank" rel="external">fgdsd的解法</a> 以及<a href="http://www.oodesign.com/iterator-pattern.html" target="_blank" rel="external">Iterator pattern</a></li>
+<li><del>Rosetta算法大全里面也有解法</del> 这只是print Flatten, 不是iterator: <a href="http://rosettacode.org/wiki/Flatten_a_list#Java" target="_blank" rel="external">Java解法link</a></li>
+<li>还是包子铺好, 有Java的解法(是iteration, 使用Stack来替代recursion, 上面讲recursion简单些): <a href="http://blog.baozitraining.org/2014/08/linkedin-twitter-and-hulu-onsite-how-to.html" target="_blank" rel="external">iteration解法</a></li>
+<li>其实这是一个常见的模式: <strong>Iterator and Composite Pattern</strong>. 见Head First Design Pattern. 这是最好的解法. 设计+代码</li>
+</ul>
+<h2 id="20141206">20141206</h2><h3 id="Search_In_Sorted_Array">Search In Sorted Array</h3><ul>
+<li>同类题目: Search Insert Position</li>
+<li>同类题目: Search for a range</li>
+</ul>
+<h3 id="Multiply_Strings">Multiply Strings</h3><ul>
+<li>初看之下, 就是一道简单题目啊, str2num然后乘起来不就行了? 其实不行, 因为会太大(??)</li>
+<li>第一种解法初看之下也是平淡无奇, 但其实分析的时候发现居然把array和charAt的顺序搞混了. 45-&gt;num1 = [4,5]. 这里的num1[0] = 4! 所以45*123的res要做成5位, 并将第一位留为0. 因为最终可能进位.</li>
+</ul>
+<h3 id="N-Queens_I/II">N-Queens I/II</h3><ul>
+<li>Matrix67/N00t用的是位运算解决问题.</li>
+<li>Ganker用的是传统的<strong>循环递归</strong>解决这种NP问题.</li>
+<li>又听了段公子的DP+Recursion讲座. 讲了用遍历+backtracking这种都是NP, 即是NP问题. 里面也提到了像Word Break这种可以Top-Down(memorize)和Button-Up(DP)的区别. 以及求CSP的个数和所有解空间的区别.</li>
+<li>Quora上面讲了top-down跟button-up的DP都不一定需要用recursion.</li>
+</ul>
+<h2 id="20141205">20141205</h2><h3 id="Restore_IP_Addresses">Restore IP Addresses</h3><ul>
+<li>太好了, 又深入的理解了recursion. 这里虽然只有一次显式的recursion, 但他是位于loop里面, 后面还有个results.add(). 以及共用(?和谁)一个results. 所以这种是一个今天学到的recursion: loop内的recursion用于循环遍历一层.</li>
+<li>N00t果然是recursion很厉害. 佩服. 这里是DFS还是BFS? 是不是子解树? 之前看的那个CSDN 链接在哪?</li>
+</ul>
+<h3 id="Triangle_Path_Sum">Triangle Path Sum</h3><ul>
+<li>很好的DP问题. 简单, 也分为top-down, 和button-up的2种思维方式.</li>
+<li>初始化List<list<>&gt;费了些心思, 觉得还是anonymous inner class比较简洁. <a href="http://mangstacular.blogspot.com/2013/04/4-ways-to-initialize-list-in-java.html" target="_blank" rel="external">link</a>. 其中<a href="http://www.programmerinterview.com/index.php/java-questions/java-anonymous-class-example/" target="_blank" rel="external">programinterview的讲解很清晰</a></list<></li>
+<li>N00t的top-down又让我深入理解了recursion中的param是primitive/object的区别. 以及call stack的new和clr的过程(Eclipse).</li>
+<li>暂时还没看N00t的top-down的BFS解法………………………………….</li>
+</ul>
+<h3 id="Surrounded_Regions">Surrounded Regions</h3><ul>
+<li>极度经典的图形学算法题目: flood fill. 同时关于DFS/BFS的取舍. 以及Queue的API: offer/poll. (这和stack的push/pull对应)</li>
+<li>参考Ganker/N00t的解法.</li>
+<li>Palindrome Partitioning I/II</li>
+<li><p>N00t大神的DP+DP/DP+, 还有美丽的<strong>partitionHelper()</strong></p>
+<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">private <span class="keyword">static</span> <span class="type">void</span> recur(<span class="type">String</span> s, <span class="type">int</span> left, <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; <span class="literal">result</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (left == s.length()) &#123;</span><br><span class="line">      <span class="literal">result</span>.add(new <span class="type">ArrayList</span>&lt;<span class="type">String</span>&gt;());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = left; i &lt; s.length(); ++i) &#123;</span><br><span class="line">      <span class="type">List</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt; temp = new <span class="type">ArrayList</span>&lt;<span class="type">List</span>&lt;<span class="type">String</span>&gt;&gt;();</span><br><span class="line">      recur(s, i + <span class="number">1</span>, temp);</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">List</span>&lt;<span class="type">String</span>&gt; partitions : temp) &#123;</span><br><span class="line">        partitions.add(<span class="number">0</span>, s.substring(left, i + <span class="number">1</span>));</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="literal">result</span>.addAll(temp);  // add()和addAll()的区别.</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>想到了word segment, word spell out, Matrix Chain multiplication</p>
+<ul>
+<li>也是一道经典recursion题目. 而且还看到了在for each里面的recursion call. 怎么展开呢? 太美了的recursion!</li>
+<li><a href="http://www.geeksforgeeks.org/print-possible-strings-can-made-placing-spaces/" target="_blank" rel="external">word spell out 链接</a></li>
+<li><a href="http://www.geeksforgeeks.org/dynamic-programming-set-8-matrix-chain-multiplication/" target="_blank" rel="external">Matrix Chain Multiplication链接</a></li>
+<li><a href="http://stackoverflow.com/questions/5275002/recursively-spell-out-a-word" target="_blank" rel="external">Word Split: SOF链接</a></li>
+<li>20150423: subsequence+matching的题目首先想到的应该是DP: 见<a href="http://jane4532.blogspot.com/2013/11/palindrome-partitioning-iileetcode.html" target="_blank" rel="external">sophieJ的解法</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="Word_Segment_I/II">Word Segment I/II</h3><ul>
+<li>Naive做法是N00t的好</li>
+<li>DP做法有2D和1D, 可以是aray或者arrayList, N00t的做法和ProgramCreek的不同.</li>
+<li>Word Break II的主要参照programCreek的做法. 很完美经典的DFS+DP解法. 漂亮!!! ProgramCreek还赔了图, 其中的words即dp[].显而可见index为什么是s.length()+1了. <img src="http://www.programcreek.com/wp-content/uploads/2014/03/word-break-II-java-298x400.png" alt="ProgramCreek的配图"></li>
+</ul>
+<h2 id="20141129">20141129</h2><h3 id="Find_the_k-th_Smallest_Element_in_the_Union_of_Two_Sorted_Arrays">Find the k-th Smallest Element in the Union of Two Sorted Arrays</h3><ul>
+<li>先理解这道题再做median of two array.</li>
+<li>这里关键的问题可以转化为: 找B[j-1] &lt;A[i] &lt; B[j] 或者 A[i-1] &lt; B[j] &lt; A[i]. 如果不成立就recursion. 注意这里因为Java不能用指针, 所以要稍微站换一下1337的写法.</li>
+</ul>
+<h3 id="Median_of_Two_Sorted_Arrays">Median of Two Sorted Arrays</h3><ul>
+<li>这题有很多思考, 值得说道说道. 这题是源自于CLRS. 而且里面还简化了: m=n. 而LC这道题是generic的.</li>
+<li>要做这题先要理解这道题: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 见上.<br>+</li>
+</ul>
+<h3 id="Regular_Expression_Matching">Regular Expression Matching</h3><ul>
+<li>如何保证考虑详细?</li>
+<li>N00t的解法很好<ul>
+<li>不知道怎样才能像他那样那么有逻辑. 不会有错漏. 这个if/else设计的太美了</li>
+<li>redundant分析我觉得不对. 因为到了2nd iteration中. “b” vs “a<em>a</em>b”是不会有3个substructure的. 因为不match.</li>
+<li>backtracking做法中, 一个用substring, 一个就是用2个指针i,j. 避免了substring()来copy浪费空间. 不过之所以这里可以用”char array”是因为这里只是比对. 而不需要修改. 所以直接reference即可. 但是像之前的partitionHelper里面可以用吗??? 或者是更之前的:</li>
+</ul>
+</li>
+</ul>
+<h3 id="Wildcard_Matching">Wildcard Matching</h3><pre><code><span class="addition">+</span>
+</code></pre><h2 id="20141118">20141118</h2><h3 id="Construct_Binary_Tree_from_Inorder_and_Postorder_traversal">Construct Binary Tree from Inorder and Postorder traversal</h3><ul>
+<li>首先通过pre, post, in加深了对recursion的理解.</li>
+<li>还是老话, 思考问题的方式. 先是找规律. 发现pre order的头的root, 然后可以在In order里面找到左右子树的大小, 再回到pre order里面找到左右子树的root. 如此recursion.</li>
+</ul>
+<h3 id="construct_binary_tree_from_preorder_and_inorder_traversal">construct binary tree from preorder and inorder traversal</h3><ul>
+<li>举一反三. 找规律看到了post-order反着读的话就正好是pre order的mirror. 所以这次从post order的尾巴开始读. 发现尾巴就是root, 然后回到inorder里面找左右子树的大小. 从而回到post-order里面找左右子树的root. 要注意的是不能点到mid &lt; end和mid &gt; start! 一开始就这样, 发现有错误, 进行到一半就停了.</li>
+<li>Flatten Binary Tree to Linked List</li>
+<li><a href="http://n00tc0d3r.blogspot.com/2013/03/flatten-binary-tree-to-linked-list-in.html" target="_blank" rel="external">太好了, 终于完全理解复杂recursion了</a></li>
+</ul>
+<h3 id="Path_Sum">Path Sum</h3><ul>
+<li>root-to-leaf Path sum: <a href="http://www.programcreek.com/2013/01/leetcode-path-sum/" target="_blank" rel="external">ProgramCreek的解法</a></li>
+<li>Binary Tree Maximum Path Sum</li>
+<li>Find ALL Path Sum</li>
+</ul>
+<h3 id="Reverse_Integer">Reverse Integer</h3><ul>
+<li>要注意overflow, 跟负号</li>
+</ul>
+<h3 id="Unique_Paths_I/II">Unique Paths I/II</h3><ul>
+<li>经典的DP问题</li>
+<li>也是path问题, 可以找规律, 变成排列组合题.</li>
+<li>如果有obstacle呢?</li>
+<li>觉得还是N00t的解法比较好. 相对于1337的2D opt, 这个只要1D. 而且可以解出来.</li>
+</ul>
+<h3 id="Longest_Consecutive_Sequence">Longest Consecutive Sequence</h3><ul>
+<li>还是觉得N00t的方法. 还是一样, 学会抽象, 不要以为tree型就一定要用tree实现, 或者range就必须要知道左右和长度. 要有了整体把握才设计API. HashMap的关键在于key/value的设计.</li>
+<li>还是N00t的”simple”(不觉得simple, 然而很多技巧在里面). 好聪明的做法. 果然是精通API和recursion的N00t.</li>
+</ul>
+<h2 id="20141115">20141115</h2><h3 id="Edit_Distance">Edit Distance</h3><ul>
+<li>这个是个经典的DP问题.  是Stanford Algs 2 DP问题DNA Sequence Alignment的扩展, 因为不只是ACGT, 也不只是Gap, 而是有3种操作. 注意n00tc0d3r的DP的优化! (用的空间是O(min(l1, l2) 而不是通常的O(l1*l2)) 我觉得这个是一个通用的optimize方法. 是不是four Russian(不是)?</li>
+</ul>
+<h3 id="One_Edit_Distance">One Edit Distance</h3><ul>
+<li>这个看起来就是直接用Edit Distance就行了. 其实会超时间! 注意是one distance. 所以直接1 pass.</li>
+</ul>
+<h3 id="Binary_Tree_Inorder_Traversal">Binary Tree Inorder Traversal</h3><ul>
+<li>很喜欢N00tc03的post-order=pre-order的mirror.</li>
+</ul>
+<h3 id="Binary_Tree_ZigZag_level_order_Traversal">Binary Tree ZigZag level order Traversal</h3><ul>
+<li>这个属于BFS. 注意看题意: 输出是要按照parent来加上括号. 而不是只要按照顺序就行的. 所以有2中方法:</li>
+<li>法1: 用flag</li>
+<li>法2: SRAM的双buffer. 这里使我真正的理解了<strong>github_addtion.bellmanFord()</strong>! 原来reachableNode, 和nextreachableNodes就和queue, queueBuffer的关系一样. 都是用来<strong>update到下一个layer</strong>的.</li>
+<li>注意要用2个loop, out-loop创建reslist来保存currLevel的值, 创建childLevel来保存下一层. in-loop用来填充res和childLevel</li>
+</ul>
+<h2 id="20141112">20141112</h2><h3 id="Convert_Sorted_list_to_BST_(in-order,_Button-up)">Convert Sorted list to BST (in-order, Button-up)</h3><ul>
+<li>这个和array的区别是array可以O(1) search, LinkedList要O(n). 所以不行. 但是想到BST是in-order. 可以直接从leaf开始. 也就是<strong>Buttom-up recursive</strong>. 但是要注意的是recursion的写法. 真正理解: 位于recursive call之前和之后的code的意义是什么. 这在Algs4的BST讲过. 在Stanford的SCC的DFS_loop讲过.</li>
+</ul>
+<h3 id="Convert_Sorted_Array_to_BST">Convert Sorted Array to BST</h3><ul>
+<li>简单. 因为BST是按顺序的, 所以recursive拿middle并左右路.</li>
+</ul>
+<h3 id="Remove_duplicates_from_sorted_Array">Remove duplicates from sorted Array</h3><ul>
+<li>这个可以看N00tc0d3r的解法. 先学会remove element from array</li>
+<li>而且用Nth-to-end里面的双指针, 距离n+1个node!</li>
+</ul>
+<h3 id="Median_of_Two_Sorted_Arrays-1">Median of Two Sorted Arrays</h3><ul>
+<li>比较难. 而且大部分答案都不对. 还是得看1337c0d3r的答案分析. 正统. 他让先看: Find the k-th Smallest Element in the Union of Two Sorted Arrays. 他说这个是这道题的基础.</li>
+</ul>
+<h3 id="Remove_duplicates_from_sorted_List">Remove duplicates from sorted List</h3><ul>
+<li>关键在于list的删除要给出这个node的前一个node, 然后用pre.next = pre.next.next.</li>
+</ul>
+<hr>
+<h2 id="题目">题目</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>Leetcode problem</th>
+<th>freq</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26</td>
+<td><del>Remove Duplicates from Sorted Array</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>83</td>
+<td><del>Remove Duplicates from Sorted List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>112</td>
+<td><del>Path Sum</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>7</td>
+<td><del>Reverse Integer</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>19</td>
+<td><del>Remove Nth Node From End of List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>62</td>
+<td><del>Unique Paths</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>108</td>
+<td><del>Convert Sorted Array to Binary Search Tree</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>17</td>
+<td><del>Letter Combinations of a Phone Number</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>39</td>
+<td><del>Combination Sum</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>53</td>
+<td><del>Maximum Subarray</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>63</td>
+<td><del>Unique Paths II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>64</td>
+<td><del>Minimum Path Sum</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>74</td>
+<td><del>Search a 2D Matrix</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>82</td>
+<td><del>Remove Duplicates from Sorted List II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>86</td>
+<td><del>Partition List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>93</td>
+<td><del>Restore IP Addresses</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>105</td>
+<td><del>Construct Binary Tree from Preorder and Inorder</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>106</td>
+<td><del>Construct Binary Tree from Inorder and Postorder</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>114</td>
+<td><del>Flatten Binary Tree to Linked List</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>116</td>
+<td>~~Populating Next Right Pointers in Each Node</td>
+<td>3</td>
+</tr>
+<tr>
+<td>29</td>
+<td>~~Divide Two Integers</td>
+<td>3</td>
+</tr>
+<tr>
+<td>33</td>
+<td>~~Search in Rotated Sorted Array</td>
+<td>3</td>
+</tr>
+<tr>
+<td>34</td>
+<td><del>Search for a Range</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>43</td>
+<td><del>Multiply Strings</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>51</td>
+<td><del>N-Queens</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>52</td>
+<td><del>N-Queens II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>72</td>
+<td><del>Edit Distance</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>94</td>
+<td><del>Binary Tree Inorder Traversal</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>103</td>
+<td><del>Binary Tree Zigzag Level Order Traversal</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>109</td>
+<td><del>Convert Sorted List to Binary Search Tree</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>128</td>
+<td><del>Longest Consecutive Sequence</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>130</td>
+<td><del>Surrounded Regions</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>132</td>
+<td><del>Palindrome Partitioning II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>4</td>
+<td><del>Median of Two Sorted Arrays</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>10</td>
+<td><del>Regular Expression Matching</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>44</td>
+<td><del>Wildcard Matching</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>81</td>
+<td><del>Search in Rotated Sorted Array II</del></td>
+<td>3</td>
+</tr>
+<tr>
+<td>end</td>
+<td>念念不忘必有回响</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+				
+    	<li class="prev"><a href="/2015/02/21/Leetcode/LeetcodeDP/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+  		
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/02/16/Leetcode/System/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+  <h2 class="title">Comments</h2>
+
+  
+  	 <div id="disqus_thread">
+     <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  	 </div>
+  
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-02-20 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Leetcode/">Leetcode<span>4</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#Leetcode_freq_3"><span class="toc-article-text">Leetcode freq 3</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#Frequency_3题解"><span class="toc-article-text">Frequency 3题解</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141218"><span class="toc-article-text">20141218</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Combination_-_N00t"><span class="toc-article-text">Combination - N00t</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Letter_Combinations_of_a_Phone_Number"><span class="toc-article-text">Letter Combinations of a Phone Number</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Combination_Sum_I/II"><span class="toc-article-text">Combination Sum I/II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Maximum_Subarray_I/II"><span class="toc-article-text">Maximum Subarray I/II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Jump_Game"><span class="toc-article-text">Jump Game</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141217"><span class="toc-article-text">20141217</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Trapping_Rain_Water"><span class="toc-article-text">Trapping Rain Water</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Largest_Rectangle_in_Histogram"><span class="toc-article-text">Largest Rectangle in Histogram</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Search_a_2D_Matrix"><span class="toc-article-text">Search a 2D Matrix</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Partition_List"><span class="toc-article-text">Partition List</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Number_of_Islands"><span class="toc-article-text">Number of Islands</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141208"><span class="toc-article-text">20141208</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Populating_Next_Right_Pointers_in_Each_Node"><span class="toc-article-text">Populating Next Right Pointers in Each Node</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Divide_Two_Integers"><span class="toc-article-text">Divide Two Integers</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Search_in_Rotated_Sorted_Array_I/II"><span class="toc-article-text">Search in Rotated Sorted Array I/II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Deep_Iterator_:_LinkedIn老题目"><span class="toc-article-text">Deep Iterator : LinkedIn老题目</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141206"><span class="toc-article-text">20141206</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Search_In_Sorted_Array"><span class="toc-article-text">Search In Sorted Array</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Multiply_Strings"><span class="toc-article-text">Multiply Strings</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#N-Queens_I/II"><span class="toc-article-text">N-Queens I/II</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141205"><span class="toc-article-text">20141205</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Restore_IP_Addresses"><span class="toc-article-text">Restore IP Addresses</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Triangle_Path_Sum"><span class="toc-article-text">Triangle Path Sum</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Surrounded_Regions"><span class="toc-article-text">Surrounded Regions</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Word_Segment_I/II"><span class="toc-article-text">Word Segment I/II</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141129"><span class="toc-article-text">20141129</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Find_the_k-th_Smallest_Element_in_the_Union_of_Two_Sorted_Arrays"><span class="toc-article-text">Find the k-th Smallest Element in the Union of Two Sorted Arrays</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Median_of_Two_Sorted_Arrays"><span class="toc-article-text">Median of Two Sorted Arrays</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Regular_Expression_Matching"><span class="toc-article-text">Regular Expression Matching</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Wildcard_Matching"><span class="toc-article-text">Wildcard Matching</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141118"><span class="toc-article-text">20141118</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Construct_Binary_Tree_from_Inorder_and_Postorder_traversal"><span class="toc-article-text">Construct Binary Tree from Inorder and Postorder traversal</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#construct_binary_tree_from_preorder_and_inorder_traversal"><span class="toc-article-text">construct binary tree from preorder and inorder traversal</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Path_Sum"><span class="toc-article-text">Path Sum</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Reverse_Integer"><span class="toc-article-text">Reverse Integer</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Unique_Paths_I/II"><span class="toc-article-text">Unique Paths I/II</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Longest_Consecutive_Sequence"><span class="toc-article-text">Longest Consecutive Sequence</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141115"><span class="toc-article-text">20141115</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Edit_Distance"><span class="toc-article-text">Edit Distance</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#One_Edit_Distance"><span class="toc-article-text">One Edit Distance</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Binary_Tree_Inorder_Traversal"><span class="toc-article-text">Binary Tree Inorder Traversal</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Binary_Tree_ZigZag_level_order_Traversal"><span class="toc-article-text">Binary Tree ZigZag level order Traversal</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#20141112"><span class="toc-article-text">20141112</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Convert_Sorted_list_to_BST_(in-order,_Button-up)"><span class="toc-article-text">Convert Sorted list to BST (in-order, Button-up)</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Convert_Sorted_Array_to_BST"><span class="toc-article-text">Convert Sorted Array to BST</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Remove_duplicates_from_sorted_Array"><span class="toc-article-text">Remove duplicates from sorted Array</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Median_of_Two_Sorted_Arrays-1"><span class="toc-article-text">Median of Two Sorted Arrays</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#Remove_duplicates_from_sorted_List"><span class="toc-article-text">Remove duplicates from sorted List</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#题目"><span class="toc-article-text">题目</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 玉娇龙
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'vlsi1217';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-62877030-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+   </html>

@@ -140,18 +140,22 @@ var _hmt = _hmt || [];
 	<!-- content -->
 	<div class="mypage">		
 	    <h2 id="Circular_Queue的作用">Circular Queue的作用</h2><ul>
-<li>在SRAM里面相当于是无限大的buffer.</li>
+<li>在SRAM里面相当于是无限大的buffer. 实现基本都是下图所示:<br><img src="http://7xj2zx.com1.z0.glb.clouddn.com/cmycode_CB.PNG" alt="ringBuffer">. 其中enqueue在Head, dequeue在tail. 且Head指向下一个插入的位置, Tail指向下一个可以读取的位置. 这样每次进来, 只要判断是否wrap, full. 然后就可以读写了.</li>
 <li>在一般来说是作为asynch thread communication. 见<a href="http://www.cs.hmc.edu/~geoff/classes/hmc.cs105.201501/labs/lab05-ringbuf/ringbuf.pdf" target="_blank" rel="external">CS105: Harvey Mudd</a></li>
+<li>实现方式: <a href="https://github.com/angrave/SystemProgramming/wiki/Synchronization,-Part-8:-Ring-Buffer-Example" target="_blank" rel="external">github-Synchronization-CircularQueue</a>.</li>
 </ul>
 <h2 id="Circular_Queue的区别">Circular Queue的区别</h2><ul>
-<li>wiki已经写了circular queue的几种实现方式, 区别在于判断empty/full的方式:<ol>
-<li>head/tail+1 empty slot<ul>
+<li><p>wiki已经写了circular queue的几种实现方式, 区别在于判断empty/full的方式:</p>
+<ol>
+<li><p>head/tail+1 empty slot</p>
+<ul>
 <li>这个实现在: Ring Buffer_Anders Kaloer</li>
+<li>Scott的Firmware里面的也是这样做的.</li>
 </ul>
 </li>
-<li>head/tail+count<ul>
+<li><p>head/tail+count</p>
+<ul>
 <li>一般都是用这个写, 因为简单, 而且semaphore其实就使这个count. 表示的是: 当前queue里面保存的item数量.</li>
-<li>Scott的Firmware里面的也是这样做的.</li>
 <li>我参考的Harshkn的写法. 改了一点. 主要是count在满了之后就不动了. 然后在push/pop里面加入了判断error的代码, 来自于kqchen.</li>
 </ul>
 </li>
@@ -168,13 +172,13 @@ var _hmt = _hmt || [];
 <ul class="pagination">
 	 
 				
-    	<li class="prev"><a href="/2015/05/22/Leetcode/Unit5-9chap-DP2/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
+    	<li class="prev"><a href="/2015/05/22/Leetcode/9chap/Unit5-9chap-DP2/" class="alignleft prev"><i class="fa fa-arrow-circle-o-left"></i>Prev</a></li>
   		
 
         <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
 
 		
-		   <li class="next"><a href="/2015/05/20/Leetcode/Report-BinaryTreeSerialization/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+		   <li class="next"><a href="/2015/05/20/Leetcode/Report/Report-BinaryTreeSerialization/" class="alignright next">Next<i class="fa fa-arrow-circle-o-right"></i></a></li>         
         
 	
 </ul>
