@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -123,6 +124,8 @@ var _hmt = _hmt || [];
   
   <div class="col-md-9">
 	
+
+	  <div id="top_search"></div>
 
 	  <div class="archive">
 		
@@ -455,12 +458,14 @@ var _hmt = _hmt || [];
 <div class="col-md-3">
 	<div id="sidebar">
 	
-			<div class="form-group has-success has-feedback">
-  <form action="//google.com/search" method="get" accept-charset="utf-8" >
-    <input type="search" name="q" results="0" placeholder="Search" class="form-control">
-    <input type="hidden" name="q" value="site:vlsi1217.github.io">	
-  </form>
-</div>
+			
+  <div id="site_search">
+   <div class="form-group">
+    <input type="text" id="local-search-input" name="q" results="0" placeholder="Search" class="st-search-input st-default-search-input form-control"/>
+   </div>  
+  <div id="local-search-result"></div>
+  </div>
+
 
 		
 			
@@ -491,43 +496,43 @@ var _hmt = _hmt || [];
 		<h4>Tag Cloud</h4>
 		<ul class="tag_box inline list-unstyled">		
 		
-			<li><a href="/tags/OA/">OA<span>2</span></a></li>
+			<li><a href="/tags/NineChap/">NineChap<span>14</span></a></li>
+		
+			<li><a href="/tags/ACM/">ACM<span>2</span></a></li>
+		
+			<li><a href="/tags/BinaryTree/">BinaryTree<span>1</span></a></li>
+		
+			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
 		
 			<li><a href="/tags/Stack/">Stack<span>1</span></a></li>
 		
 			<li><a href="/tags/demo/">demo<span>1</span></a></li>
 		
-			<li><a href="/tags/Algorithm/">Algorithm<span>1</span></a></li>
-		
-			<li><a href="/tags/webApp/">webApp<span>1</span></a></li>
-		
-			<li><a href="/tags/DP/">DP<span>7</span></a></li>
-		
-			<li><a href="/tags/mooc/">mooc<span>1</span></a></li>
-		
-			<li><a href="/tags/BinaryTree/">BinaryTree<span>1</span></a></li>
-		
-			<li><a href="/tags/DC/">DC<span>2</span></a></li>
+			<li><a href="/tags/Ladder/">Ladder<span>7</span></a></li>
 		
 			<li><a href="/tags/Lintcode/">Lintcode<span>7</span></a></li>
 		
-			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
+			<li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
 		
-			<li><a href="/tags/BFS/">BFS<span>1</span></a></li>
+			<li><a href="/tags/OA/">OA<span>2</span></a></li>
 		
-			<li><a href="/tags/List/">List<span>1</span></a></li>
+			<li><a href="/tags/DC/">DC<span>2</span></a></li>
 		
 			<li><a href="/tags/POJ/">POJ<span>1</span></a></li>
 		
+			<li><a href="/tags/List/">List<span>1</span></a></li>
+		
+			<li><a href="/tags/Algorithm/">Algorithm<span>1</span></a></li>
+		
+			<li><a href="/tags/mooc/">mooc<span>1</span></a></li>
+		
+			<li><a href="/tags/DP/">DP<span>7</span></a></li>
+		
 			<li><a href="/tags/misc/">misc<span>1</span></a></li>
 		
-			<li><a href="/tags/ACM/">ACM<span>2</span></a></li>
+			<li><a href="/tags/webApp/">webApp<span>1</span></a></li>
 		
-			<li><a href="/tags/NineChap/">NineChap<span>14</span></a></li>
-		
-			<li><a href="/tags/Leetcode/">Leetcode<span>16</span></a></li>
-		
-			<li><a href="/tags/Ladder/">Ladder<span>7</span></a></li>
+			<li><a href="/tags/Greedy/">Greedy<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -614,6 +619,9 @@ var _hmt = _hmt || [];
 </p> </footer>
 </div> <!-- container-narrow -->
   
+
+
+  
 <a id="gotop" href="#">   
   <span>▲</span> 
 </a>
@@ -622,7 +630,10 @@ var _hmt = _hmt || [];
 <script src="/js/gallery.js"></script>
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
 
+<<<<<<< Updated upstream
+=======
 
 <script type="text/javascript">
 var disqus_shortname = 'vlsi1217';
@@ -635,6 +646,7 @@ var disqus_shortname = 'vlsi1217';
 }());
 </script>
 
+>>>>>>> Stashed changes
 
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
@@ -645,6 +657,9 @@ var disqus_shortname = 'vlsi1217';
 </script>
 
 
+<<<<<<< Updated upstream
+
+=======
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -655,5 +670,7 @@ var disqus_shortname = 'vlsi1217';
   ga('send', 'pageview');
 
 </script>
+>>>>>>> Stashed changes
+
 </body>
    </html>

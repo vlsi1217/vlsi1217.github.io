@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
@@ -127,19 +128,20 @@ var _hmt = _hmt || [];
 <div class="row post">
 	<!-- cols -->
 	
+	<div id="top_meta"></div>
 	<div class="col-md-9">
 	
 
-	
+	<!-- content -->
+	<div class="mypage">		
+	  
 		 <div class="alert alert-success description">
 			<i class="fa fa-info-circle"></i> <p>A collection of Hello World applications from helloworld.org.</p>
 			
-		</div> <!-- alert -->
-			
+		 </div> <!-- alert -->
+	  		
 
-	<!-- content -->
-	<div class="mypage">		
-	    <h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><p>*</p>
+	  <h2 id="20141228">20141228</h2><h3 id="Populating_Next_Right_Pointers_in_Each_Node_II">Populating Next Right Pointers in Each Node II</h3><p>*</p>
 <h3 id="Lowest_Common_Ancestors_I/II:">Lowest Common Ancestors I/II:</h3><h4 id="I:_即没有parent的pointer怎么做?">I: 即没有parent的pointer怎么做?</h4><ul>
 <li>这题不仅在九章算法课第二课里面讲了, 而且在<a href="http://articles.leetcode.com/2011/07/lowest-common-ancestor-of-a-binary-tree-part-i.html" target="_blank" rel="external">1337文章link</a>也详细的解释了Bottom-up的意义. 我认为那个是设计思路.</li>
 <li><p>先复习一下: top-down/bottom-up approach: <a href="http://www.meetqun.com/thread-2732-1-1.html" target="_blank" rel="external">TD/BU的区别-米群讨论</a>, 但是里面大牛的回答也不准确, DP的top-down/bottom-up和recursion没什么关系. 例如这里的LCA的Bottom-up就是recursion. 但是Scramble String的3D Bottom-up DP就是iteration. 那么在Bottom-up有什么好处呢? 在Binary Tree的BU解法中, 相对于Top-Down是</p>
@@ -703,11 +705,11 @@ var _hmt = _hmt || [];
   
 </section>
 
-	
 	</div> <!-- col-md-9/col-md-12 -->
+		
 	
-	
-		<div class="col-md-3"> 
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
 
 	<!-- date -->
 	
@@ -756,29 +758,10 @@ var _hmt = _hmt || [];
 	
 </div><!-- col-md-3 -->
 
-	
+	</div>
+		
 
 </div><!-- row -->
-
-	</div>
-  </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2015 玉娇龙
-  
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
-</p> </footer>
-</div> <!-- container-narrow -->
-  
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
-
 
 <script type="text/javascript">
 var disqus_shortname = 'vlsi1217';
@@ -792,6 +775,46 @@ var disqus_shortname = 'vlsi1217';
 </script>
 
 
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 玉娇龙
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+<<<<<<< Updated upstream
+=======
+
+<script type="text/javascript">
+var disqus_shortname = 'vlsi1217';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+>>>>>>> Stashed changes
+
 <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
 <script src="/fancybox/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
@@ -801,6 +824,9 @@ var disqus_shortname = 'vlsi1217';
 </script>
 
 
+<<<<<<< Updated upstream
+
+=======
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -811,5 +837,7 @@ var disqus_shortname = 'vlsi1217';
   ga('send', 'pageview');
 
 </script>
+>>>>>>> Stashed changes
+
 </body>
    </html>
